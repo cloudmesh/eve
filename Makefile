@@ -53,7 +53,7 @@ test:
 	$(call banner, "PEOPLE")
 	@curl -s http://127.0.0.1:5000/people  | jq
 	$(call banner, "CLUSTER")
-	@curl -s http://127.0.0.1:5000/clusterx  | jq
+	@curl -s http://127.0.0.1:5000/cluster  | jq
 
 clean:
 	rm *~
