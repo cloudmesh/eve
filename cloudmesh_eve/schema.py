@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 
 import yaml
 from cerberus import Validator
@@ -10,8 +13,9 @@ age:
   type: integer
   min: 10
 '''
+
 schema = yaml.load(schema_text)
 document = {'name': 'Little Joe', 'age': 5}
 v = Validator()
-print v.validate(document, schema)
-print v.errors
+print(v.validate(document, schema))
+print(v.errors)
