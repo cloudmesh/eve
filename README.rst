@@ -21,8 +21,10 @@ Create db dir
 Try it out
 -------
 
-make deploy
-make test
+Just uses firt python environment::
+
+  make deploy
+  make test
 
 testing validation
 --------------

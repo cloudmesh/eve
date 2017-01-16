@@ -1,5 +1,5 @@
 UNAME=$(shell uname)
-export ROOT_DIR=${PWD}
+export ROOT_DIR=${PWD}/cloudmesh_eve
 MONGOD=mongod --dbpath ~/.cloudmesh/data/db --bind_ip 127.0.0.1
 EVE=cd $(ROOT_DIR); python run.py
 
