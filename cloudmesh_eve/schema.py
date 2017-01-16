@@ -15,7 +15,7 @@ age:
 '''
 
 schema = yaml.load(schema_text)
-document = {'name': 'Little Joe', 'age': 5}
+document = {'name': 'Gregor von Laszewski', 'age': 3}
 v = Validator()
 print(v.validate(document, schema))
 print(v.errors)
