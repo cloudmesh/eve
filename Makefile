@@ -54,6 +54,16 @@ test:
 	@curl -s http://127.0.0.1:5000/people  | jq
 	$(call banner, "CLUSTER")
 	@curl -s http://127.0.0.1:5000/cluster  | jq
+	$(call banner, "COMPUTER")
+	@curl -s http://127.0.0.1:5000/computer  | jq
 
 clean:
 	rm *~
+
+
+genie:
+	git clone https://github.com/drud/evegenie.git
+	cd evegenie; pip install -r requirements.txt
+json:
+	python evegenie/geneve.py sample.json
+	less sample.settings.py

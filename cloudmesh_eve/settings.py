@@ -1,4 +1,5 @@
 DOMAIN = {
     'people': {},
-    'cluster': {}
+    'cluster': {},
+    'computer': {}
     }
