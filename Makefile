@@ -1,7 +1,7 @@
 UNAME=$(shell uname)
 export ROOT_DIR=${PWD}/cloudmesh_eve
 MONGOD=mongod --dbpath ~/.cloudmesh/data/db --bind_ip 127.0.0.1
-EVE=cd $(ROOT_DIR); python run.py
+EVE=cd $(ROOT_DIR); python service.py
 
 define banner
 	@echo
@@ -50,8 +50,8 @@ deploy: setup mongo eve
 test:
 	$(call banner, "SERVICE")
 	curl -s -i http://127.0.0.1:5000 
-	$(call banner, "PEOPLE")
-	@curl -s http://127.0.0.1:5000/people  | jq
+	$(call banner, "PROFILE")
+	@curl -s http://127.0.0.1:5000/profile  | jq
 	$(call banner, "CLUSTER")
 	@curl -s http://127.0.0.1:5000/cluster  | jq
 	$(call banner, "COMPUTER")
@@ -66,4 +66,5 @@ genie:
 	cd evegenie; pip install -r requirements.txt
 json:
 	python evegenie/geneve.py sample.json
-	less sample.settings.py
+	cp sample.settings.py cloudmesh_eve/settings.py
+	cat cloudmesh_eve/settings.py
