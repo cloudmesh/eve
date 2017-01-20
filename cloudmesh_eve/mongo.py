@@ -1,4 +1,8 @@
 # TODO: complete
+# for executing shell commands please do not reinvent the whele but use
+
+# https://github.com/cloudmesh/client/blob/master/cloudmesh_client/common/Shell.py
+# if commands are missing or are not working we can fix that in cloudmesh_client
 
 class mongo(object):
 
