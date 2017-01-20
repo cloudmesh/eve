@@ -48,14 +48,19 @@ deploy: setup mongo eve
 	echo deployed
 
 test:
-	$(call banner, "SERVICE")
+	$(call banner, "LIST SERVICE")
 	curl -s -i http://127.0.0.1:5000 
-	$(call banner, "PROFILE")
+	$(call banner, "LIST PROFILE")
 	@curl -s http://127.0.0.1:5000/profile  | jq
-	$(call banner, "CLUSTER")
+	$(call banner, "LIST CLUSTER")
 	@curl -s http://127.0.0.1:5000/cluster  | jq
-	$(call banner, "COMPUTER")
+	$(call banner, "LIST COMPUTER")
 	@curl -s http://127.0.0.1:5000/computer  | jq
+	$(call banner, "INSERT COMPUTER")
+	curl -d '{"name": "myCLuster",	"label": "c0","ip": "127.0.0.1","memoryGB": 16}' -H 'Content-Type: application/json'  http://127.0.0.1:5000/computer  
+	$(call banner, "LIST COMPUTER")
+	@curl -s http://127.0.0.1:5000/computer  | jq
+
 
 clean:
 	rm *~

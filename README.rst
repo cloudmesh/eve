@@ -32,3 +32,11 @@ testing validation
 python schema.py
 
 
+TO DO
+-----
+
+insert
+
+curl -d '{"name": "myCLuster",	"label": "c0","ip": "127.0.0.1","memoryGB": 16}' -H 'Content-Type: application/json'  http://127.0.0.1:5000/computer  
+
+add logger
