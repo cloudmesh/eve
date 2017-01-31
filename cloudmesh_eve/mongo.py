@@ -6,9 +6,10 @@
 
 from __future__ import print_function
 
+import os
+
 from cloudmesh_client.common.Shell import Shell
 from cloudmesh_client.common.util import grep
-
 
 def log_print(msg):
     # temporarily used till we switch to real logger
@@ -21,13 +22,37 @@ class Mongo(object):
         self.parameters['port'] = port
         self.parameters['dbpath'] = "~/.cloudmesh/data/db"
         self.parameters['bind_ip'] = "127.0.0.1"
+        self.parameters['logpath'] = "~/.cloudmesh/data/mongo.log"
         print(self.parameters)
+
+    def kill(self):
+        """
+        killall mongod
+        :return:
+        """
+        self.initialize()
+        raise NotImplementedError
+
+    def initialize(self):
+        """
+        rm -rf ~/.cloudmesh/data/db
+        mkdir -p ~/.cloudmesh/data/db
+        :return:
+        """
+        raise NotImplementedError
 
     def start(self):
         """starts the mongo service."""
-        r = Shell.execute(
-            'mongod --port {port} -dbpath {dbpath} -bind_ip {bind_ip} start'.format(**self.parameters).split(' '))
-        print(r)
+        command = 'mongod --port {port} -dbpath {dbpath} -bind_ip {bind_ip} --fork --logpath {logpath}' \
+            .format(**self.parameters)
+        command_list = command.split(' ')
+        print(command)
+        os.system(command)
+
+        # print (command_list)
+        # r = Shell.execute(command)
+
+        # print(r)
         log_print('started')
         self.status()
 
