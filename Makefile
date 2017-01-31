@@ -1,5 +1,5 @@
 UNAME=$(shell uname)
-export ROOT_DIR=${PWD}/cloudmesh_eve
+export ROOT_DIR=${PWD}/cloudmesh/eve
 MONGOD=mongod --dbpath ~/.cloudmesh/data/db --bind_ip 127.0.0.1
 EVE=cd $(ROOT_DIR); python service.py
 
@@ -71,5 +71,5 @@ genie:
 	cd evegenie; pip install -r requirements.txt
 json:
 	python evegenie/geneve.py sample.json
-	cp sample.settings.py cloudmesh_eve/settings.py
-	cat cloudmesh_eve/settings.py
+	cp sample.settings.py cloudmesh/eve/settings.py
+	cat cloudmesh/eve/settings.py
