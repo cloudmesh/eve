@@ -10,26 +10,23 @@ from cloudmesh_client.common.Shell import Shell
 from cloudmesh_client.common.util import grep
 
 
-# mongod --dbpath ~/.cloudmesh/data/db --bind_ip 127.0.0.1
-
-
 def log_print(msg):
     # temporarily used till we switch to real logger
     print('mongod:' + msg)
 
 
 class Mongo(object):
-    def __init__(self, port):
+    def __init__(self, port=5000):
         self.parameters = {}
         self.parameters['port'] = port
         self.parameters['dbpath'] = "~/.cloudmesh/data/db"
         self.parameters['bind_ip'] = "127.0.0.1"
+        print(self.parameters)
 
     def start(self):
         """starts the mongo service."""
-        log_print("bug: dbpath is not specified")
         r = Shell.execute(
-            'mongod --port {port} -dbpath {dbpath} -bind_ip {bind_ip} start'.split(' ').format(self.parameters))
+            'mongod --port {port} -dbpath {dbpath} -bind_ip {bind_ip} start'.format(**self.parameters).split(' '))
         log_print('started')
         self.status()
 
