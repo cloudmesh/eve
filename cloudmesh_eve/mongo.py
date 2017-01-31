@@ -6,68 +6,61 @@
 
 from __future__ import print_function
 
-import subprocess
-import commands
 import os
 
 
+def log_print(msg):
+    # temporarily used till we switch to real logger
+    print(msg)
+
 
 class mongo(object):
-
-    def start(portnumber):
+    def start(self, portnumber):
         """starts the mongo service."""
         print("not yet implemented")
-        #subprocess.call(mongod --port portnumber)
+        # subprocess.call(mongod --port portnumber)
         os.system('sudo service mongod start')
-        print ('mongod  ------  running')
+        log_print('mongod  ------  running')
 
-
-    def stop():
+    def stop(self):
         """stops the mongo service."""
         os.system('sudo service mongod stop')
-        #subprocess.call(mongod --shutdown) 
-        print ('mongodb  ------  stopped')
+        # subprocess.call(mongod --shutdown)
+        log_print('mongodb  ------  stopped')
 
-
-    def status(format=None):
+    def status(self, format=None):
         """returns the status of the service. if no parameter. if format
         is specified its returned in that fomat. txt, json, XML,
         allowed
         """
         output = commands.getoutput('ps -A')
-        if 'mongod' in output :
-            print ('mongod  ------  running')
+        if 'mongod' in output:
+            log_print('mongod  ------  running')
         else:
-            print ('mongod  ------  stopped')
+            log_print('mongod  ------  stopped')
 
-
-    def reset():
+    def reset(self):
         """stops the service and deletes the database, restarts the service."""
-        os.system('sudo service mongod stop')        
-        print ('mongodb  ------  stopped')
-        
-        #print("not yet implemented")
+        os.system('sudo service mongod stop')
+        log_print('mongodb  ------  stopped')
+
+        # print("not yet implemented")
         pass
 
-
-    def delete():
+    def delete(self):
         """just deletes all data in the database"""
-        print("not yet implemented")
+        log_print("not yet implemented")
         pass
 
-    
-    def pid():
+    def pid(self):
         """returns the pid of the mongo db servier"""
-        str= commands.getoutput("ps -A | grep mongod")
+        str = commands.getoutput("ps -A | grep mongod")
         charater = str.strip();
-        print (charater.split(" ")[0])
-        
-	
-    def log(path):
+        log_print(charater.split(" ")[0])
+
+    def log(self, path):
         """sets the log file to the given path"""
-        print("not yet implemented")
+        log_print("not yet implemented")
         pass
-    
-#TODO: define test programs with nosetest
 
-
+# TODO: define test programs with nosetest
