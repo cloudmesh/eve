@@ -27,12 +27,14 @@ class Mongo(object):
         """starts the mongo service."""
         r = Shell.execute(
             'mongod --port {port} -dbpath {dbpath} -bind_ip {bind_ip} start'.format(**self.parameters).split(' '))
+        print(r)
         log_print('started')
         self.status()
 
     def stop(self):
         """stops the mongo service."""
         r = Shell.execute('mongod stop'.split(' '))
+        print(r)
         # subprocess.call(mongod --shutdown)
         log_print('stopped')
 
@@ -42,6 +44,7 @@ class Mongo(object):
         allowed
         """
         output = Shell.ps = ('-A')
+        print (output)
         if 'mongod' in output:
             log_print('running')
         else:
@@ -50,6 +53,7 @@ class Mongo(object):
     def reset(self):
         """stops the service and deletes the database, restarts the service."""
         r = Shell.execute('mongod stop'.split(' '))
+        print (r)
         log_print('stopped')
 
         # print("not yet implemented")
@@ -57,18 +61,19 @@ class Mongo(object):
 
     def delete(self):
         """just deletes all data in the database"""
-        log_print("not yet implemented")
+        raise NotImplementedError
         pass
 
     def pid(self):
         """returns the pid of the mongo db servier"""
         output = Shell.ps=('-A')
+        print (output)
         pid = grep("mongod").strip().split(' ')[0]
         return pid
 
     def log(self, path):
         """sets the log file to the given path"""
-        log_print("not yet implemented")
+        raise NotImplementedError
         pass
 
 # TODO: define test programs with nosetest
