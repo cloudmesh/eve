@@ -5,9 +5,12 @@
 # if commands are missing or are not working we can fix that in cloudmesh_client
 
 from __future__ import print_function
-from cloudmesh_client.common.util import grep
+
 from cloudmesh_client.common.Shell import Shell
-import os
+from cloudmesh_client.common.util import grep
+
+
+# mongod --dbpath ~/.cloudmesh/data/db --bind_ip 127.0.0.1
 
 
 def log_print(msg):
@@ -15,17 +18,20 @@ def log_print(msg):
     print('mongod:' + msg)
 
 
-class mongo(object):
-    def start(self, portnumber):
+class Mongo(object):
+    def __init__(self, port):
+        self.parameters = {}
+        self.parameters['port'] = port
+
+    def start(self):
         """starts the mongo service."""
-        print("not yet implemented")
-        # subprocess.call(mongod --port portnumber)
-        r = Shell.execute('sudo service mongod start'.split(' '))
+        log_pring("bug: dbpath is not specified")
+        r = Shell.execute('mongod --port {port} start'.split(' ').format(self.parameters))
         log_print('running')
 
     def stop(self):
         """stops the mongo service."""
-        r = Shell.execute('sudo service mongod stop'.split(' '))
+        r = Shell.execute('mongod stop'.split(' '))
         # subprocess.call(mongod --shutdown)
         log_print('stopped')
 
@@ -42,7 +48,7 @@ class mongo(object):
 
     def reset(self):
         """stops the service and deletes the database, restarts the service."""
-        r = Shell.execute('sudo service mongod stop'.split(' '))
+        r = Shell.execute('mongod stop'.split(' '))
         log_print('stopped')
 
         # print("not yet implemented")
