@@ -12,7 +12,7 @@ import os
 
 def log_print(msg):
     # temporarily used till we switch to real logger
-    print(msg)
+    print('mongod:' + msg)
 
 
 class mongo(object):
@@ -21,13 +21,13 @@ class mongo(object):
         print("not yet implemented")
         # subprocess.call(mongod --port portnumber)
         r = Shell.execute('sudo service mongod start'.split(' '))
-        log_print('mongod  ------  running')
+        log_print('running')
 
     def stop(self):
         """stops the mongo service."""
         r = Shell.execute('sudo service mongod stop'.split(' '))
         # subprocess.call(mongod --shutdown)
-        log_print('mongodb  ------  stopped')
+        log_print('stopped')
 
     def status(self, format=None):
         """returns the status of the service. if no parameter. if format
@@ -36,14 +36,14 @@ class mongo(object):
         """
         output = Shell.ps = ('-A')
         if 'mongod' in output:
-            log_print('mongod  ------  running')
+            log_print('running')
         else:
-            log_print('mongod  ------  stopped')
+            log_print('stopped')
 
     def reset(self):
         """stops the service and deletes the database, restarts the service."""
         r = Shell.execute('sudo service mongod stop'.split(' '))
-        log_print('mongodb  ------  stopped')
+        log_print('stopped')
 
         # print("not yet implemented")
         pass
