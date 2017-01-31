@@ -22,12 +22,16 @@ class Mongo(object):
     def __init__(self, port):
         self.parameters = {}
         self.parameters['port'] = port
+        self.parameters['dbpath'] = "~/.cloudmesh/data/db"
+        self.parameters['bind_ip'] = "127.0.0.1"
 
     def start(self):
         """starts the mongo service."""
-        log_pring("bug: dbpath is not specified")
-        r = Shell.execute('mongod --port {port} start'.split(' ').format(self.parameters))
-        log_print('running')
+        log_print("bug: dbpath is not specified")
+        r = Shell.execute(
+            'mongod --port {port} -dbpath {dbpath} -bind_ip {bind_ip} start'.split(' ').format(self.parameters))
+        log_print('started')
+        self.status()
 
     def stop(self):
         """stops the mongo service."""
