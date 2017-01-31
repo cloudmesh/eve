@@ -13,16 +13,16 @@ class mongo(object):
     def start(portnumber):
         """starts the mongo service."""
         print("not yet implemented")
-	#subprocess.call(mongod --port portnumber)
+        #subprocess.call(mongod --port portnumber)
         os.system('sudo service mongod start')
-	print 'mongod  ------  running'
+        print 'mongod  ------  running'
 
 
     def stop():
         """stops the mongo service."""
         os.system('sudo service mongod stop')
         #subprocess.call(mongod --shutdown) 
-	print 'mongodb  ------  stopped'
+        print 'mongodb  ------  stopped'
 
 
     def status(format=None):
@@ -30,17 +30,17 @@ class mongo(object):
         is specified its returned in that fomat. txt, json, XML,
         allowed
         """
-	output = commands.getoutput('ps -A')
-	if 'mongod' in output :
-	    print 'mongod  ------  running'
-	else:
+        output = commands.getoutput('ps -A')
+        if 'mongod' in output :
+            print 'mongod  ------  running'
+        else:
             print 'mongod  ------  stopped'
 
 
     def reset():
         """stops the service and deletes the database, restarts the service."""
-	os.system('sudo service mongod stop')        
- 	print 'mongodb  ------  stopped'
+        os.system('sudo service mongod stop')        
+        print 'mongodb  ------  stopped'
         
 	#print("not yet implemented")
         pass
@@ -54,9 +54,9 @@ class mongo(object):
     
     def pid():
         """returns the pid of the mongo db servier"""
-	str= commands.getoutput("ps -A | grep mongod")
-	charater = str.strip();
-	print (charater.split(" ")[0])
+        str= commands.getoutput("ps -A | grep mongod")
+        charater = str.strip();
+        print (charater.split(" ")[0])
         
 	
     def log(path):
