@@ -7,22 +7,38 @@
 import subprocess
 import commands
 import os
+from pymongo import MongoClient
 
 class mongo(object):
 
     def start(portnumber):
-        """starts the mongo service."""
-        print("not yet implemented")
-	#subprocess.call(mongod --port portnumber)
         os.system('sudo service mongod start')
-	print 'mongod  ------  running'
+	output1 = commands.getoutput('ps -A')
+	if 'mongod' in output1 :
+	    print 'mongod  ------  running'
+	else:
+	    os.system("systemctl start mongodb");
+	    output2 = commands.getoutput('ps -A')
+	    if 'mongod'  in output2:
+		print 'mongod  ------  running'
+	    else:
+		print 'mongod  ------  stopped'
 
 
     def stop():
-        """stops the mongo service."""
         os.system('sudo service mongod stop')
-        #subprocess.call(mongod --shutdown) 
-	print 'mongodb  ------  stopped'
+	output1 = commands.getoutput('ps -A')
+	if 'mongod' in output1 :
+	    os.system("systemctl stop mongodb");
+	    output2 = commands.getoutput('ps -A')
+	    if 'mongod' in output2:
+		print 'mongod  ------  running'
+	    else:
+		print 'mongod  ------  stopped'
+	else:
+	    status="stopped"
+	    print 'mongod  ------  stopped'
+
 
 
     def status(format=None):
@@ -37,13 +53,55 @@ class mongo(object):
             print 'mongod  ------  stopped'
 
 
-    def reset():
-        """stops the service and deletes the database, restarts the service."""
-	os.system('sudo service mongod stop')        
- 	print 'mongodb  ------  stopped'
-        
-	#print("not yet implemented")
-        pass
+    def reset(databasename):
+        client= MongoClient(host='localhost',port=27017)
+	client.drop_database(databasename);
+	os.system('sudo service mongod stop')
+	# os.system('sudo service mongod start')
+	output = commands.getoutput('ps -A')
+	if 'mongod' in output :
+	    print 'mongod  ------  running'
+	else:
+	    print 'mongod  ------  stopped'
+
+
+	#restarting the service
+	# os.system('sudo service mongod restart')
+	# output1 = commands.getoutput('ps -A')
+	# if 'mongod' in output1 :
+	#     print 'mongod  ------  running'
+	# else:
+	#     print 'mongod  ------  stopped'
+
+
+	#stopping the service
+	os.system('sudo service mongod stop')
+	output2= commands.getoutput('ps -A')
+	if 'mongod' in output2 :
+	    os.system("systemctl stop mongodb");
+	    output21 = commands.getoutput('ps -A')
+	    if 'mongod' in output21:
+		print 'mongod  ------  running'
+	    else:
+		print 'mongod  ------  stopped'
+	else:
+	    status="stopped"
+	    print 'mongod  ------  stopped'
+
+	#starting the service
+	os.system('sudo service mongod start')
+	output3 = commands.getoutput('ps -A')
+	if 'mongod' in output3 :
+	    print 'mongod  ------  running'
+	else:
+	    os.system("systemctl start mongodb");
+	    output31 = commands.getoutput('ps -A')
+	    if 'mongod'  in output31:
+		print 'mongod  ------  running'
+	    else:
+		print 'mongod  ------  stopped'
+
+
 
 
     def delete():
