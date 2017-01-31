@@ -5,7 +5,8 @@
 # if commands are missing or are not working we can fix that in cloudmesh_client
 
 from __future__ import print_function
-
+from cloudmesh_client.common.util import grep
+from cloudmesh_client.common.Shell import Shell
 import os
 
 
@@ -19,12 +20,12 @@ class mongo(object):
         """starts the mongo service."""
         print("not yet implemented")
         # subprocess.call(mongod --port portnumber)
-        os.system('sudo service mongod start')
+        r = Shell.execute('sudo service mongod start'.split(' '))
         log_print('mongod  ------  running')
 
     def stop(self):
         """stops the mongo service."""
-        os.system('sudo service mongod stop')
+        r = Shell.execute('sudo service mongod stop'.split(' '))
         # subprocess.call(mongod --shutdown)
         log_print('mongodb  ------  stopped')
 
@@ -33,7 +34,7 @@ class mongo(object):
         is specified its returned in that fomat. txt, json, XML,
         allowed
         """
-        output = commands.getoutput('ps -A')
+        output = Shell.ps = ('-A')
         if 'mongod' in output:
             log_print('mongod  ------  running')
         else:
@@ -41,7 +42,7 @@ class mongo(object):
 
     def reset(self):
         """stops the service and deletes the database, restarts the service."""
-        os.system('sudo service mongod stop')
+        r = Shell.execute('sudo service mongod stop'.split(' '))
         log_print('mongodb  ------  stopped')
 
         # print("not yet implemented")
@@ -54,9 +55,9 @@ class mongo(object):
 
     def pid(self):
         """returns the pid of the mongo db servier"""
-        str = commands.getoutput("ps -A | grep mongod")
-        charater = str.strip();
-        log_print(charater.split(" ")[0])
+        output = Shell.ps=('-A')
+        pid = grep("mongod").strip().split(' ')[0]
+        return pid
 
     def log(self, path):
         """sets the log file to the given path"""
