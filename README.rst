@@ -1,3 +1,9 @@
+Cloudmesh Eve
+==============
+
+Development environment for cloudmesh to define simple REST services
+
+
 Install Mongo
 -----------
 

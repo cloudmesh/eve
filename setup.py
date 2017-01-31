@@ -1,17 +1,22 @@
 from setuptools import find_packages, setup
+import io
+
+def readfile(filename):
+    with io.open(filename, encoding="utf-8") as stream:
+        return stream.read().split()
+
+
+requiers = readfile ('requirements.txt')
+version = readfile("VERSION")[0].strip()
+readme = readfile('README.rst')
 
 NAME = "Cloudmesh Eve"
 DESCRIPTION = "A REST service for cloudmesh"
 AUTHOR = "Gregor von Laszewski, I524"
 AUTHOR_EMAIL = "laszewski@gmail.com"
 URL = "https://github.com/cloudmesh/eve"
-LONG_DESCRIPTION = """
-Cloudmesh Eve
-==============
+LONG_DESCRIPTION = "\n".join(readme)
 
-Development environment for cloudmesh to define simple REST services
-
-"""
 
 setup \
 (
@@ -39,11 +44,7 @@ setup \
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
     ],
-    install_requires=[
-        "eve",
-        "pygments",
-        "detox",
-    ],
+    install_requires=requiers,
     # test_suite="runtests.runtests",
     tests_require=[
         "flake8",
