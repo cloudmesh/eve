@@ -13,7 +13,7 @@ from __future__ import print_function
 
 from cloudmesh_client.common.Shell import Shell
 from cloudmesh_client.common.util import HEADING
-from cloudmesh_eve.mongo import Mongo
+from cloudmesh.eve.mongo import Mongo
 
 def run(command):
     parameter = command.split(" ")

@@ -10,11 +10,15 @@ import os
 
 from cloudmesh_client.common.Shell import Shell
 from cloudmesh_client.common.util import grep
+import shutil
+import errno
 
 def log_print(msg):
     # temporarily used till we switch to real logger
     print('mongod:' + msg)
 
+def create_dir(path):
+    os.system("mkdir -p " + path)
 
 class Mongo(object):
     def __init__(self, port=5000):
@@ -23,23 +27,28 @@ class Mongo(object):
         self.parameters['dbpath'] = "~/.cloudmesh/data/db"
         self.parameters['bind_ip'] = "127.0.0.1"
         self.parameters['logpath'] = "~/.cloudmesh/data/mongo.log"
+        create_dir(self.parameters['dbpath'])
         print(self.parameters)
+
+
+    def clean(self):
+        """
+        Removes the database and the log files
+        :return:
+        """
+        shutil.rmtree(self.parameters['dbpath'])
+        shutil.rmtree(self.parameters['logpath'])
+        self._create_dir(self.parameters['dbpath'])
+
 
     def kill(self):
         """
         killall mongod
         :return:
         """
-        self.initialize()
+        self.clean()
         raise NotImplementedError
 
-    def initialize(self):
-        """
-        rm -rf ~/.cloudmesh/data/db
-        mkdir -p ~/.cloudmesh/data/db
-        :return:
-        """
-        raise NotImplementedError
 
     def start(self):
         """starts the mongo service."""
@@ -102,3 +111,7 @@ class Mongo(object):
         pass
 
 # TODO: define test programs with nosetest
+
+if __name__ == "__main__":
+    m = Mongo()
+    m.start()
