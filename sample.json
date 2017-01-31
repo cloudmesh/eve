@@ -18,8 +18,8 @@
 	}
     },
     "computer": {
-	"name": "myCLuster",
-	"label": "c0",
+	"name": "myComputer",
+	"label": "server-001",
 	"ip": "127.0.0.1",
 	"memoryGB": 16
     }
