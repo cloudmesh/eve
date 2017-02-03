@@ -23,7 +23,20 @@ def readfile(filename):
         return stream.read().split()
 
 
-requiers = readfile ('requirements.txt')
+#requiers = readfile ('requirements.txt')
+#git+git://github.com/nicolaiarocci/eve.git@develop
+requiers = """
+
+pygments
+tox
+detox
+coverage
+flake8
+cloudmesh_client
+""".split("\n")
+
+dependency_links = ['http://github.com/nicolaiarocci/eve.git@develop']
+
 version = readfile("VERSION")[0].strip()
 readme = readfile('README.rst')
 
@@ -62,6 +75,7 @@ setup \
         "Programming Language :: Python :: 3",
     ],
     install_requires=requiers,
+    dependency_links = dependency_links,
     # test_suite="runtests.runtests",
     tests_require=[
         "flake8",

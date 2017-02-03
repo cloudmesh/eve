@@ -1,4 +1,4 @@
--e git+git://github.com/nicolaiarocci/eve@develop#egg=cloudmesh-client
+git+git://github.com/nicolaiarocci/eve.git@develop
 pygments
 tox
 detox
