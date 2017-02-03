@@ -21,7 +21,15 @@ def create_dir(path):
     os.system("mkdir -p " + path)
 
 class Mongo(object):
+    """
+    Manage mongod service.
+    """
+
     def __init__(self, port=5000):
+        """
+        sets up a mongo d service
+        :param port: the prort number. default set to 5000
+        """
         self.parameters = {}
         self.parameters['port'] = port
         self.parameters['dbpath'] = "~/.cloudmesh/data/db"
@@ -38,7 +46,7 @@ class Mongo(object):
         """
         shutil.rmtree(self.parameters['dbpath'])
         shutil.rmtree(self.parameters['logpath'])
-        self._create_dir(self.parameters['dbpath'])
+        create_dir(self.parameters['dbpath'])
 
 
     def kill(self):
@@ -46,8 +54,8 @@ class Mongo(object):
         killall mongod
         :return:
         """
+        os.system("killall mongod")
         self.clean()
-        raise NotImplementedError
 
 
     def start(self):
@@ -55,7 +63,9 @@ class Mongo(object):
         command = 'mongod --port {port} -dbpath {dbpath} -bind_ip {bind_ip} --fork --logpath {logpath}' \
             .format(**self.parameters)
         command_list = command.split(' ')
+        create_dir(self.parameters['dbpath'])
         print(command)
+        os.system("ulimit -n 1024")
         os.system(command)
 
         # print (command_list)

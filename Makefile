@@ -62,6 +62,10 @@ test:
 	@curl -s http://127.0.0.1:5000/computer  | jq
 
 
+nosetests:
+	nosetests -v --nocapture tests/test_mongo.py
+
+
 clean:
 	rm *~
 

@@ -24,7 +24,7 @@ def run(command):
 
 
 # noinspection PyMethodMayBeStatic,PyPep8Naming
-class Test_shell(object):
+class Test_mongo(object):
     """
 
     """
