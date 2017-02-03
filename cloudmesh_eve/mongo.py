@@ -153,7 +153,6 @@ class mongo(object):
     
 #TODO: define test programs with nosetest
 
-
 if __name__=="__main__":
 	"""nosetest function"""
 	m= mongo()
