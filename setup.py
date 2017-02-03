@@ -26,7 +26,6 @@ def readfile(filename):
 #requiers = readfile ('requirements.txt')
 #git+git://github.com/nicolaiarocci/eve.git@develop
 requiers = """
-
 pygments
 tox
 detox

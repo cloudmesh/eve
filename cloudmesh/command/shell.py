@@ -19,7 +19,7 @@ class CMShell(cmd.Cmd):
         return True
 
 def main():
-    MyCmd().cmdloop()
+    CMShell().cmdloop()
     
 if __name__ == '__main__':
     main()
