@@ -138,7 +138,6 @@ class mongo(object):
 			print "connection is down or the database does not exist"
 
 
-    
     def pid(self):
 		"""returns the pid of the mongo db servier"""
 		str= commands.getoutput("ps -A | grep mongod")
