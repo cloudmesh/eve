@@ -112,15 +112,15 @@ class Mongo(object):
             client = MongoClient(host='localhost', port=self.parameters['port'] )
             # TODO: bug database is not defined
 			db=client.get_database(database)
-        collectionsnames = db.collection_names()
+            collectionsnames = db.collection_names()
 
-        for singlecollectionname in collectionsnames:
-            log_print("deleting: " + singlecollectionname)
-            db.get_collection(singlecollectionname).remove({})
+            for singlecollectionname in collectionsnames:
+                log_print("deleting: " + singlecollectionname)
+                db.get_collection(singlecollectionname).remove({})
 
-    # BUG EXCEPTION MISSING
-    except:
-    log_print("problem deleting")
+        # BUG EXCEPTION MISSING
+        except:
+            log_print("problem deleting")
 
     def pid(self):
         """returns the pid of the mongo db servier"""
