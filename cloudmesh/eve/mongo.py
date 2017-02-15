@@ -104,7 +104,7 @@ class Mongo(object):
         # client.drop_database(databasename); how is this differentfrom deleting the collection?
 
         # print("not yet implemented")
-        pass
+
 
     def delete(self):
         """deletes all data in the database."""
@@ -121,7 +121,6 @@ class Mongo(object):
     # BUG EXCEPTION MISSING
     except:
     log_print("problem deleting")
-        pass
 
     def pid(self):
         """returns the pid of the mongo db servier"""
@@ -133,10 +132,7 @@ class Mongo(object):
 
     def log(self, path):
         """sets the log file to the given path"""
-        self.parameters['logpath'] = path
-        pass
-
-# TODO: define test programs with nosetest
+        self.parameters['logpath'] = path  # TODO: define test programs with nosetest
 
 if __name__ == "__main__":
     m = Mongo()
