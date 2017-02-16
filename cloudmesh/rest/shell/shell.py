@@ -11,9 +11,21 @@ from __future__ import print_function
 from cloudmesh_client.shell.command import command
 from cmd import Cmd
 from cloudmesh_client.shell.console import Console
+import textwrap
 
 class CMShell(Cmd):
 
+    prompt = 'cms> '
+    banner = textwrap.dedent("""
+              +=======================================================+
+              .   ____ _                 _                     _      .
+              .  / ___| | ___  _   _  __| |_ __ ___   ___  ___| |__   .
+              . | |   | |/ _ \| | | |/ _` | '_ ` _ \ / _ \/ __| '_ \  .
+              . | |___| | (_) | |_| | (_| | | | | | |  __/\__ \ | | | .
+              .  \____|_|\___/ \__,_|\__,_|_| |_| |_|\___||___/_| |_| .
+              +=======================================================+
+                                   Cloudmesh Shell
+              """)
 
     @command
     def do_admin(self, args, arguments):
@@ -53,11 +65,47 @@ class CMShell(Cmd):
         """
         print(arguments)
         if "admin" in arguments and "start" in arguments:
-            admin.start()
+            # admin.start()
+            pass
         elif "admin" in arguments and "stop" in arguments:
-            admin.stop()
+            # admin.stop()
+            pass
+        elif "admin" in arguments and "db" in arguments and "stop" in arguments:
+            # admin.stop()
+            print ("stop db")
         ## add the others
 
+
+    # noinspection PyUnusedLocal
+    def do_EOF(self, args):
+        """
+        ::
+
+            Usage:
+                EOF
+
+            Description:
+                Command to the shell to terminate reading a script.
+        """
+        return True
+
+    # noinspection PyUnusedLocal
+    def do_quit(self, args):
+        """
+        ::
+
+            Usage:
+                quit
+
+            Description:
+                Action to be performed whne quit is typed
+        """
+        return True
+
+    do_q = do_quit
+
+    def emptyline(self):
+        return
 
 def main():
     CMShell().cmdloop()
