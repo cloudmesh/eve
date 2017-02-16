@@ -10,9 +10,9 @@
 from __future__ import print_function
 from cloudmesh_client.shell.command import command
 from cmd import Cmd
-from cloudmesh.rest.command.admin import admin
+from cloudmesh_client.shell.console import Console
 
-class CMRestCmd(Cmd):
+class CMShell(Cmd):
 
 
     @command
@@ -58,10 +58,12 @@ class CMRestCmd(Cmd):
             admin.stop()
         ## add the others
 
+
+def main():
+    CMShell().cmdloop()
+
+
 if __name__ == '__main__':
-
-        # open question should be we have single command "admin" and place both
-        # functions in it
-
+    main()
 
 
