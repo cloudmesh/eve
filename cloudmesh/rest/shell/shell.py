@@ -33,15 +33,10 @@ class CMShell(Cmd):
         ::
 
           Usage:
-                admin start
-                admin stop
-                admin reset
-                admin db start
-                admin db stop
+                admin [db|rest] start
+                admin [db|rest] stop
                 admin db backup
                 admin db reset
-                admin rest start
-                admin rest stop
 
           Description:
                 db start
@@ -64,15 +59,16 @@ class CMShell(Cmd):
 
         """
         print(arguments)
-        if "admin" in arguments and "start" in arguments:
+        if arguments["db"] and arguments["stop"]:
+            # admin.stop()
+            print ("PLEASE stop db")
+
+        elif arguments["start"]:
             # admin.start()
             pass
-        elif "admin" in arguments and "stop" in arguments:
+        elif arguments["stop"]:
             # admin.stop()
             pass
-        elif "admin" in arguments and "db" in arguments and "stop" in arguments:
-            # admin.stop()
-            print ("stop db")
         ## add the others
 
 
