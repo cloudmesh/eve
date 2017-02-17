@@ -5,4 +5,4 @@ tox
 detox
 coverage
 flake8
-
+psutil

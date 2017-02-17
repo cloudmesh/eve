@@ -13,6 +13,7 @@ from cloudmesh_client.common.util import grep
 import shutil
 import errno
 from pymongo import MongoClient
+import psutil
 
 def log_print(msg):
     # temporarily used till we switch to real logger
@@ -78,10 +79,14 @@ class Mongo(object):
 
     def stop(self):
         """stops the mongo service."""
-        r = Shell.execute('mongod stop'.split(' '))
-        print(r)
-        # subprocess.call(mongod --shutdown)
+        process_id = self.pid()
+        if process_id is not None:
+
+            p = psutil.Process(int(process_id))
+            p.terminate()  # or p.kill()
+
         log_print('stopped')
+        # waite a bit
         self.status()        
 
     def pid(self):
