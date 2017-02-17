@@ -14,6 +14,7 @@ from cmd import Cmd
 
 from cloudmesh_client.shell.command import command
 from cloudmesh.rest.server. mongo import Mongo
+import sys
 
 class CMShell(Cmd):
 
@@ -26,7 +27,7 @@ class CMShell(Cmd):
               . | |___| | (_) | |_| | (_| | | | | | |  __/\__ \ | | | .
               .  \____|_|\___/ \__,_|\__,_|_| |_| |_|\___||___/_| |_| .
               +=======================================================+
-                                   Cloudmesh Shell
+                                Cloudmesh Rest Shell
               """)
 
     @command
@@ -106,6 +107,15 @@ class CMShell(Cmd):
             r = m.status()
             print(r)
 
+    def preloop(self):
+        """adds the banner to the preloop"""
+
+
+        lines = textwrap.dedent(self.banner).split("\n")
+        for line in lines:
+            # Console.cprint("BLUE", "", line)
+            print(line)
+
     # noinspection PyUnusedLocal
     def do_EOF(self, args):
         """
@@ -137,8 +147,102 @@ class CMShell(Cmd):
     def emptyline(self):
         return
 
+#def main():
+#    CMShell().cmdloop()
+
+
+# noinspection PyBroadException
 def main():
-    CMShell().cmdloop()
+    """cms.
+
+    Usage:
+      cms --help
+      cms [--echo] [--debug] [--nosplash] [-i] [COMMAND ...]
+
+    Arguments:
+      COMMAND                  A command to be executed
+
+    Options:
+      --file=SCRIPT  -f  SCRIPT  Executes the script
+      -i                 After start keep the shell interactive,
+                         otherwise quit [default: False]
+      --nosplash    do not show the banner [default: False]
+    """
+
+    def manual():
+        print(main.__doc__)
+
+    args = sys.argv[1:]
+
+    arguments = {
+        '--echo': '--echo' in args,
+        '--help': '--help' in args,
+        '--debug': '--debug' in args,
+        '--nosplash': '--nosplash' in args,
+        '-i': '-i' in args}
+
+    echo = arguments["--echo"]
+    if arguments['--help']:
+        manual()
+        sys.exit()
+
+    for a in args:
+        if a in arguments:
+            args.remove(a)
+
+    arguments['COMMAND'] = [' '.join(args)]
+
+    commands = arguments["COMMAND"]
+    if len(commands) > 0:
+        if ".cm" in commands[0]:
+            arguments["SCRIPT"] = commands[0]
+            commands = commands[1:]
+        else:
+            arguments["SCRIPT"] = None
+
+        arguments["COMMAND"] = ' '.join(commands)
+        if arguments["COMMAND"] == '':
+            arguments["COMMAND"] = None
+
+    # noinspection PySimplifyBooleanCheck
+    if arguments['COMMAND'] == []:
+        arguments['COMMAND'] = None
+
+    splash = not arguments['--nosplash']
+    debug = arguments['--debug']
+    interactive = arguments['-i']
+    script = arguments["SCRIPT"]
+    command = arguments["COMMAND"]
+
+    #context = CloudmeshContext(
+    #    interactive=interactive,
+    #    debug=debug,
+    #    echo=echo,
+    #    splash=splash)
+
+    cmd = CMShell()
+
+    if script is not None:
+        cmd.do_exec(script)
+
+    try:
+        if echo:
+            print("cm>", command)
+        if command is not None:
+            cmd.precmd(command)
+            stop = cmd.onecmd(command)
+            cmd.postcmd(stop, command)
+    except Exception as e:
+        print("ERROR: executing command '{0}'".format(command))
+        print(70 * "=")
+        print(e)
+        print(70 * "=")
+
+    if interactive or (command is None and script is None):
+        cmd.cmdloop()
+
+
+
 
 
 if __name__ == '__main__':
