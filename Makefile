@@ -1,7 +1,8 @@
+pyenv=ENV2
 UNAME=$(shell uname)
-export ROOT_DIR=${PWD}/cloudmesh/eve
+export ROOT_DIR=${PWD}/cloudmesh/rest/server
 MONGOD=mongod --dbpath ~/.cloudmesh/data/db --bind_ip 127.0.0.1
-EVE=cd $(ROOT_DIR); python service.py
+EVE=cd $(ROOT_DIR); $(pyenv); python service.py
 
 define banner
 	@echo
@@ -73,7 +74,8 @@ clean:
 genie:
 	git clone https://github.com/drud/evegenie.git
 	cd evegenie; pip install -r requirements.txt
+
 json:
 	python evegenie/geneve.py sample.json
-	cp sample.settings.py cloudmesh/eve/settings.py
-	cat cloudmesh/eve/settings.py
+	cp sample.settings.py $(ROOT_DIR)/settings.py
+	cat $(ROOT_DIR)/settings.py

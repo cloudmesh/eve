@@ -2,7 +2,7 @@
 
 from eve import Eve
 
-from settings import eve_settings 
+from cloudmesh.rest.server.settings import eve_settings
 
 app = Eve(settings=eve_settings)
 
