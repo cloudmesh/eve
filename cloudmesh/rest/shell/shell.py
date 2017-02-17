@@ -8,10 +8,12 @@
 # pseudo code: task implement
 
 from __future__ import print_function
-from cloudmesh_client.shell.command import command
-from cmd import Cmd
-from cloudmesh_client.shell.console import Console
+
 import textwrap
+from cmd import Cmd
+
+from cloudmesh_client.shell.command import command
+
 
 class CMShell(Cmd):
 
@@ -60,16 +62,35 @@ class CMShell(Cmd):
         """
         print(arguments)
         if arguments["db"] and arguments["stop"]:
-            # admin.stop()
-            print ("PLEASE stop db")
+
+            print("PLEASE stop db")
+            # m = Mongo()
+            # m.stop()
+        elif arguments["db"] and arguments["start"]:
+
+            print("PLEASE start db")
+            # m = Mongo()
+            # m.start()
+
+        elif arguments["rest"] and arguments["start"]:
+
+            print("PLEASE start rest")
+            # m = Eve()
+            # m.start()
+
+        elif arguments["rest"] and arguments["stop"]:
+
+            print("PLEASE stop rest")
+            # m = Eve()
+            # m.stop()
+
 
         elif arguments["start"]:
-            # admin.start()
+            # start mong, start eve
             pass
         elif arguments["stop"]:
-            # admin.stop()
+            # stop eve ; stop mongo
             pass
-        ## add the others
 
 
     # noinspection PyUnusedLocal
