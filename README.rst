@@ -2,6 +2,8 @@ Cloudmesh Rest
 ==============
 
 WE ASSUME YOU DO THIS IN A VIRTUALENV
+Please note that this has only be tested on OSX. it will be straight forward to port to Linux.
+
 
 REST Service
 ------------
@@ -34,13 +36,15 @@ Try it out
 
 Just uses firt python environment::
 
+  make genie
+  make setup
   make deploy
+
+Testing
+^^^^^^^
+
   make test
 
-testing validation
-^^^^^^^^^^^^^^^^^^
-
-python schema.py
 
 
 TO DO
@@ -78,6 +82,10 @@ Run the shell::
 Do help on the admin command
 
    (cmd) admin help
+
+You can also pipe commands into cms such as::
+
+   echo "admin help" | cms
 
 Todo:
 
