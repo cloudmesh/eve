@@ -65,13 +65,13 @@ class CMShell(Cmd):
         if arguments["db"] and arguments["stop"]:
 
             print("PLEASE stop db")
-            # m = Mongo()
-            # m.stop()
+            m = Mongo()
+            m.stop()
         elif arguments["db"] and arguments["start"]:
 
             print("PLEASE start db")
-            # m = Mongo()
-            # m.start()
+            m = Mongo()
+            m.start()
 
         elif arguments["rest"] and arguments["start"]:
 
@@ -87,11 +87,17 @@ class CMShell(Cmd):
 
 
         elif arguments["start"]:
+            m = Mongo()
+            r = m.start()
+            print(r)
+
             # start mong, start eve
             pass
         elif arguments["stop"]:
             m = Mongo()
-            m.stop()
+            r = m.stop()
+            print(r)
+
             # stop eve
             pass
 

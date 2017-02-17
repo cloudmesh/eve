@@ -16,7 +16,7 @@ from pymongo import MongoClient
 
 def log_print(msg):
     # temporarily used till we switch to real logger
-    print('mongod:' + msg)
+    print('mongod: ' + msg)
 
 def create_dir(path):
     os.system("mkdir -p " + path)
