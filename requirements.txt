@@ -1,7 +1,8 @@
-git+git://github.com/nicolaiarocci/eve.git@develop
+cloudmesh_client
+eve
 pygments
 tox
 detox
 coverage
 flake8
-cloudmesh_client
+

@@ -84,15 +84,28 @@ class Mongo(object):
         log_print('stopped')
         self.status()        
 
+    def pid(self):
+        process_id = None
+        output = Shell.ps('-ax')
+        for line in output.split("\n"):
+
+            if 'mongod' in line and "--port" in line:
+                log_print(line)
+                process_id = line.split(" ")[0]
+                return process_id
+
+        return process_id
+
+
     def status(self, format=None):
         """returns the status of the service. if no parameter. if format
         is specified its returned in that fomat. txt, json, XML,
         allowed
         """
-        output = Shell.ps = ('-A')
-        print (output)
-        if 'mongod' in output:
+        process_id = self.pid()
+        if process_id is not None:
             log_print('running')
+            log_print("Mongod process id: " + str(process_id))
         else:
             log_print('stopped')
 
@@ -124,13 +137,6 @@ class Mongo(object):
         except Exception, e:
             log_print("problem deleting" +  str(e))
 
-    def pid(self):
-        """returns the pid of the mongo db servier"""
-        """ cloudmesh has a working code for that no need to reinvent the wheel"""
-        output = Shell.ps=('-A')
-        print (output)
-        pid = grep("mongod").strip().split(' ')[0]
-        return pid
 
     def log(self, path):
         """sets the log file to the given path"""

@@ -13,7 +13,7 @@ import textwrap
 from cmd import Cmd
 
 from cloudmesh_client.shell.command import command
-
+from cloudmesh.rest.server. mongo import Mongo
 
 class CMShell(Cmd):
 
@@ -39,6 +39,7 @@ class CMShell(Cmd):
                 admin [db|rest] stop
                 admin db backup
                 admin db reset
+                admin status
 
           Description:
                 db start
@@ -89,9 +90,15 @@ class CMShell(Cmd):
             # start mong, start eve
             pass
         elif arguments["stop"]:
-            # stop eve ; stop mongo
+            m = Mongo()
+            m.stop()
+            # stop eve
             pass
 
+        elif arguments["status"]:
+            m = Mongo()
+            r = m.status()
+            print(r)
 
     # noinspection PyUnusedLocal
     def do_EOF(self, args):
