@@ -39,7 +39,7 @@ dependency_links = ['http://github.com/nicolaiarocci/eve.git@develop']
 version = readfile("VERSION")[0].strip()
 readme = readfile('README.rst')
 
-NAME = "Cloudmesh Rest"
+NAME = "cloudmesh"
 DESCRIPTION = "A REST service for cloudmesh"
 AUTHOR = "Gregor von Laszewski, I524"
 AUTHOR_EMAIL = "laszewski@gmail.com"
@@ -85,6 +85,7 @@ setup \
     entry_points={
         'console_scripts': [
             'cms = cloudmesh.rest.shell.shell:main',
+            'eved = cloudmesh.rest.server.service:main',
         ],
     },
 )

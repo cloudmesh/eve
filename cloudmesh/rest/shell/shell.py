@@ -17,6 +17,7 @@ import textwrap
 from cmd import Cmd
 
 from cloudmesh_client.shell.command import command
+from cloudmesh_client.shell.command import PluginCommand
 
 import cloudmesh
 from cloudmesh.rest.server. mongo import Mongo
@@ -186,6 +187,16 @@ class CMShell(Cmd):
 #def main():
 #    CMShell().cmdloop()
 
+def inheritors(klass):
+    subclasses = set()
+    work = [klass]
+    while work:
+        parent = work.pop()
+        for child in parent.__subclasses__():
+            if child not in subclasses:
+                subclasses.add(child)
+                work.append(child)
+    return subclasses
 
 # noinspection PyBroadException
 def main():
@@ -257,6 +268,11 @@ def main():
     #    splash=splash)
 
     cmd = CMShell()
+
+    # add commands
+
+
+    print (inheritors(PluginCommand))
 
     if script is not None:
         cmd.do_exec(script)
