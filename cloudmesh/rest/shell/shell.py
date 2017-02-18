@@ -9,12 +9,17 @@
 
 from __future__ import print_function
 
+import os.path
+import pkgutil
+import pydoc
+import sys
 import textwrap
 from cmd import Cmd
 
 from cloudmesh_client.shell.command import command
+
+import cloudmesh
 from cloudmesh.rest.server. mongo import Mongo
-import sys
 
 class CMShell(Cmd):
 
@@ -29,6 +34,37 @@ class CMShell(Cmd):
               +=======================================================+
                                 Cloudmesh Rest Shell
               """)
+
+    @command
+    def do_info(self, args, arguments):
+        """
+        ::
+
+          Usage:
+                info [help]
+
+          Description:
+                info
+                    provides internal info about the shell and its packages
+
+        """
+        pkgpath = os.path.dirname(cloudmesh.__file__)
+        modules = [name for _, name, _ in pkgutil.iter_modules([pkgpath])]
+
+        print("Modules:")
+        # print (modules)
+
+        if arguments["help"]:
+            for name in modules:
+                p = "cloudmesh." + name
+
+                strhelp = pydoc.render_doc(p, "Help on %s" + "\n" + 79 * "=")
+                print(strhelp)
+
+        else:
+            for name in modules:
+                p = "cloudmesh." + name
+                print("*", p)
 
     @command
     def do_admin(self, args, arguments):
