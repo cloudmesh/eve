@@ -27,24 +27,6 @@ def print_list(elements):
     for name in elements:
         print("*", name)
 
-def merge(element1, element2):
-    """
-    an object's __dict__ contains all its
-    attributes, methods, docstrings, etc.
-    """
-    element1.__dict__.update(element2.__dict__)
-    return element1
-
-def get_all_subclasses(cls):
-    all_subclasses = []
-
-    for subclass in cls.__subclasses__():
-        all_subclasses.append(subclass)
-        all_subclasses.extend(get_all_subclasses(subclass))
-
-    return all_subclasses
-
-
 class plugin(object):
     @classmethod
     def modules(cls):
@@ -395,44 +377,7 @@ def main():
 
 
     cmd = CMShell()
-    # import cloudmesh.ext.command.bar.BarCommand
-    # b = cloudmesh.ext.command.bar.BarCommand()
-    # cmd = merge(cmd, b)
 
-    '''
-    cmd.do_gregor = do_gregor
-
-    cmd.do_gregor("hallo")
-    # add command
-    print(plugin.load())
-
-
-    print(PluginCommand.__subclasses__())
-    for c in PluginCommand.__subclasses__():
-        print(c.__name__)
-
-    print (inheritors(PluginCommand))
-    print("KKKK")
-
-
-    print(PluginCommand.__subclasses__())
-
-    commands = PluginCommand.__subclasses__()
-    print ([n.__name__ for n in commands])
-
-    # b = cloudmesh.ext.command.bar.BarCommand
-    # print (b.do_bar)
-
-
-    # print ("A", b)
-    # print("A", b.do_bar)
-
-    # cmd.do_bar = b.do_bar
-    # x = cloudmesh.ext.command.bar.do_x
-    # cmd.do_x = x
-
-    #   cmd.do_x = cloudmesh.ext.command.bar.do_x
-    '''
 
 #    if script is not None:
 #        cmd.do_exec(script)
