@@ -379,17 +379,21 @@ def main():
     print ("A", b)
     print("A", b.do_bar)
 
-
-    print ("D", dir(cmd))
-    print("N", cmd.get_names())
-
+    #
+    # List all commands that start with do
+    #
+    print ("Help")
+    print ("====")
     methodList = [n for n, v in inspect.getmembers(cmd, inspect.ismethod)]
+    functionList = [n for n, v in inspect.getmembers(cmd, inspect.isfunction)]
 
-    print ("M", methodList)
-    methodList = [n for n, v in inspect.getmembers(cmd, inspect.isfunction)]
+    commands = methodList + functionList
 
-    print ("F", methodList)
+    for c in commands:
+        if c.startswith("do_"):
+            print (c.replace("do_",""))
 
+    print ("====")
 #    cmd.do_bar = b.do_bar
 #   cmd.do_x = cloudmesh.ext.command.bar.do_x
 
