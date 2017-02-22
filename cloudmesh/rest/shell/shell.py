@@ -59,17 +59,6 @@ class plugin(object):
         return commands
 
     @classmethod
-    def find_subclasses(cls, classType):
-        import sys, inspect
-        subclasses = []
-        callers_module = sys._getframe(1).f_globals['__name__']
-        classes = inspect.getmembers(sys.modules[callers_module], inspect.isclass)
-        for name, obj in classes:
-            if (obj is not classType) and (classType in inspect.getmro(obj)):
-                subclasses.append((obj, name))
-        return subclasses
-
-    @classmethod
     def name(cls, command):
         command_name = "do_" + command
 
@@ -359,16 +348,28 @@ def main():
 
     # add command
     print(plugin.load())
-    print(get_all_subclasses(PluginCommand))
-    print(dir())
+
 
     print(PluginCommand.__subclasses__())
     for c in PluginCommand.__subclasses__():
         print(c.__name__)
 
     print (inheritors(PluginCommand))
-    print(plugin.find_subclasses(PluginCommand))
+    print("KKKK")
+
+
     print(PluginCommand.__subclasses__())
+
+    commands = PluginCommand.__subclasses__()
+    print ([n.__name__ for n in commands])
+
+    b = cloudmesh.ext.command.bar.BarCommand
+    print (b.do_bar)
+
+    print ("A", b)
+    print("A", b.do_bar)
+
+    cmd.do_bar = b.do_bar
 
     if script is not None:
         cmd.do_exec(script)

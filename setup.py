@@ -32,14 +32,16 @@ detox
 coverage
 flake8
 cloudmesh_client
+eve
+psutil
 """.split("\n")
 
-dependency_links = ['http://github.com/nicolaiarocci/eve.git@develop']
+#dependency_links = ['http://github.com/nicolaiarocci/eve.git@develop']
 
 version = readfile("VERSION")[0].strip()
 readme = readfile('README.rst')
 
-NAME = "cloudmesh"
+NAME = "cloudmesh rest"
 DESCRIPTION = "A REST service for cloudmesh"
 AUTHOR = "Gregor von Laszewski, I524"
 AUTHOR_EMAIL = "laszewski@gmail.com"
@@ -54,7 +56,7 @@ setup \
     author_email=AUTHOR_EMAIL,
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
-    version="1.0.0",
+    version=version,
     license="Apache 2.0",
     url=URL,
     packages=find_packages(),
@@ -74,7 +76,7 @@ setup \
         "Programming Language :: Python :: 3",
     ],
     install_requires=requiers,
-    dependency_links = dependency_links,
+    # dependency_links = dependency_links,
     # test_suite="runtests.runtests",
     tests_require=[
         "flake8",
