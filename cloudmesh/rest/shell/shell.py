@@ -112,6 +112,33 @@ class CMShell(Cmd):
                                 Cloudmesh Rest Shell
               """)
 
+    #
+    # List all commands that start with do
+    #
+    @command
+    def do_help(self, args, arguments):
+        """
+        ::
+           Usage:
+                help
+
+           Description:
+                help - List of all registered commands
+
+        """
+        print("Help")
+        print("====")
+        methodList = [n for n, v in inspect.getmembers(self, inspect.ismethod)]
+        functionList = [n for n, v in inspect.getmembers(self, inspect.isfunction)]
+
+        commands = methodList + functionList
+
+        for c in sorted(commands):
+            if c.startswith("do_"):
+                print(c.replace("do_", ""), end=' ')
+        print ()
+        return ""
+
     @command
     def do_info(self, args, arguments):
         """
@@ -379,21 +406,6 @@ def main():
     print ("A", b)
     print("A", b.do_bar)
 
-    #
-    # List all commands that start with do
-    #
-    print ("Help")
-    print ("====")
-    methodList = [n for n, v in inspect.getmembers(cmd, inspect.ismethod)]
-    functionList = [n for n, v in inspect.getmembers(cmd, inspect.isfunction)]
-
-    commands = methodList + functionList
-
-    for c in commands:
-        if c.startswith("do_"):
-            print (c.replace("do_",""))
-
-    print ("====")
 #    cmd.do_bar = b.do_bar
 #   cmd.do_x = cloudmesh.ext.command.bar.do_x
 
