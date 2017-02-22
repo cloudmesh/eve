@@ -9,18 +9,105 @@
 
 from __future__ import print_function
 
-import os.path
+import importlib
 import pkgutil
 import pydoc
 import sys
 import textwrap
 from cmd import Cmd
 
-from cloudmesh_client.shell.command import command
 from cloudmesh_client.shell.command import PluginCommand
+from cloudmesh_client.shell.command import command
 
 import cloudmesh
 from cloudmesh.rest.server. mongo import Mongo
+
+
+def print_list(elements):
+    for name in elements:
+        print("*", name)
+
+
+def get_all_subclasses(cls):
+    all_subclasses = []
+
+    for subclass in cls.__subclasses__():
+        all_subclasses.append(subclass)
+        all_subclasses.extend(get_all_subclasses(subclass))
+
+    return all_subclasses
+
+
+class plugin(object):
+    @classmethod
+    def modules(cls):
+        module_list = []
+        package = cloudmesh
+        for importer, modname, ispkg in pkgutil.walk_packages(path=package.__path__,
+                                                              prefix=package.__name__ + '.',
+                                                              onerror=lambda x: None):
+            module_list.append(modname)
+        return module_list
+
+    @classmethod
+    def classes(cls):
+        module_list = cls.modules()
+        commands = []
+        for module in module_list:
+            if module.startswith('cloudmesh.ext.command.'):
+                commands.append(module)
+        return commands
+
+    @classmethod
+    def find_subclasses(cls, classType):
+        import sys, inspect
+        subclasses = []
+        callers_module = sys._getframe(1).f_globals['__name__']
+        classes = inspect.getmembers(sys.modules[callers_module], inspect.isclass)
+        for name, obj in classes:
+            if (obj is not classType) and (classType in inspect.getmro(obj)):
+                subclasses.append((obj, name))
+        return subclasses
+
+    @classmethod
+    def name(cls, command):
+        command_name = "do_" + command
+
+        class_name = "cloudmesh.ext.command." + command + "." \
+                     + command.capitalize() + "Command"
+
+        return class_name, command_name
+
+    @classmethod
+    def class_name(cls, command):
+        return "cloudmesh.ext.command." + command + "." \
+               + command.capitalize() + "Command"
+
+    @classmethod
+    def load(cls, commands=None):
+        """
+
+        :param commands: If None the commands will be found from import cloudmesh
+                         Otherwise the commands can be explicitly specified with
+
+                          commands = [
+                            'cloudmesh.ext.command.bar.BarCommand',
+                            'cloudmesh.ext.command.foo.FooCommand',
+                            ]
+                          A namespace packege must exists. Foo and Bar ar just examples
+
+        :return: the classes of the command
+        """
+
+        if commands is None:
+            commands = [c.split('.')[-1] for c in cls.classes()]
+
+        print_list(commands)
+
+        COMMANDS = [cls.class_name(c) for c in commands]
+        commands = [getattr(importlib.import_module(mod), cls) for (mod, cls) in
+                    (commands.rsplit(".", 1) for commands in COMMANDS)]
+        return commands
 
 class CMShell(Cmd):
 
@@ -42,30 +129,31 @@ class CMShell(Cmd):
         ::
 
           Usage:
-                info [help]
+                info [commands|package|help]
 
           Description:
                 info
                     provides internal info about the shell and its packages
 
         """
-        pkgpath = os.path.dirname(cloudmesh.__file__)
-        modules = [name for _, name, _ in pkgutil.iter_modules([pkgpath])]
 
-        print("Modules:")
-        # print (modules)
+        module_list = plugin.modules()
 
-        if arguments["help"]:
-            for name in modules:
+        if arguments["commands"]:
+            commands = plugin.classes()
+            print_list(commands)
+        elif arguments["help"]:
+            for name in module_list:
                 p = "cloudmesh." + name
-
-                strhelp = pydoc.render_doc(p, "Help on %s" + "\n" + 79 * "=")
+                strhelp = p + " not found."
+                try:
+                    strhelp = pydoc.render_doc(p, "Help on %s" + "\n" + 79 * "=")
+                except Exception, e:
+                    pass
                 print(strhelp)
 
         else:
-            for name in modules:
-                p = "cloudmesh." + name
-                print("*", p)
+            print_list(module_list)
 
     @command
     def do_admin(self, args, arguments):
@@ -269,10 +357,18 @@ def main():
 
     cmd = CMShell()
 
-    # add commands
+    # add command
+    print(plugin.load())
+    print(get_all_subclasses(PluginCommand))
+    print(dir())
 
+    print(PluginCommand.__subclasses__())
+    for c in PluginCommand.__subclasses__():
+        print(c.__name__)
 
     print (inheritors(PluginCommand))
+    print(plugin.find_subclasses(PluginCommand))
+    print(PluginCommand.__subclasses__())
 
     if script is not None:
         cmd.do_exec(script)
