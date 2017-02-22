@@ -98,7 +98,7 @@ class plugin(object):
         if commands is None:
             commands = [c.split('.')[-1] for c in cls.classes()]
 
-        print_list(commands)
+        # print_list(commands)
 
         COMMANDS = [cls.class_name(c) for c in commands]
         commands = [getattr(importlib.import_module(mod), cls) for (mod, cls) in
@@ -399,7 +399,7 @@ def main():
     # b = cloudmesh.ext.command.bar.BarCommand()
     # cmd = merge(cmd, b)
 
-
+    '''
     cmd.do_gregor = do_gregor
 
     cmd.do_gregor("hallo")
@@ -431,7 +431,8 @@ def main():
     # x = cloudmesh.ext.command.bar.do_x
     # cmd.do_x = x
 
-#   cmd.do_x = cloudmesh.ext.command.bar.do_x
+    #   cmd.do_x = cloudmesh.ext.command.bar.do_x
+    '''
 
 #    if script is not None:
 #        cmd.do_exec(script)
