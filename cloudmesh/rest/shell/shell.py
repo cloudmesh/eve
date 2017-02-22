@@ -275,6 +275,10 @@ def inheritors(klass):
                 work.append(child)
     return subclasses
 
+
+def do_gregor(line):
+    print("gregor")
+
 # noinspection PyBroadException
 def main():
     """cms.
@@ -346,6 +350,9 @@ def main():
 
     cmd = CMShell()
 
+    cmd.do_gregor = do_gregor
+
+    cmd.do_gregor("hallo")
     # add command
     print(plugin.load())
 
@@ -369,10 +376,11 @@ def main():
     print ("A", b)
     print("A", b.do_bar)
 
-    cmd.do_bar = b.do_bar
+#    cmd.do_bar = b.do_bar
+#   cmd.do_x = cloudmesh.ext.command.bar.do_x
 
-    if script is not None:
-        cmd.do_exec(script)
+#    if script is not None:
+#        cmd.do_exec(script)
 
     try:
         if echo:
