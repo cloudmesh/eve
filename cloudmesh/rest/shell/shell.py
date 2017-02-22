@@ -21,7 +21,7 @@ from cloudmesh_client.shell.command import command
 
 import cloudmesh
 from cloudmesh.rest.server. mongo import Mongo
-
+import inspect
 
 def print_list(elements):
     for name in elements:
@@ -348,8 +348,10 @@ def main():
     #    echo=echo,
     #    splash=splash)
 
-    cmd = CMShell()
 
+
+
+    cmd = CMShell()
     cmd.do_gregor = do_gregor
 
     cmd.do_gregor("hallo")
@@ -373,8 +375,20 @@ def main():
     b = cloudmesh.ext.command.bar.BarCommand
     print (b.do_bar)
 
+
     print ("A", b)
     print("A", b.do_bar)
+
+
+    print ("D", dir(cmd))
+    print("N", cmd.get_names())
+
+    methodList = [n for n, v in inspect.getmembers(cmd, inspect.ismethod)]
+
+    print ("M", methodList)
+    methodList = [n for n, v in inspect.getmembers(cmd, inspect.isfunction)]
+
+    print ("F", methodList)
 
 #    cmd.do_bar = b.do_bar
 #   cmd.do_x = cloudmesh.ext.command.bar.do_x
