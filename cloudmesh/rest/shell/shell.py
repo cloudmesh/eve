@@ -384,7 +384,7 @@ def main():
 
     try:
         if echo:
-            print("cm>", command)
+            print(cmd.prompt, command)
         if command is not None:
             cmd.precmd(command)
             stop = cmd.onecmd(command)
