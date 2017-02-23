@@ -22,6 +22,7 @@ from cloudmesh_client.shell.command import command
 import cloudmesh
 from cloudmesh.rest.server. mongo import Mongo
 import inspect
+from cloudmesh_client.common.dotdict import dotdict
 
 def print_list(elements):
     for name in elements:
@@ -150,13 +151,14 @@ class CMShell(Cmd, PluginCommandClasses):
                     provides internal info about the shell and its packages
 
         """
+        arguments = dotdict(arguments)
 
         module_list = plugin.modules()
 
-        if arguments["commands"]:
+        if arguments.commands:
             commands = plugin.classes()
             print_list(commands)
-        elif arguments["help"]:
+        elif arguments.help:
             for name in module_list:
                 p = "cloudmesh." + name
                 strhelp = p + " not found."
@@ -201,39 +203,40 @@ class CMShell(Cmd, PluginCommandClasses):
               -f      specify the file
 
         """
+        arguments = dotdict(arguments)
         print(arguments)
-        if arguments["db"] and arguments["stop"]:
+        if arguments.db and arguments.stop:
 
             print("PLEASE stop db")
             m = Mongo()
             m.stop()
-        elif arguments["db"] and arguments["start"]:
+        elif arguments.db and arguments.start:
 
             print("PLEASE start db")
             m = Mongo()
             m.start()
 
-        elif arguments["rest"] and arguments["start"]:
+        elif arguments.rest and arguments.start:
 
             print("PLEASE start rest")
             # m = Eve()
             # m.start()
 
-        elif arguments["rest"] and arguments["stop"]:
+        elif arguments.rest and arguments.stop:
 
             print("PLEASE stop rest")
             # m = Eve()
             # m.stop()
 
 
-        elif arguments["start"]:
+        elif arguments.start:
             m = Mongo()
             r = m.start()
             print(r)
 
             # start mong, start eve
             pass
-        elif arguments["stop"]:
+        elif arguments.stop:
             m = Mongo()
             r = m.stop()
             print(r)
@@ -241,7 +244,7 @@ class CMShell(Cmd, PluginCommandClasses):
             # stop eve
             pass
 
-        elif arguments["status"]:
+        elif arguments.status:
             m = Mongo()
             r = m.status()
             print(r)
