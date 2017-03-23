@@ -46,6 +46,7 @@ eve:
 	$(call terminal, $(EVE))
 
 deploy: setup mongo eve
+	pip install .
 	echo deployed
 
 test:
@@ -80,9 +81,16 @@ clean:
 	rm -f *.whl
 
 
+#genie:
+#	git clone https://github.com/drud/evegenie.git
+#	cd evegenie; pip install -r requirements.txt
+
 genie:
-	git clone https://github.com/drud/evegenie.git
+	git clone https://github.com/cloudmesh/evegenie.git
 	cd evegenie; pip install -r requirements.txt
+	cd evegenie; python setup.py install
+	cd evegenie; pip install .
+
 
 json:
 	python evegenie/geneve.py sample.json

@@ -1,4 +1,3 @@
-cloudmesh_client
 psutil
 eve
 pygments

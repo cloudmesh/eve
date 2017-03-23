@@ -8,8 +8,8 @@ from __future__ import print_function
 
 import os
 
-from cloudmesh_client.common.Shell import Shell
-from cloudmesh_client.common.util import grep
+from cloudmesh.common.Shell import Shell
+from cloudmesh.common.util import grep
 import shutil
 import errno
 from pymongo import MongoClient
@@ -139,7 +139,7 @@ class Mongo(object):
             #    log_print("deleting: " + singlecollectionname)
             #    db.get_collection(singlecollectionname).remove({})
 
-        except Exception, e:
+        except Exception as e:
             log_print("problem deleting" +  str(e))
 
 

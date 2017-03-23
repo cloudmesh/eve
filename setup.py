@@ -31,7 +31,6 @@ tox
 detox
 coverage
 flake8
-cloudmesh_client
 eve
 psutil
 """.split("\n")

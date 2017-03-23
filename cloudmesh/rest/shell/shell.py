@@ -16,13 +16,13 @@ import sys
 import textwrap
 from cmd import Cmd
 
-from cloudmesh_client.shell.command import PluginCommand
-from cloudmesh_client.shell.command import command
+from cloudmesh.shell.command import PluginCommand
+from cloudmesh.shell.command import command
 
 import cloudmesh
 from cloudmesh.rest.server. mongo import Mongo
 import inspect
-from cloudmesh_client.common.dotdict import dotdict
+from cloudmesh.common.dotdict import dotdict
 
 def print_list(elements):
     for name in elements:
@@ -164,7 +164,7 @@ class CMShell(Cmd, PluginCommandClasses):
                 strhelp = p + " not found."
                 try:
                     strhelp = pydoc.render_doc(p, "Help on %s" + "\n" + 79 * "=")
-                except Exception, e:
+                except Exception as e:
                     pass
                 print(strhelp)
 
