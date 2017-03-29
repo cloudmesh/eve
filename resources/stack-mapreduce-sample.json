@@ -1,0 +1,12 @@
+{
+    "layers": [
+        {"java": {"version": "1.8", "platform": "OpenJDK"}},
+        {"supervisord": {}},
+        {"zookeeper": {}},
+        {"hdfs_journalnode": {}},
+        {"hdfs_namenode": {}},
+        {"hdfs_datanode": {}},
+        {"yarn_resourcemanager": {}},
+        {"yarn_historyserver": {}}
+    ]
+}
