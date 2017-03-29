@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+pip2nix \
+    -r requirements.txt \
+    -s tox virtualenv
