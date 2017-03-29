@@ -49,6 +49,13 @@ deploy: setup mongo eve
 	pip install .
 	echo deployed
 
+tmux:
+	tmux kill-session -t cloudmesh/rest || exit 0
+	tmux new-session -d -s cloudmesh/rest -n mongo nix-shell
+	tmux send-keys -t cloudmesh/rest "$(MONGOD)" ENTER
+	tmux new-window -t cloudmesh/rest -n eve nix-shell
+	tmux send-keys -t cloudmesh/rest "$(EVE)" ENTER
+
 test:
 	$(call banner, "LIST SERVICE")
 	curl -s -i http://127.0.0.1:5000 
