@@ -18,7 +18,10 @@ endef
 endif
 ifeq ($(UNAME),Linux)
 define terminal
-	echo "Linux not yet supported, fix me"
+	echo "THIS HAS NOT YET BEEN TESTED"
+	xterm -e '"$(1)"'
+	# konsole -e '"$(1)"'
+	# gnome-terminal -e '"$(1)"'
 endef
 endif
 ifeq ($(UNAME),Windows)

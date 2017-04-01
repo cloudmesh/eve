@@ -36,7 +36,7 @@ class RestService(object):
         #from cloudmesh.rest.server.settings import eve_settings
         
     def __init__(self, settings=None):
-        # TODO: reads the OBJECT.settings.py file and sets up the eve service withi it
+        # TODO: reads the OBJECT.settings.py file and sets up the eve service with it
         config_dir = path_expand("~/.cloudmesh/db/")
         '''
         if settings is None:
