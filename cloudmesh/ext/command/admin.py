@@ -18,6 +18,7 @@ class AdminCommand(PluginCommand):
                 admin db backup
                 admin db reset
                 admin status
+                admin settings FILENAME
 
           Description:
                
@@ -39,6 +40,10 @@ class AdminCommand(PluginCommand):
                 rest stop
                     stops the database service
 
+                settings FILENAME
+                    copies the eve settings file speccified by the FILENAME to
+                    ~/.cloudmesh/db/settings.py and uses it upon start of the 
+                    eve service. 
 
           Arguments:
               FILE   a file name
