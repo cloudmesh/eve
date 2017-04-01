@@ -1,4 +1,3 @@
-
 profile = {
     'schema': {
         'firstname': {
@@ -60,8 +59,6 @@ computer = {
         }
     }
 }
-
-
 
 eve_settings = {
     'MONGO_HOST': 'localhost',

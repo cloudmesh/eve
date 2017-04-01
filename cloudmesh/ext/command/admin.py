@@ -1,13 +1,21 @@
+"""
+The admin command for the REST services
+"""
 from __future__ import print_function
-from cloudmesh.shell.command import command
+
+from cloudmesh.common.dotdict import dotdict
+from cloudmesh.common.util import path_expand
 from cloudmesh.shell.command import PluginCommand
+from cloudmesh.shell.command import command
+
 from cloudmesh.rest.mongo import Mongo
 from cloudmesh.rest.service import RestService
-from cloudmesh.common.util import path_expand
-from cloudmesh.common.console import Console
+
 
 class AdminCommand(PluginCommand):
-
+    """
+    The admin command to manage the REST service
+    """
     @command
     def do_admin(self, args, arguments):
         """
@@ -30,7 +38,7 @@ class AdminCommand(PluginCommand):
                     stops the database service
 
                 db backup
-                    creates abackup of the database
+                    creates a backup of the database
 
                 db reset
                     resets the database
@@ -48,7 +56,7 @@ class AdminCommand(PluginCommand):
                     stops all services
 
                 settings FILENAME
-                    copies the eve settings file speccified by the FILENAME to
+                    copies the eve settings file specified by the FILENAME to
                     ~/.cloudmesh/db/settings.py and uses it upon start of the 
                     eve service. 
 
@@ -57,7 +65,7 @@ class AdminCommand(PluginCommand):
                 defined first and configuration files need to be placed before 
                 the service can be used.
 
-                The following is showcaseing the creation of objects and the 
+                The following is show caseing the creation of objects and the 
                 start of the related services.
 
                 First, edit a file called settings.json that defines example objects 
@@ -135,10 +143,10 @@ class AdminCommand(PluginCommand):
             print(service.status())
 
         elif arguments.start:
-            
+
             m = Mongo()
             e = RestService()
-            for service in [e,m]:
+            for service in [e, m]:
                 r = service.start()
                 print(r)
                 print(service.status())
@@ -146,7 +154,7 @@ class AdminCommand(PluginCommand):
         elif arguments.stop:
             m = Mongo()
             e = RestService()
-            for service in [e,m]:
+            for service in [e, m]:
                 r = service.stop()
                 print(r)
                 print(service.status())
@@ -154,11 +162,11 @@ class AdminCommand(PluginCommand):
         elif arguments.status:
             m = Mongo()
             e = RestService()
-            for service in [e,m]:
-                print(service.status())            
+            for service in [e, m]:
+                print(service.status())
 
         elif arguments.settings:
-            if filename is None:
+            if arguments.FILENAME is None:
                 filename = "~/.cloudmesh/db/settings.py"
             filename = path_expand(arguments.FILENAME)
 
@@ -166,12 +174,10 @@ class AdminCommand(PluginCommand):
             #    create settings.py file first
             #    copy settings.py to ~/.cloudmesh/db
 
-            #e = RestService(settings=filename)
+            # e = RestService(settings=filename)
             # copying and handleing .py or .json extension  may be included in RestService method
 
         elif arguments.backup:
 
-            print("not yet impleemented")
+            print("not yet implemented")
             # Create backup dir and copy files into it including settings.py and sample.json
-            
-            

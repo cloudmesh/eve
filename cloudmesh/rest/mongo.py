@@ -1,6 +1,9 @@
+"""
+The interface to Mongo
+"""
 # TODO: complete
 
-# for executing shell commands please do not reinvent the whele but use
+# for executing shell commands please do not reinvent the wheel but use
 
 # https://github.com/cloudmesh/client/blob/master/cloudmesh.client/common/Shell.py
 # if commands are missing or are not working we can fix that in cloudmesh.common
@@ -12,20 +15,32 @@
 from __future__ import print_function
 
 import os
-
-from cloudmesh.common.Shell import Shell
-from cloudmesh.common.util import grep
 import shutil
-import errno
-from pymongo import MongoClient
+
 import psutil
+from cloudmesh.common.Shell import Shell
+
 
 def log_print(msg):
+    """
+    Print a log message
+    # TODO now that we havec console we should use console
+    :param msg: 
+    :return: 
+    """
     # temporarily used till we switch to real logger
     print('mongod: ' + msg)
 
+
 def create_dir(path):
+    """
+    create a directory. 
+    TODO: integrate thsi to cloudmesh.common.Shell
+    :param path: 
+    :return: 
+    """
     os.system("mkdir -p " + path)
+
 
 class Mongo(object):
     """
@@ -35,16 +50,16 @@ class Mongo(object):
     def __init__(self, port=27017):
         """
         sets up a mongo d service
-        :param port: the prort number. default set to 5000
+        :param port: the port number. default set to 5000
         """
-        self.parameters = {}
-        self.parameters['port'] = port
-        self.parameters['dbpath'] = "~/.cloudmesh/data/db"
-        self.parameters['bind_ip'] = "127.0.0.1"
-        self.parameters['logpath'] = "~/.cloudmesh/data/mongo.log"
+        self.parameters = {
+            'port': port,
+            'dbpath': "~/.cloudmesh/data/db",
+            'bind_ip': "127.0.0.1",
+            'logpath': "~/.cloudmesh/data/mongo.log"
+        }
         create_dir(self.parameters['dbpath'])
         print(self.parameters)
-
 
     def clean(self):
         """
@@ -55,7 +70,6 @@ class Mongo(object):
         shutil.rmtree(self.parameters['logpath'])
         create_dir(self.parameters['dbpath'])
 
-
     def kill(self):
         """
         killall mongod
@@ -63,7 +77,6 @@ class Mongo(object):
         """
         os.system("killall mongod")
         self.clean()
-
 
     def start(self):
         """starts the mongo service."""
@@ -87,7 +100,6 @@ class Mongo(object):
         # r = Shell.execute('mongod stop'.split(' '))
         process_id = self.pid()
         if process_id is not None:
-
             p = psutil.Process(int(process_id))
             p.terminate()  # or p.kill()
 
@@ -95,8 +107,11 @@ class Mongo(object):
         # waite a bit
         self.status()
 
-
     def pid(self):
+        """
+        return the PID of the mongo provcesses
+        :return: 
+        """
         process_id = None
         output = Shell.ps('-ax')
         for line in output.split("\n"):
@@ -108,10 +123,9 @@ class Mongo(object):
 
         return process_id
 
-
     def status(self, format=None):
         """returns the status of the service. if no parameter. if format
-        is specified its returned in that fomat. txt, json, XML,
+        is specified its returned in that format. txt, json, XML,
         allowed
         """
         process_id = self.pid()
@@ -124,7 +138,6 @@ class Mongo(object):
     def reset(self):
         """stops the service and deletes the database, restarts the service."""
         # TODO: this also needs to delete and reset the db.
-        
 
     def delete(self):
         """deletes all data in the database."""
@@ -133,21 +146,20 @@ class Mongo(object):
             # client = MongoClient(host='localhost', port=self.parameters['port'] )
             # TODO: bug database is not defined
 
+        # db=client.get_database(database)
+        # collectionsnames = db.collection_names()
 
-			#db=client.get_database(database)
-            #collectionsnames = db.collection_names()
-
-            #for singlecollectionname in collectionsnames:
-            #    log_print("deleting: " + singlecollectionname)
-            #    db.get_collection(singlecollectionname).remove({})
+        # for singlecollectionname in collectionsnames:
+        #    log_print("deleting: " + singlecollectionname)
+        #    db.get_collection(singlecollectionname).remove({})
 
         except Exception as e:
-            log_print("problem deleting" +  str(e))
-
+            log_print("problem deleting" + str(e))
 
     def log(self, path):
         """sets the log file to the given path"""
         self.parameters['logpath'] = path  # TODO: define test programs with nosetest
+
 
 if __name__ == "__main__":
     m = Mongo()
