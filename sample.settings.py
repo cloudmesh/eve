@@ -16,6 +16,14 @@ profile = {
     }
 }
 
+nock = {
+    'schema': {
+        'profile': {
+            'type': 'string'
+        }
+    }
+}
+
 cluster = {
     'schema': {
         'name': {
@@ -52,8 +60,19 @@ computer = {
         'label': {
             'type': 'string'
         },
-        'ip': {
-            'type': 'string'
+        'network': {
+            'type': 'list',
+            'schema': {
+                'type': 'dict',
+                'schema': {
+                    'ip': {
+                        'type': 'string'
+                    },
+                    'name': {
+                        'type': 'string'
+                    }
+                }
+            }
         },
         'memoryGB': {
             'type': 'integer'
@@ -70,6 +89,7 @@ eve_settings = {
     'BANDWIDTH_SAVER': False,
     'DOMAIN': {
         'profile': profile,
+        'nock': nock,
         'cluster': cluster,
         'computer': computer,
     },

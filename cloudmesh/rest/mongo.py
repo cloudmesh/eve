@@ -1,8 +1,13 @@
 # TODO: complete
+
 # for executing shell commands please do not reinvent the whele but use
 
-# https://github.com/cloudmesh/client/blob/master/cloudmesh_client/common/Shell.py
-# if commands are missing or are not working we can fix that in cloudmesh_client
+# https://github.com/cloudmesh/client/blob/master/cloudmesh.client/common/Shell.py
+# if commands are missing or are not working we can fix that in cloudmesh.common
+
+#
+# WARNING THIS CODE INCLUDES ERRORS AND IS INCOMPLETE. PLEASE FIX
+#
 
 from __future__ import print_function
 
@@ -79,6 +84,7 @@ class Mongo(object):
 
     def stop(self):
         """stops the mongo service."""
+        # r = Shell.execute('mongod stop'.split(' '))
         process_id = self.pid()
         if process_id is not None:
 
@@ -87,7 +93,8 @@ class Mongo(object):
 
         log_print('stopped')
         # waite a bit
-        self.status()        
+        self.status()
+
 
     def pid(self):
         process_id = None
@@ -116,13 +123,8 @@ class Mongo(object):
 
     def reset(self):
         """stops the service and deletes the database, restarts the service."""
-        r = Shell.execute('mongod stop'.split(' '))
-        print (r)
-        log_print('stopped')
-        # client.drop_database(databasename); how is this differentfrom deleting the collection?
-
-        # print("not yet implemented")
-
+        # TODO: this also needs to delete and reset the db.
+        
 
     def delete(self):
         """deletes all data in the database."""

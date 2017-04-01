@@ -24,25 +24,23 @@ def readfile(filename):
 
 
 #requiers = readfile ('requirements.txt')
-#git+git://github.com/nicolaiarocci/eve.git@develop
 requiers = """
+psutil
 pygments
 tox
 detox
 coverage
 flake8
-eve
-psutil
 """.split("\n")
 
-#dependency_links = ['http://github.com/nicolaiarocci/eve.git@develop']
+# dependency_links = ['http://github.com/nicolaiarocci/eve.git@develop']
 
 version = readfile("VERSION")[0].strip()
 readme = readfile('README.rst')
 
-NAME = "cloudmesh rest"
-DESCRIPTION = "A REST service for cloudmesh"
-AUTHOR = "Gregor von Laszewski, I524"
+NAME = "cloudmesh.rest"
+DESCRIPTION = "A command to manage eve and mongo locally"
+AUTHOR = "Gregor von Laszewski"
 AUTHOR_EMAIL = "laszewski@gmail.com"
 URL = "https://github.com/cloudmesh/rest"
 LONG_DESCRIPTION = "\n".join(readme)
@@ -59,11 +57,6 @@ setup \
     license="Apache 2.0",
     url=URL,
     packages=find_packages(),
-    #package_data={
-    #    "cloudmesh.data": [
-    #        "templates/cloudmesh/data.txt",
-    #    ]
-    #},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
@@ -75,18 +68,10 @@ setup \
         "Programming Language :: Python :: 3",
     ],
     install_requires=requiers,
-    # dependency_links = dependency_links,
-    # test_suite="runtests.runtests",
     tests_require=[
         "flake8",
         "coverage",
     ],
     zip_safe=False,
     namespace_packages=['cloudmesh'],
-    entry_points={
-        'console_scripts': [
-            'cms = cloudmesh.rest.shell.shell:main',
-            'eved = cloudmesh.rest.server.service:main',
-        ],
-    },
 )

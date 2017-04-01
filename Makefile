@@ -62,6 +62,8 @@ test:
 	curl -d '{"name": "myCLuster",	"label": "c0","ip": "127.0.0.1","memoryGB": 16}' -H 'Content-Type: application/json'  http://127.0.0.1:5000/computer  
 	$(call banner, "LIST COMPUTER")
 	@curl -s http://127.0.0.1:5000/computer  | jq
+	$(call banner, "LIST TEST")
+	@curl -s http://127.0.0.1:5000/test  | jq
 
 
 nosetests:

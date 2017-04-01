@@ -5,6 +5,9 @@
 	"e-mail": "laszewski@gmail.com",
 	"username": "gregor"
     },
+    "nock":{
+	"profile": "profile"
+    },
     "cluster": {
 	"name": "myCLuster",
 	"label": "c0",
@@ -20,7 +23,9 @@
     "computer": {
 	"name": "myComputer",
 	"label": "server-001",
-	"ip": "127.0.0.1",
+	"network": [ {"ip": "127.0.0.1",
+		      "name": "public"}
+		   ],
 	"memoryGB": 16
     }
 }
