@@ -6,6 +6,7 @@ The EVE REST service management
 import imp
 import os
 
+from cloudmesh.common.util import path_expand
 from eve import Eve
 
 # for now load eve_settings from source
@@ -54,6 +55,7 @@ class RestService(object):
         # from cloudmesh.rest.server.settings import eve_settings
 
     def __init__(self, settings=None):
+        self.name = "eve"
         self.settings = settings
         self.app = None
         # TODO: reads the OBJECT.settings.py file and sets up the eve service with it
@@ -78,11 +80,17 @@ class RestService(object):
           # we assume that we now have ~/.cloudmesh/db/settings.py
            
         '''
-        self.load_settings(config_file)
+        self.load_settings(settings)
         # the previous class loads dynamically the settings.py file
         # this means we should be able to access eve_settings
         # we may have to do this slightly different
         self.eve_settings = eve_settings
+        parameters = {
+            "settings": config_dir
+        }
+
+    def info(self):
+        return self.parameters
 
     def start(self):
         """

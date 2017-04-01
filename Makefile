@@ -30,7 +30,10 @@ define terminal
 endef
 endif
 
-
+install:
+	cd ../common; python setup.py install; pip install .
+	cd ../cmd5; python setup.py install; pip install .
+	python setup.py install; pip install .
 
 setup:
 	# brew update

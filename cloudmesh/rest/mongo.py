@@ -2,44 +2,14 @@
 The interface to Mongo
 """
 # TODO: complete
-
-# for executing shell commands please do not reinvent the wheel but use
-
-# https://github.com/cloudmesh/client/blob/master/cloudmesh.client/common/Shell.py
-# if commands are missing or are not working we can fix that in cloudmesh.common
-
-#
-# WARNING THIS CODE INCLUDES ERRORS AND IS INCOMPLETE. PLEASE FIX
-#
-
 from __future__ import print_function
 
 import os
 import shutil
+from pprint import pprint
 
 import psutil
 from cloudmesh.common.Shell import Shell
-
-
-def log_print(msg):
-    """
-    Print a log message
-    # TODO now that we havec console we should use console
-    :param msg: 
-    :return: 
-    """
-    # temporarily used till we switch to real logger
-    print('mongod: ' + msg)
-
-
-def create_dir(path):
-    """
-    create a directory. 
-    TODO: integrate thsi to cloudmesh.common.Shell
-    :param path: 
-    :return: 
-    """
-    os.system("mkdir -p " + path)
 
 
 class Mongo(object):
@@ -47,19 +17,37 @@ class Mongo(object):
     Manage mongod service.
     """
 
+    def info(self):
+        """
+        returs the internal parameters
+        :return: 
+        """
+        return self.parameters
+
+    def print(self, msg):
+        """
+        a simple print
+        :param msg: 
+        :return: 
+        """
+        pprint(msg)
+
     def __init__(self, port=27017):
         """
         sets up a mongo d service
         :param port: the port number. default set to 5000
         """
+        # mongod --dbpath ~/.cloudmesh/data/db --bind_ip 127.0.0.1 --fork --logpath ~/.cloudmesh/data/db/a.log
+        self.name = "mongo"
         self.parameters = {
+            "name": "mongo",
             'port': port,
             'dbpath': "~/.cloudmesh/data/db",
             'bind_ip': "127.0.0.1",
-            'logpath': "~/.cloudmesh/data/mongo.log"
+            'logpath': "~/.cloudmesh/data/db/mongo.log"
         }
-        create_dir(self.parameters['dbpath'])
-        print(self.parameters)
+        r = Shell.mkdir(self.parameters['dbpath'])
+
 
     def clean(self):
         """
@@ -68,7 +56,8 @@ class Mongo(object):
         """
         shutil.rmtree(self.parameters['dbpath'])
         shutil.rmtree(self.parameters['logpath'])
-        create_dir(self.parameters['dbpath'])
+        r = Shell.mkdir(self.parameters['dbpath'])
+        self.print(r)
 
     def kill(self):
         """
@@ -80,19 +69,19 @@ class Mongo(object):
 
     def start(self):
         """starts the mongo service."""
-        command = 'mongod --port {port} -dbpath {dbpath} -bind_ip {bind_ip} --fork --logpath {logpath}' \
+        command = 'ulimit -n 1024; mongod --port {port} -dbpath {dbpath} -bind_ip {bind_ip} --fork --logpath {logpath}' \
             .format(**self.parameters)
         command_list = command.split(' ')
-        create_dir(self.parameters['dbpath'])
-        print(command)
-        os.system("ulimit -n 1024")
+        r = Shell.mkdir(self.parameters['dbpath'])
+        self.print(r)
+        self.print(command)
         os.system(command)
 
         # print (command_list)
         # r = Shell.execute(command)
 
         # print(r)
-        log_print('started')
+        self.print('started')
         self.status()
 
     def stop(self):
@@ -103,7 +92,7 @@ class Mongo(object):
             p = psutil.Process(int(process_id))
             p.terminate()  # or p.kill()
 
-        log_print('stopped')
+        self.print('stopped')
         # waite a bit
         self.status()
 
@@ -117,7 +106,7 @@ class Mongo(object):
         for line in output.split("\n"):
 
             if 'mongod' in line and "--port" in line:
-                log_print(line)
+                self.print(line)
                 process_id = line.split(" ")[0]
                 return process_id
 
@@ -130,10 +119,10 @@ class Mongo(object):
         """
         process_id = self.pid()
         if process_id is not None:
-            log_print('running')
-            log_print("Mongod process id: " + str(process_id))
+            self.print('running')
+            self.print("Mongod process id: " + str(process_id))
         else:
-            log_print('stopped')
+            self.print('stopped')
 
     def reset(self):
         """stops the service and deletes the database, restarts the service."""
@@ -142,7 +131,7 @@ class Mongo(object):
     def delete(self):
         """deletes all data in the database."""
         try:
-            log_print("NOT YET IMPLEMENTED")
+            self.print("NOT YET IMPLEMENTED")
             # client = MongoClient(host='localhost', port=self.parameters['port'] )
             # TODO: bug database is not defined
 
@@ -150,17 +139,21 @@ class Mongo(object):
         # collectionsnames = db.collection_names()
 
         # for singlecollectionname in collectionsnames:
-        #    log_print("deleting: " + singlecollectionname)
+        #    self.print ("deleting: " + singlecollectionname)
         #    db.get_collection(singlecollectionname).remove({})
 
         except Exception as e:
-            log_print("problem deleting" + str(e))
+            self.print("problem deleting" + str(e))
 
     def log(self, path):
-        """sets the log file to the given path"""
-        self.parameters['logpath'] = path  # TODO: define test programs with nosetest
+        """
+        sets the log file to the given path
+        :param path: the path to the logfile
+        """
+        self.parameters['logpath'] = path
 
 
+# TODO: define test programs with nosetest
 if __name__ == "__main__":
     m = Mongo()
     m.start()

@@ -3,14 +3,15 @@ The admin command for the REST services
 """
 from __future__ import print_function
 
-from cloudmesh.common.dotdict import dotdict
+from pprint import pprint
+
+from cloudmesh.common.util import banner
 from cloudmesh.common.util import path_expand
 from cloudmesh.shell.command import PluginCommand
 from cloudmesh.shell.command import command
 
 from cloudmesh.rest.mongo import Mongo
 from cloudmesh.rest.service import RestService
-
 
 class AdminCommand(PluginCommand):
     """
@@ -24,9 +25,10 @@ class AdminCommand(PluginCommand):
           Usage:
                 admin [db|rest] start
                 admin [db|rest] stop
+                admin [db|rest] status
+                admin [db|rest] info
                 admin db backup
                 admin db reset
-                admin status
                 admin settings FILENAME
 
           Description:
@@ -111,59 +113,38 @@ class AdminCommand(PluginCommand):
               -f      specify the file
 
         """
-        arguments = dotdict(arguments)
-        print(arguments)
+        pprint(arguments)
         #
         # TODO: use Console.msg
         #
-        if arguments.db and arguments.stop:
+
+        def _manage_service(service, arguments):
+            banner(service.name)
+            if arguments.stop:
+                service.stop()
+            elif arguments.start:
+                service.start()
+            elif arguments.info:
+                service.info()
+            print(service.status())
+
+        if arguments.db:
 
             service = Mongo()
-            service.stop()
-            print(service.status())
+            _manage_service(service, arguments)
 
-        elif arguments.db and arguments.start:
+        elif arguments.rest:
 
-            service = Mongo()
-            service.start()
-            print(service.status())
-
-        elif arguments.rest and arguments.start:
-
-            # TODO: if db not started start it
             service = RestService()
-            service.start()
-            print(service.status())
+            _manage_service(service, arguments)
 
-        elif arguments.rest and arguments.stop:
-
-            # careful this doe snot stop mongo
-            service = RestService()
-            service.stop()
-            print(service.status())
-
-        elif arguments.start:
+        elif arguments.start or arguments.stop or arguments.status or arguments.info:
 
             m = Mongo()
             e = RestService()
             for service in [e, m]:
-                r = service.start()
-                print(r)
-                print(service.status())
-
-        elif arguments.stop:
-            m = Mongo()
-            e = RestService()
-            for service in [e, m]:
-                r = service.stop()
-                print(r)
-                print(service.status())
-
-        elif arguments.status:
-            m = Mongo()
-            e = RestService()
-            for service in [e, m]:
-                print(service.status())
+                print(service.name)
+                _manage_service(service, arguments)
 
         elif arguments.settings:
             if arguments.FILENAME is None:
