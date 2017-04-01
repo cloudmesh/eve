@@ -40,10 +40,60 @@ class AdminCommand(PluginCommand):
                 rest stop
                     stops the database service
 
+                start
+                    starts all services
+
+                stop
+                    stops all services
+
                 settings FILENAME
                     copies the eve settings file speccified by the FILENAME to
                     ~/.cloudmesh/db/settings.py and uses it upon start of the 
                     eve service. 
+
+                With the help from the admin command it is possible to start a 
+                rest service using mongodb as a backend. The objects need to be 
+                defined first and configuration files need to be placed before 
+                the service can be used.
+
+                The following is showcaseing the creation of objects and the 
+                start of the related services.
+
+                First, edit a file called settings.json that defines example objects 
+                as documented in evegenie. An example file is included in the source 
+                code fo cloudmesh.rest at 
+
+                  https://github.com/cloudmesh/rest/blob/master/sample.json
+
+                This example can than be integrated into the cloudmesh rest service 
+                while executing the following command sequence
+
+                  admin settings sample.json
+                  
+                This will generate a sample.settings.py file and copy it to 
+                
+                  ~/.cloudmesh/db/settings.py
+
+                To start the services after you have defined and placed your objects 
+                into the db directory, you can use the commands
+
+                   admin start
+
+                To stop the service yo can use the command
+
+                   admin stop
+
+                In case you need to add new objects you need to first reset the db, which
+                while delete all existing objects in the db.
+
+                   admin reset
+
+                Than you need to modify your object definitions and start the server as 
+                previously explained, e.g.
+
+                    emacs sample.json  # edit the objects sample
+                    admin settings sample.json 
+                    admin start
 
           Arguments:
               FILE   a file name
