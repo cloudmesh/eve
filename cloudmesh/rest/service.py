@@ -4,6 +4,9 @@ from eve import Eve
 import imp
 import os
 
+# for now load eve_settings from source
+from cloudmesh.rest.settings import eve_settings
+
 # http://stackoverflow.com/questions/301134/dynamic-module-import-in-python
 #once this works we want to move load_from_file to common.util
 def load_from_file(filepath):
@@ -25,6 +28,7 @@ def load_from_file(filepath):
 
 class Service(object):
 
+    
     def load_settings(filename):
         self.settings = filename
         load_from_file(filename)
@@ -36,6 +40,7 @@ class Service(object):
 
         # if settings is None:
         # settings = path_expand("~/.cloudmesh/db/object.settings.py")
+        self.eve_settings = eve_settings
         self.load_settings(settings)
 
     def start(self):
@@ -56,7 +61,8 @@ class Service(object):
         # reinitializes eve with a new settings
 
     def run(self):
-        self.app = Eve(settings=self.settings)
+        # make sure eve_settings is loaded
+        self.app = Eve(settings=self.eve_settings)
         self.app.run()
         
         

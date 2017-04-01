@@ -1,6 +1,6 @@
 pyenv=ENV2
 UNAME=$(shell uname)
-export ROOT_DIR=${PWD}/cloudmesh/rest/server
+export ROOT_DIR=${PWD}/cloudmesh/rest/
 MONGOD=mongod --dbpath ~/.cloudmesh/data/db --bind_ip 127.0.0.1
 EVE=cd $(ROOT_DIR); $(pyenv); python service.py
 
