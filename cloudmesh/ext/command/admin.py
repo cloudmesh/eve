@@ -2,8 +2,8 @@ from __future__ import print_function
 from cloudmesh.shell.command import command
 from cloudmesh.shell.command import PluginCommand
 from cloudmesh.rest.mongo import Mongo
-from cloudmesh.rest.service import Service
-
+from cloudmesh.rest.service import RestService
+from cloudmesh.common.util import path_expand
 
 class AdminCommand(PluginCommand):
 
@@ -106,50 +106,64 @@ class AdminCommand(PluginCommand):
         print(arguments)
         if arguments.db and arguments.stop:
 
-            print("PLEASE stop db")
-            # m = Mongo()
-            # m.stop()
+            service = Mongo()
+            service.stop()
+            print(service.status())
 
         elif arguments.db and arguments.start:
 
-            print("PLEASE start db")
-
-            #m = Mongo()
-            #m.start()
+            service = Mongo()
+            service.start()
+            print(service.status())
 
         elif arguments.rest and arguments.start:
 
-            print("PLEASE start rest")
-            # if db not started start it
-            # m = Eve()
-            # m.start()
+            # TODO: if db not started start it
+            service = RestService()
+            service.start()
+            print(service.status())
 
         elif arguments.rest and arguments.stop:
 
-            print("PLEASE stop rest")
-            # m = Eve()
-            # m.stop()
-
+            # careful this doe snot stop mongo
+            service = RestService()
+            service.stop()
+            print(service.status())
 
         elif arguments.start:
-            #m = Mongo()
-            #r = m.start()
-            print(r)
+            
+            m = Mongo()
+            e = RestService()
+            for service in [e,m]:
+                r = service.start()
+                print(r)
+                print(service.status())
 
-            # start mong, start eve
-            pass
         elif arguments.stop:
-            #m = Mongo()
-            #r = m.stop()
-            print(r)
-
-            # stop eve
-            pass
+            m = Mongo()
+            e = RestService()
+            for service in [e,m]:
+                r = service.stop()
+                print(r)
+                print(service.status())
 
         elif arguments.status:
-            #m = Mongo()
-            #r = m.status()
-            print(r)
+            m = Mongo()
+            e = RestService()
+            for service in [e,m]:
+                print(service.status())            
+
+        elif arguments.settings:
+            if filename is None:
+                filename = "~/.cloudmesh/db/settings.py"
+            filename = path_expand(arguments.FILENAME)
+
+            # if ends in json
+            #    create settings.py file first
+            #    copy settings.py to ~/.cloudmesh/db
+
+            #e = RestService(settings=filename)
+            # copying and handleing .py or .json extension  may be included in RestService method
 
 
 

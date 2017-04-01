@@ -26,7 +26,7 @@ def load_from_file(filepath):
 
     return class_inst
 
-class Service(object):
+class RestService(object):
 
     
     def load_settings(filename):
