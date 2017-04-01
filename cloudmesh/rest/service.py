@@ -30,18 +30,38 @@ class RestService(object):
 
     
     def load_settings(filename):
-        self.settings = filename
+        self.settings = None
         load_from_file(filename)
         # dynamically import settings form the filename specified
         #from cloudmesh.rest.server.settings import eve_settings
         
     def __init__(self, settings=None):
         # TODO: reads the OBJECT.settings.py file and sets up the eve service withi it
+        config_dir = path_expand("~/.cloudmesh/db/")
+        '''
+        if settings is None:
+            settings = path_expand("~/.cloudmesh/db/settings.py")
 
-        # if settings is None:
-        # settings = path_expand("~/.cloudmesh/db/object.settings.py")
+        else:
+
+          config_dir = path_expand("~/.cloudmesh/db/")
+          config_file = path_expand("~/.cloudmesh/db/settings.py")
+
+          if filename is not in config
+              cp filename config
+          path, filename = use basedir to separate path and filename
+          
+          if filename ends in ".json":
+             r = Shell.execute("evegenie",config_dir + filename)
+             # make sure evegenie creates the settings.py in the same dir, if not we need to do this differently or change evegenie
+          # we assume that we now have ~/.cloudmesh/db/settings.py
+           
+        '''
+        self.load_settings(config_file)
+        # the previous class loads dynamically the settings.py file
+        # this means we should be able to access eve_settings
+        # we may have to do this slightly different
         self.eve_settings = eve_settings
-        self.load_settings(settings)
 
     def start(self):
         # TODO: implement
