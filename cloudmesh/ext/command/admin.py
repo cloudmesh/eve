@@ -4,6 +4,7 @@ from cloudmesh.shell.command import PluginCommand
 from cloudmesh.rest.mongo import Mongo
 from cloudmesh.rest.service import RestService
 from cloudmesh.common.util import path_expand
+from cloudmesh.common.console import Console
 
 class AdminCommand(PluginCommand):
 
@@ -104,6 +105,9 @@ class AdminCommand(PluginCommand):
         """
         arguments = dotdict(arguments)
         print(arguments)
+        #
+        # TODO: use Console.msg
+        #
         if arguments.db and arguments.stop:
 
             service = Mongo()
@@ -165,5 +169,9 @@ class AdminCommand(PluginCommand):
             #e = RestService(settings=filename)
             # copying and handleing .py or .json extension  may be included in RestService method
 
+        elif arguments.backup:
 
-
+            print("not yet impleemented")
+            # Create backup dir and copy files into it including settings.py and sample.json
+            
+            
