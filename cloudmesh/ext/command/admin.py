@@ -12,6 +12,9 @@ from cloudmesh.shell.command import command
 from cloudmesh.common.Printer import Printer
 from cloudmesh.rest.mongo import Mongo
 from cloudmesh.rest.service import RestService
+from cloudmesh.common.Shell import Shell
+from cloudmesh.common.console import Console
+import shutil
 
 class AdminCommand(PluginCommand):
     """
@@ -30,7 +33,9 @@ class AdminCommand(PluginCommand):
                 admin mongo backup
                 admin mongo reset
                 admin settings FILENAME
-
+                admin rest init [SETTINGS]
+                admin rest run
+                
           Description:
                
                 mongo start
@@ -113,7 +118,7 @@ class AdminCommand(PluginCommand):
               -f      specify the file
 
         """
-        # pprint(arguments)
+        pprint(arguments)
 
         def _manage_service(service, arguments):
             banner(service.name)
@@ -129,8 +134,22 @@ class AdminCommand(PluginCommand):
                 parameters = service.info()
                 print(Printer.attribute(parameters))
 
+        if arguments.rest and arguments.run:
 
-        if arguments.mongo:
+            service = RestService()
+            service.run()
+
+        if arguments.rest and arguments.init:
+
+            source = path_expand(arguments.SETTINGS)
+            destination = path_expand("~/.cloudmesh/eve/settings.py")
+            r = Shell.mkdir(path_expand("~/.cloudmesh/eve"))
+
+            if source != destination:
+                r = shutil.copy (source, destination)
+                Console.ok("copy {} -> {}".format(source, destination))
+
+        elif arguments.mongo:
 
             service = Mongo()
             _manage_service(service, arguments)
@@ -151,7 +170,7 @@ class AdminCommand(PluginCommand):
         elif arguments.settings:
             if arguments.FILENAME is None:
                 filename = "~/.cloudmesh/db/settings.py"
-            filename = path_expand(arguments.FILENAME)
+            filename = path_expand(arguments.SETTINGS)
 
             # if ends in json
             #    create settings.py file first
@@ -159,6 +178,7 @@ class AdminCommand(PluginCommand):
 
             # e = RestService(settings=filename)
             # copying and handleing .py or .json extension  may be included in RestService method
+
 
         elif arguments.backup:
 
