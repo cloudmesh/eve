@@ -23,26 +23,26 @@ class AdminCommand(PluginCommand):
         ::
 
           Usage:
-                admin [db|rest] start
-                admin [db|rest] stop
-                admin [db|rest] status
-                admin [db|rest] info
-                admin db backup
-                admin db reset
+                admin [mongo|rest] start
+                admin [mongo|rest] stop
+                admin [mongo|rest] status
+                admin [mongo|rest] info
+                admin mongo backup
+                admin mongo reset
                 admin settings FILENAME
 
           Description:
                
-                db start
+                mongo start
                     starts the database service
 
-                db stop
+                mongo stop
                     stops the database service
 
-                db backup
+                mongo backup
                     creates a backup of the database
 
-                db reset
+                mongo reset
                     resets the database
 
                 rest start
@@ -130,7 +130,7 @@ class AdminCommand(PluginCommand):
                 print(Printer.attribute(parameters))
 
 
-        if arguments.db:
+        if arguments.mongo:
 
             service = Mongo()
             _manage_service(service, arguments)
