@@ -3,63 +3,30 @@
 The EVE REST service management 
 """
 
-import imp
 import os
+import sys
+from pprint import pprint
 
-from cloudmesh.common.util import path_expand
+from cloudmesh.common.console import Console
 from eve import Eve
 
+
 # for now load eve_settings from source
-from cloudmesh.rest.settings import eve_settings
 
 
-# http://stackoverflow.com/questions/301134/dynamic-module-import-in-python
-# once this works we want to move load_from_file to common.util
-# noinspection PyUnboundLocalVariable
-def load_from_file(filepath):
-    """
-    import from a file dunamically 
-    :param filepath: 
-    :return: 
-    """
-    class_inst = None
-    expected_class = 'MyClass'
-
-    mod_name, file_ext = os.path.splitext(os.path.split(filepath)[-1])
-
-    if file_ext.lower() == '.py':
-        py_mod = imp.load_source(mod_name, filepath)
-
-    elif file_ext.lower() == '.pyc':
-        py_mod = imp.load_compiled(mod_name, filepath)
-
-    if hasattr(py_mod, expected_class):
-        class_inst = getattr(py_mod, expected_class)()
-
-    return class_inst
-
+# EVE=cd $(ROOT_DIR); $(pyenv); python service.py
 
 class RestService(object):
     """
     The REST service methods
     """
 
-    def load_settings(self, filename):
-        """
-        load the eve settings form the file
-        :param filename: 
-        :return: 
-        """
-        load_from_file(filename)
-        # dynamically import settings form the filename specified
-        # from cloudmesh.rest.server.settings import eve_settings
-
     def __init__(self, settings=None):
         self.name = "eve"
         self.settings = settings
         self.app = None
         # TODO: reads the OBJECT.settings.py file and sets up the eve service with it
-        config_dir = path_expand("~/.cloudmesh/db/")
+        # config_dir = path_expand("~/.cloudmesh/db/")
         '''
         if settings is None:
             settings = path_expand("~/.cloudmesh/db/settings.py")
@@ -80,25 +47,34 @@ class RestService(object):
           # we assume that we now have ~/.cloudmesh/db/settings.py
            
         '''
-        self.load_settings(settings)
-        # the previous class loads dynamically the settings.py file
-        # this means we should be able to access eve_settings
-        # we may have to do this slightly different
-        self.eve_settings = eve_settings
-        parameters = {
-            "settings": config_dir
-        }
+        # self.eve_settings = eve_settings
+        # parameters = {
+        #    "settings": config_dir
+        # }
 
     def info(self):
         return self.parameters
 
-    def start(self):
+    def run(self):
         """
         start the REST service
         :return: 
         """
         # TODO: implement
-        print("NOT YET IMPLEMENTED")
+
+        Console.ok("loading eve_settings ...")
+
+        sys.path.append('~/.cloudmesh/eve')
+        from settings import eve_settings
+
+        Console.ok("loaded.")
+        pprint(eve_settings)
+
+        app = Eve(settings=eve_settings)
+        app.run()
+
+    def start(self):
+        os.system("cms admin rest run &")
 
     def stop(self):
         """
@@ -126,14 +102,6 @@ class RestService(object):
         print("NOT YET IMPLEMENTED")
         # re-initializes eve with a new settings
 
-    def run(self):
-        """
-        run the ret service
-        :return: 
-        """
-        # make sure eve_settings is loaded
-        self.app = Eve(settings=self.eve_settings)
-        self.app.run()
 
 
 def main():
