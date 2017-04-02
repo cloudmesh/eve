@@ -1,6 +1,12 @@
 Cloudmesh Rest
 ==============
 
+
+SEE THE CLASS WEB PAGE FOR PROPER DOCUMENTAION
+
+
+
+
 WE ASSUME YOU DO THIS IN A VIRTUALENV
 Please note that this has only be tested on OSX. it will be straight forward to port to Linux.
 
@@ -15,34 +21,37 @@ Install Mongo
 ^^^^^^^^^^^^^
 
 ::
-   
+
    brew update
    brew install mongodb
 
    # brew install mongodb --with-openssl
 
 
-Create db dir
-^^^^^^^^^^^^^
+Managing Mongo
+^^^^^^^^^^^^^^
 
 ::
 
-   mkdir -p ~/.cloudmesh/data/db
-   mongod --dbpath ~/.cloudmesh/data/db --bind_ip 127.0.0.1
+    cms admin mongo start
+    cms admin mongo info
+    cms admin mongo status
+    cms admin mongo stop
 
+Manageing Eve
+^^^^^^^^^^^^^
 
-Try it out
-^^^^^^^^^^
+EVE SERVICE COMMANDS MOT YET IMPLEMENTED
 
-Just uses firt python environment::
-
-  make genie
-  make setup
-  make deploy
 
 Testing
 ^^^^^^^
+::
 
+
+  make setup    # install mongo and eve
+  make install  # installs the code and integrates it into cmd5
+  make deploy
   make test
 
 
@@ -50,46 +59,7 @@ Testing
 TO DO
 ^^^^^
 
-- [ ] insert data
-
-curl -d '{"name": "myCLuster",	"label": "c0","ip": "127.0.0.1","memoryGB": 16}' -H 'Content-Type: application/json'  http://127.0.0.1:5000/computer
-
 - [ ] add logger
 
-- [ ] finish admin logic to start/stop mongo and eve services
+- [ ] finish admin logic to start/stop eve services
 
-Cloudmesh Rest SHell
----------------------
-
-uninstall previous versions of cloudmeh shell
-
-do this multiple times toll you get a warning it can not find it::
-
-  pip uninstall cloudmesh_client
-
-Install cloudmesh_client::
-
-  pip install cloudmesh_client
-
-install the rest shell::
-
-  python setup.py install
-
-Run the shell::
-
-   cms
-
-Do help on the admin command
-
-   (cmd) admin help
-
-You can also pipe commands into cms such as::
-
-   echo "admin help" | cms
-
-Todo:
-
-- [ ] add prompt cms>
-- [ ] add EOF
-- [ ] add q qommand to quit
-- [ ] implement the logic for the admin command
