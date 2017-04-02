@@ -9,7 +9,7 @@ from cloudmesh.common.util import banner
 from cloudmesh.common.util import path_expand
 from cloudmesh.shell.command import PluginCommand
 from cloudmesh.shell.command import command
-
+from cloudmesh.common.Printer import Printer
 from cloudmesh.rest.mongo import Mongo
 from cloudmesh.rest.service import RestService
 
@@ -113,20 +113,22 @@ class AdminCommand(PluginCommand):
               -f      specify the file
 
         """
-        pprint(arguments)
-        #
-        # TODO: use Console.msg
-        #
+        # pprint(arguments)
 
         def _manage_service(service, arguments):
             banner(service.name)
             if arguments.stop:
                 service.stop()
+                print(service.status())
+
             elif arguments.start:
                 service.start()
+                print(service.status())
+
             elif arguments.info:
-                service.info()
-            print(service.status())
+                parameters = service.info()
+                print(Printer.attribute(parameters))
+
 
         if arguments.db:
 

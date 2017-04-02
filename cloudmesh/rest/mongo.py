@@ -10,7 +10,7 @@ from pprint import pprint
 
 import psutil
 from cloudmesh.common.Shell import Shell
-
+from cloudmesh.common.console import Console
 
 class Mongo(object):
     """
@@ -22,15 +22,10 @@ class Mongo(object):
         returs the internal parameters
         :return: 
         """
+        self.parameters["pid"] = self.pid()
+        self.parameters["status"] = self.status()
         return self.parameters
 
-    def print(self, msg):
-        """
-        a simple print
-        :param msg: 
-        :return: 
-        """
-        pprint(msg)
 
     def __init__(self, port=27017):
         """
@@ -44,7 +39,9 @@ class Mongo(object):
             'port': port,
             'dbpath': "~/.cloudmesh/data/db",
             'bind_ip': "127.0.0.1",
-            'logpath': "~/.cloudmesh/data/db/mongo.log"
+            'logpath': "~/.cloudmesh/data/db/mongo.log",
+            'pid': None,
+            'status': None
         }
         r = Shell.mkdir(self.parameters['dbpath'])
 
@@ -57,7 +54,7 @@ class Mongo(object):
         shutil.rmtree(self.parameters['dbpath'])
         shutil.rmtree(self.parameters['logpath'])
         r = Shell.mkdir(self.parameters['dbpath'])
-        self.print(r)
+        Console.msg(r)
 
     def kill(self):
         """
@@ -71,17 +68,11 @@ class Mongo(object):
         """starts the mongo service."""
         command = 'ulimit -n 1024; mongod --port {port} -dbpath {dbpath} -bind_ip {bind_ip} --fork --logpath {logpath}' \
             .format(**self.parameters)
-        command_list = command.split(' ')
         r = Shell.mkdir(self.parameters['dbpath'])
-        self.print(r)
-        self.print(command)
+        Console.msg(r)
+        Console.msg(command)
         os.system(command)
-
-        # print (command_list)
-        # r = Shell.execute(command)
-
-        # print(r)
-        self.print('started')
+        Console.ok('started')
         self.status()
 
     def stop(self):
@@ -92,7 +83,7 @@ class Mongo(object):
             p = psutil.Process(int(process_id))
             p.terminate()  # or p.kill()
 
-        self.print('stopped')
+        Console.ok('stopped')
         # waite a bit
         self.status()
 
@@ -106,7 +97,6 @@ class Mongo(object):
         for line in output.split("\n"):
 
             if 'mongod' in line and "--port" in line:
-                self.print(line)
                 process_id = line.split(" ")[0]
                 return process_id
 
@@ -119,10 +109,9 @@ class Mongo(object):
         """
         process_id = self.pid()
         if process_id is not None:
-            self.print('running')
-            self.print("Mongod process id: " + str(process_id))
+            return 'running'
         else:
-            self.print('stopped')
+            return 'stopped'
 
     def reset(self):
         """stops the service and deletes the database, restarts the service."""
@@ -131,7 +120,7 @@ class Mongo(object):
     def delete(self):
         """deletes all data in the database."""
         try:
-            self.print("NOT YET IMPLEMENTED")
+            Console.error("NOT YET IMPLEMENTED")
             # client = MongoClient(host='localhost', port=self.parameters['port'] )
             # TODO: bug database is not defined
 
@@ -143,7 +132,7 @@ class Mongo(object):
         #    db.get_collection(singlecollectionname).remove({})
 
         except Exception as e:
-            self.print("problem deleting" + str(e))
+            Console.error("problem deleting" + str(e))
 
     def log(self, path):
         """
