@@ -1,12 +1,12 @@
 \documentclass{article}
 
 
-%\usepackage{xcolor}
+\usepackage{xcolor}
 \usepackage{fullpage}
 \usepackage{fancyvrb}
 
 
-%% redefine \VerbatimInput
+% redefine \VerbatimInput
 %\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
 %{fontsize=\footnotesize,
 % %
@@ -14,7 +14,7 @@
 % framesep=2em, % separation between frame and text
 % rulecolor=\color{gray},
 % %
-% label=\fbox{\color{black}data.txt},
+% label=\fbox{\color{black}Definition},
 % labelposition=topline,
 % %
 % commandchars=\|\(\), % escape character and argument delimiters for
@@ -24,10 +24,106 @@
 
 \begin{document}
 
-\section{Profile}
+\section{Dev}
 
-hallo
-\VerbatimInput{../samples/profile.json}
+\input{dev}
+
+\section{User}
+
+\subsection{Profile}
+
+\VerbatimInput{../samples/profile.yml}
+
+\subsection{User}
+
+\VerbatimInput{../samples/user.yml}
+
+
+\section{Cluster}
+
+\subsection{Cluster}
+
+\VerbatimInput{../samples/cluster.yml}
+
+\subsection{Compute Resource}
+
+\VerbatimInput{../samples/compute_resource.yml}
+
+\subsection{Compute Resource Kind}
+
+\VerbatimInput{../samples/compute_resource_kind.yml}
+
+\subsection{Computer}
+
+\VerbatimInput{../samples/computer.yml}
+
+\subsection{Container}
+
+\VerbatimInput{../samples/container.yml}
+
+\section{Data}
+
+\subsection{File}
+
+\VerbatimInput{../samples/file.yml}
+
+\subsection{File Alias}
+
+\VerbatimInput{../samples/file_alias.yml}
+
+
+\subsection{Database}
+
+\VerbatimInput{../samples/database.yml}
+
+\subsection{Database Protocol}
+
+\VerbatimInput{../samples/database_protocol.yml}
+
+
+\section{Deployment}
+
+\subsection{Deployment}
+
+\VerbatimInput{../samples/deployment.yml}
+
+\subsection{Hadoop}
+
+\VerbatimInput{../samples/hadoop.yml}
+
+\subsection{Mapreduce}
+
+\VerbatimInput{../samples/mapreduce.yml}
+
+\subsection{Microservice}
+
+\VerbatimInput{../samples/microservice.yml}
+
+\subsection{Node}
+
+\VerbatimInput{../samples/node.yml}
+
+
+\subsection{Replica}
+
+\VerbatimInput{../samples/replica.yml}
+
+\subsection{Virtual Cluster}
+
+\VerbatimInput{../samples/virtual_cluster.yml}
+
+\subsection{virtual compute node}
+
+\VerbatimInput{../samples/virtual_compute_node.yml}
+
+\subsection{virtual directory}
+
+\VerbatimInput{../samples/virtual_directory.yml}
+
+\subsection{virtual machine}
+
+\VerbatimInput{../samples/virtual_machine.yml}
+
 
 \end{document}
 
