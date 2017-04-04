@@ -1,7 +1,7 @@
 {
   "virtual_cluster": {
     "name": "data",
-    "endpoint": "http://.../cluster/"
+    "endpoint": "http://.../cluster/",
     "nodes": [
       "virtual_compute_node"
     ]
