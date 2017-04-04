@@ -1,0 +1,51 @@
+
+node:
+  cores: 2
+  create_external_ip: true
+  disk: 80
+  external_ip: null
+  internal_ip: null
+  loginuser: root
+  memory: 2048
+  name: example-001
+  security_groups:
+  - egress: 0.0.0.0/32
+    ingress: 0.0.0.0/32
+    ports:
+    - 22
+    - 443
+    - 80
+    - 8080
+    protocols:
+    - tcp
+    - udp
+  users:
+  - authorized_keys:
+    - ssh-rsa AAAA...
+    - ssh-ed25519 AAAA...
+    - '...etc'
+    groups:
+    - wheel
+    name: hello
+    ssh_keys:
+    - method: ed25519
+      password:
+        decrypt: gpg
+        file: secrets.yml.gpg
+        from: yaml
+        key: users.hello.ssh[0]
+      ssh_keygen: true
+      to: .ssh/id_rsa
+    - bits: 4098
+      method: rsa
+      password:
+        decrypt: gpg
+        file: secrets.yml.gpg
+        from: yaml
+        key: users.hello.ssh[1]
+      ssh_keygen: true
+      to: .ssh/testing
+    - decrypt: gpg
+      from: secrets/ssh/hello/copied.gpg
+      ssh_keygen: false
+      to: .ssh/copied
