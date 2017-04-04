@@ -1,0 +1,11 @@
+cluster:
+  endpoint:
+    passwd: secret
+    url: https
+  label: c0
+  name: myCLuster
+  provider:
+  - openstack
+  - aws
+  - azure
+  - eucalyptus
