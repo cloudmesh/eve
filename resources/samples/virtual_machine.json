@@ -1,0 +1,11 @@
+{
+"virtual_machine" :{
+		"name": "vm1",
+		"endpoint": "http://.../vm/",
+		"metadata":{"experiment":"exp-001"},
+		"image": "Ubuntu-16.04",
+		"ip": ["TBD"],
+		"flavor": "TBD",
+		"status": "TBD"
+}
+}

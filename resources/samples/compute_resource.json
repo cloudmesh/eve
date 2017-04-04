@@ -1,0 +1,7 @@
+{
+  "compute_resource": {
+    "name": "Compute1",
+    "endpoint": "http://.../cluster/",
+    "kind": "baremetal"
+  }
+}

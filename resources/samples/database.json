@@ -1,0 +1,7 @@
+{
+  "database": {
+    "name": "data",
+    "endpoint": "http://.../data/",
+    "protocol": "mongo"
+  }
+}

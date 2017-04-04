@@ -1,0 +1,7 @@
+{
+"microservice" :{
+    "name": "ms1",
+    "endpoint": "http://.../ms/"
+    "function": "microservice spec"
+    }
+}

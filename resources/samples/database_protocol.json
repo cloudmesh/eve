@@ -1,0 +1,8 @@
+{
+  "database_protocol": [
+    "mongo",
+    "mariadb",
+    "Casandra",
+    "mysql"
+  ]
+}

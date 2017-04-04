@@ -1,0 +1,16 @@
+{
+  "replica": {
+    "name": "replica_report.dat",
+    "replica": "report.dat",
+    "endpoint": "file://gregor@machine.edu:/data/replica_report.dat",
+    "checksum": [
+      "md5",
+      "8c324f12047dc2254b74031b8f029ad0"
+    ],
+    "accessed": "1.1.2017:05:00:00:EST",
+    "size": [
+      "GB",
+      "1"
+    ]
+  }
+}

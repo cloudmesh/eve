@@ -1,0 +1,11 @@
+{
+  "virtual_directory": {
+    "name": "data",
+    "endpoint": "http://.../data/",
+    "protocol": "http",
+    "collection": [
+      "report.dat",
+      "file2"
+    ]
+  }
+}

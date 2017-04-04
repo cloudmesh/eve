@@ -1,0 +1,6 @@
+{
+"container" :{
+    "name": "container1",
+    "endpoint": "http://.../container/"
+    }
+}
