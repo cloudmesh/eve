@@ -7,6 +7,7 @@ node:
   loginuser: root
   memory: 2048
   name: example-001
+  owner: null
   security_groups:
   - egress: 0.0.0.0/32
     ingress: 0.0.0.0/32
@@ -19,13 +20,13 @@ node:
     - tcp
     - udp
   users:
+    name: hello
+    groups:
+    - wheel
   - authorized_keys:
     - ssh-rsa AAAA...
     - ssh-ed25519 AAAA...
     - '...etc'
-    groups:
-    - wheel
-    name: hello
     ssh_keys:
     - method: ed25519
       password:
