@@ -4,6 +4,14 @@
 \usepackage{xcolor}
 \usepackage{fullpage}
 \usepackage{fancyvrb}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[scaled=0.92]{helvet}
+\usepackage[helvet]{sfmath}
+\everymath={\sf}
+
+\parindent 0pt
+
+
 
 
 % redefine \VerbatimInput
@@ -27,6 +35,7 @@
 \section{Dev}
 
 \input{dev}
+
 
 \section{User}
 
@@ -63,6 +72,15 @@
 \subsection{Container}
 
 \VerbatimInput{../samples/container.yml}
+
+\subsection{Mesos}
+
+\VerbatimInput{../samples/mesos.yml}
+
+
+\subsection{Kubernetes}
+
+\VerbatimInput{../samples/kubernetes.yml}
 
 \section{Data}
 
@@ -127,6 +145,9 @@
 
 \VerbatimInput{../samples/virtual_machine.yml}
 
+section{Network}
+
+We are looking for volunteers to contribute here.
 
 \end{document}
 
