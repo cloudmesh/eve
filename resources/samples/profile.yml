@@ -1,6 +1,6 @@
 profile:
   description: The Profile of a user
-  e-mail: laszewski@gmail.com
+  email: laszewski@gmail.com
   firstname: Gregor
   lastname: von Laszewski
   username: gregor

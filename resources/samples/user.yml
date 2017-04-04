@@ -1,5 +1,8 @@
 user:
-  emailh: laszewski@gmail.com
+  email: laszewski@gmail.com
   firstname: Gregor
   lastname: von Laszewski
+  roles:
+  - admin
+  - user
   username: gregor
