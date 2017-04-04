@@ -14,6 +14,7 @@ from cloudmesh.rest.mongo import Mongo
 from cloudmesh.rest.service import RestService
 from cloudmesh.common.Shell import Shell
 from cloudmesh.common.console import Console
+from cloudmesh.rest.elements import Elements
 import shutil
 
 class AdminCommand(PluginCommand):
@@ -35,6 +36,7 @@ class AdminCommand(PluginCommand):
                 admin settings FILENAME
                 admin rest init [SETTINGS]
                 admin rest run
+                admin objects DIRECTORY FILENAME
                 
           Description:
                
@@ -184,3 +186,9 @@ class AdminCommand(PluginCommand):
 
             print("not yet implemented")
             # Create backup dir and copy files into it including settings.py and sample.json
+
+        elif arguments.objects:
+
+            directory = arguments.DIRECTORY
+            filename = arguments.FILENAME
+            elements = Elements(directory, filename)
