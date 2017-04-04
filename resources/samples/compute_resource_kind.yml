@@ -1,0 +1,6 @@
+kind:
+- baremetal
+- virtual_machine
+- container
+- cluster
+- virtual_cluster

@@ -1,0 +1,4 @@
+microservice:
+  endpoint: http://.../ms/
+  function: microservice spec
+  name: ms1
