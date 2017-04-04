@@ -1,0 +1,60 @@
+\subsection{How To}
+
+Components are written as YAML markup in files in the
+\verb+resources/samples+ directory.
+
+For example:
+
+\VerbatimInput{samples/resources/profile.yml}
+
+\subsubsection{Components}
+
+Each resource should have a \verb+description+ entry to act as
+documentation. The documentation should be formated as  reStructuredText.
+
+For example:
+
+\begin{verbatim}
+foo:
+  description: |
+    title description
+    =================
+
+    Parameters
+    ----------
+
+    - bar: what bar is for
+    - baz: what baz is for
+
+  bar: 42
+  baz: a string
+\end{verbatim}
+
+
+\subsubsection{Generating}
+
+Run the \verb+elements+ command:
+
+\begin{verbatim}
+cms elements <directory> <out.json>
+\end{verbatim}
+
+where
+
+\begin{itemize}
+\item \verb+<directory>+: directory where the YAML definitions reside
+\item \verb+<out.json>: path to the combined definition
+\end{itemize}
+
+
+For example:
+
+\begin{verbatim}
+cms elements resources/samples all.json
+\end{verbatim}
+
+
+\subsubsection{Generating service}
+
+With evegenie installed, the generated JSON file from the above step
+is processed to create the stub REST service definitions.
