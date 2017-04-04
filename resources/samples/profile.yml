@@ -1,15 +1,6 @@
 profile:
-  description: |
-    title
-
-    Properties:
-
-      - firstname: asdf
-      - lastname: asdf
-      - e-mail: asdf
-      - username: asdf
-
-  firstname: Gregor,
-  lastname: von Laszewski,
-  e-mail: laszewski@gmail.com,
+  description: asdfkjaskldjf
+  e-mail: laszewski@gmail.com
+  firstname: Gregor
+  lastname: von Laszewski
   username: gregor

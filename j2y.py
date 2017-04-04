@@ -11,4 +11,6 @@ for jpath in glob.glob('resources/samples/*.json'):
     with open(jpath) as fd:
         d = json.load(fd)
 
-    print yaml.dump(d, default_flow_style=False)
+    with open(ypath, 'w') as fd:
+        print ypath
+        yaml.safe_dump(d, fd, default_flow_style=False)
