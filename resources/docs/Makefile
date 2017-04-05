@@ -7,7 +7,7 @@ all:
 	pdflatex ${FILE}
 #	bibtex ${FILE}
 	pdflatex ${FILE}
-xs	pdflatex ${FILE}
+	pdflatex ${FILE}
 
 real-clean: clean
 	rm -rf *.pdf

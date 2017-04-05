@@ -50,7 +50,7 @@ TBD
 
 
 
-\section{Contribution}
+\section{Contributing}
 
 We invite you to contribute to this paper and its discussion to
 improve it. Improvements can be done with pull requests. We suggest
@@ -71,7 +71,7 @@ For example:
 
 \VerbatimInput{../samples/profile.yml}
 
-\subsubsection{Components}
+\subsection{Components}
 
 Each resource should have a \verb+description+ entry to act as
 documentation. The documentation should be formated as  reStructuredText.
@@ -95,9 +95,12 @@ foo:
 \end{Verbatim}
 
 
-\subsubsection{Generating}
+\subsection{Defining Elements for the REST Service}
 
-Run the \verb+elements+ command:
+To manage a large number of elements defined in our REST service
+easily, we manage them trhough definitions in yaml files. To generate
+the appropriate settings file for the rest service, we can use teh
+following command:
 
 \begin{verbatim}
 cms admin elements <directory> <out.json>
@@ -110,20 +113,19 @@ where
 \item \verb+<out.json>+: path to the combined definition
 \end{itemize}
 
-
-For example:
+For example, to generate a file called all.json that integrates all
+yml objects defined in the directory \verb+resources/samples+ you can
+use the following command:
 
 \begin{verbatim}
 cms elements resources/samples all.json
 \end{verbatim}
 
 
-\subsubsection{Generating service}
+\subsection{Generating service}
 
 With evegenie installed, the generated JSON file from the above step
 is processed to create the stub REST service definitions.
-
-
 
 
 \section{User}
