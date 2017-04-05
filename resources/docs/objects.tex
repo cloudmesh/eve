@@ -71,27 +71,21 @@ For example:
 
 \VerbatimInput{../samples/profile.yml}
 
-\subsection{Components}
+\subsection{Element Definition}
 
 Each resource should have a \verb+description+ entry to act as
-documentation. The documentation should be formated as  reStructuredText.
-
-For example:
+documentation. The documentation should be formated as
+reStructuredText. For example:
 
 \begin{Verbatim}
-foo:
+profile:
   description: |
-    title description
-    =================
-
-    Parameters
-    ----------
-
-    - bar: what bar is for
-    - baz: what baz is for
-
-  bar: 42
-  baz: a string
+    A user profile that specifies general information 
+    about the user
+  email: laszewski@gmail.com
+  firtsname: Gregor
+  lastname: von Laszewski
+  height: 180
 \end{Verbatim}
 
 
