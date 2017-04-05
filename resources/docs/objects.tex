@@ -77,17 +77,55 @@ Each resource should have a \verb+description+ entry to act as
 documentation. The documentation should be formated as
 reStructuredText. For example:
 
+\subsection{Yaml}
+
 \begin{Verbatim}
+entry = yaml.read('''
 profile:
   description: |
     A user profile that specifies general information 
     about the user
-  email: laszewski@gmail.com
-  firtsname: Gregor
-  lastname: von Laszewski
+  email: laszewski@gmail.com, required
+  firtsname: Gregor, required
+  lastname: von Laszewski, required
   height: 180
+'''}
 \end{Verbatim}
 
+\subsection{Cerberus}
+
+\begin{Verbatim}
+schema = {
+'profile': {
+  'description': {'type': 'string'}
+  'email':       {'type': 'string', 'required': True}
+  'firtsname':   {'type': 'string', 'required': True}
+  'lastname':    {'type': 'string', 'required': True}
+  'height':      {'type': 'float'}
+}
+\end{Verbatim}
+
+\section{Mongoengine}
+
+\begin{Verbatim}
+class profile(Document):
+    description = StringField()
+    email = EmailField(required=True)
+    firstname = StringField(required=True)
+    lastname = StringField(required=True)
+    height = FloatField(max_length=50)
+\end{Verbatim}
+
+\section{Cloudmesh Notation}
+
+\begin{Verbatim}
+profile:
+    description: string
+    email: email, required
+    firstname: string, required
+    lastname: string, required
+    height: flat, max=10
+\end{Verbatim}
 
 \subsection{Defining Elements for the REST Service}
 
