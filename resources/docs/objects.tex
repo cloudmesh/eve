@@ -1,32 +1,179 @@
-\documentclass{article}
-
-
-\usepackage{xcolor}
-\usepackage{fullpage}
+\documentclass[9pt,twocolumn,twoside]{styles/osajnl} 
 \usepackage{fancyvrb}
+\journal{cm}  
+
+%\usepackage{xcolor}
+%usepackage{fullpage}
+%\usepackage{fancyvrb}
+%\renewcommand{\familydefault}{\sfdefault}
+%\usepackage[scaled=0.92]{helvet}
+%\usepackage[helvet]{sfmath}
+%\everymath={\sf}
+%\parindent 0pt
+
+\newcommand{\tightlist}{}
+
+\title{Cloudmesh REST Interface for Virtual Clusters} 
+
+\author[1,*]{Gregor von Laszewski} 
+\author[1]{Fugang Wang}
+\author[1]{Badi Abdhul-Wahid}
+
+\affil[1]{School of Informatics and Computing, Bloomington, IN 47408, U.S.A.} 
+\affil[*]{Corresponding authors: laszewski@gmal.com} 
+
+\dates{Draft v0.0.1, \today} 
+
+\ociscodes{CLoudmesh, REST, NIST} 
+
+\doi{\url{https://github.com/cloudmesh/rest/tree/master/resources/docs}} 
 
 
-% redefine \VerbatimInput
-%\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
-%{fontsize=\footnotesize,
-% %
-% frame=lines,  % top and bottom rule only
-% framesep=2em, % separation between frame and text
-% rulecolor=\color{gray},
-% %
-% label=\fbox{\color{black}Definition},
-% labelposition=topline,
-% %
-% commandchars=\|\(\), % escape character and argument delimiters for
-%                      % commands within the verbatim
-% commentchar=*        % comment character
-%}
+\begin{abstract}
+
+This document summarizes a number of objects that are instrumental for
+the interaction with Clouds, Containers, and HPC systems to manage
+virtual clusters. 
+TBD
+
+\end{abstract}
 
 \begin{document}
 
-\section{Dev}
 
-\input{dev}
+\flushbottom % Makes all text pages the same height
+
+\maketitle % Print the title and abstract box
+
+\tableofcontents % Print the contents section
+\maketitle
+
+
+
+\section{Contributing}
+
+We invite you to contribute to this paper and its discussion to
+improve it. Improvements can be done with pull requests. We suggest
+you do {\em small} individual changes to a single section and object
+rather than large changes as this allows us to integrate the changes
+individually and comment on your contribution via github.
+
+Once contributed we will appropriately acknoledge you either as
+contributor or author. Please discuss with us how we best acknowledge
+you.
+
+\section{Using the Cloudmesh REST Service} 
+
+Components are written as YAML markup in files in the
+\verb+resources/samples+ directory.
+
+For example:
+
+\VerbatimInput{../samples/profile.yml}
+
+\subsection{Element Definition}
+
+Each resource should have a \verb+description+ entry to act as
+documentation. The documentation should be formated as
+reStructuredText. For example:
+
+\subsection{Yaml}
+
+\begin{Verbatim}
+entry = yaml.read('''
+profile:
+  description: |
+    A user profile that specifies general information 
+    about the user
+  email: laszewski@gmail.com, required
+  firtsname: Gregor, required
+  lastname: von Laszewski, required
+  height: 180
+'''}
+\end{Verbatim}
+
+\subsection{Cerberus}
+
+\begin{Verbatim}
+schema = {
+'profile': {
+  'description': {'type': 'string'}
+  'email':       {'type': 'string', 'required': True}
+  'firtsname':   {'type': 'string', 'required': True}
+  'lastname':    {'type': 'string', 'required': True}
+  'height':      {'type': 'float'}
+}
+\end{Verbatim}
+
+\section{Mongoengine}
+
+\begin{Verbatim}
+class profile(Document):
+    description = StringField()
+    email = EmailField(required=True)
+    firstname = StringField(required=True)
+    lastname = StringField(required=True)
+    height = FloatField(max_length=50)
+\end{Verbatim}
+
+\section{Cloudmesh Notation}
+
+\begin{Verbatim}
+profile:
+    description: string
+    email: email, required
+    firstname: string, required
+    lastname: string, required
+    height: flat, max=10
+\end{Verbatim}
+
+\begin{Verbatim}
+proposed command
+
+cms schema FILENAME --format=mongo -o OUTPUT
+cms schema FILENAME --format=cerberus -o OUTPUT
+cms schema FILENAME --format=yaml -o OUTPUT
+
+  reads FILENAME in cloudmesh notation and returns format
+
+
+cms schema FILENAME --input=evegenie -o OUTPUT
+   reads eavegene example and create settings for eve
+\end{Verbatim}
+
+
+\subsection{Defining Elements for the REST Service}
+
+To manage a large number of elements defined in our REST service
+easily, we manage them trhough definitions in yaml files. To generate
+the appropriate settings file for the rest service, we can use teh
+following command:
+
+\begin{verbatim}
+cms admin elements <directory> <out.json>
+\end{verbatim}
+
+where
+
+\begin{itemize}
+\item \verb+<directory>+: directory where the YAML definitions reside
+\item \verb+<out.json>+: path to the combined definition
+\end{itemize}
+
+For example, to generate a file called all.json that integrates all
+yml objects defined in the directory \verb+resources/samples+ you can
+use the following command:
+
+\begin{verbatim}
+cms elements resources/samples all.json
+\end{verbatim}
+
+
+\subsection{Generating service}
+
+With evegenie installed, the generated JSON file from the above step
+is processed to create the stub REST service definitions.
+
 
 \section{User}
 
@@ -66,6 +213,15 @@
 
 \VerbatimInput{../samples/container.yml}
 \input{../samples/container.tex}
+
+\subsection{Mesos}
+
+\VerbatimInput{../samples/mesos.yml}
+
+
+\subsection{Kubernetes}
+
+\VerbatimInput{../samples/kubernetes.yml}
 
 \section{Data}
 
@@ -139,7 +295,19 @@
 \subsection{virtual machine}
 
 \VerbatimInput{../samples/virtual_machine.yml}
-\input{../samples/virtual_machine.tex}
+
+section{Network}
+
+We are looking for volunteers to contribute here.
+
+\appendix
+
+{|bf README.rst}
+\input{readme}
+classes lessons rest.rst
+\input{rest}
+classes lesson python cmd5.rst
+\input{python-cmd5}
 
 \end{document}
 
