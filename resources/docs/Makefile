@@ -3,11 +3,11 @@ FILE=objects
 all:
 	pandoc ../../README.rst -o readme.tex
 	pandoc ../../../classes/docs/source/lesson/prg/rest.rst -o rest.tex
-	pandoc ../../../classes/docs/source/lesson/prg/python_cmd5.rst -o python_cmd5.tex
+	pandoc ../../../classes/docs/source/lesson/prg/python_cmd5.rst -o python-cmd5.tex
 	pdflatex ${FILE}
 #	bibtex ${FILE}
-#	pdflatex ${FILE}
-#	pdflatex ${FILE}
+	pdflatex ${FILE}
+xs	pdflatex ${FILE}
 
 real-clean: clean
 	rm -rf *.pdf
