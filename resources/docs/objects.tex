@@ -1,36 +1,50 @@
-\documentclass{article}
-
-
-\usepackage{xcolor}
-\usepackage{fullpage}
+\documentclass[9pt,twocolumn,twoside]{styles/osajnl} 
 \usepackage{fancyvrb}
-\renewcommand{\familydefault}{\sfdefault}
-\usepackage[scaled=0.92]{helvet}
-\usepackage[helvet]{sfmath}
-\everymath={\sf}
+\journal{cm}  
 
-\parindent 0pt
+%\usepackage{xcolor}
+%usepackage{fullpage}
+%\usepackage{fancyvrb}
+%\renewcommand{\familydefault}{\sfdefault}
+%\usepackage[scaled=0.92]{helvet}
+%\usepackage[helvet]{sfmath}
+%\everymath={\sf}
+%\parindent 0pt
 
 
+\title{Cloudmesh REST Interface} 
+
+\author[1,*]{Gregor von Laszewski} 
+\author[1]{Fugang Wang}
+\author[1]{Badi Abdhul-Wahid}
+
+\affil[1]{School of Informatics and Computing, Bloomington, IN 47408, U.S.A.} 
+\affil[*]{Corresponding authors: laszewski@gmal.com} 
+
+\dates{Draft v0.0.1, \today} 
+
+\ociscodes{CLoudmesh, REST, NIST} 
+
+\doi{\url{https://github.com/cloudmesh/rest/tree/master/resources/docs}} 
 
 
-% redefine \VerbatimInput
-%\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
-%{fontsize=\footnotesize,
-% %
-% frame=lines,  % top and bottom rule only
-% framesep=2em, % separation between frame and text
-% rulecolor=\color{gray},
-% %
-% label=\fbox{\color{black}Definition},
-% labelposition=topline,
-% %
-% commandchars=\|\(\), % escape character and argument delimiters for
-%                      % commands within the verbatim
-% commentchar=*        % comment character
-%}
+\begin{abstract}
+
+TBD
+
+\end{abstract}
 
 \begin{document}
+
+
+\flushbottom % Makes all text pages the same height
+
+\maketitle % Print the title and abstract box
+
+\tableofcontents % Print the contents section
+\maketitle
+
+
 
 \section{Dev}
 

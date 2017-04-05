@@ -1,0 +1,30 @@
+kubernetes:
+    host:
+      metadata:
+            name: 127.0.0.1
+            status
+                capacity:
+                  cpu: 4
+                addresses:
+                - type: LegacyHostIP
+                - address: 127.0.0.1
+     host:
+        metadata:
+            name: 127.0.0.2
+            status
+                capacity:
+                  cpu: 8
+                addresses
+                - type: LegacyHostIP
+                  address: 127.0.0.2
+                - type: another
+                  address: 127.0.0.3
+    users
+    - name: myself,
+      user:
+        username: admin
+        password: secret
+    - name: e2e,
+      user:
+        username: admin
+        password: secret
