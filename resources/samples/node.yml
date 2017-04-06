@@ -2,12 +2,12 @@ node:
   cores: 2
   create_external_ip: true
   disk: 80
-  external_ip: null
-  internal_ip: null
+  external_ip: ""
+  internal_ip: ""
   loginuser: root
   memory: 2048
   name: example-001
-  owner: null
+  owner: ""
   security_groups:
   - egress: 0.0.0.0/32
     ingress: 0.0.0.0/32
@@ -23,11 +23,11 @@ node:
     name: hello
     groups:
     - wheel
-  - authorized_keys:
-    - ssh-rsa AAAA...
-    - ssh-ed25519 AAAA...
-    - '...etc'
-    ssh_keys:
+  authorized_keys:
+  - ssh-rsa AAAA...
+  - ssh-ed25519 AAAA...
+  - '...etc'
+  ssh_keys:
     - method: ed25519
       password:
         decrypt: gpg

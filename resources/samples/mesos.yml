@@ -1,14 +1,14 @@
 mesos-docker:
     id: mesos-docker
     container:
-        docker
+        docker:
             image: mesosphere/inky
             credential:
                 principal: my-principal
-                secret": my-secret
+                secret: my-secret
         type: MESOS
     args:
     - argument
-    cpus: 0.2,
-    mem: 16.0,
-    instances": 1
+    cpus: 0.2
+    mem: 16.0
+    instances: 1
