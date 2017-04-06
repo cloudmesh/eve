@@ -1,0 +1,6 @@
+azure-key:
+    name: string
+    certificate: string
+    fingerprint: string, unique
+    key_path: string
+    pfx_path: string
