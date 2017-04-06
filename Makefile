@@ -101,6 +101,6 @@ genie:
 
 
 json:
-	python evegenie/geneve.py sample.json
-	cp sample.settings.py $(ROOT_DIR)/settings.py
+	python evegenie/evegenie/geneve.py cluster_new.json
+	cp cluster_new.settings.py $(ROOT_DIR)/settings.py
 	cat $(ROOT_DIR)/settings.py
