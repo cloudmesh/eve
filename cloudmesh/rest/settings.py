@@ -1,49 +1,29 @@
-profile = {
-    'schema': {
-        'firstname': {
-            'type': 'string'
-        },
-        'Lastname': {
-            'type': 'string'
-        },
-        'e-mail': {
-            'type': 'string'
-        },
-        'username': {
-            'type': 'string'
-        }
-    }
-}
 
 cluster = {
     'schema': {
-        'name': {
-            'type': 'string'
-        },
-        'label': {
-            'type': 'string'
-        },
-        'provider': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
+        'frontend': {
+            'type': 'objectid',
+            'data_relation': {
+                'resource': 'node',
+                'field': '_id',
+                'embeddable': True
             }
         },
-        'endpoint': {
-            'type': 'dict',
+        'computenodes': {
+            'type': 'list',
             'schema': {
-                'url': {
-                    'type': 'string'
-                },
-                'passwd': {
-                    'type': 'string'
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'node',
+                    'field': '_id',
+                    'embeddable': True
                 }
             }
         }
     }
 }
 
-computer = {
+node = {
     'schema': {
         'name': {
             'type': 'string'
@@ -51,14 +31,44 @@ computer = {
         'label': {
             'type': 'string'
         },
-        'ip': {
+        'ncpu': {
+            'type': 'integer'
+        },
+        'RAM': {
             'type': 'string'
         },
-        'memoryGB': {
-            'type': 'integer'
+        'disk': {
+            'type': 'string'
+        },
+        'NIC': {
+            'type': 'list',
+            'schema': {
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'nic',
+                    'field': '_id',
+                    'embeddable': True
+                }
+            }
         }
     }
 }
+
+nic = {
+    'schema': {
+        'name': {
+            'type': 'string'
+        },
+        'mac': {
+            'type': 'string'
+        },
+        'IP': {
+            'type': 'string'
+        }
+    }
+}
+
+
 
 eve_settings = {
     'MONGO_HOST': 'localhost',
@@ -66,8 +76,8 @@ eve_settings = {
     'RESOURCE_METHODS': ['GET', 'POST', 'DELETE'],
     'BANDWIDTH_SAVER': False,
     'DOMAIN': {
-        'profile': profile,
         'cluster': cluster,
-        'computer': computer,
+        'node': node,
+        'nic': nic,
     },
 }
