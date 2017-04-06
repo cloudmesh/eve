@@ -11,3 +11,5 @@ batchjob:
     time: string
     group: string
     job_id: string
+
+example-batchjob:
