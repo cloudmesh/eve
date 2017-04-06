@@ -23,21 +23,32 @@ class SchemaCommand(PluginCommand):
 
           Usage:
             
-                schema DIRECTORY FILENAME
+                schema evegenie DIRECTORY FILENAME
+                schema cat DIRECTORY FILENAME
                 
           Description:
                
 
           Arguments:
-              FILE   a file name
+              FILENAME   a filename
+              DIRECTORY  the derectory where the schma objects are defined
 
           Options:
-              -f      specify the file
+              -h     help
 
         """
         pprint(arguments)
 
-        if arguments.schema:
+        if arguments.schema and arguments.cat:
             directory = arguments.DIRECTORY
             filename = arguments.FILENAME
             elements = Elements(directory, filename)
+
+        if arguments.schema and arguments.evegenie:
+            # directory = arguments.DIRECTORY
+            # d = glob.glob(...)
+            # filename = arguments.FILENAME
+            # elements = ExampleToSpec(directory, filename)
+
+
+            print("Not Implemented")
