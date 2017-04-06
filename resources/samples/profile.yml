@@ -1,6 +1,17 @@
 profile:
-  description: The Profile of a user
-  email: laszewski@gmail.com
-  firstname: Gregor
-  lastname: von Laszewski
-  username: gregor
+  email:
+    type: string
+  firstname:
+    type: string
+  lastname:
+    type: string
+  username:
+    type: string
+
+  __description: The profile of a user
+
+  __example:
+    email: foo@bar
+    firstname: Foo
+    lastname: Bar
+    username: foobar

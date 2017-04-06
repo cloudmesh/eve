@@ -1,0 +1,6 @@
+node: &node
+  name: "string"
+  ip4: "string"
+
+cluster: &cluster
+  nodes: [*node]
