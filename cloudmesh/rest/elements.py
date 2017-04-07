@@ -1,20 +1,23 @@
 import glob
-from cloudmesh.common.util import readfile
 import json
 
 class Elements(object):
-
-    def __init__(self, directory, filename):
+    def __init__(self, directory, filename, kind):
 
         import yaml
         import os.path
 
         settings = {}
-
-        for file in glob.glob(os.path.join(directory, '*.yml')):
-            with open(file) as fd:
-                d = yaml.load(fd)
-                settings.update(d)
+        if kind is "yml":
+            for file in glob.glob(os.path.join(directory, '*.yml')):
+                with open(file) as fd:
+                    d = yaml.load(fd)
+                    settings.update(d)
+        elif kind is "json":
+            print("not implemented yet")
+        else:
+            print ("kind", kind, "not supported")
+            return None
 
         with open(filename, 'w') as fd:
             json.dump(settings, fd, indent=4)

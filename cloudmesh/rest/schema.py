@@ -1,9 +1,14 @@
-import yaml
+class YmlToSpec(object):
+    def __init__(self, infile, outfile=None):
+        self.execute(infile, outfile)
 
-import sys
+    def execute(self, infile, outfile):
+        pass
 
-from os.path import splitext, exists
-from subprocess import check_output
+
+'''
+#########################
+
 
 yfile = sys.argv[1]
 base, _ = splitext(yfile)
@@ -58,3 +63,4 @@ definition[name]['__description'] = description
 definition[name]['__example'] = example[name]
 
 print yaml.dump(definition, default_flow_style=False)
+'''
