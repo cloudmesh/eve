@@ -1,0 +1,90 @@
+openstack_vm:
+  __description: FIXME
+  __example:
+    accessIPv4: string
+    accessIPv6: string
+    availability_zone: string
+    config_drive: string
+    created: string
+    diskConfig: string
+    flavor: string
+    flavor__id: string
+    floating_ip: string
+    group: string
+    hostId: string
+    image: string
+    image__id: string
+    key: string
+    launched_at: string
+    power_state: string
+    progress: string
+    security_groups: string
+    static_ip: string
+    status: string
+    task_state: string
+    tenant_id: string
+    terminated_at: string
+    updated: string
+    user_id: string
+    username: string
+    uuid: string
+    vm_state: string
+    volumes_attached: string
+  accessIPv4:
+    type: string
+  accessIPv6:
+    type: string
+  availability_zone:
+    type: string
+  config_drive:
+    type: string
+  created:
+    type: string
+  diskConfig:
+    type: string
+  flavor:
+    type: string
+  flavor__id:
+    type: string
+  floating_ip:
+    type: string
+  group:
+    type: string
+  hostId:
+    type: string
+  image:
+    type: string
+  image__id:
+    type: string
+  key:
+    type: string
+  launched_at:
+    type: string
+  power_state:
+    type: string
+  progress:
+    type: string
+  security_groups:
+    type: string
+  static_ip:
+    type: string
+  status:
+    type: string
+  task_state:
+    type: string
+  tenant_id:
+    type: string
+  terminated_at:
+    type: string
+  updated:
+    type: string
+  user_id:
+    type: string
+  username:
+    type: string
+  uuid:
+    type: string
+  vm_state:
+    type: string
+  volumes_attached:
+    type: string

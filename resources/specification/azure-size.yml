@@ -1,0 +1,32 @@
+azure-size:
+  __description: The size description of an azure vm
+  __example:
+    _uuid: None
+    bandwidth: None
+    disk: 127
+    driver: libcloud
+    extra:
+      cores: 16
+      max_data_disks: 32
+    id: Standard_D14
+    name: D14 Faster Compute Instance
+    price: 1.6261
+    ram: 114688
+  _uuid:
+    type: string
+  bandwidth:
+    type: string
+  disk:
+    type: int
+  driver:
+    type: string
+  extra:
+    type: dict
+  id:
+    type: string
+  name:
+    type: string
+  price:
+    type: float
+  ram:
+    type: int

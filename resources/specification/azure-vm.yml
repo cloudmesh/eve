@@ -1,0 +1,60 @@
+vm-azure:
+  __description: An Azure virtual machine
+  __example:
+    cloud_service: string
+    deployment_slot: string
+    disk_name: string
+    dns_name: string
+    flavor: string
+    floating_ip: string
+    group: string
+    image: string
+    image_name: string
+    instance_name: string
+    instance_size: string
+    key: string
+    media_link: string
+    private_ips: string
+    public_ips: string
+    resource_location: string
+    status: string
+    username: string
+    uuid: string
+  cloud_service:
+    type: string
+  deployment_slot:
+    type: string
+  disk_name:
+    type: string
+  dns_name:
+    type: string
+  flavor:
+    type: string
+  floating_ip:
+    type: string
+  group:
+    type: string
+  image:
+    type: string
+  image_name:
+    type: string
+  instance_name:
+    type: string
+  instance_size:
+    type: string
+  key:
+    type: string
+  media_link:
+    type: string
+  private_ips:
+    type: string
+  public_ips:
+    type: string
+  resource_location:
+    type: string
+  status:
+    type: string
+  username:
+    type: string
+  uuid:
+    type: string

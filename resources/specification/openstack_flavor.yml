@@ -1,0 +1,30 @@
+openstack_flavor:
+  __description: OpenStack flavor object
+  __example:
+    disk: string
+    os_flavor_acces: string
+    os_flv_disabled: string
+    os_flv_ext_data: string
+    ram: string
+    rxtx_factor: string
+    swap: string
+    uuid: string
+    vcpus: string
+  disk:
+    type: string
+  os_flavor_acces:
+    type: string
+  os_flv_disabled:
+    type: string
+  os_flv_ext_data:
+    type: string
+  ram:
+    type: string
+  rxtx_factor:
+    type: string
+  swap:
+    type: string
+  uuid:
+    type: string
+  vcpus:
+    type: string

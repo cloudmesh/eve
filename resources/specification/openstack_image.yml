@@ -1,0 +1,90 @@
+openstack_image:
+  __description: OpenStack image object
+  __example:
+    created: string
+    metadata__base_image_ref: string
+    metadata__description: string
+    metadata__image_location: string
+    metadata__image_state: string
+    metadata__image_type: string
+    metadata__instance_type_ephemeral_gb: string
+    metadata__instance_type_flavorid: string
+    metadata__instance_type_id: string
+    metadata__instance_type_memory_mb: string
+    metadata__instance_type_name: string
+    metadata__instance_type_root_gb: string
+    metadata__instance_type_rxtx_factor: string
+    metadata__instance_type_swap: string
+    metadata__instance_type_vcpus: string
+    metadata__instance_uuid: string
+    metadata__kernel_id: string
+    metadata__network_allocated: string
+    metadata__owner_id: string
+    metadata__ramdisk_id: string
+    metadata__user_id: string
+    minDisk: string
+    minRam: string
+    os_image_size: string
+    progress: string
+    status: string
+    updated: string
+    username: string
+    uuid: string
+  created:
+    type: string
+  metadata__base_image_ref:
+    type: string
+  metadata__description:
+    type: string
+  metadata__image_location:
+    type: string
+  metadata__image_state:
+    type: string
+  metadata__image_type:
+    type: string
+  metadata__instance_type_ephemeral_gb:
+    type: string
+  metadata__instance_type_flavorid:
+    type: string
+  metadata__instance_type_id:
+    type: string
+  metadata__instance_type_memory_mb:
+    type: string
+  metadata__instance_type_name:
+    type: string
+  metadata__instance_type_root_gb:
+    type: string
+  metadata__instance_type_rxtx_factor:
+    type: string
+  metadata__instance_type_swap:
+    type: string
+  metadata__instance_type_vcpus:
+    type: string
+  metadata__instance_uuid:
+    type: string
+  metadata__kernel_id:
+    type: string
+  metadata__network_allocated:
+    type: string
+  metadata__owner_id:
+    type: string
+  metadata__ramdisk_id:
+    type: string
+  metadata__user_id:
+    type: string
+  minDisk:
+    type: string
+  minRam:
+    type: string
+  os_image_size:
+    type: string
+  progress:
+    type: string
+  status:
+    type: string
+  updated:
+    type: string
+  username:
+    type: string
+  uuid:
+    type: string
