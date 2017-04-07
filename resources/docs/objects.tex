@@ -277,8 +277,32 @@ We are looking for volunteers to contribute here.
 
 \subsection{node-simple}
 
+A node is composed of multiple components:Metadata such as the
+{\em name}  or {\em owner} .  Physical properties such as {\em cores}  or
+{\em memory} .  Configuration guidance such as {\em create\_external\_ip} ,
+{\em security\_groups} , or {\em users} . The metadata is associated with the
+node on the provider end (if supported) as well as in the database.
+Certain parts of the metadata (such as {\em owner} ) can be used to
+implement access control.  Physical properties are relevant for the
+initial allocation of the node.  Other configuration parameters
+control and further provisioning.  In the above, after allocation, the
+node is configured with a user called {\em hello}  who is part of the
+{\em wheel}  group whose account can be accessed with several SSH
+identities whose public keys are provided (in
+{\em authorized\_keys} ). Additionally, three ssh keys are generated on
+the node for the {\em hello}  user.  The first uses the {\em
+      ed25519}    
+cryptographic method with a password read in from a GPG-encrypted file
+on the Command and Control node.  The second is a 4098-bit RSA key
+also password-protected from the GPG-encrypted file.  The third key is
+copied to the remote node from an encrypted file on the Command and
+Control node.  This definition also provides a security group to
+control access to the node from the wide-area-network.  In this case
+all ingress and egress TCP and UDP traffic is allowed provided they
+are to ports 22 (SSH), 443 (SSL), and 80 and 8080 (web). "
+
+
 \VerbatimInput{specification/node-simple.yml}
-\input{specification/node.tex}
 
 \subsection{openstack flavor-simple}
 
@@ -325,7 +349,7 @@ We are looking for volunteers to contribute here.
 \VerbatimInput{specification/virtual_cluster-simple.yml}
 \input{specification/virtual_cluster.tex}
 
-\subsection{virtual compute_node-simple}
+\subsection{virtual compute node-simple}
 
 \VerbatimInput{specification/virtual_compute_node-simple.yml}
 \input{specification/virtual_compute_node.tex}
@@ -340,7 +364,10 @@ We are looking for volunteers to contribute here.
 \VerbatimInput{specification/virtual_machine-simple.yml}
 \input{specification/virtual_machine.tex}
 
+\section{Schema Command}
 
+\VerbatimInput{schema-man.tex}
+\newpage
 
 \appendix
 

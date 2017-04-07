@@ -1,6 +1,6 @@
 FILE=objects
 
-all: spec
+all: spec man
 	pandoc ../../README.rst -o readme.tex
 	pandoc ../../../classes/docs/source/lesson/prg/rest.rst -o rest.tex
 	pandoc ../../../classes/docs/source/lesson/prg/python_cmd5.rst -o python-cmd5.tex
@@ -11,6 +11,9 @@ all: spec
 
 spec:
 	cms schema spec2tex ../specification specification
+
+man:
+	cms schema hel > schema-man.tex
 
 real-clean: clean
 	rm -rf *.pdf

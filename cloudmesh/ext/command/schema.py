@@ -32,26 +32,32 @@ class SchemaCommand(PluginCommand):
                 
           Arguments:
               FILENAME   a filename
-              DIRECTORY  the derectory where the schma objects are defined
+              DIRECTORY  the derectory where the schma 
+                         objects are defined
 
           Options:
               -h     help
 
           Description:
              schema eve [json|yml] DIRECTORY FILENAME
-                concatenates all files with ending yml or json in the directory and 
-                combines them. Using evegenie on the combined file a eve settings file 
-                is generated and written into FILENAME
+                concatenates all files with ending yml 
+                or json in the directory and combines 
+                them. Using evegenie on the combined 
+                file a eve settings file is generated 
+                and written into FILENAME
                 
              schema cat [json|yml] DIRECTORY FILENAME
-                Concatinates all files with the given ending (either json, or yml) into the
+                Concatinates all files with the given 
+                ending (either json, or yml) into the
                 file called FILENAME
             
              schema create DIRIN DIROUT
-                takes simpl yml documentations and creates the enhanced spec in th OUTDIR
+                takes simpl yml documentations and creates 
+                the enhanced spec in th OUTDIR
              
              schema spec2tex DIRIN DIROUT
-                takes all specs and creates the output for the tex document for NIST
+                takes all specs and creates the output for 
+                the tex document for NIST
                 
         """
         pprint(arguments)
