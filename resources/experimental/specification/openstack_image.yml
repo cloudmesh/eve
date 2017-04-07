@@ -9,7 +9,7 @@ openstack_image:
       image_state: string
       image_type: string
       instance_type_ephemeral_gb: string
-      instance_type_flavorid: string
+      instance_type_flyavorid: string
       instance_type_id: string
       instance_type_memory_mb: string
       instance_type_name: string

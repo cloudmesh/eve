@@ -1,0 +1,10 @@
+database_protocol:
+  __description: The various database type/protocol supported.
+  __example: mongo
+  type: string
+  constraints:
+    - oneof:
+        - mongo
+        - mariadb
+        - Casandra
+        - mysql

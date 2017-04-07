@@ -1,6 +1,6 @@
 compute_resource:
-  __description: '**compute\_resource** object has attribute *endpoint* which specifies
-    ... The *kind* could be *baremetal* or *VC*.'
+  __description: compute\_resource object has attribute endpoint which specifies
+    ... The kind could be baremetal or VC.
   __example:
     endpoint: http://.../cluster/
     kind: baremetal
