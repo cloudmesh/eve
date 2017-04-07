@@ -1,0 +1,9 @@
+container:
+  __description: This defines **container** object.
+  __example:
+    endpoint: http://.../container/
+    name: container1
+  endpoint:
+    type: string
+  name:
+    type: string

@@ -1,0 +1,13 @@
+database:
+  __description: A **database** could have a name, an *endpoint* (e.g., host:port),
+    and protocol used (e.g., SQL, mongo, etc.).
+  __example:
+    endpoint: http://.../data/
+    name: data
+    protocol: mongo
+  endpoint:
+    type: string
+  name:
+    type: string
+  protocol:
+    type: string

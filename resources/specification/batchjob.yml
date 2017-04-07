@@ -1,0 +1,36 @@
+batchjob:
+  __description: FIXME
+  __example:
+    cluster: string
+    cmd: string, executes the cmd, if None path is used
+    dir: string
+    group: string
+    job_id: string
+    nodes: string
+    output_file: string
+    path: string, path of the batchjob, if non cmd is used
+    queue: string
+    script: string, the batch job script
+    time: string
+  cluster:
+    type: string
+  cmd:
+    type: string
+  dir:
+    type: string
+  group:
+    type: string
+  job_id:
+    type: string
+  nodes:
+    type: string
+  output_file:
+    type: string
+  path:
+    type: string
+  queue:
+    type: string
+  script:
+    type: string
+  time:
+    type: string

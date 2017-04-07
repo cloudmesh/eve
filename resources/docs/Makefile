@@ -1,6 +1,6 @@
 FILE=objects
 
-all:
+all: spec
 	pandoc ../../README.rst -o readme.tex
 	pandoc ../../../classes/docs/source/lesson/prg/rest.rst -o rest.tex
 	pandoc ../../../classes/docs/source/lesson/prg/python_cmd5.rst -o python-cmd5.tex
@@ -8,6 +8,9 @@ all:
 #	bibtex ${FILE}
 	pdflatex ${FILE}
 	pdflatex ${FILE}
+
+spec:
+	cms schema spec2tex ../specification specification
 
 real-clean: clean
 	rm -rf *.pdf

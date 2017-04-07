@@ -1,0 +1,97 @@
+node:
+  __description: "A node is composed of multiple components:\n\n#. Metadata such as\
+    \ the ``name`` or ``owner``.\n\n#. Physical properties such as ``cores`` or ``memory``.\n\
+    \n#. Configuration guidance such as ``create_external_ip``, ``security_groups``,\
+    \ or ``users``.\n\nThe metadata is associated with the node on the provider end\
+    \ (if supported) as well as in the database. Certain parts of the metadata (such\
+    \ as ``owner``) can be used to implement access control. Physical properties are\
+    \ relevant for the initial allocation of the node. Other configuration parameters\
+    \ control and further provisioning.\n\nIn the above, after allocation, the node\
+    \ is configured with a user called ``hello`` who is part of the ``wheel`` group\
+    \ whose account can be accessed with several SSH identities whose public keys\
+    \ are provided (in ``authorized_keys``).\n\nAdditionally, three ssh keys are generated\
+    \ on the node for the ``hello`` user. The first uses the ``ed25519`` cryptographic\
+    \ method with a password read in from a GPG-encrypted file on the Command and\
+    \ Control node. The second is a 4098-bit RSA key also password-protected from\
+    \ the GPG-encrypted file. The third key is copied to the remote node from an encrypted\
+    \ file on the Command and Control node.\n\nThis definition also provides a security\
+    \ group to control access to the node from the wide-area-network. In this case\
+    \ all ingress and egress TCP and UDP traffic is allowed provided they are to ports\
+    \ 22 (SSH), 443 (SSL), and 80 and 8080 (web)."
+  __example:
+    authorized_keys:
+    - ssh-rsa AAAA...
+    - ssh-ed25519 AAAA...
+    - '...etc'
+    cores: 2
+    create_external_ip: true
+    disk: 80
+    external_ip: ''
+    internal_ip: ''
+    loginuser: root
+    memory: 2048
+    name: example-001
+    owner: ''
+    security_groups:
+    - egress: 0.0.0.0/32
+      ingress: 0.0.0.0/32
+      ports:
+      - 22
+      - 443
+      - 80
+      - 8080
+      protocols:
+      - tcp
+      - udp
+    ssh_keys:
+    - method: ed25519
+      password:
+        decrypt: gpg
+        file: secrets.yml.gpg
+        from: yaml
+        key: users.hello.ssh[0]
+      ssh_keygen: true
+      to: .ssh/id_rsa
+    - bits: 4098
+      method: rsa
+      password:
+        decrypt: gpg
+        file: secrets.yml.gpg
+        from: yaml
+        key: users.hello.ssh[1]
+      ssh_keygen: true
+      to: .ssh/testing
+    - decrypt: gpg
+      from: secrets/ssh/hello/copied.gpg
+      ssh_keygen: false
+      to: .ssh/copied
+    users:
+      groups:
+      - wheel
+      name: hello
+  authorized_keys:
+    type: list of string
+  cores:
+    type: int
+  create_external_ip:
+    type: int
+  disk:
+    type: int
+  external_ip:
+    type: string
+  internal_ip:
+    type: string
+  loginuser:
+    type: string
+  memory:
+    type: int
+  name:
+    type: string
+  owner:
+    type: string
+  security_groups:
+    type: list of dict
+  ssh_keys:
+    type: list of dict
+  users:
+    type: dict

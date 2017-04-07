@@ -1,0 +1,18 @@
+key:
+  __description: FIXME
+  __example:
+    comment: string
+    fingerprint: string, unique
+    source: string
+    uri: string
+    value: string
+  comment:
+    type: string
+  fingerprint:
+    type: string
+  source:
+    type: string
+  uri:
+    type: string
+  value:
+    type: string

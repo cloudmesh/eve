@@ -1,0 +1,26 @@
+virtual_compute_node:
+  __description: See also **virtual\_machine**.
+  __example:
+    endpoint: http://.../cluster/
+    flavor: TBD
+    image: Ubuntu-16.04
+    ip:
+    - TBD
+    metadata:
+      experiment: exp-001
+    name: data
+    status: TBD
+  endpoint:
+    type: string
+  flavor:
+    type: string
+  image:
+    type: string
+  ip:
+    type: list of string
+  metadata:
+    type: dict
+  name:
+    type: string
+  status:
+    type: string

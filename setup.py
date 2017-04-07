@@ -25,6 +25,7 @@ def readfile(filename):
 
 #requiers = readfile ('requirements.txt')
 requiers = """
+ruamel.yaml
 psutil
 pygments
 tox

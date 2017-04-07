@@ -1,5 +1,4 @@
 azure-size:
-    description: The size description of an azure vm
     _uuid: None
     bandwidth: None
     disk: 127

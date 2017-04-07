@@ -69,7 +69,7 @@ Components are written as YAML markup in files in the
 
 For example:
 
-\VerbatimInput{../samples/profile.yml}
+\VerbatimInput{specification/profile.yml}
 
 \subsection{Element Definition}
 
@@ -168,6 +168,10 @@ use the following command:
 cms elements resources/samples all.json
 \end{verbatim}
 
+\subsection{DOIT}
+
+
+cms schema spec2tex resources/specification resources/tex
 
 \subsection{Generating service}
 
@@ -175,130 +179,167 @@ With evegenie installed, the generated JSON file from the above step
 is processed to create the stub REST service definitions.
 
 
-\section{User}
-
-\subsection{Profile}
-
-\VerbatimInput{../samples/profile.yml}
-\input{../samples/profile.tex}
-
-\subsection{User}
-
-\VerbatimInput{../samples/user.yml}
-\input{../samples/user.tex}
-
-\section{Cluster}
-
-\subsection{Cluster}
-
-\VerbatimInput{../samples/cluster.yml}
-\input{../samples/cluster.tex}
-
-\subsection{Compute Resource}
-
-\VerbatimInput{../samples/compute_resource.yml}
-\input{../samples/compute_resource.tex}
-
-\subsection{Compute Resource Kind}
-
-\VerbatimInput{../samples/compute_resource_kind.yml}
-\input{../samples/compute_resource_kind.tex}
-
-\subsection{Computer}
-
-\VerbatimInput{../samples/computer.yml}
-\input{../samples/computer.tex}
-
-\subsection{Container}
-
-\VerbatimInput{../samples/container.yml}
-\input{../samples/container.tex}
-
-\subsection{Mesos}
-
-\VerbatimInput{../samples/mesos.yml}
-
-
-\subsection{Kubernetes}
-
-\VerbatimInput{../samples/kubernetes.yml}
-
-\section{Data}
-
-\subsection{File}
-
-\VerbatimInput{../samples/file.yml}
-\input{../samples/file.tex}
-
-\subsection{File Alias}
-
-\VerbatimInput{../samples/file_alias.yml}
-\input{../samples/file_alias.tex}
-
-\subsection{Database}
-
-\VerbatimInput{../samples/database.yml}
-\input{../samples/database.tex}
-
-\subsection{Database Protocol}
-
-\VerbatimInput{../samples/database_protocol.yml}
-\input{../samples/database_protocol.tex}
-
-\section{Deployment}
-
-\subsection{Deployment}
-
-\VerbatimInput{../samples/deployment.yml}
-\input{../samples/deployment.tex}
-
-\subsection{Hadoop}
-
-\VerbatimInput{../samples/hadoop.yml}
-\input{../samples/hadoop.tex}
-
-\subsection{Mapreduce}
-
-\VerbatimInput{../samples/mapreduce.yml}
-\input{../samples/mapreduce.tex}
-
-\subsection{Microservice}
-
-\VerbatimInput{../samples/microservice.yml}
-\input{../samples/microservice.tex}
-
-\subsection{Node}
-
-\VerbatimInput{../samples/node.yml}
-\input{../samples/node.tex}
-
-\subsection{Replica}
-
-\VerbatimInput{../samples/replica.yml}
-\input{../samples/replica.tex}
-
-\subsection{Virtual Cluster}
-
-\VerbatimInput{../samples/virtual_cluster.yml}
-\input{../samples/virtual_cluster.tex}
-
-\subsection{virtual compute node}
-
-\VerbatimInput{../samples/virtual_compute_node.yml}
-\input{../samples/virtual_compute_node.tex}
-
-\subsection{virtual directory}
-
-\VerbatimInput{../samples/virtual_directory.yml}
-\input{../samples/virtual_directory.tex}
-
-\subsection{virtual machine}
-
-\VerbatimInput{../samples/virtual_machine.yml}
-
-section{Network}
+\section{Network}
 
 We are looking for volunteers to contribute here.
+
+\section{NEW}
+
+\subsection{azure-size-simple}
+
+\VerbatimInput{specification/azure-size-simple.yml}
+\input{specification/azure-size.tex}
+
+\subsection{azure-vm-simple}
+
+\VerbatimInput{specification/azure-vm-simple.yml}
+\input{specification/azure-vm.tex}
+
+\subsection{batchjob-simple}
+
+\VerbatimInput{specification/batchjob-simple.yml}
+\input{specification/batchjob.tex}
+
+\subsection{cluster-simple}
+
+\VerbatimInput{specification/cluster-simple.yml}
+\input{specification/cluster.tex}
+
+\subsection{compute resource-simple}
+
+\VerbatimInput{specification/compute_resource-simple.yml}
+\input{specification/compute_resource.tex}
+
+\subsection{computer-simple}
+
+\VerbatimInput{specification/computer-simple.yml}
+\input{specification/computer.tex}
+
+\subsection{container-simple}
+
+\VerbatimInput{specification/container-simple.yml}
+\input{specification/container.tex}
+
+\subsection{database-simple}
+
+\VerbatimInput{specification/database-simple.yml}
+\input{specification/database.tex}
+
+\subsection{default-simple}
+
+\VerbatimInput{specification/default-simple.yml}
+\input{specification/default.tex}
+
+\subsection{deployment-simple}
+
+\VerbatimInput{specification/deployment-simple.yml}
+\input{specification/deployment.tex}
+
+\subsection{file-simple}
+
+\VerbatimInput{specification/file-simple.yml}
+\input{specification/file.tex}
+
+\subsection{file alias-simple}
+
+\VerbatimInput{specification/file_alias-simple.yml}
+\input{specification/file_alias.tex}
+
+\subsection{hadoop-simple}
+
+\VerbatimInput{specification/hadoop-simple.yml}
+\input{specification/hadoop.tex}
+
+\subsection{key-simple}
+
+\VerbatimInput{specification/key-simple.yml}
+\input{specification/key.tex}
+
+\subsection{kubernetes-simple}
+
+\VerbatimInput{specification/kubernetes-simple.yml}
+\input{specification/kubernetes.tex}
+
+\subsection{mapreduce-simple}
+
+\VerbatimInput{specification/mapreduce-simple.yml}
+\input{specification/mapreduce.tex}
+
+\subsection{mesos-simple}
+
+\VerbatimInput{specification/mesos-simple.yml}
+\input{specification/mesos.tex}
+
+\subsection{microservice-simple}
+
+\VerbatimInput{specification/microservice-simple.yml}
+\input{specification/microservice.tex}
+
+\subsection{node-simple}
+
+\VerbatimInput{specification/node-simple.yml}\input{specification/node.tex}
+
+\subsection{openstack flavor-simple}
+
+\VerbatimInput{specification/openstack_flavor-simple.yml}
+\input{specification/openstack_flavor.tex}
+
+\subsection{openstack image-simple}
+
+\VerbatimInput{specification/openstack_image-simple.yml}
+\input{specification/openstack_image.tex}
+
+\subsection{openstack vm-simple}
+
+\VerbatimInput{specification/openstack_vm-simple.yml}
+\input{specification/openstack_vm.tex}
+
+\subsection{profile-simple}
+
+\VerbatimInput{specification/profile-simple.yml}
+\input{specification/profile.tex}
+
+\subsection{replica-simple}
+
+\VerbatimInput{specification/replica-simple.yml}
+\input{specification/replica.tex}
+
+\subsection{reservation-simple}
+
+\VerbatimInput{specification/reservation-simple.yml}
+\input{specification/reservation.tex}
+
+\subsection{user-simple}
+
+\VerbatimInput{specification/user-simple.yml}
+\input{specification/user.tex}
+
+\subsection{var-simple}
+
+\VerbatimInput{specification/var-simple.yml}
+\input{specification/var.tex}
+
+\subsection{virtual cluster-simple}
+
+\VerbatimInput{specification/virtual_cluster-simple.yml}
+\input{specification/virtual_cluster.tex}
+
+\subsection{virtual compute_node-simple}
+
+\VerbatimInput{specification/virtual_compute_node-simple.yml}
+\input{specification/virtual_compute_node.tex}
+
+\subsection{virtual directory-simple}
+
+\VerbatimInput{specification/virtual_directory-simple.yml}
+\input{specification/virtual_directory.tex}
+
+\subsection{virtual machine-simple}
+
+\VerbatimInput{specification/virtual_machine-simple.yml}
+\input{specification/virtual_machine.tex}
+
+
 
 \appendix
 

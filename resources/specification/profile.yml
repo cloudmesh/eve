@@ -1,0 +1,25 @@
+profile:
+  __description: This object defines a user profile.
+  __example:
+    __description: The profile of a user
+    __example:
+      email: foo@bar
+      firstname: Foo
+      lastname: Bar
+      username: foobar
+    email:
+      type: string
+    firstname:
+      type: string
+    lastname:
+      type: string
+    username:
+      type: string
+  email:
+    type: dict
+  firstname:
+    type: dict
+  lastname:
+    type: dict
+  username:
+    type: dict

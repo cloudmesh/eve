@@ -1,0 +1,25 @@
+replica:
+  __description: "The **replica** defines a replica for a file.\n\nSee also **file**\
+    \ and **file\\_alias**."
+  __example:
+    accessed: 1.1.2017:05:00:00:EST
+    checksum:
+      md5: 8c324f12047dc2254b74031b8f029ad0
+    endpoint: file://gregor@machine.edu:/data/replica_report.dat
+    name: replica_report.dat
+    replica: report.dat
+    size:
+    - GB
+    - Byte
+  accessed:
+    type: string
+  checksum:
+    type: dict
+  endpoint:
+    type: string
+  name:
+    type: string
+  replica:
+    type: string
+  size:
+    type: list of string

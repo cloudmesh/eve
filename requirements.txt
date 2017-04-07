@@ -6,3 +6,4 @@ detox
 coverage
 flake8
 psutil
+ruamel.yaml

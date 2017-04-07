@@ -1,0 +1,19 @@
+virtual_directory:
+  __description: The **virtual\_directory** object defines a virtual directory which
+    has a name, a *collection* of files, the *endpoint* indicating the location and
+    where to access, and the *protocol* how to access it.
+  __example:
+    collection:
+    - report.dat
+    - file2
+    endpoint: http://.../data/
+    name: data
+    protocol: http
+  collection:
+    type: list of string
+  endpoint:
+    type: string
+  name:
+    type: string
+  protocol:
+    type: string

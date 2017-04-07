@@ -1,0 +1,16 @@
+computer:
+  __description: This defines a **computer** object. A computer has name, label, IP
+    address. It also listed the relevant specs such as memory, disk size, etc.
+  __example:
+    ip: 127.0.0.1
+    label: server-001
+    memoryGB: 16
+    name: myComputer
+  ip:
+    type: string
+  label:
+    type: string
+  memoryGB:
+    type: int
+  name:
+    type: string

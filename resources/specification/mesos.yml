@@ -1,0 +1,28 @@
+mesos-docker:
+  __description: FIXME
+  __example:
+    args:
+    - argument
+    container:
+      docker:
+        credential:
+          principal: my-principal
+          secret: my-secret
+        image: mesosphere/inky
+      type: MESOS
+    cpus: 0.2
+    id: mesos-docker
+    instances: 1
+    mem: 16.0
+  args:
+    type: list of string
+  container:
+    type: dict
+  cpus:
+    type: float
+  id:
+    type: string
+  instances:
+    type: int
+  mem:
+    type: float

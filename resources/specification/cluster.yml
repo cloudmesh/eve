@@ -1,0 +1,23 @@
+cluster:
+  __description: The cluster object has name, label, endpoint and provider. The *endpoint*
+    defines.... The *provider* defines the nature of the cluster, e.g., its a virtual
+    cluster on an openstack cloud, or from AWS, or a bare-metal cluster.
+  __example:
+    endpoint:
+      passwd: secret
+      url: https
+    label: c0
+    name: myCLuster
+    provider:
+    - openstack
+    - aws
+    - azure
+    - eucalyptus
+  endpoint:
+    type: dict
+  label:
+    type: string
+  name:
+    type: string
+  provider:
+    type: list of string

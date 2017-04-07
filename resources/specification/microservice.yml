@@ -1,0 +1,13 @@
+microservice:
+  __description: A system could be composed of from various microservices, and this
+    defines each of them.
+  __example:
+    endpoint: http://.../ms/
+    function: microservice spec
+    name: ms1
+  endpoint:
+    type: string
+  function:
+    type: string
+  name:
+    type: string

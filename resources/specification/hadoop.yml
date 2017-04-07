@@ -1,0 +1,27 @@
+hadoop:
+  __description: A **hadoop** definition defines which *deployer* to be used, the
+    *parameters* of the deployment, and the system packages as *requires*. For each
+    requirement, it could have attributes such as the library origin, version, etc.
+  __example:
+    deployers:
+      ansible: git://github.com/cloudmesh_roles/hadoop
+    parameters:
+      num_datanodes: 1
+      num_historyservers: 1
+      num_journalnodes: 1
+      num_namenodes: 1
+      num_resourcemanagers: 1
+      use_hdfs: true
+      use_yarn: false
+    requires:
+      java:
+        implementation: OpenJDK
+        supervisord: {}
+        version: '1.8'
+        zookeeper: {}
+  deployers:
+    type: dict
+  parameters:
+    type: dict
+  requires:
+    type: dict

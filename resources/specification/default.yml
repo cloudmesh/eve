@@ -1,0 +1,12 @@
+default:
+  __description: FIXME
+  __example:
+    context: string  - defines teh context of the default (user, cloud, ...)
+    name: string
+    value: string
+  context:
+    type: string
+  name:
+    type: string
+  value:
+    type: string

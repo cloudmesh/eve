@@ -1,0 +1,35 @@
+kubernetes:
+  __description: FIXME
+  __example:
+    hosts:
+    - metadata:
+        name: 127.0.0.1
+        status:
+          addresses:
+          - type: LegacyHostIP
+          - address: 127.0.0.1
+          capacity:
+            cpu: 4
+    - metadata:
+        name: 127.0.0.2
+        status:
+          addresses:
+          - address: 127.0.0.2
+            type: LegacyHostIP
+          - address: 127.0.0.3
+            type: another
+          capacity:
+            cpu: 8
+    users:
+    - name: myself
+      user:
+        password: secret
+        username: admin
+    - name: e2e
+      user:
+        password: secret
+        username: admin
+  hosts:
+    type: list of dict
+  users:
+    type: list of dict

@@ -9,6 +9,9 @@ from cloudmesh.shell.command import PluginCommand
 from cloudmesh.shell.command import command
 
 from cloudmesh.rest.elements import Elements
+from cloudmesh.rest.schema import YmlToSpec, SpecToTex
+import glob
+import os.path
 
 
 class SchemaCommand(PluginCommand):
@@ -17,18 +20,16 @@ class SchemaCommand(PluginCommand):
     """
 
     @command
-    def do_scheam(self, args, arguments):
+    def do_schema(self, args, arguments):
         """
         ::
 
           Usage:
-            
-                schema evegenie DIRECTORY FILENAME
-                schema cat DIRECTORY FILENAME
+            schema yml2spec  FILENAME [OUTFILE]
+            schema spec2tex DIRIN DIROUT
+            schema create DIRIN DIROUT
+            schema cat [json|yml] DIRECTORY FILENAME    
                 
-          Description:
-               
-
           Arguments:
               FILENAME   a filename
               DIRECTORY  the derectory where the schma objects are defined
@@ -36,19 +37,54 @@ class SchemaCommand(PluginCommand):
           Options:
               -h     help
 
+          Description:
+             schema eve [json|yml] DIRECTORY FILENAME
+                concatenates all files with ending yml or json in the directory and 
+                combines them. Using evegenie on the combined file a eve settings file 
+                is generated and written into FILENAME
+                
+             schema cat [json|yml] DIRECTORY FILENAME
+                Concatinates all files with the given ending (either json, or yml) into the
+                file called FILENAME
+            
+             schema create DIRIN DIROUT
+                takes simpl yml documentations and creates the enhanced spec in th OUTDIR
+             
+             schema spec2tex DIRIN DIROUT
+                takes all specs and creates the output for the tex document for NIST
+                
         """
         pprint(arguments)
-
-        if arguments.schema and arguments.cat:
+        kind = "yml"
+        if arguments.json:
+            kind = "json"
+        if arguments.cat:
             directory = arguments.DIRECTORY
             filename = arguments.FILENAME
-            elements = Elements(directory, filename)
+            elements = Elements(directory, filename, kind)
 
-        if arguments.schema and arguments.evegenie:
-            # directory = arguments.DIRECTORY
-            # d = glob.glob(...)
-            # filename = arguments.FILENAME
-            # elements = ExampleToSpec(directory, filename)
+        elif arguments.yml2spec:
+            filename = arguments.FILENAME
+            outfile = arguments.OUTFILE or filename
+            elements = YmlToSpec(filename, outfile)
 
 
-            print("Not Implemented")
+        elif arguments.create:
+            dirin = arguments.DIRIN
+            dirout = arguments.DIROUT
+            files = glob.glob(os.path.join(dirin, "*.yml"))
+
+            for infile in files:
+                print('Processing', infile)
+                outfile = infile.replace(dirin, dirout)
+                elements = YmlToSpec(infile, outfile)
+
+
+        elif arguments.spec2tex:
+            dirin = arguments.DIRIN
+            dirout = arguments.DIROUT
+            files = glob.glob(os.path.join(dirin, "*.yml"))
+
+            for infile in files:
+                print('Processing', infile)
+                elements = SpecToTex(infile, dirout)

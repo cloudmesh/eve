@@ -1,66 +1,112 @@
+from __future__ import print_function
+
+from ruamel import yaml
+import os
+from os.path import splitext, exists
+import glob
+from cloudmesh.common.Shell import Shell
+
 class YmlToSpec(object):
-    def __init__(self, infile, outfile=None):
+    def __init__(self, infile, outfile=None, kind='yml'):
         self.execute(infile, outfile)
 
     def execute(self, infile, outfile):
-        pass
+
+        yfile = infile
+        base, _ = splitext(yfile)
+        texfile = base + '.tex'
+
+        if exists(texfile):
+            description = Shell.execute("pandoc", ['--to', 'rst', '--wrap', 'none', texfile])
+        else:
+            description = 'FIXME'
 
 
-'''
-#########################
+        example = yaml.safe_load(open(yfile))
+
+        ################################################################ typeify
+
+        assert len(example) == 1, example
 
 
-yfile = sys.argv[1]
-base, _ = splitext(yfile)
-texfile = base + '.tex'
+        def typeit(value):
+            if isinstance(value, str) or isinstance(value, unicode):
+                return 'string'
 
-if exists(texfile):
-    mkdesc = ['pandoc', '--to', 'rst', '--wrap', 'none', texfile]
-    description = check_output(mkdesc).strip()
-else:
-    description = 'FIXME'
+            elif isinstance(value, int):
+                return 'int'
 
+            elif isinstance(value, float):
+                return 'float'
 
-example = yaml.load(open(yfile))
+            elif isinstance(value, bool):
+                return 'bool'
 
-################################################################ typeify
+            elif isinstance(value, list):
+                assert len(value) > 0
+                subtype = typeit(value[0])
+                return 'list of %s' % subtype
 
-assert len(example) == 1, example
+            elif isinstance(value, dict):
+                return 'dict'
 
-
-def typeit(value):
-    if isinstance(value, str) or isinstance(value, unicode):
-        return 'string'
-
-    elif isinstance(value, int):
-        return 'int'
-
-    elif isinstance(value, float):
-        return 'float'
-
-    elif isinstance(value, bool):
-        return 'bool'
-
-    elif isinstance(value, list):
-        assert len(value) > 0
-        subtype = typeit(value[0])
-        return 'list of %s' % subtype
-
-    elif isinstance(value, dict):
-        return 'dict'
-
-    else:
-        raise NotImplementedError(type(value), value)
+            else:
+                raise NotImplementedError(type(value), value)
 
 
-name = example.keys()[0]
-definition = dict()
-definition[name] = dict()
-for attr, value in example[name].iteritems():
-    definition[name][attr] = {'type': typeit(value)}
+        name = example.keys()[0]
+        definition = dict()
+        definition[name] = dict()
+        for attr, value in example[name].iteritems():
+            definition[name][attr] = {'type': typeit(value)}
 
-definition[name]['__description'] = description
-definition[name]['__example'] = example[name]
+        definition[name]['__description'] =str(description)
+        definition[name]['__example'] = example[name]
 
-print yaml.dump(definition, default_flow_style=False)
-'''
+        result = yaml.dump(definition, default_flow_style=False)
+        #print(result)
+        with open(outfile, 'w') as fd:
+            fd.write(result)
+
+
+class SpecToTex(object):
+
+    def __init__(self, infile, dirout):
+
+        if not os.path.exists(dirout):
+            os.makedirs(dirout)
+
+        name = os.path.basename(infile)
+        initial = os.path.join(dirout, name)
+        base, _ = os.path.splitext(initial)
+        description_file = base + '.tex'
+        example_file = base + '-example.yml'
+        simple_file = base + '-simple.yml'
+        spec_file = initial
+
+        spec = yaml.safe_load(open(infile))
+        assert len(spec) == 1, spec
+        name = spec.keys()[0]
+        description = spec[name]['__description']
+        example = yaml.dump(spec[name]['__example'], default_flow_style=False, indent=4)
+
+        def flatten(spec):
+            flat = dict()
+            for k, v in spec.iteritems():
+                if k.startswith('__'):
+                    continue
+
+                typ = v['type']
+                flat[k] = typ
+            return flat
+
+        flat = {name: flatten(spec[name])}
+        flat = yaml.dump(flat, default_flow_style=False, indent=4)
+
+        spec_str = yaml.dump(spec, default_flow_style=False, indent=4)
+
+        for path, string in [(description_file, description), (example_file, example),
+                             (simple_file, flat), (spec_file, spec_str)]:
+            print('   Writing', path)
+            with open(path, 'w') as fd:
+                fd.write(string)

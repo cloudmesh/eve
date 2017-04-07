@@ -1,0 +1,9 @@
+file_alias:
+  __description: A file could have one alias or even multiple ones.
+  __example:
+    alias: report-alias.dat
+    name: report.dat
+  alias:
+    type: string
+  name:
+    type: string

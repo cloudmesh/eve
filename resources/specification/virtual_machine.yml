@@ -1,0 +1,30 @@
+virtual_machine:
+  __description: A **virtual\_machine** in a cloud environment has attributes such
+    as *flavor* (size), *image* (from which the node is instantiated), IP addresses
+    (could have multiple ones), *status* to indicated if the VM is running/suspended/shutoff,
+    and other metadata associated with it (e.g., which group/experiment the VM is
+    part of, etc.).
+  __example:
+    endpoint: http://.../vm/
+    flavor: TBD
+    image: Ubuntu-16.04
+    ip:
+    - TBD
+    metadata:
+      experiment: exp-001
+    name: vm1
+    status: TBD
+  endpoint:
+    type: string
+  flavor:
+    type: string
+  image:
+    type: string
+  ip:
+    type: list of string
+  metadata:
+    type: dict
+  name:
+    type: string
+  status:
+    type: string

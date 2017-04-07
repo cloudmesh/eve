@@ -1,0 +1,16 @@
+mapreduce:
+  __description: This defines a **mapreduce** deployment with its layered components.
+  __example:
+    layers:
+    - java:
+        platform: OpenJDK
+        version: '1.8'
+    - supervisord: {}
+    - zookeeper: {}
+    - hdfs_journalnode: {}
+    - hdfs_namenode: {}
+    - hdfs_datanode: {}
+    - yarn_resourcemanager: {}
+    - yarn_historyserver: {}
+  layers:
+    type: list of dict

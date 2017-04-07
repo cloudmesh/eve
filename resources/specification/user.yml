@@ -1,0 +1,22 @@
+user:
+  __description: This defines a user object. Besides the profile information, this
+    may have other necessary information, e.g., passwrod hash, roles, etc., to facilitate
+    the Authentication/Authorization.
+  __example:
+    email: laszewski@gmail.com
+    firstname: Gregor
+    lastname: von Laszewski
+    roles:
+    - admin
+    - user
+    username: gregor
+  email:
+    type: string
+  firstname:
+    type: string
+  lastname:
+    type: string
+  roles:
+    type: list of string
+  username:
+    type: string

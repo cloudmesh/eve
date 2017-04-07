@@ -1,0 +1,9 @@
+var:
+  __description: FIXME
+  __example:
+    name: string
+    value: string
+  name:
+    type: string
+  value:
+    type: string

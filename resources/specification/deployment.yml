@@ -1,0 +1,20 @@
+deploymnet:
+  __description: A **deployment** consists of the resource *cluster*, the location
+    *provider*, e.g., AWS, OpenStack, etc., and software *stack* to be deployed (e.g.,
+    hadoop, spark).
+  __example:
+    cluster:
+      name: myCluster
+    provider:
+      name: aws
+    stack:
+      layers:
+      - hadoop
+      - spark
+      - postgresql
+  cluster:
+    type: dict
+  provider:
+    type: dict
+  stack:
+    type: dict

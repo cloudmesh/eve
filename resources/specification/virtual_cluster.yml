@@ -1,0 +1,13 @@
+virtual_cluster:
+  __description: A **virtual\_cluster** has *name*, *endpoint*\ (?), and the *nodes*.
+  __example:
+    endpoint: http://.../cluster/
+    name: data
+    nodes:
+    - virtual_compute_node
+  endpoint:
+    type: string
+  name:
+    type: string
+  nodes:
+    type: list of string
