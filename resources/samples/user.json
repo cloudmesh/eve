@@ -4,7 +4,9 @@
     "lastname": "von Laszewski",
     "e−mail": "laszewski@gmail.com",
     "username": "gregor",
-    "roles": ["admin",
-              "user"]
+    "roles": [
+      "admin",
+      "user"
+    ]
   }
 }

@@ -1,4 +1,0 @@
-database:
-  endpoint: http://.../data/
-  name: data
-  protocol: mongo

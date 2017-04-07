@@ -1,5 +1,0 @@
-virtual_cluster:
-  endpoint: http://.../cluster/
-  name: data
-  nodes:
-  - virtual_compute_node
