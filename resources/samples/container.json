@@ -1,6 +1,9 @@
 {
-"container" :{
-    "name": "container1",
-    "endpoint": "http://.../container/"
+    "container": {
+        "name": "container1",
+        "endpoint": "http://.../container/",
+        "ip": "127.0.0.1",
+        "label": "server-001",
+        "memoryGB": 16
     }
 }

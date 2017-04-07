@@ -1,4 +1,0 @@
-compute_resource:
-  endpoint: http://.../cluster/
-  kind: baremetal
-  name: Compute1

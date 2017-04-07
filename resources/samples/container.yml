@@ -1,3 +1,0 @@
-container:
-  endpoint: http://.../container/
-  name: container1
