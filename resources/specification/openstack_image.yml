@@ -2,26 +2,27 @@ openstack_image:
   __description: OpenStack image object
   __example:
     created: string
-    metadata__base_image_ref: string
-    metadata__description: string
-    metadata__image_location: string
-    metadata__image_state: string
-    metadata__image_type: string
-    metadata__instance_type_ephemeral_gb: string
-    metadata__instance_type_flavorid: string
-    metadata__instance_type_id: string
-    metadata__instance_type_memory_mb: string
-    metadata__instance_type_name: string
-    metadata__instance_type_root_gb: string
-    metadata__instance_type_rxtx_factor: string
-    metadata__instance_type_swap: string
-    metadata__instance_type_vcpus: string
-    metadata__instance_uuid: string
-    metadata__kernel_id: string
-    metadata__network_allocated: string
-    metadata__owner_id: string
-    metadata__ramdisk_id: string
-    metadata__user_id: string
+    metadata:
+      base_image_ref: string
+      description: string
+      image_location: string
+      image_state: string
+      image_type: string
+      instance_type_ephemeral_gb: string
+      instance_type_flavorid: string
+      instance_type_id: string
+      instance_type_memory_mb: string
+      instance_type_name: string
+      instance_type_root_gb: string
+      instance_type_rxtx_factor: string
+      instance_type_swap: string
+      instance_type_vcpus: string
+      instance_uuid: string
+      kernel_id: string
+      network_allocated: string
+      owner_id: string
+      ramdisk_id: string
+      user_id: string
     minDisk: string
     minRam: string
     os_image_size: string
@@ -30,48 +31,21 @@ openstack_image:
     updated: string
     username: string
     uuid: string
+
   created:
     type: string
-  metadata__base_image_ref:
-    type: string
-  metadata__description:
-    type: string
-  metadata__image_location:
-    type: string
-  metadata__image_state:
-    type: string
-  metadata__image_type:
-    type: string
-  metadata__instance_type_ephemeral_gb:
-    type: string
-  metadata__instance_type_flavorid:
-    type: string
-  metadata__instance_type_id:
-    type: string
-  metadata__instance_type_memory_mb:
-    type: string
-  metadata__instance_type_name:
-    type: string
-  metadata__instance_type_root_gb:
-    type: string
-  metadata__instance_type_rxtx_factor:
-    type: string
-  metadata__instance_type_swap:
-    type: string
-  metadata__instance_type_vcpus:
-    type: string
-  metadata__instance_uuid:
-    type: string
-  metadata__kernel_id:
-    type: string
-  metadata__network_allocated:
-    type: string
-  metadata__owner_id:
-    type: string
-  metadata__ramdisk_id:
-    type: string
-  metadata__user_id:
-    type: string
+  metadata:
+    type: dict
+    description: |
+      Metadata attributes of an image.
+
+      These can be arbitrary Key / Value pairs.
+      Some common metadata fields are include
+
+      - description
+      - base_image_ref
+      - image_location
+      - owner_id
   minDisk:
     type: string
   minRam:
