@@ -1,5 +1,5 @@
 {
-  "cluster": {
+  "cluster_new": {
     "frontend": "objectid:node",
     "computenodes": ["objectid:node"]
   },

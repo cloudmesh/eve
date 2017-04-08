@@ -1,5 +1,5 @@
 {
-  "node": {
+  "node_new": {
     "authorized_keys": [
       "ssh-rsa AAAA...",
       "ssh-ed25519 AAAA...",

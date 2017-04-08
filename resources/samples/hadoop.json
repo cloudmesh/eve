@@ -7,8 +7,8 @@
       "java": {
         "implementation": "OpenJDK",
         "version": "1.8",
-        "zookeeper": {},
-        "supervisord": {}
+        "zookeeper": "TBD",
+        "supervisord": "TBD"
       }
     },
     "parameters": {
