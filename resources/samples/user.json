@@ -2,11 +2,8 @@
   "user": {
     "firstname": "Gregor",
     "lastname": "von Laszewski",
-    "e−mail": "laszewski@gmail.com",
+    "email": "laszewski@gmail.com",
     "username": "gregor",
-    "roles": [
-      "admin",
-      "user"
-    ]
+      "roles": ["admin", "user"]
   }
 }

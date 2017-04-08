@@ -1,3 +1,4 @@
+
 node = {
     'schema': {
         'name': {
@@ -529,7 +530,7 @@ user = {
                 'type': 'string'
             }
         },
-        'e\u2212mail': {
+        'email': {
             'type': 'string'
         },
         'firstname': {
@@ -1324,6 +1325,8 @@ libcloud_vm = {
         }
     }
 }
+
+
 
 eve_settings = {
     'MONGO_HOST': 'localhost',

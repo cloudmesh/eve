@@ -11,6 +11,7 @@ from cloudmesh.shell.command import command
 from cloudmesh.rest.elements import Elements
 
 from cloudmesh.rest.schema import ConvertSpec
+from cloudmesh.common.error import Error
 import glob
 
 import os.path
@@ -54,7 +55,7 @@ class SchemaCommand(PluginCommand):
    
                 
         """
-        pprint(arguments)
+        # pprint(arguments)
 
         if arguments.cat:
             directory = arguments.DIRECTORY
@@ -62,14 +63,21 @@ class SchemaCommand(PluginCommand):
             elements = Elements(directory, filename)
 
         elif arguments.convert:
+            try:
+                filename = arguments.INFILE
+                outfile = arguments.OUTFILE or "settings.py"
+                if arguments.OUTFILE is None:
 
-            filename = arguments.INFILE
-            outfile = arguments.OUTFILE
-            if arguments.OUTFILE is None:
 
-                if ".json" in filename:
-                    outfile = filename.replace(".json", ".yml")
-                elif ".yml" in filename:
-                    outfile = filename.replace(".yml", ".json")
+                    if ".py" in outfile:
+                        pass
+                    elif ".json" in filename:
+                        outfile = filename.replace(".json", ".yml")
+                    elif ".yml" in filename:
+                        outfile = filename.replace(".yml", ".json")
 
-            ConvertSpec(filename, outfile)
+
+                ConvertSpec(filename, outfile)
+            except Exception as e:
+                print (e)
+                Error.traceback(error=e, debug=True, trace=True)

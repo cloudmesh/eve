@@ -1,6 +1,15 @@
 Cloudmesh Rest
 ==============
 
+cd in the directory where the json object definitisn are located
+There you can create a concatenation of the jsin objects
+than you can convert them to the eve settings file.
+
+::
+
+    cms schema cat . all.json
+    cms schema convert all.json
+
 
 SEE THE CLASS WEB PAGE FOR PROPER DOCUMENTAION
 
