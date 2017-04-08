@@ -1,6 +1,7 @@
+package=rest
 pyenv=ENV2
 UNAME=$(shell uname)
-export ROOT_DIR=${PWD}/cloudmesh/rest/
+export ROOT_DIR=${PWD}/cloudmesh/$(package)/
 MONGOD=mongod --dbpath ~/.cloudmesh/data/db --bind_ip 127.0.0.1
 EVE=cd $(ROOT_DIR); $(pyenv); python service.py
 
@@ -60,6 +61,8 @@ test:
 	curl -s -i http://127.0.0.1:5000 
 	$(call banner, "LIST PROFILE")
 	@curl -s http://127.0.0.1:5000/profile  | jq
+
+other:
 	$(call banner, "LIST CLUSTER")
 	@curl -s http://127.0.0.1:5000/cluster  | jq
 	$(call banner, "LIST COMPUTER")
@@ -104,3 +107,45 @@ json:
 	python evegenie/evegenie/geneve.py cluster_new.json
 	cp cluster_new.settings.py $(ROOT_DIR)/settings.py
 	cat $(ROOT_DIR)/settings.py
+
+######################################################################
+# PYPI
+######################################################################
+
+dist: clean
+	@echo "######################################"
+	@echo "# $(VERSION)"
+	@echo "######################################"
+	python setup.py sdist --formats=gztar,zip
+	python setup.py bdist
+	python setup.py bdist_wheel
+
+upload_test:
+	python setup.py	 sdist bdist bdist_wheel upload -r https://testpypi.python.org/pypi
+
+log:
+	gitchangelog | fgrep -v ":dev:" | fgrep -v ":new:" > ChangeLog
+	git commit -m "chg: dev: Update ChangeLog" ChangeLog
+	git push
+
+register: dist
+	@echo "######################################"
+	@echo "# $(VERSION)"
+	@echo "######################################"
+	twine register dist/cloudmesh.$(package)-$(VERSION)-py2.py3-none-any.whl
+	twine register dist/cloudmesh.$(package)-$(VERSION).macosx-10.12-x86_64.tar.gz
+	twine register dist/cloudmesh.$(package)-$(VERSION).tar.gz
+	twine register dist/cloudmesh.$(package)-$(VERSION).zip
+
+upload: dist
+	twine upload dist/*
+
+#
+# GIT
+#
+
+tag:
+	touch README.rst
+	git tag $(VERSION)
+	git commit -a -m "$(VERSION)"
+	git push
