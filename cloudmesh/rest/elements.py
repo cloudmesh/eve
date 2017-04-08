@@ -1,22 +1,31 @@
+from __future__ import print_function
 import glob
 import json
 
 class Elements(object):
-    def __init__(self, directory, filename, kind):
+    def __init__(self, directory, filename):
 
         import yaml
         import os.path
 
         settings = {}
-        if kind is "yml":
+        try:
+            os.remove(filename)
+        except Exception as e:
+            pass
+        if ".yaml" in filename:
             for file in glob.glob(os.path.join(directory, '*.yml')):
                 with open(file) as fd:
                     d = yaml.load(fd)
                     settings.update(d)
-        elif kind is "json":
-            print("not implemented yet")
+        elif "json" in filename:
+            for file in glob.glob(os.path.join(directory, '*.json')):
+                print ("... reading", file)
+                with open(file) as fd:
+                    d = json.load(fd)
+                    settings.update(d)
         else:
-            print ("kind", kind, "not supported")
+            print ("converrsion not supported")
             return None
 
         with open(filename, 'w') as fd:
