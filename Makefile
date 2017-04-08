@@ -4,6 +4,7 @@ UNAME=$(shell uname)
 export ROOT_DIR=${PWD}/cloudmesh/$(package)/
 MONGOD=mongod --dbpath ~/.cloudmesh/data/db --bind_ip 127.0.0.1
 EVE=cd $(ROOT_DIR); $(pyenv); python service.py
+VERSION=`head -1 VERSION`
 
 define banner
 	@echo

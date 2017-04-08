@@ -40,7 +40,7 @@ Yaml Specification
 ------------------
 
 Let us first introduce you to a yaml specification. Let us assume that your yaml file is called
-`profile.yaml` and located in a directory called `example`.
+`profile.yaml` and located in a directory called `example`::
 
   profile:
     description: The Profile of a user
@@ -60,17 +60,17 @@ This will provide the json file `profile.json` as Listed in the next section
 Json Specification
 ------------------
 
-A valid json resource specification looks like this.
+A valid json resource specification looks like this::
 
-{
-  "profile": {
-    "description": "The Profile of a user",
-    "email": "laszewski@gmail.com",
-    "firstname": "Gregor",
-    "lastname": "von Laszewski",
-    "username": "gregor"
+  {
+    "profile": {
+      "description": "The Profile of a user",
+      "email": "laszewski@gmail.com",
+      "firstname": "Gregor",
+      "lastname": "von Laszewski",
+      "username": "gregor"
+    }
   }
-}
 
 
 Conversion to Eve Settings
@@ -82,7 +82,6 @@ we must concatenate all json specified resource examples into a
 single json file. We do this with::
 
   cms schema cat . all.json
-
 
 As we assume you are in the samples directory, we use a . for the current
 location of the directory that containes the samples. Next, we need to convert it
@@ -103,7 +102,6 @@ Next you need to start the mongo service with
 ::
 
     cms admin mongo start
-
 
 You can look at the status and information about the service with ::
 
@@ -135,18 +133,8 @@ Testing
 ^^^^^^^
 ::
 
-
   make setup    # install mongo and eve
   make install  # installs the code and integrates it into cmd5
   make deploy
   make test
-
-
-
-TO DO
-^^^^^
-
-- [ ] add logger
-
-- [ ] finish admin logic to start/stop eve services
 
