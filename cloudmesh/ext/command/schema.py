@@ -10,7 +10,9 @@ from cloudmesh.shell.command import command
 
 from cloudmesh.rest.elements import Elements
 from cloudmesh.rest.schema import YmlToSpec, SpecToTex
+from cloudmesh.rest.schema import ConvertSpec
 import glob
+
 import os.path
 
 
@@ -28,7 +30,8 @@ class SchemaCommand(PluginCommand):
             schema yml2spec  FILENAME [OUTFILE]
             schema spec2tex DIRIN DIROUT
             schema create DIRIN DIROUT
-            schema cat [json|yml] DIRECTORY FILENAME    
+            schema cat [json|yml] DIRECTORY FILENAME  
+            schema convert INFILE [OUTFILE]
                 
           Arguments:
               FILENAME   a filename
@@ -60,7 +63,7 @@ class SchemaCommand(PluginCommand):
                 the tex document for NIST
                 
         """
-        pprint(arguments)
+        #pprint(arguments)
         kind = "yml"
         if arguments.json:
             kind = "json"
@@ -94,3 +97,16 @@ class SchemaCommand(PluginCommand):
             for infile in files:
                 print('Processing', infile)
                 elements = SpecToTex(infile, dirout)
+
+        elif arguments.convert:
+
+            filename = arguments.INFILE
+            outfile = arguments.OUTFILE
+            if arguments.OUTFILE is None:
+
+                if ".json" in filename:
+                    outfile = filename.replace(".json", ".yml")
+                elif ".yml" in filename:
+                    outfile = filename.replace(".yml", ".json")
+
+            ConvertSpec(filename, outfile)

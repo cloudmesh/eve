@@ -1,6 +1,6 @@
 FILE=objects
 
-all: spec man
+all: 
 	pandoc ../../README.rst -o readme.tex
 	pandoc ../../../classes/docs/source/lesson/prg/rest.rst -o rest.tex
 	pandoc ../../../classes/docs/source/lesson/prg/python_cmd5.rst -o python-cmd5.tex
