@@ -1,0 +1,16 @@
+{
+  "cluster": {
+    "label": "c0",
+    "endpoint": {
+      "passwd": "secret",
+      "url": "https"
+    },
+    "name": "myCLuster",
+    "provider": [
+      "openstack",
+      "aws",
+      "azure",
+      "eucalyptus"
+    ]
+  }
+}

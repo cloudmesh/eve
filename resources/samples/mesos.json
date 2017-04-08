@@ -1,0 +1,21 @@
+{
+  "mesos-docker": {
+    "instances": 1,
+    "container": {
+      "docker": {
+        "credential": {
+          "secret": "my-secret",
+          "principal": "my-principal"
+        },
+        "image": "mesosphere/inky"
+      },
+      "type": "MESOS"
+    },
+    "mem": 16.0,
+    "args": [
+      "argument"
+    ],
+    "cpus": 0.2,
+    "id": "mesos-docker"
+  }
+}

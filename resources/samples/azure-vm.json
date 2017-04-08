@@ -1,0 +1,23 @@
+{
+  "vm-azure": {
+    "username": "string",
+    "status": "string",
+    "deployment_slot": "string",
+    "cloud_service": "string",
+    "image": "string",
+    "floating_ip": "string",
+    "image_name": "string",
+    "key": "string",
+    "flavor": "string",
+    "resource_location": "string",
+    "disk_name": "string",
+    "private_ips": "string",
+    "group": "string",
+    "uuid": "string",
+    "dns_name": "string",
+    "instance_size": "string",
+    "instance_name": "string",
+    "public_ips": "string",
+    "media_link": "string"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "libcloud_vm": {
+    "username": "string",
+    "status": "string",
+    "root_device_type": "string",
+    "image": "string",
+    "image_name": "string",
+    "image_id": "string",
+    "key": "string",
+    "flavor": "string",
+    "availability": "string",
+    "private_ips": "string",
+    "group": "string",
+    "uuid": "string",
+    "public_ips": "string",
+    "instance_id": "string",
+    "instance_type": "string",
+    "state": "string",
+    "root_device_name": "string",
+    "private_dns": "string"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "mapreduce": {
+    "layers": "TBD",
+    "hdfs_datanode": "TBD",
+    "java": {
+      "platform": "OpenJDK",
+      "version": "1.8"
+    },
+    "supervisord": "TBD",
+    "hdfs_namenode": "TBD",
+    "zookeeper": "TBD",
+    "yarn_historyserver": "TBD",
+    "hdfs_journalnode": "TBD",
+    "yarn_resourcemanager": "TBD"
+  }
+}

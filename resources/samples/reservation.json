@@ -1,0 +1,14 @@
+{
+  "reservation": {
+    "hosts": "string",
+    "description": "string",
+    "start_time": [
+      "date",
+      "time"
+    ],
+    "end_time": [
+      "date",
+      "time"
+    ]
+  }
+}

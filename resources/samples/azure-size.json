@@ -1,0 +1,16 @@
+{
+  "azure-size": {
+    "_uuid": "None",
+    "name": "D14 Faster Compute Instance",
+    "extra": {
+      "cores": 16,
+      "max_data_disks": 32
+    },
+    "price": 1.6261,
+    "ram": 114688,
+    "driver": "libcloud",
+    "bandwidth": "None",
+    "disk": 127,
+    "id": "Standard_D14"
+  }
+}

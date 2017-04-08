@@ -1,6 +1,0 @@
-key:
-  fingerprint: string, unique
-  value: string
-  source: string
-  comment: string
-  uri: string

@@ -1,0 +1,11 @@
+{
+  "libcloud_flavor": {
+    "bandwidth": "string",
+    "disk": "string",
+    "uuid": "string",
+    "price": "string",
+    "ram": "string",
+    "cpu": "string",
+    "flavor_id": "string"
+  }
+}

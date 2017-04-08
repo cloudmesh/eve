@@ -1,0 +1,71 @@
+{
+  "node": {
+    "authorized_keys": [
+      "ssh-rsa AAAA...",
+      "ssh-ed25519 AAAA...",
+      "...etc"
+    ],
+    "name": "example-001",
+    "external_ip": "",
+    "loginuser": "root",
+    "create_external_ip": true,
+    "internal_ip": "",
+    "memory": 2048,
+    "owner": "",
+    "cores": 2,
+    "users": {
+      "name": "hello",
+      "groups": [
+        "wheel"
+      ]
+    },
+    "disk": 80,
+    "security_groups": [
+      {
+        "ingress": "0.0.0.0/32",
+        "egress": "0.0.0.0/32",
+        "ports": [
+          22,
+          443,
+          80,
+          8080
+        ],
+        "protocols": [
+          "tcp",
+          "udp"
+        ]
+      }
+    ],
+    "ssh_keys": [
+      {
+        "to": ".ssh/id_rsa",
+        "password": {
+          "decrypt": "gpg",
+          "from": "yaml",
+          "file": "secrets.yml.gpg",
+          "key": "users.hello.ssh[0]"
+        },
+        "method": "ed25519",
+        "ssh_keygen": true
+      },
+      {
+        "to": ".ssh/testing",
+        "password": {
+          "decrypt": "gpg",
+          "from": "yaml",
+          "file": "secrets.yml.gpg",
+          "key": "users.hello.ssh[1]"
+        },
+        "bits": 4098,
+        "method": "rsa",
+        "ssh_keygen": true
+      },
+      {
+        "decrypt": "gpg",
+        "from": "secrets/ssh/hello/copied.gpg",
+        "ssh_keygen": false,
+        "to": ".ssh/copied"
+      }
+    ]
+  }
+}

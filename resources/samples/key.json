@@ -1,0 +1,9 @@
+{
+  "key": {
+    "comment": "string",
+    "source": "string",
+    "uri": "string",
+    "value": "string",
+    "fingerprint": "string, unique"
+  }
+}

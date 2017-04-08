@@ -1,0 +1,7 @@
+{
+  "default": {
+    "value": "string",
+    "name": "string",
+    "context": "string  - defines teh context of the default (user, cloud, ...)"
+  }
+}

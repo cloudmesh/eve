@@ -1,0 +1,13 @@
+{
+  "openstack_flavor": {
+    "os_flv_disabled": "string",
+    "uuid": "string",
+    "os_flv_ext_data": "string",
+    "ram": "string",
+    "os_flavor_acces": "string",
+    "vcpus": "string",
+    "swap": "string",
+    "rxtx_factor": "string",
+    "disk": "string"
+  }
+}

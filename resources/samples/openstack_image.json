@@ -1,0 +1,35 @@
+{
+  "openstack_image": {
+    "status": "string",
+    "username": "string",
+    "updated": "string",
+    "uuid": "string",
+    "created": "string",
+    "minDisk": "string",
+    "progress": "string",
+    "minRam": "string",
+    "os_image_size": "string",
+    "metadata": {
+      "image_location": "string",
+      "image_state": "string",
+      "description": "string",
+      "kernel_id": "string",
+      "instance_type_id": "string",
+      "ramdisk_id": "string",
+      "instance_type_name": "string",
+      "instance_type_rxtx_factor": "string",
+      "instance_type_vcpus": "string",
+      "user_id": "string",
+      "base_image_ref": "string",
+      "instance_uuid": "string",
+      "instance_type_memory_mb": "string",
+      "instance_type_swap": "string",
+      "image_type": "string",
+      "instance_type_ephemeral_gb": "string",
+      "instance_type_root_gb": "string",
+      "network_allocated": "string",
+      "instance_type_flavorid": "string",
+      "owner_id": "string"
+    }
+  }
+}
