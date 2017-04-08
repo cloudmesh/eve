@@ -1,5 +1,6 @@
 {
   "var": {
-    "name": "string"
+    "name": "string",
     "value": "string"
   }
+}

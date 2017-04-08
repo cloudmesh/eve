@@ -1,5 +1,8 @@
-computer:
-  ip: 127.0.0.1
-  label: server-001
-  memoryGB: 16
-  name: myComputer
+{
+  "computer": {
+    "ip": "127.0.0.1",
+    "name": "myComputer",
+    "memoryGB": 16,
+    "label": "server-001"
+  }
+}
