@@ -1,10 +1,12 @@
 {
   "virtual_cluster": {
     "name": "myvc",
-    "frontend": "objectid:virtual_machine",
-    "nodes": [
-      "objectid:virtual_machine"
-    ]
+      "frontend": 0,
+      "nodes": [
+          { "count": 3,
+            "node": "objectid:virtual_machine"
+          }
+      ]
   },
   "virtual_machine" :{
     "name": "vm1",
