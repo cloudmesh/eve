@@ -48,42 +48,119 @@ TBD
 \tableofcontents % Print the contents section
 \maketitle
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{User Profile}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{profile}
+
+\VerbatimInput{../samples/profile.json}
+
+\subsection{user}
+
+\VerbatimInput{../samples/user.json}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Data}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Var}
+
+\VerbatimInput{../samples/var.json}
+
+\subsection{Default}
+
+\VerbatimInput{../samples/default.json}
+
+\subsection{File}
+
+The \textbf{file} object has \textit{name}, \textit{endpoint} (location), \textit{size}
+in GB, MB, Byte, \textit{checksum} for integrity check, and last \textit{accessed} timestamp.
+
+\VerbatimInput{../samples/file.json}
+
+\subsection{File Alias}
+
+A file could have one alias or even multiple ones.
+
+\VerbatimInput{../samples/file_alias.json}
+
+\subsection{Replica}
+
+\VerbatimInput{../samples/replica.json}
+
+
+\subsection{Virtual Directory}
+
+\VerbatimInput{../samples/virtual_directory.json}
+
+\subsection{Database}
+
+A \textbf{database} could have a name, an \textit{endpoint} (e.g., host:port),
+and protocol used (e.g., SQL, mongo, etc.).
+
+\VerbatimInput{../samples/database.json}
 
 
 
-
-
-
-
-\section{Network}
-
-We are looking for volunteers to contribute here.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{IaaS}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+% ----------------------------------------------------------------------
+\subsection{Openstack}
+% ----------------------------------------------------------------------
+
+\subsubsection{Openstack Flavor}
+
+\VerbatimInput{../samples/openstack_flavor.json}
+
+\subsubsection{Openstack Image}
+
+\VerbatimInput{../samples/openstack_image.json}
+
+\subsubsection{Openstack Vm}
+
+\VerbatimInput{../samples/openstack_vm.json}
+
+% ----------------------------------------------------------------------
 \subsection{Azure}
+% ----------------------------------------------------------------------
 
-\subsubsection{azure-size}
+\subsubsection{Azure Size}
 
 The size description of an azure vm
 
-\VerbatimInput{../samples/azure-size.yml}
+\VerbatimInput{../samples/azure-size.json}
 
-\subsubsection{azure-vm}
+
+\subsubsection{Azure Image}
+
+\VerbatimInput{../samples/azure-image.json}
+
+\subsubsection{Azure Vm}
 
 An Azure virtual machine
-\VerbatimInput{../samples/azure-vm.yml}
+\VerbatimInput{../samples/azure-vm.json}
 
 
-\subsection{batchjob}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{HPC}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Batch Job}
 
-\VerbatimInput{../samples/batchjob.yml}
-x
-\subsection{cluster}
+\VerbatimInput{../samples/batchjob.json}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Virtual Cluster}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Cluster}
 
 The cluster object has name, label, endpoint and provider. The \textit{endpoint}
 defines.... The \textit{provider} defines the nature of the cluster,
@@ -91,97 +168,23 @@ e.g., its a virtual cluster on an openstack cloud, or from AWS, or a bare-metal
 cluster.
 
 
-\VerbatimInput{../samples/cluster.yml}
+\VerbatimInput{../samples/cluster.json}
 \
-\subsection{compute resource}
+\subsection{Compute Resource}
 
 \textbf{compute\_resource} object has attribute \textit{endpoint} which
 specifies ... The \textit{kind} could be \textit{baremetal} or \textit{VC}.
 
-\VerbatimInput{../samples/compute_resource.yml}
+\VerbatimInput{../samples/compute_resource.json}
 
-\subsection{computer}
+\subsection{Computer}
 
 This defines a \textbf{computer} object. A computer has name, label,
 IP address. It also listed the relevant specs such as memory, disk
 size, etc.
 
-\VerbatimInput{../samples/computer.yml}
-\
-\subsection{container}
+\VerbatimInput{../samples/computer.json}
 
-This defines \textbf{container} object.
-
-\VerbatimInput{../samples/container.yml}
-
-\subsection{database}
-
-A \textbf{database} could have a name, an \textit{endpoint} (e.g., host:port),
-and protocol used (e.g., SQL, mongo, etc.).
-
-\VerbatimInput{../samples/database.yml}
-
-
-\subsection{default}
-
-\VerbatimInput{../samples/default.yml}
-
-\subsection{deployment}
-
-A \textbf{deployment} consists of the resource \- \textit{cluster},
-the location \- \textit{provider}, e.g., AWS, OpenStack, etc., and
-software \textit{stack} to be deployed (e.g., hadoop, spark).
-
-\VerbatimInput{../samples/deployment.yml}
-
-\subsection{file}
-
-The \textbf{file} object has \textit{name}, \textit{endpoint} (location), \textit{size}
-in GB, MB, Byte, \textit{checksum} for integrity check, and last \textit{accessed} timestamp.
-
-\VerbatimInput{../samples/file.yml}
-
-\subsection{file alias}
-
-A file could have one alias or even multiple ones.
-
-\VerbatimInput{../samples/file_alias.yml}
-
-\subsection{hadoop}
-
-A \textbf{hadoop} definition defines which \textit{deployer} to be used,
-the \textit{parameters} of the deployment, and the system packages as
-\textit{requires}. For each requirement, it could have attributes such
-as the library origin, version, etc.
-
-\VerbatimInput{../samples/hadoop.yml}
-
-\subsection{key}
-
-\VerbatimInput{../samples/key.yml}
-
-
-\subsection{kubernetes}
-
-\VerbatimInput{../samples/kubernetes.yml}
-
-\subsection{mapreduce}
-
-This defines a \textbf{mapreduce} deployment with its layered
-components.
-
-\VerbatimInput{../samples/mapreduce.yml}
-
-\subsection{mesos}
-
-\VerbatimInput{../samples/mesos.yml}
-
-\subsection{microservice}
-
-A system could be composed of from various microservices, and this defines
-each of them.
-
-\VerbatimInput{../samples/microservice.yml}
 
 \subsection{node}
 
@@ -220,71 +223,112 @@ egress TCP and UDP traffic is allowed provided they are to ports 22
 (SSH), 443 (SSL), and 80 and 8080 (web).
 
 
-\VerbatimInput{../samples/node.yml}
+\VerbatimInput{../samples/node-new.json}
 
-\subsection{openstack flavor}
 
-\VerbatimInput{../samples/openstack_flavor.yml}
-\input{../samples/openstack_flavor.tex}
 
-\subsection{openstack image}
+\subsection{Virtual Cluster}
 
-\VerbatimInput{../samples/openstack_image.yml}
-\input{../samples/openstack_image.tex}
+\VerbatimInput{../samples/virtual_cluster.json}
 
-\subsection{openstack vm}
+\subsection{Virtual Compute node}
 
-\VerbatimInput{../samples/openstack_vm.yml}
+\VerbatimInput{../samples/virtual_compute_node.json}
 
-\subsection{profile}
+\subsection{Virtual Machine}
 
-\VerbatimInput{../samples/profile.yml}
-\input{../samples/profile.tex}
+\VerbatimInput{../samples/virtual_machine.json}
 
-\subsection{replica}
+\subsection{Mesos}
 
-\VerbatimInput{../samples/replica.yml}
-\input{../samples/replica.tex}
+\VerbatimInput{../samples/mesos.json}
 
-\subsection{reservation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Containers}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\VerbatimInput{../samples/reservation.yml}
+\subsection{Container}
 
-\subsection{user}
+This defines \textbf{container} object.
 
-\VerbatimInput{../samples/user.yml}
-\input{../samples/user.tex}
+\VerbatimInput{../samples/container.json}
 
-\subsection{var}
+\subsection{Kubernetes}
 
-\VerbatimInput{../samples/var.yml}
+\VerbatimInput{../samples/kubernetes.json}
 
-\subsection{virtual cluster}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Deployment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\VerbatimInput{../samples/virtual_cluster.yml}
-\input{../samples/virtual_cluster.tex}
+\subsection{Deployment}
 
-\subsection{virtual compute node}
+A \textbf{deployment} consists of the resource \- \textit{cluster},
+the location \- \textit{provider}, e.g., AWS, OpenStack, etc., and
+software \textit{stack} to be deployed (e.g., hadoop, spark).
 
-\VerbatimInput{../samples/virtual_compute_node.yml}
-\input{../samples/virtual_compute_node.tex}
+\VerbatimInput{../samples/deployment.json}
 
-\subsection{virtual directory}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Mapreduce}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\VerbatimInput{../samples/virtual_directory.yml}
-\input{../samples/virtual_directory.tex}
+\subsection{Hadoop}
 
-\subsection{virtual machine}
+A \textbf{hadoop} definition defines which \textit{deployer} to be used,
+the \textit{parameters} of the deployment, and the system packages as
+\textit{requires}. For each requirement, it could have attributes such
+as the library origin, version, etc.
 
-\VerbatimInput{../samples/virtual_machine.yml}
-\input{../samples/virtual_machine.tex}
+\VerbatimInput{../samples/hadoop.json}
+
+
+\subsection{Mapreduce}
+
+This defines a \textbf{mapreduce} deployment with its layered
+components.
+
+\VerbatimInput{../samples/mapreduce.json}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Security}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Key}
+
+\VerbatimInput{../samples/key.json}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Microservice}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Microservice}
+
+A system could be composed of from various microservices, and this defines
+each of them.
+
+\VerbatimInput{../samples/microservice.json}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Reservation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\VerbatimInput{../samples/reservation.json}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Network}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We are looking for volunteers to contribute here.
+
+\newpage
+
+\appendix
 
 \section{Schema Command}
 
 \VerbatimInput{schema-man.tex}
-\newpage
-
-\appendix
 
 
 \section{Contributing}
@@ -306,7 +350,7 @@ Components are written as YAML markup in files in the
 
 For example:
 
-\VerbatimInput{../samples/profile.yml}
+\VerbatimInput{../samples/profile.json}
 \subsection{Element Definition}
 
 Each resource should have a \verb+description+ entry to act as

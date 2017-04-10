@@ -32,10 +32,15 @@ define terminal
 endef
 endif
 
+pull:
+	cd ../common; git pull
+	cd ../cmd5; git pull
+	git pull
+
 install:
-	cd ../common; python setup.py install; pip install .
-	cd ../cmd5; python setup.py install; pip install .
-	python setup.py install; pip install .
+	cd ../common; python setup.py install; pip install -e . -U
+	cd ../cmd5; python setup.py install; pip install -e . -U
+	python setup.py install; pip install -e . -U
 
 setup:
 	# brew update

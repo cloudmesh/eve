@@ -1,9 +1,9 @@
 {
   "profile": {
-    "username": "gregor",
-    "lastname": "von Laszewski",
-    "description": "The Profile of a user",
-    "firstname": "Gregor",
+    "username": "gregor", 
+    "lastname": "von Laszewski", 
+    "description": "The Profile of a user", 
+    "firstname": "Gregor", 
     "email": "laszewski@gmail.com"
   }
 }
