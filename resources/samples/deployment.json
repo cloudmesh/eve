@@ -10,7 +10,7 @@
                 "spark",
                 "postgresql"
             ],
-            "config": {
+            "parameters": {
                 "hadoop": { "zookeeper.quorum": [ "IP", "IP", "IP"]
                           }
             }
