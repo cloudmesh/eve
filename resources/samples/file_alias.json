@@ -1,6 +1,6 @@
 {
-  "file_alias":{
-		"alias": "report-alias.dat",
-		"name": "report.dat"
+    "file_alias": {
+	"alias": "report-alias.dat",
+	"name": "report.dat"
   }
 }
