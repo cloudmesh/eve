@@ -1,17 +1,19 @@
 {
-  "deploymnet": {
-    "cluster": {
-      "name": "myCluster"
-    },
-    "stack": {
-      "layers": [
-        "hadoop",
-        "spark",
-        "postgresql"
-      ]
-    },
-    "provider": {
-      "name": "aws"
+    "deployment": {
+        "cluster": [{ "name": "myCluster"},
+                    { "id" : "cm-0001"}
+                   ],
+        "stack": {
+            "layers": [
+                "zookeeper",
+                "hadoop",
+                "spark",
+                "postgresql"
+            ],
+            "config": {
+                "hadoop": { "zookeeper.quorum": [ "IP", "IP", "IP"]
+                          }
+            }
+        },
     }
-  }
 }
