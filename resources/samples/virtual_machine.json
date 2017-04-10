@@ -1,11 +1,18 @@
 {
-"virtual_machine" :{
-		"name": "vm1",
-		"endpoint": "http://.../vm/",
-		"metadata":{"experiment":"exp-001"},
-		"image": "Ubuntu-16.04",
-		"ip": ["TBD"],
-		"flavor": "TBD",
-		"status": "TBD"
-}
+  "virtual_machine" :{
+    "name": "vm1",
+    "ncpu": 2,
+    "RAM": "4G",
+    "disk": "40G",
+    "nics": ["objectid:nic"
+    ],
+    "OS": "Ubuntu-16.04",
+    "loginuser": "ubuntu",
+    "status": "active",
+    "metadata":{
+    },
+    "authorized_keys": [
+      "objectid:sshkey"
+    ]
+  }
 }

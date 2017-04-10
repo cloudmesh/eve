@@ -1,20 +1,43 @@
 {
-  "cluster_new": {
-    "frontend": "objectid:node",
-    "computenodes": ["objectid:node"]
+  "virtual_cluster": {
+    "name": "myvc",
+    "frontend": "objectid:virtual_machine",
+    "nodes": [
+      "objectid:virtual_machine"
+    ]
   },
-  "node": {
-    "name": "mynode1",
-    "label": "node1",
+  "virtual_machine" :{
+    "name": "vm1",
     "ncpu": 2,
     "RAM": "4G",
     "disk": "40G",
-    "NIC": ["objectid:nic"
+    "nics": ["objectid:nic"
+    ],
+    "OS": "Ubuntu-16.04",
+    "loginuser": "ubuntu",
+    "status": "active",
+    "metadata":{
+    },
+    "authorized_keys": [
+      "objectid:sshkey"
     ]
+  },
+  "sshkey": {
+    "comment": "string",
+    "source": "string",
+    "uri": "string",
+    "value": "ssh-rsa AAA......",
+    "fingerprint": "string, unique"
   },
   "nic": {
     "name": "eth0",
+    "type": "ethernet",
     "mac": "00:00:00:11:22:33",
-    "IP": "123.123.1.2"
+    "ip": "123.123.1.2",
+    "mask": "255.255.255.0",
+    "broadcast": "123.123.1.255",
+    "gateway": "123.123.1.1",
+    "mtu": 1500,
+    "bandwidth": "10Gbps"
   }
 }

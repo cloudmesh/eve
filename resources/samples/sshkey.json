@@ -3,7 +3,7 @@
     "comment": "string",
     "source": "string",
     "uri": "string",
-    "value": "ssh-rsa",
+    "value": "ssh-rsa AAA......",
     "fingerprint": "string, unique"
   }
 }

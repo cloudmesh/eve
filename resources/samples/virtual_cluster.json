@@ -1,9 +1,9 @@
 {
   "virtual_cluster": {
-    "name": "data",
-    "endpoint": "http://.../cluster/",
+    "name": "myvc",
+    "frontend": "objectid:virtual_machine",
     "nodes": [
-      "virtual_compute_node"
+      "objectid:virtual_machine"
     ]
   }
 }
