@@ -4,6 +4,6 @@
     "lastname": "von Laszewski",
     "email": "laszewski@gmail.com",
     "username": "gregor",
-      "roles": ["admin", "user"]
+    "roles": ["admin", "user"]
   }
 }
