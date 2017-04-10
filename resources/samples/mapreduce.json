@@ -1,16 +1,18 @@
 {
   "mapreduce": {
-      "layers": "TBD",
-      "hdfs_datanode": "TBD",
+      "layers": [
+          "hadoop"
+      ],
+      "hdfs_datanode": "IP ADDRESS",
       "java": {
           "platform": "OpenJDK",
           "version": "1.8"
       },
-      "supervisord": "TBD",
-      "hdfs_namenode": "TBD",
-      "zookeeper": "TBD",
-      "yarn_historyserver": "TBD",
-      "hdfs_journalnode": "TBD",
-      "yarn_resourcemanager": "TBD"
+      "supervisord": "",
+      "hdfs_namenode": "IP ADDRESS",
+      "zookeeper": "IP ADDRESS",
+      "yarn_historyserver": "IP ADDRESS",
+      "hdfs_journalnode": "IP ADDRESS",
+      "yarn_resourcemanager": "IP ADDRESS"
   }
 }
