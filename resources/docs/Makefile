@@ -4,10 +4,10 @@ all:
 	pandoc ../../README.rst -o readme.tex
 	pandoc ../../../classes/docs/source/lesson/prg/rest.rst -o rest.tex
 	pandoc ../../../classes/docs/source/lesson/prg/python_cmd5.rst -o python-cmd5.tex
-	pdflatex ${FILE}
+	pdflatex  -shell-escape ${FILE}
 #	bibtex ${FILE}
-	pdflatex ${FILE}
-	pdflatex ${FILE}
+	pdflatex  -shell-escape ${FILE}
+	pdflatex  -shell-escape ${FILE}
 
 spec:
 	cms schema spec2tex ../specification specification
@@ -26,7 +26,7 @@ view:
 
 # all dependce tracking taking care of by Latexmk
 fast:
-	latexmk -pdf ${FILE}
+	latexmk -pdf -latexoption=-shell-escape ${FILE}
 
 watch:
 	latexmk -pvc -view=pdf ${FILE} 

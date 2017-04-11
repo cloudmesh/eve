@@ -1,15 +1,71 @@
 \documentclass[9pt,twocolumn,twoside]{styles/osajnl} 
+\usepackage{geometry}
+\geometry{paper=letterpaper,margin=2cm}
+
+
+\usepackage{xcolor}
 \usepackage{fancyvrb}
 \journal{cm}  
+\usepackage{listings}
+\usepackage{minted}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{minted}
 
-%\usepackage{xcolor}
-%usepackage{fullpage}
-%\usepackage{fancyvrb}
-%\renewcommand{\familydefault}{\sfdefault}
-%\usepackage[scaled=0.92]{helvet}
-%\usepackage[helvet]{sfmath}
-%\everymath={\sf}
-%\parindent 0pt
+\definecolor{codebggray}{rgb}{0.95,0.95,0.95}
+
+
+
+\newcounter{filePrg}
+
+
+\tcbuselibrary{listings}
+\tcbuselibrary{minted}
+
+\newtcbinputlisting[use counter=filePrg, number within=section, list inside=mypyg]{\codeFromFile}[4]{%
+  listing engine=minted,
+  minted language=#1,
+  listing file={#2},
+  minted options={autogobble,linenos,breaklines},
+  listing only,
+  size=title,
+    drop fuzzy shadow,
+  breakable,
+  enhanced jigsaw,
+    %arc=1.5mm,
+  %colframe=brown,
+  %coltitle=White,
+  %boxrule=0.5mm,
+  %colback=white,
+  %coltext=Black,
+  title={Listing \thetcbcounter : #3 \hfill%
+    \smash{\raisebox{-6pt}{\includegraphics[width=.5cm,height=.5cm]{images/code2.png}}}},
+    list entry=Listing~\thetcbcounter : #3,
+    %OR next two lines
+    %title={Listing \thetcbcounter : #3},
+    %overlay={\node[anchor=north east,outer sep=-9pt] at ([xshift=-25pt]frame.north east) {\includegraphics[width=1cm,height=1cm]{images/code2.png}}; },
+  label=lst:#4
+}
+
+%http://tex.stackexchange.com/questions/217489/numbering-tcolorbox-toc
+\makeatletter % no indent for entries
+\renewcommand{\l@tcolorbox}{\@dottedtocline{1}{0pt}{2.3em}}
+\makeatother
+
+\usepackage{hyperref}
+\usepackage[ngerman,nameinlink]{cleveref}
+
+\crefname{filePrg}{Listing}{Listings}
+
+
+\newtcblisting{json}[1][]{%
+  colback=codebggray,
+  listing only,
+  minted options={
+    fontsize=\small
+  },  
+  minted language=json,
+  #1
+}
 
 \newcommand{\tightlist}{}
 
@@ -49,62 +105,220 @@ TBD
 \maketitle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Design by Example}
+
+To accelereat discussion among the team we use an approach to define
+objects and its interfaces by  example. These examples are than taken
+in a later version of the document and a schema is generated from
+it. The schema will be added in its complete form to the
+appendix. While focusing first on examples it allows us to speed up
+our design and simplifies discussions of the objects and interfaces
+eliminating getting lost in complex syntactical specifications. The
+process and specifications used in this document will also allow us to
+automatically create a implementation of the objects that can be
+integrated into a reference architecture as provided by for example
+the cloudmesh client and rest project \cite{??}.  
+
+An example object will demonstrate our approach. The following object
+defines a JSON object representing a user. 
+
+\begin{json}
+"user":{  
+     "firstname": "Gregor",  
+     "lastname": "von Laszewski",  
+     "email": "laszewski@gmail.com",  
+     "username": "gregor" 
+}
+\end{json}
+
+
+\begin{Verbatim}
+"user":{  
+     "firstname": "Gregor",  
+     "lastname": "von Laszewski",  
+     "email": "laszewski@gmail.com",  
+     "username": "gregor" 
+}
+\end{Verbatim}
+ 
+Such an object can be transformed to a more precise specification as a
+schema while introspecting the types resulting in  
+
+\begin{Verbatim}
+user = {  
+   ’firstname’: { ’type’: ’string’},  
+   ’lastname’: { ’type’: ’string’ },   
+   ’email’: { ’type’: ’email’ },  
+   ’username’: { ’type’: ‘string’ } 
+}  
+\end{Verbatim}
+
+The appendix will list the examples as well as the schema definitions
+(see appendix ???).  
+
+\subsection{Tools to Create the Specifications}
+
+\begin{Verbatim}
+cloudmesh/evegenie
+cloudmesh.cmd5
+cloudmesh.rest
+\end{Verbatim}
+
+
+\subsection{Interface Compliancy}
+
+Due to the extensibility of our interfaces it is important to
+introduce a terminology that allows us to define interface
+compliancy. We define it as follows
+
+\begin{description}
+
+\item[Full Compliance:] These are reference implementations that
+  provide full compliance to the objects defined in this document. A
+  version number will be added to assure the snapshot in time of the
+  objects is associated with the version. This reference
+  implementation will implement all objects.
+
+\item[Partially Compliance:] These are reference implementations that
+  provide partial compliance to the objects defined in this
+  document. A version number will be added to assure the snapshot in
+  time of the objects is associated with the version. This reference
+  implementation will implement a partial list of the objects. A
+  document is accompanied that lists all objects defined, but also
+  lists the objects that are not defined by the reference
+  architecture.
+
+\item[Full and extended Compliance:] These are interfaces that in
+  addition to the full compliance also introduce additional interfaces
+  and extend them.
+
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{User Profile}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{profile}
 
-\VerbatimInput{../samples/profile.json}
+
+\codeFromFile{json}{../samples/profile.json}{User profile}{s:profile}
 
 \subsection{user}
 
-\VerbatimInput{../samples/user.json}
+\codeFromFile{json}{../samples/user.json}{user}{s:user}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Data for Big Data applications are delivered through data
+providers. They can be either local providers contributed by a user or
+distributed data providers that refer to data on the internet. At this
+time we focus on an elementary set of abstractions related to data
+providers that offer us to utilize variables, files, virtual data
+directories, data streams, and data filters.
+
+\begin{description}
+\item[Files] are used to represent information collected within the context
+of classical files in an operating system. 
+
+\item[Streams] are services that offer the consumer a stream of data. Streams may allow the initiation of filters to reduce the amount of data requested by the consumer 
+Stream Filters operate in streams or on files converting them to streams 
+
+\item[Batch Filters] operate on streams and on files while working in
+  the background and delivering as output Files 
+
+\item[Virtual directories] and non-virtual directories are collection
+  of files that organize them. For our initial purpose the distinction
+  between virtual and non-virtual directories is non-essential and we
+  will focus on abstracting all directories to be virtual. This could
+  mean that the files are physically hosted on different
+  disks. However, it is important to note that virtual data
+  directories can hold more than files, they can also contain data
+  streams and data filters.
+
+\end{description}
 
 \subsection{Var}
 
-\VerbatimInput{../samples/var.json}
+\codeFromFile{json}{../samples/var.json}{var}{s:var}
 
 \subsection{Default}
 
-\VerbatimInput{../samples/default.json}
+\codeFromFile{json}{../samples/default.json}{default}{s:default}
 
 \subsection{File}
 
-The \textbf{file} object has \textit{name}, \textit{endpoint} (location), \textit{size}
-in GB, MB, Byte, \textit{checksum} for integrity check, and last \textit{accessed} timestamp.
+A file is a computer resource allowing to store data that is being
+processed. The interface to a file provides the mechanism to
+appropriately locate a file in a distributed system. Identification
+include the name, and andpoint, the checksum and the size. Additional
+parameters such as the lasst access time could be stored also. As such
+the Interface only describes the location of the file 
 
-\VerbatimInput{../samples/file.json}
+The \textbf{file} object has \textit{name}, \textit{endpoint} (location), \textit{size}
+in GB, MB, Byte, \textit{checksum} for integrity check, and last
+\textit{accessed} timestamp. 
+
+\codeFromFile{json}{../samples/file.json}{file}{s:file}
 
 \subsection{File Alias}
 
 A file could have one alias or even multiple ones.
 
-\VerbatimInput{../samples/file_alias.json}
+\codeFromFile{json}{../samples/file_alias.json}{file alias}{s:file-alias}
 
 \subsection{Replica}
 
-\VerbatimInput{../samples/replica.json}
+In many distributed systems, it is of importance that a file can be
+replicated among different systems in order to provide faster
+access. It is important to provide a mechanism that allows to trace
+the pedigree of the file while pointing to its original source 
+
+\codeFromFile{json}{../samples/replica.json}{replica}{s:replica}
 
 
 \subsection{Virtual Directory}
 
-\VerbatimInput{../samples/virtual_directory.json}
+A collection of files or replicas. A virtual directory can contain an
+number of entities cincluding files, streams, and other virtual
+directories as part of a collection. The element in the collection can
+either be defined by uuid or by name. 
+
+\codeFromFile{json}{../samples/virtual_directory.json}{virtual
+  directory}{s:virtual-directory}
 
 \subsection{Database}
 
 A \textbf{database} could have a name, an \textit{endpoint} (e.g., host:port),
 and protocol used (e.g., SQL, mongo, etc.).
 
-\VerbatimInput{../samples/database.json}
+\codeFromFile{json}{../samples/database.json}{database}{s:database}
 
+\subsection{Stream} 
 
-
+<Description> 
+ 
+Stream source 
+ 
+Stream subscriber 
+ 
+Values: 
+Rate 
+Limit 
+Redirect (virtual/alias) 
+Pipe 
+Filters 
+ 
+Functions: 
+list 
+Subscribe 
+Unsubscribe 
+Get 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{IaaS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -116,15 +330,17 @@ and protocol used (e.g., SQL, mongo, etc.).
 
 \subsubsection{Openstack Flavor}
 
-\VerbatimInput{../samples/openstack_flavor.json}
+\codeFromFile{json}{../samples/openstack_flavor.json}{openstack flavor}{s:openstack-flavor}
 
 \subsubsection{Openstack Image}
 
-\VerbatimInput{../samples/openstack_image.json}
+\codeFromFile{json}{../samples/openstack_image.json}{openstack
+  image}{s:openstack-image}
 
 \subsubsection{Openstack Vm}
 
-\VerbatimInput{../samples/openstack_vm.json}
+\codeFromFile{json}{../samples/openstack_vm.json}{openstack
+  vm}{s:openstack-vm}
 
 % ----------------------------------------------------------------------
 \subsection{Azure}
@@ -134,17 +350,17 @@ and protocol used (e.g., SQL, mongo, etc.).
 
 The size description of an azure vm
 
-\VerbatimInput{../samples/azure-size.json}
+\codeFromFile{json}{../samples/azure-size.json}{azure-size}{s:azure-size}
 
 
 \subsubsection{Azure Image}
 
-\VerbatimInput{../samples/azure-image.json}
+\codeFromFile{json}{../samples/azure-image.json}{azure-image}{s:azure-image}
 
 \subsubsection{Azure Vm}
 
 An Azure virtual machine
-\VerbatimInput{../samples/azure-vm.json}
+\codeFromFile{json}{../samples/azure-vm.json}{azure-vm}{s:azure-vm}
 
 
 
@@ -154,7 +370,7 @@ An Azure virtual machine
 
 \subsection{Batch Job}
 
-\VerbatimInput{../samples/batchjob.json}
+\codeFromFile{json}{../samples/batchjob.json}{batchjob}{s:batchjob}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Virtual Cluster}
@@ -162,20 +378,27 @@ An Azure virtual machine
 
 \subsection{Cluster}
 
-The cluster object has name, label, endpoint and provider. The \textit{endpoint}
-defines.... The \textit{provider} defines the nature of the cluster,
-e.g., its a virtual cluster on an openstack cloud, or from AWS, or a bare-metal
-cluster.
+The cluster object has name, label, endpoint and provider. The
+\textit{endpoint} defines....  The \textit{provider} defines the
+nature of the cluster, e.g., its a virtual cluster on an openstack
+cloud, or from AWS, or a bare-metal cluster.
 
 
-\VerbatimInput{../samples/cluster.json}
+\codeFromFile{json}{../samples/cluster.json}{cluster}{s:cluster}
 \
 \subsection{Compute Resource}
+
+An important concept for big data analysis it the representation of a
+compute resource on which we execute the analysis. We define a compute
+resource by name and by endpoint. A compute resource is an abstract
+concept and can be instantiated through virtual machines, containers,
+or bare metal resources. This is defined by the “kind” of the compute
+resource 
 
 \textbf{compute\_resource} object has attribute \textit{endpoint} which
 specifies ... The \textit{kind} could be \textit{baremetal} or \textit{VC}.
 
-\VerbatimInput{../samples/compute_resource.json}
+\codeFromFile{json}{../samples/compute_resource.json}{compute resource}{s:compute-resource}
 
 \subsection{Computer}
 
@@ -183,7 +406,7 @@ This defines a \textbf{computer} object. A computer has name, label,
 IP address. It also listed the relevant specs such as memory, disk
 size, etc.
 
-\VerbatimInput{../samples/computer.json}
+\codeFromFile{json}{../samples/computer.json}{computer}{s:computer}
 
 
 \subsection{node}
@@ -223,25 +446,35 @@ egress TCP and UDP traffic is allowed provided they are to ports 22
 (SSH), 443 (SSL), and 80 and 8080 (web).
 
 
-\VerbatimInput{../samples/node-new.json}
+\codeFromFile{json}{../samples/node-new.json}{node-new}{s:node-new}
 
 
 
 \subsection{Virtual Cluster}
 
-\VerbatimInput{../samples/virtual_cluster.json}
+A virtual cluster is an agglomeration of virtual compute nodes that
+constitute the cluster. Nodes can be assembled to be baremetal,
+virtual machines, and containers. A virtual cluster contains a number
+of virtual compute nodes.  
+ 
+\codeFromFile{json}{../samples/virtual_cluster.json}{virtual
+  cluster}{s:virtual-cluster}
 
 \subsection{Virtual Compute node}
 
-\VerbatimInput{../samples/virtual_compute_node.json}
+\codeFromFile{json}{../samples/virtual_compute_node.json}{virtual
+  compute node}{s:virtual-compute-node}
 
 \subsection{Virtual Machine}
 
-\VerbatimInput{../samples/virtual_machine.json}
+Virtual Machine 
+Virtual machines are an emulation of a computer system. We are maintaining a very basic set of information. It is expected that through the endpoint the virtual machine can be introspected and more detailed information can be retrieved. 
+
+\codeFromFile{json}{../samples/virtual_machine.json}{virtual machine}{s:virtual-machine}
 
 \subsection{Mesos}
 
-\VerbatimInput{../samples/mesos.json}
+\codeFromFile{json}{../samples/mesos.json}{mesos}{s:mesos}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Containers}
@@ -251,11 +484,11 @@ egress TCP and UDP traffic is allowed provided they are to ports 22
 
 This defines \textbf{container} object.
 
-\VerbatimInput{../samples/container.json}
+\codeFromFile{json}{../samples/container.json}{container}{s:container}
 
 \subsection{Kubernetes}
 
-\VerbatimInput{../samples/kubernetes.json}
+\codeFromFile{json}{../samples/kubernetes.json}{kubernetes}{s:kubernetes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Deployment}
@@ -267,7 +500,7 @@ A \textbf{deployment} consists of the resource \- \textit{cluster},
 the location \- \textit{provider}, e.g., AWS, OpenStack, etc., and
 software \textit{stack} to be deployed (e.g., hadoop, spark).
 
-\VerbatimInput{../samples/deployment.json}
+\codeFromFile{json}{../samples/deployment.json}{deployment}{s:deployment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mapreduce}
@@ -280,7 +513,7 @@ the \textit{parameters} of the deployment, and the system packages as
 \textit{requires}. For each requirement, it could have attributes such
 as the library origin, version, etc.
 
-\VerbatimInput{../samples/hadoop.json}
+\codeFromFile{json}{../samples/hadoop.json}{hadoop}{s:hadoop}
 
 
 \subsection{Mapreduce}
@@ -288,7 +521,7 @@ as the library origin, version, etc.
 This defines a \textbf{mapreduce} deployment with its layered
 components.
 
-\VerbatimInput{../samples/mapreduce.json}
+\codeFromFile{json}{../samples/mapreduce.json}{mapreduce}{s:mapreduce}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Security}
@@ -296,7 +529,7 @@ components.
 
 \subsection{Key}
 
-\VerbatimInput{../samples/key.json}
+\codeFromFile{json}{../samples/key.json}{key}{s:key}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Microservice}
@@ -304,17 +537,33 @@ components.
 
 \subsection{Microservice}
 
+ 
+introduce registry we can register many things to it 
+latency 
+provide example on how to use each of them, not just the object definition example 
+ 
+necessity of local direct attached storage. 
+Mimd model to storage  
+Kubernetis, mesos can not spin up ?  
+Takes time to spin them up and coordinate them. While setting up environment takes more thsn using the microservice, so we must make sure that the micorservices are used sufficiently to offset spinup cost. 
+ 
+limitation of resource capacity such as networking. 
+ 
+Benchmarking to find out thing about service level agreement to access
+the 
+
+
 A system could be composed of from various microservices, and this defines
 each of them.
 
-\VerbatimInput{../samples/microservice.json}
+\codeFromFile{json}{../samples/microservice.json}{microservice}{s:microservice}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Reservation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\VerbatimInput{../samples/reservation.json}
+\codeFromFile{json}{../samples/reservation.json}{reservation}{s:reservation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Network}
@@ -328,7 +577,7 @@ We are looking for volunteers to contribute here.
 
 \section{Schema Command}
 
-\VerbatimInput{schema-man.tex}
+%\codeFromFile{txt}{schema-man.tex}{man page}{s:manpage}
 
 
 \section{Contributing}
@@ -350,7 +599,8 @@ Components are written as YAML markup in files in the
 
 For example:
 
-\VerbatimInput{../samples/profile.json}
+\codeFromFile{json}{../samples/profile.json}{profile}{s:profile}
+
 \subsection{Element Definition}
 
 Each resource should have a \verb+description+ entry to act as
