@@ -43,7 +43,7 @@ NAME = "cloudmesh.rest"
 DESCRIPTION = "A command to manage eve and mongo locally"
 AUTHOR = "Gregor von Laszewski"
 AUTHOR_EMAIL = "laszewski@gmail.com"
-URL = "https://github.com/cloudmesh/rest"
+URL = "https://github.com/cloudmesh/cloudmesh.rest"
 LONG_DESCRIPTION = "\n".join(readme)
 
 

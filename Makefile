@@ -85,9 +85,17 @@ other:
 	$(call banner, "LIST TEST")
 	@curl -s http://127.0.0.1:5000/test  | jq
 
+schema:
+	cd cloudmesh/specification; cms schema cat examples settings.json
+	cd cloudmesh/specification; cms schema convert settings.json
 
 nosetests:
 	nosetests -v --nocapture tests/test_mongo.py
+
+envclean:
+	pyenv uninstall ENV2
+	rm -f /Users/grey/.pyenv/shims/cms
+	pyenv virtualenv 2.7.13 ENV2 
 
 
 clean:

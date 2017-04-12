@@ -3,17 +3,15 @@ The admin command for the REST services
 """
 from __future__ import print_function
 
-from pprint import pprint
+import glob
+import os.path
 
 from cloudmesh.shell.command import PluginCommand
 from cloudmesh.shell.command import command
 
 from cloudmesh.rest.elements import Elements
-from cloudmesh.rest.schema import YmlToSpec, SpecToTex
 from cloudmesh.rest.schema import ConvertSpec
-import glob
-
-import os.path
+from cloudmesh.rest.schema import YmlToSpec, SpecToTex
 
 
 class SchemaCommand(PluginCommand):
