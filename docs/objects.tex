@@ -82,7 +82,7 @@
 
 \ociscodes{CLoudmesh, REST, NIST} 
 
-\doi{\url{https://github.com/cloudmesh/rest/tree/master/resources/docs}} 
+\doi{\url{https://github.com/cloudmesh/rest/tree/master/docs}} 
 
 
 \begin{abstract}
@@ -204,11 +204,11 @@ compliancy. We define it as follows
 \subsection{profile}
 
 
-\codeFromFile{json}{../samples/profile.json}{User profile}{s:profile}
+\codeFromFile{json}{../cloudmesh/specification/examples/profile.json}{User profile}{s:profile}
 
 \subsection{user}
 
-\codeFromFile{json}{../samples/user.json}{user}{s:user}
+\codeFromFile{json}{../cloudmesh/specification/examples/user.json}{user}{s:user}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -245,11 +245,11 @@ Stream Filters operate in streams or on files converting them to streams
 
 \subsection{Var}
 
-\codeFromFile{json}{../samples/var.json}{var}{s:var}
+\codeFromFile{json}{../cloudmesh/specification/examples/var.json}{var}{s:var}
 
 \subsection{Default}
 
-\codeFromFile{json}{../samples/default.json}{default}{s:default}
+\codeFromFile{json}{../cloudmesh/specification/examples/default.json}{default}{s:default}
 
 \subsection{File}
 
@@ -264,13 +264,13 @@ The \textbf{file} object has \textit{name}, \textit{endpoint} (location), \texti
 in GB, MB, Byte, \textit{checksum} for integrity check, and last
 \textit{accessed} timestamp. 
 
-\codeFromFile{json}{../samples/file.json}{file}{s:file}
+\codeFromFile{json}{../cloudmesh/specification/examples/file.json}{file}{s:file}
 
 \subsection{File Alias}
 
 A file could have one alias or even multiple ones.
 
-\codeFromFile{json}{../samples/file_alias.json}{file alias}{s:file-alias}
+\codeFromFile{json}{../cloudmesh/specification/examples/file_alias.json}{file alias}{s:file-alias}
 
 \subsection{Replica}
 
@@ -279,7 +279,7 @@ replicated among different systems in order to provide faster
 access. It is important to provide a mechanism that allows to trace
 the pedigree of the file while pointing to its original source 
 
-\codeFromFile{json}{../samples/replica.json}{replica}{s:replica}
+\codeFromFile{json}{../cloudmesh/specification/examples/replica.json}{replica}{s:replica}
 
 
 \subsection{Virtual Directory}
@@ -289,7 +289,7 @@ number of entities cincluding files, streams, and other virtual
 directories as part of a collection. The element in the collection can
 either be defined by uuid or by name. 
 
-\codeFromFile{json}{../samples/virtual_directory.json}{virtual
+\codeFromFile{json}{../cloudmesh/specification/examples/virtual_directory.json}{virtual
   directory}{s:virtual-directory}
 
 \subsection{Database}
@@ -297,7 +297,7 @@ either be defined by uuid or by name.
 A \textbf{database} could have a name, an \textit{endpoint} (e.g., host:port),
 and protocol used (e.g., SQL, mongo, etc.).
 
-\codeFromFile{json}{../samples/database.json}{database}{s:database}
+\codeFromFile{json}{../cloudmesh/specification/examples/database.json}{database}{s:database}
 
 \subsection{Stream} 
 
@@ -330,16 +330,16 @@ Get
 
 \subsubsection{Openstack Flavor}
 
-\codeFromFile{json}{../samples/openstack_flavor.json}{openstack flavor}{s:openstack-flavor}
+\codeFromFile{json}{../cloudmesh/specification/examples/openstack_flavor.json}{openstack flavor}{s:openstack-flavor}
 
 \subsubsection{Openstack Image}
 
-\codeFromFile{json}{../samples/openstack_image.json}{openstack
+\codeFromFile{json}{../cloudmesh/specification/examples/openstack_image.json}{openstack
   image}{s:openstack-image}
 
 \subsubsection{Openstack Vm}
 
-\codeFromFile{json}{../samples/openstack_vm.json}{openstack
+\codeFromFile{json}{../cloudmesh/specification/examples/openstack_vm.json}{openstack
   vm}{s:openstack-vm}
 
 % ----------------------------------------------------------------------
@@ -350,17 +350,17 @@ Get
 
 The size description of an azure vm
 
-\codeFromFile{json}{../samples/azure-size.json}{azure-size}{s:azure-size}
+\codeFromFile{json}{../cloudmesh/specification/examples/azure-size.json}{azure-size}{s:azure-size}
 
 
 \subsubsection{Azure Image}
 
-\codeFromFile{json}{../samples/azure-image.json}{azure-image}{s:azure-image}
+\codeFromFile{json}{../cloudmesh/specification/examples/azure-image.json}{azure-image}{s:azure-image}
 
 \subsubsection{Azure Vm}
 
 An Azure virtual machine
-\codeFromFile{json}{../samples/azure-vm.json}{azure-vm}{s:azure-vm}
+\codeFromFile{json}{../cloudmesh/specification/examples/azure-vm.json}{azure-vm}{s:azure-vm}
 
 
 
@@ -370,7 +370,7 @@ An Azure virtual machine
 
 \subsection{Batch Job}
 
-\codeFromFile{json}{../samples/batchjob.json}{batchjob}{s:batchjob}
+\codeFromFile{json}{../cloudmesh/specification/examples/batchjob.json}{batchjob}{s:batchjob}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Virtual Cluster}
@@ -384,7 +384,7 @@ nature of the cluster, e.g., its a virtual cluster on an openstack
 cloud, or from AWS, or a bare-metal cluster.
 
 
-\codeFromFile{json}{../samples/cluster.json}{cluster}{s:cluster}
+\codeFromFile{json}{../cloudmesh/specification/examples/cluster.json}{cluster}{s:cluster}
 \
 \subsection{Compute Resource}
 
@@ -398,7 +398,7 @@ resource
 \textbf{compute\_resource} object has attribute \textit{endpoint} which
 specifies ... The \textit{kind} could be \textit{baremetal} or \textit{VC}.
 
-\codeFromFile{json}{../samples/compute_resource.json}{compute resource}{s:compute-resource}
+\codeFromFile{json}{../cloudmesh/specification/examples/compute_resource.json}{compute resource}{s:compute-resource}
 
 \subsection{Computer}
 
@@ -406,7 +406,7 @@ This defines a \textbf{computer} object. A computer has name, label,
 IP address. It also listed the relevant specs such as memory, disk
 size, etc.
 
-\codeFromFile{json}{../samples/computer.json}{computer}{s:computer}
+\codeFromFile{json}{../cloudmesh/specification/examples/computer.json}{computer}{s:computer}
 
 
 \subsection{node}
@@ -446,7 +446,7 @@ egress TCP and UDP traffic is allowed provided they are to ports 22
 (SSH), 443 (SSL), and 80 and 8080 (web).
 
 
-\codeFromFile{json}{../samples/node-new.json}{node-new}{s:node-new}
+\codeFromFile{json}{../cloudmesh/specification/examples/node-new.json}{node-new}{s:node-new}
 
 
 
@@ -457,12 +457,12 @@ constitute the cluster. Nodes can be assembled to be baremetal,
 virtual machines, and containers. A virtual cluster contains a number
 of virtual compute nodes.  
  
-\codeFromFile{json}{../samples/virtual_cluster.json}{virtual
+\codeFromFile{json}{../cloudmesh/specification/examples/virtual_cluster.json}{virtual
   cluster}{s:virtual-cluster}
 
 \subsection{Virtual Compute node}
 
-\codeFromFile{json}{../samples/virtual_compute_node.json}{virtual
+\codeFromFile{json}{../cloudmesh/specification/examples/virtual_compute_node.json}{virtual
   compute node}{s:virtual-compute-node}
 
 \subsection{Virtual Machine}
@@ -470,11 +470,11 @@ of virtual compute nodes.
 Virtual Machine 
 Virtual machines are an emulation of a computer system. We are maintaining a very basic set of information. It is expected that through the endpoint the virtual machine can be introspected and more detailed information can be retrieved. 
 
-\codeFromFile{json}{../samples/virtual_machine.json}{virtual machine}{s:virtual-machine}
+\codeFromFile{json}{../cloudmesh/specification/examples/virtual_machine.json}{virtual machine}{s:virtual-machine}
 
 \subsection{Mesos}
 
-\codeFromFile{json}{../samples/mesos.json}{mesos}{s:mesos}
+\codeFromFile{json}{../cloudmesh/specification/examples/mesos.json}{mesos}{s:mesos}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Containers}
@@ -484,11 +484,11 @@ Virtual machines are an emulation of a computer system. We are maintaining a ver
 
 This defines \textbf{container} object.
 
-\codeFromFile{json}{../samples/container.json}{container}{s:container}
+\codeFromFile{json}{../cloudmesh/specification/examples/container.json}{container}{s:container}
 
 \subsection{Kubernetes}
 
-\codeFromFile{json}{../samples/kubernetes.json}{kubernetes}{s:kubernetes}
+\codeFromFile{json}{../cloudmesh/specification/examples/kubernetes.json}{kubernetes}{s:kubernetes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Deployment}
@@ -500,7 +500,7 @@ A \textbf{deployment} consists of the resource \- \textit{cluster},
 the location \- \textit{provider}, e.g., AWS, OpenStack, etc., and
 software \textit{stack} to be deployed (e.g., hadoop, spark).
 
-\codeFromFile{json}{../samples/deployment.json}{deployment}{s:deployment}
+\codeFromFile{json}{../cloudmesh/specification/examples/deployment.json}{deployment}{s:deployment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mapreduce}
@@ -513,7 +513,7 @@ the \textit{parameters} of the deployment, and the system packages as
 \textit{requires}. For each requirement, it could have attributes such
 as the library origin, version, etc.
 
-\codeFromFile{json}{../samples/hadoop.json}{hadoop}{s:hadoop}
+\codeFromFile{json}{../cloudmesh/specification/examples/hadoop.json}{hadoop}{s:hadoop}
 
 
 \subsection{Mapreduce}
@@ -521,7 +521,7 @@ as the library origin, version, etc.
 This defines a \textbf{mapreduce} deployment with its layered
 components.
 
-\codeFromFile{json}{../samples/mapreduce.json}{mapreduce}{s:mapreduce}
+\codeFromFile{json}{../cloudmesh/specification/examples/mapreduce.json}{mapreduce}{s:mapreduce}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Security}
@@ -529,7 +529,7 @@ components.
 
 \subsection{Key}
 
-\codeFromFile{json}{../samples/key.json}{key}{s:key}
+\codeFromFile{json}{../cloudmesh/specification/examples/key.json}{key}{s:key}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Microservice}
@@ -556,14 +556,14 @@ the
 A system could be composed of from various microservices, and this defines
 each of them.
 
-\codeFromFile{json}{../samples/microservice.json}{microservice}{s:microservice}
+\codeFromFile{json}{../cloudmesh/specification/examples/microservice.json}{microservice}{s:microservice}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Reservation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\codeFromFile{json}{../samples/reservation.json}{reservation}{s:reservation}
+\codeFromFile{json}{../cloudmesh/specification/examples/reservation.json}{reservation}{s:reservation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Network}
@@ -599,7 +599,7 @@ Components are written as YAML markup in files in the
 
 For example:
 
-\codeFromFile{json}{../samples/profile.json}{profile}{s:profile}
+\codeFromFile{json}{../cloudmesh/specification/examples/profile.json}{profile}{s:profile}
 
 \subsection{Element Definition}
 
