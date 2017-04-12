@@ -37,6 +37,11 @@ pull:
 	cd ../cmd5; git pull
 	git pull
 
+i:
+	cd ../common; python setup.py install; pip install -e . -U
+	cd ../cmd5; python setup.py install; pip install -e . -U
+
+
 install:
 	cd ../common; python setup.py install; pip install -e . -U
 	cd ../cmd5; python setup.py install; pip install -e . -U
