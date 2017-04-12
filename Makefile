@@ -37,15 +37,13 @@ pull:
 	cd ../cmd5; git pull
 	git pull
 
-i:
-	cd ../common; python setup.py install; pip install -e . -U
-	cd ../cmd5; python setup.py install; pip install -e . -U
-
-
 install:
-	cd ../common; python setup.py install; pip install -e . -U
-	cd ../cmd5; python setup.py install; pip install -e . -U
-	python setup.py install; pip install -e . -U
+	cd ../cloudmesh.cmd5; make install
+	python setup.py install; pip install -e .
+
+source:
+	python setup.py install; pip install -e .
+	cms help
 
 setup:
 	# brew update
@@ -62,6 +60,9 @@ mongo:
 
 eve:
 	$(call terminal, $(EVE))
+
+
+
 
 deploy: setup mongo eve
 	pip install .
