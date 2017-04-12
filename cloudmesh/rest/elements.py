@@ -1,7 +1,7 @@
 from __future__ import print_function
 import glob
 import json
-from  ruamel.yaml import yaml
+from  ruamel import yaml
 
 class Elements(object):
     def __init__(self, directory, filename):
