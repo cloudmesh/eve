@@ -37,15 +37,13 @@ pull:
 	cd ../cmd5; git pull
 	git pull
 
-i:
-	cd ../common; python setup.py install; pip install -e . -U
-	cd ../cmd5; python setup.py install; pip install -e . -U
-
-
 install:
-	cd ../common; python setup.py install; pip install -e . -U
-	cd ../cmd5; python setup.py install; pip install -e . -U
-	python setup.py install; pip install -e . -U
+	cd ../cloudmesh.cmd5; make install
+	python setup.py install; pip install -e .
+
+source:
+	python setup.py install; pip install -e .
+	cms help
 
 setup:
 	# brew update
@@ -62,6 +60,9 @@ mongo:
 
 eve:
 	$(call terminal, $(EVE))
+
+
+
 
 deploy: setup mongo eve
 	pip install .
@@ -85,9 +86,17 @@ other:
 	$(call banner, "LIST TEST")
 	@curl -s http://127.0.0.1:5000/test  | jq
 
+schema:
+	cd cloudmesh/specification; cms schema cat examples settings.json
+	cd cloudmesh/specification; cms schema convert settings.json
 
 nosetests:
 	nosetests -v --nocapture tests/test_mongo.py
+
+envclean:
+	pyenv uninstall ENV2
+	rm -f /Users/grey/.pyenv/shims/cms
+	pyenv virtualenv 2.7.13 ENV2 
 
 
 clean:

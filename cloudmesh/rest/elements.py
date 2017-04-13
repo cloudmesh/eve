@@ -1,11 +1,12 @@
 from __future__ import print_function
 import glob
 import json
+from  ruamel import yaml
 
 class Elements(object):
     def __init__(self, directory, filename):
 
-        import yaml
+
         import os.path
 
         settings = {}
@@ -34,7 +35,7 @@ class Elements(object):
 
 '''            
 y2j.py:
-import yaml
+import ruamel.yaml
 import json
 
 import sys

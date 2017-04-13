@@ -18,8 +18,14 @@ class ConvertSpec(object):
 
             print("... converting", infile, "->", outfile)
 
-            r = Shell.execute("evegenie", [infile])
-            print (r)
+            try:
+
+                r = Shell.execute("evegenie", [infile])
+                print (r)
+            except Exception as e:
+                print ("E", str(e))
+                if "ERROR:" in e:
+                    print("Error: cloudmesh.evegenie is not installed")
 
         elif ".yml" in infile and ".json" in outfile:
             element = yaml.safe_load(open(infile))
