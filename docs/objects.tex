@@ -338,28 +338,31 @@ and protocol used (e.g., SQL, mongo, etc.).
 
 \subsection{Stream} 
 
-<Description> 
- 
-Stream source 
- 
-Stream subscriber 
- 
-Values: 
-Rate 
-Limit 
-Redirect (virtual/alias) 
-Pipe 
-Filters 
- 
-Functions: 
-list 
-Subscribe 
-Unsubscribe 
-Get 
+A stream proveds a stream of data while providing information about
+rate and number of items exchanged while issuing requests to the
+stream. A stream my return data items in a specific fromat that is
+defined by the stream. 
+
+\codeFromJson{json}{stream.json}{stream}{s:stream}
+
+Examples for streams could be a stream of random numbers but could
+also include more complex formats such as the retrieval of data
+records. 
+
+Services can subscribe, unsubscribe from a stream, while also applying
+filters to the subscribed stream.
+
+\codeFromJson{json}{filter.json}{filter}{s:filter}
+
+\TODO{Filter needs to be refined}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{IaaS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+In this section we are defining resources related to Infrastructure as
+a Service frameworks. This includes specific objects useful for
+OpenStack, Azure, and AWS, as well as others.
 
 % ----------------------------------------------------------------------
 \subsection{Openstack}
