@@ -1,8 +1,10 @@
 {
   "user": {
+    "uuid": "jshdjkdh...",
+    "context:": "resource",  
+    "email": "laszewski@gmail.com",
     "firstname": "Gregor",
     "lastname": "von Laszewski",
-    "email": "laszewski@gmail.com",
     "username": "gregor",
     "roles": ["admin", "user"]
   }

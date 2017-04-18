@@ -1,6 +1,8 @@
 {
   "profile": {
     "description": "The Profile of a user",
+    "uuid": "jshdjkdh...",
+    "context:": "resource",        
     "email": "laszewski@gmail.com",
     "firstname": "Gregor",
     "lastname": "von Laszewski",

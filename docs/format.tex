@@ -1,0 +1,94 @@
+\usepackage{geometry}
+\geometry{paper=letterpaper,margin=2cm}
+
+
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\journal{cm}  
+\usepackage{listings}
+\usepackage{minted}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{minted}
+
+\definecolor{codebggray}{rgb}{0.95,0.95,0.95}
+
+
+
+\newcounter{filePrg}
+
+
+\tcbuselibrary{listings}
+\tcbuselibrary{minted}
+
+\newtcbinputlisting[use counter=filePrg, number within=section, list inside=mypyg]{\codeFromFile}[4]{%
+  listing engine=minted,
+  minted language=#1,
+  listing file={#2},
+  minted options={autogobble,linenos,breaklines},
+  listing only,
+  size=title,
+    drop fuzzy shadow,
+  breakable,
+  enhanced jigsaw,
+    %arc=1.5mm,
+  %colframe=brown,
+  %coltitle=White,
+  %boxrule=0.5mm,
+  %colback=white,
+  %coltext=Black,
+  title={Listing \thetcbcounter : #3 \hfill%
+    \smash{\raisebox{-6pt}{\includegraphics[width=.5cm,height=.5cm]{images/code2.png}}}},
+    list entry=Listing~\thetcbcounter : #3,
+    %OR next two lines
+    %title={Listing \thetcbcounter : #3},
+    %overlay={\node[anchor=north east,outer sep=-9pt] at ([xshift=-25pt]frame.north east) {\includegraphics[width=1cm,height=1cm]{images/code2.png}}; },
+  label=lst:#4
+}
+
+\newtcbinputlisting[use counter=filePrg, number within=section, list inside=mypyg]{\codeFromJson}[4]{%
+  listing engine=minted,
+  minted language=#1,
+  listing file={../cloudmesh/specification/examples/#2},
+  minted options={autogobble,linenos,breaklines},
+  listing only,
+  size=title,
+    drop fuzzy shadow,
+  breakable,
+  enhanced jigsaw,
+    %arc=1.5mm,
+  %colframe=brown,
+  %coltitle=White,
+  %boxrule=0.5mm,
+  %colback=white,
+  %coltext=Black,
+  title={Listing \thetcbcounter : #3 \hfill%
+    \smash{\raisebox{-6pt}{\includegraphics[width=.5cm,height=.5cm]{images/code2.png}}}},
+    list entry=Listing~\thetcbcounter : #3,
+    %OR next two lines
+    %title={Listing \thetcbcounter : #3},
+    %overlay={\node[anchor=north east,outer sep=-9pt] at ([xshift=-25pt]frame.north east) {\includegraphics[width=1cm,height=1cm]{images/code2.png}}; },
+  label=lst:#4
+}
+
+%http://tex.stackexchange.com/questions/217489/numbering-tcolorbox-toc
+\makeatletter % no indent for entries
+\renewcommand{\l@tcolorbox}{\@dottedtocline{1}{0pt}{2.3em}}
+\makeatother
+
+\usepackage{hyperref}
+\usepackage[ngerman,nameinlink]{cleveref}
+
+\crefname{filePrg}{Listing}{Listings}
+
+
+\newtcblisting{json}[1][]{%
+  colback=codebggray,
+  listing only,
+  minted options={
+    fontsize=\small
+  },  
+  minted language=json,
+  #1
+}
+
+\newcommand{\tightlist}{}

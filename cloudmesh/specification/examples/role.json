@@ -1,0 +1,7 @@
+{
+    "role": {
+      "name": "editor",
+      "description": "This role contains all editors",
+      "users": [objectid:user],
+  }
+}
