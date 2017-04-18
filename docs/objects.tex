@@ -273,9 +273,18 @@ Stream Filters operate in streams or on files converting them to streams
 
 \subsection{Var}
 
+variables are used to store a simple values. Each variable can have a
+type. The variable value format is defined as string to allow maximal
+probability. The type of the value is also provided.
+
 \codeFromJson{json}{var.json}{var}{s:var}
 
 \subsection{Default}
+
+A default is a special variable that has a context associated with
+it. This allow su to define values that can be easily retrieved based
+on its context. A good example for a default would be the image name
+for a cloud where the context is defined by the cloud name.
 
 \codeFromJson{json}{default.json}{default}{s:default}
 
