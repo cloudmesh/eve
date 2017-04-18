@@ -108,65 +108,110 @@ TBD
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+In this document we summarize elementary objects that are important to
+for the NBDRA.
+
 \subsection{Design by Example}
 
-To accelereat discussion among the team we use an approach to define
-objects and its interfaces by  example. These examples are than taken
+To accelerate discussion among the team we use an approach to define
+objects and its interfaces by example. These examples are than taken
 in a later version of the document and a schema is generated from
-it. The schema will be added in its complete form to the
-appendix. While focusing first on examples it allows us to speed up
-our design and simplifies discussions of the objects and interfaces
+it. The schema will be added in its complete form to the appendix
+\ref{a:schema}. While focusing first on examples it allows us to speed
+up our design and simplifies discussions of the objects and interfaces
 eliminating getting lost in complex syntactical specifications. The
 process and specifications used in this document will also allow us to
 automatically create a implementation of the objects that can be
 integrated into a reference architecture as provided by for example
-the cloudmesh client and rest project \cite{??}.  
+the cloudmesh client and rest project \cite{??}.
 
 An example object will demonstrate our approach. The following object
 defines a JSON object representing a user. 
 
-\begin{json}
-"user":{  
-     "firstname": "Gregor",  
-     "lastname": "von Laszewski",  
-     "email": "laszewski@gmail.com",  
-     "username": "gregor" 
-}
-\end{json}
 
+\codeFromFile{json}{../cloudmesh/specification/examples/profile.json}{User profile}{s:profile}
 
-\begin{Verbatim}
-"user":{  
-     "firstname": "Gregor",  
-     "lastname": "von Laszewski",  
-     "email": "laszewski@gmail.com",  
-     "username": "gregor" 
-}
-\end{Verbatim}
  
-Such an object can be transformed to a more precise specification as a
-schema while introspecting the types resulting in  
+Such an object can be transformed to a schema specification 
+while introspecting the types of the original example. The resulting
+schema object follows the Cerberus \cite{??} specification and looks
+for our object as follows:
 
 \begin{Verbatim}
-user = {  
+profile = {  
+   'description': { ’type’: ’string’},  
+   ’email’: { ’type’: ’email’ },  
    ’firstname’: { ’type’: ’string’},  
    ’lastname’: { ’type’: ’string’ },   
-   ’email’: { ’type’: ’email’ },  
    ’username’: { ’type’: ‘string’ } 
 }  
 \end{Verbatim}
 
-The appendix will list the examples as well as the schema definitions
-(see appendix ???).  
+As mentioned before, the Appendix\ref{a:schema} will list the schema
+that is automatically created from the definitions.
 
 \subsection{Tools to Create the Specifications}
 
+The tools to create the schema and object are all available opensource
+and are hosted on github. It includes the following repositories:
+
+\begin{description}
+\item[cloudmesh.common] ~\\
+  \url{https://github.com/cloudmesh/cloudmesh.common}
+\item[cloudmesh.cmd5] ~\\
+  \url{https://github.com/cloudmesh/cloudmesh.cmd5}
+\item[cloudmesh.rest] ~\\
+  \url{https://github.com/cloudmesh/cloudmesh.rest}
+\item[cloudmesh/evegenie] ~\\
+  \url{https://github.com/cloudmesh/evegenie}
+\end{description}
+
+\subsection{Installation of the Tools}
+
+The current best way to install the tools is from source. A convenient
+shell script conducting the install is located at:
+
+TBD
+
+Once we have stabilized the code the package will be available from
+pypi and can be installed as follows:
+
 \begin{Verbatim}
-cloudmesh/evegenie
-cloudmesh.cmd5
-cloudmesh.rest
+pip install cloudmesh.rest
+pip install cloudmesh.evengine
+\end{Verbatim} 
+
+\subsection{Document Creation}
+
+It is assumed that you have installed all the tools. TO create the
+document you can simply do
+
+\begin{Verbatim}
+git clone https://github.com/cloudmesh/cloudmesh.rest
+cd cloudmesh.rest/docs
+make
 \end{Verbatim}
 
+This will produce in that directory a file called object.pdf
+containing this document.
+
+\subsection{Conversion to Word}
+
+We found that it is inconvenient for the developers to maintain this
+document in Microsoft Word as typically is done for other
+documents. This is because the majority of the information contains
+specifications that are directly integrated in a reference
+implementation, as well as that the current majority of contributors
+are developers. We would hope that editorial staff provides direct
+help to improve this document, which even can be done through the
+github Web interface and does not require any access either to the
+tools mentioned above or the availability of \LaTeX.
+
+The files are located at:
+
+\begin{itemize}
+\url{https://github.com/cloudmesh/cloudmesh.rest/tree/master/docs}
+\end{itemize}
 
 \subsection{Interface Compliancy}
 
@@ -579,6 +624,10 @@ We are looking for volunteers to contribute here.
 
 %\codeFromFile{txt}{schema-man.tex}{man page}{s:manpage}
 
+
+\section{Schema}\label{a:schema}
+
+TBD
 
 \section{Contributing}
 
