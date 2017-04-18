@@ -1,0 +1,6 @@
+{
+  "filter": {
+    "name": "name of the filter",
+    "function": "the function  of the data exchanged in the stream",
+  }
+}
