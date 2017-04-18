@@ -1,5 +1,5 @@
 {
-  "vm-azure": {
+  "azure-vm": {
     "username": "string",
     "status": "string",
     "deployment_slot": "string",

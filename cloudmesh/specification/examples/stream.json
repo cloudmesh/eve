@@ -3,8 +3,8 @@
     "name": "name of the variable",
     "format": "the format of the data exchanged in the stream",
     "attributes": {
-	"rate": 10,
-	"limit": 1000,
+      "rate": 10,
+      "limit": 1000
     }
   }
 }

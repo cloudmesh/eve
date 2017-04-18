@@ -51,27 +51,30 @@ class SchemaCommand(PluginCommand):
         """
         # pprint(arguments)
 
-        if arguments.cat:
-            directory = arguments.DIRECTORY
-            filename = arguments.FILENAME
-            elements = Elements(directory, filename)
+        try:
 
-        elif arguments.convert:
-            try:
-                filename = arguments.INFILE
-                outfile = arguments.OUTFILE or "settings.py"
-                if arguments.OUTFILE is None:
+            if arguments.cat:
+                directory = arguments.DIRECTORY
+                filename = arguments.FILENAME
+                elements = Elements(directory, filename)
 
+            elif arguments.convert:
+                try:
+                    filename = arguments.INFILE
+                    outfile = arguments.OUTFILE or "settings.py"
+                    if arguments.OUTFILE is None:
 
-                    if ".py" in outfile:
-                        pass
-                    elif ".json" in filename:
-                        outfile = filename.replace(".json", ".yml")
-                    elif ".yml" in filename:
-                        outfile = filename.replace(".yml", ".json")
+                        if ".py" in outfile:
+                            pass
+                        elif ".json" in filename:
+                            outfile = filename.replace(".json", ".yml")
+                        elif ".yml" in filename:
+                            outfile = filename.replace(".yml", ".json")
 
-
-                ConvertSpec(filename, outfile)
-            except Exception as e:
-                print (e)
-                Error.traceback(error=e, debug=True, trace=True)
+                    ConvertSpec(filename, outfile)
+                except Exception as e:
+                    print(e)
+                    Error.traceback(error=e, debug=True, trace=True)
+        except Exception as e:
+            print(e)
+            Error.traceback(error=e, debug=True, trace=True)

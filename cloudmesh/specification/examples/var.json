@@ -1,7 +1,7 @@
 {
   "var": {
     "name": "name of the variable",
-    "value": "the value of the variable as string"
+    "value": "the value of the variable as string",
     "type": "the datatype of the variable such as int, str, float, ..."
   }
 }

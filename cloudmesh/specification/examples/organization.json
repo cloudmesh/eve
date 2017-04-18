@@ -1,5 +1,7 @@
 {
   "organization": {
-      "users": [objectid:user],
+    "users": [
+      "objectid:user"
+    ]
   }
 }

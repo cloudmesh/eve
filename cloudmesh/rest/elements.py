@@ -1,7 +1,10 @@
 from __future__ import print_function
+
 import glob
-import json
+
+import simplejson
 from  ruamel import yaml
+
 
 class Elements(object):
     def __init__(self, directory, filename):
@@ -16,6 +19,7 @@ class Elements(object):
             pass
         if ".yaml" in filename:
             for file in glob.glob(os.path.join(directory, '*.yml')):
+                print("... reading", file)
                 with open(file) as fd:
                     d = yaml.load(fd)
                     settings.update(d)
@@ -23,14 +27,14 @@ class Elements(object):
             for file in glob.glob(os.path.join(directory, '*.json')):
                 print ("... reading", file)
                 with open(file) as fd:
-                    d = json.load(fd)
+                    d = simplejson.load(fd)
                     settings.update(d)
         else:
             print ("converrsion not supported")
             return None
 
         with open(filename, 'w') as fd:
-            json.dump(settings, fd, indent=4)
+            simplejson.dump(settings, fd, indent=4)
 
 
 '''            

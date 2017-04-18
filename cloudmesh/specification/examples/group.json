@@ -2,6 +2,8 @@
     "group": {
       "name": "users",
       "description": "This group contains all users",
-      "users": [objectid:user],
+      "users": [
+        "objectid:user"
+      ]
   }
 }
