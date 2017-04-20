@@ -1,609 +1,609 @@
 {
-    "node": {
-        "name": "mynode1", 
-        "NIC": [
-            "objectid:nic"
-        ], 
-        "RAM": "4G", 
-        "label": "node1", 
-        "ncpu": 2, 
-        "disk": "40G"
-    }, 
-    "file": {
-        "endpoint": "file://gregor@machine.edu:/data/report.dat", 
-        "name": "report.dat", 
-        "created": "1.1.2017:05:00:00:EST", 
-        "checksum": {
-            "md5": "8c324f12047dc2254b74031b8f029ad0"
-        }, 
-        "modified": "1.1.2017:05:00:00:EST", 
-        "accessed": "1.1.2017:05:00:00:EST", 
-        "size": [
-            "GB", 
-            "Byte"
-        ]
-    }, 
-    "extra": {
-        "category": "Public", 
-        "description": "Linux VM image with coreclr-x64-beta5-11624 installed to /opt/dnx. This image is based on Ubuntu 14.04 LTS, with prerequisites of CoreCLR installed. It also contains PartsUnlimited demo app which runs on the installed coreclr. The demo app is installed to /opt/demo. To run the demo, please type the command /opt/demo/Kestrel in a terminal window. The website is listening on port 5004. Please enable or map a endpoint of HTTP port 5004 for your azure VM.", 
-        "vm_image": "False", 
-        "location": "East Asia;Southeast Asia;Australia East;Australia Southeast;Brazil South;North Europe;West Europe;Japan East;Japan West;Central US;East US;East US 2; North Central US;South Central US;West US", 
-        "affinity_group": "", 
-        "os": "Linux", 
-        "media_link": ""
-    }, 
-    "virtual_compute_node": {
-        "status": "TBD", 
-        "endpoint": "http://.../cluster/", 
-        "name": "data", 
-        "ip": [
-            "TBD"
-        ], 
-        "image": "Ubuntu-16.04", 
-        "flavor": "TBD", 
-        "metadata": {
-            "experiment": "exp-001"
-        }
-    }, 
-    "azure-size": {
-        "ram": 114688, 
-        "name": "D14 Faster Compute Instance", 
-        "extra": {
-            "cores": 16, 
-            "max_data_disks": 32
-        }, 
-        "price": 1.6261, 
-        "_uuid": "None", 
-        "driver": "libcloud", 
-        "bandwidth": "None", 
-        "disk": 127, 
-        "id": "Standard_D14"
-    }, 
-    "cluster": {
-        "provider": [
-            "openstack", 
-            "aws", 
-            "azure", 
-            "eucalyptus"
-        ], 
-        "endpoint": {
-            "passwd": "secret", 
-            "url": "https"
-        }, 
-        "name": "myCLuster", 
-        "label": "c0"
-    }, 
-    "computer": {
-        "ip": "127.0.0.1", 
-        "name": "myComputer", 
-        "memoryGB": 16, 
-        "label": "server-001"
-    }, 
-    "mesos-docker": {
-        "container": {
-            "docker": {
-                "credential": {
-                    "secret": "my-secret", 
-                    "principal": "my-principal"
-                }, 
-                "image": "mesosphere/inky"
-            }, 
-            "type": "MESOS"
-        }, 
-        "mem": 16.0, 
-        "args": [
-            "argument"
-        ], 
-        "cpus": 0.2, 
-        "instances": 1, 
-        "id": "mesos-docker"
-    }, 
-    "cluster_new": {
-        "frontend": "objectid:node", 
-        "computenodes": [
-            "objectid:node"
-        ]
-    }, 
-    "microservice": {
-        "function": "microservice spec", 
-        "endpoint": "http://.../ms/", 
-        "name": "ms1"
-    }, 
-    "virtual_directory": {
-        "endpoint": "http://.../data/", 
-        "protocol": "http", 
-        "name": "data", 
-        "collection": [
-            "report.dat", 
-            "file2"
-        ]
-    }, 
-    "id": "03f55de797f546a1b29d1....", 
-    "virtual_cluster": {
-        "nodes": [
-            "objectid:virtual_machine"
-        ], 
-        "frontend": "objectid:virtual_machine", 
-        "name": "myvc"
-    }, 
-    "libcloud_flavor": {
-        "uuid": "string", 
-        "price": "string", 
-        "ram": "string", 
-        "bandwidth": "string", 
-        "flavor_id": "string", 
-        "disk": "string", 
-        "cpu": "string"
-    }, 
-    "container": {
-        "ip": "127.0.0.1", 
-        "endpoint": "http://.../container/", 
-        "name": "container1", 
-        "memoryGB": 16, 
-        "label": "server-001"
-    }, 
-    "deploymnet": {
-        "cluster": {
-            "name": "myCluster"
-        }, 
-        "stack": {
-            "layers": [
-                "hadoop", 
-                "spark", 
-                "postgresql"
-            ]
-        }, 
-        "provider": {
-            "name": "aws"
-        }
-    }, 
-    "hadoop": {
-        "deployers": {
-            "ansible": "git://github.com/cloudmesh_roles/hadoop"
-        }, 
-        "requires": {
-            "java": {
-                "implementation": "OpenJDK", 
-                "version": "1.8", 
-                "zookeeper": "TBD", 
-                "supervisord": "TBD"
-            }
-        }, 
-        "parameters": {
-            "num_resourcemanagers": 1, 
-            "num_namenodes": 1, 
-            "use_yarn": false, 
-            "num_datanodes": 1, 
-            "use_hdfs": true, 
-            "num_historyservers": 1, 
-            "num_journalnodes": 1
-        }
-    }, 
-    "vm-azure": {
-        "username": "string", 
-        "status": "string", 
-        "deployment_slot": "string", 
-        "group": "string", 
-        "private_ips": "string", 
-        "cloud_service": "string", 
-        "dns_name": "string", 
-        "image": "string", 
-        "floating_ip": "string", 
-        "image_name": "string", 
-        "instance_name": "string", 
-        "public_ips": "string", 
-        "media_link": "string", 
-        "key": "string", 
-        "flavor": "string", 
-        "resource_location": "string", 
-        "instance_size": "string", 
-        "disk_name": "string", 
-        "uuid": "string"
-    }, 
-    "var": {
-        "name": "string", 
-        "value": "string"
-    }, 
-    "sshkey": {
-        "comment": "string", 
-        "source": "string", 
-        "uri": "string", 
-        "value": "ssh-rsa AAA......", 
-        "fingerprint": "string, unique"
-    }, 
     "profile": {
-        "username": "gregor", 
-        "lastname": "von Laszewski", 
-        "description": "The Profile of a user", 
-        "firstname": "Gregor", 
-        "email": "laszewski@gmail.com"
-    }, 
-    "_uuid": "None", 
+        "username": "gregor",
+        "context:": "resource",
+        "description": "The Profile of a user",
+        "firstname": "Gregor",
+        "lastname": "von Laszewski",
+        "email": "laszewski@gmail.com",
+        "uuid": "jshdjkdh..."
+    },
     "virtual_machine": {
-        "status": "active", 
+        "status": "active",
         "authorized_keys": [
             "objectid:sshkey"
-        ], 
-        "name": "vm1", 
+        ],
+        "name": "vm1",
         "nics": [
             "objectid:nic"
-        ], 
-        "RAM": "4G", 
-        "ncpu": 2, 
-        "loginuser": "ubuntu", 
-        "disk": "40G", 
-        "OS": "Ubuntu-16.04", 
+        ],
+        "RAM": "4G",
+        "ncpu": 2,
+        "loginuser": "ubuntu",
+        "disk": "40G",
+        "OS": "Ubuntu-16.04",
         "metadata": {}
-    }, 
+    },
     "kubernetes": {
         "items": [
             {
                 "status": {
                     "capacity": {
                         "cpu": "4"
-                    }, 
+                    },
                     "addresses": [
                         {
-                            "type": "LegacyHostIP", 
+                            "type": "LegacyHostIP",
                             "address": "127.0.0.1"
                         }
                     ]
-                }, 
-                "kind": "None", 
+                },
+                "kind": "None",
                 "metadata": {
                     "name": "127.0.0.1"
                 }
-            }, 
+            },
             {
                 "status": {
                     "capacity": {
                         "cpu": "8"
-                    }, 
+                    },
                     "addresses": [
                         {
-                            "type": "LegacyHostIP", 
+                            "type": "LegacyHostIP",
                             "address": "127.0.0.2"
-                        }, 
+                        },
                         {
-                            "type": "another", 
+                            "type": "another",
                             "address": "127.0.0.3"
                         }
                     ]
-                }, 
-                "kind": "None", 
+                },
+                "kind": "None",
                 "metadata": {
                     "name": "127.0.0.2"
                 }
             }
-        ], 
-        "kind": "List", 
+        ],
+        "kind": "List",
         "users": [
             {
-                "name": "myself", 
+                "name": "myself",
                 "user": "gregor"
-            }, 
+            },
             {
-                "name": "e2e", 
+                "name": "e2e",
                 "user": {
-                    "username": "admin", 
+                    "username": "admin",
                     "password": "secret"
                 }
             }
         ]
-    }, 
+    },
     "nic": {
-        "name": "eth0", 
-        "ip": "123.123.1.2", 
-        "mask": "255.255.255.0", 
-        "bandwidth": "10Gbps", 
-        "mtu": 1500, 
-        "broadcast": "123.123.1.255", 
-        "mac": "00:00:00:11:22:33", 
-        "type": "ethernet", 
+        "name": "eth0",
+        "ip": "123.123.1.2",
+        "mask": "255.255.255.0",
+        "bandwidth": "10Gbps",
+        "mtu": 1500,
+        "broadcast": "123.123.1.255",
+        "mac": "00:00:00:11:22:33",
+        "type": "ethernet",
         "gateway": "123.123.1.1"
-    }, 
+    },
+    "virtual_compute_node": {
+        "status": "TBD",
+        "endpoint": "http://.../cluster/",
+        "name": "data",
+        "ip": [
+            "TBD"
+        ],
+        "image": "Ubuntu-16.04",
+        "flavor": "TBD",
+        "metadata": {
+            "experiment": "exp-001"
+        }
+    },
     "openstack_flavor": {
-        "os_flv_disabled": "string", 
-        "uuid": "string", 
-        "os_flv_ext_data": "string", 
-        "ram": "string", 
-        "os_flavor_acces": "string", 
-        "vcpus": "string", 
-        "swap": "string", 
-        "rxtx_factor": "string", 
+        "os_flv_disabled": "string",
+        "uuid": "string",
+        "os_flv_ext_data": "string",
+        "ram": "string",
+        "os_flavor_acces": "string",
+        "vcpus": "string",
+        "swap": "string",
+        "rxtx_factor": "string",
         "disk": "string"
-    }, 
-    "driver": "libcloud", 
-    "openstack_vm": {
-        "vm_state": "string", 
-        "availability_zone": "string", 
-        "terminated_at": "string", 
-        "image": "string", 
-        "diskConfig": "string", 
-        "flavor": "string", 
-        "security_groups": "string", 
-        "volumes_attached": "string", 
-        "user_id": "string", 
-        "uuid": "string", 
-        "accessIPv4": "string", 
-        "accessIPv6": "string", 
-        "power_state": "string", 
-        "progress": "string", 
-        "image__id": "string", 
-        "launched_at": "string", 
-        "config_drive": "string", 
-        "username": "string", 
-        "updated": "string", 
-        "hostId": "string", 
-        "floating_ip": "string", 
-        "static_ip": "string", 
-        "key": "string", 
-        "flavor__id": "string", 
-        "group": "string", 
-        "task_state": "string", 
-        "created": "string", 
-        "tenant_id": "string", 
-        "status": "string"
-    }, 
-    "libcloud_image": {
-        "username": "string", 
-        "status": "string", 
-        "updated": "string", 
-        "description": "string", 
-        "owner_alias": "string", 
-        "kernel_id": "string", 
-        "hypervisor": "string", 
-        "ramdisk_id": "string", 
-        "state": "string", 
-        "created": "string", 
-        "image_id": "string", 
-        "image_location": "string", 
-        "platform": "string", 
-        "image_type": "string", 
-        "is_public": "string", 
-        "owner_id": "string", 
-        "architecture": "string", 
-        "virtualization_type": "string", 
+    },
+    "azure-vm": {
+        "username": "string",
+        "status": "string",
+        "deployment_slot": "string",
+        "group": "string",
+        "private_ips": "string",
+        "cloud_service": "string",
+        "dns_name": "string",
+        "image": "string",
+        "floating_ip": "string",
+        "image_name": "string",
+        "instance_name": "string",
+        "public_ips": "string",
+        "media_link": "string",
+        "key": "string",
+        "flavor": "string",
+        "resource_location": "string",
+        "instance_size": "string",
+        "disk_name": "string",
         "uuid": "string"
-    }, 
+    },
+    "azure-size": {
+        "ram": 114688,
+        "name": "D14 Faster Compute Instance",
+        "extra": {
+            "cores": 16,
+            "max_data_disks": 32
+        },
+        "price": 1.6261,
+        "_uuid": "None",
+        "driver": "libcloud",
+        "bandwidth": "None",
+        "disk": 127,
+        "id": "Standard_D14"
+    },
+    "openstack_vm": {
+        "vm_state": "string",
+        "availability_zone": "string",
+        "terminated_at": "string",
+        "image": "string",
+        "diskConfig": "string",
+        "flavor": "string",
+        "security_groups": "string",
+        "volumes_attached": "string",
+        "user_id": "string",
+        "uuid": "string",
+        "accessIPv4": "string",
+        "accessIPv6": "string",
+        "power_state": "string",
+        "progress": "string",
+        "image__id": "string",
+        "launched_at": "string",
+        "config_drive": "string",
+        "username": "string",
+        "updated": "string",
+        "hostId": "string",
+        "floating_ip": "string",
+        "static_ip": "string",
+        "key": "string",
+        "flavor__id": "string",
+        "group": "string",
+        "task_state": "string",
+        "created": "string",
+        "tenant_id": "string",
+        "status": "string"
+    },
+    "cluster": {
+        "provider": [
+            "openstack",
+            "aws",
+            "azure",
+            "eucalyptus"
+        ],
+        "endpoint": {
+            "passwd": "secret",
+            "url": "https"
+        },
+        "name": "myCLuster",
+        "label": "c0"
+    },
+    "computer": {
+        "ip": "127.0.0.1",
+        "name": "myComputer",
+        "memoryGB": 16,
+        "label": "server-001"
+    },
+    "libcloud_image": {
+        "username": "string",
+        "status": "string",
+        "updated": "string",
+        "description": "string",
+        "owner_alias": "string",
+        "kernel_id": "string",
+        "hypervisor": "string",
+        "ramdisk_id": "string",
+        "state": "string",
+        "created": "string",
+        "image_id": "string",
+        "image_location": "string",
+        "platform": "string",
+        "image_type": "string",
+        "is_public": "string",
+        "owner_id": "string",
+        "architecture": "string",
+        "virtualization_type": "string",
+        "uuid": "string"
+    },
     "user": {
-        "username": "gregor", 
-        "lastname": "von Laszewski", 
+        "username": "gregor",
+        "context:": "resource",
+        "uuid": "jshdjkdh...",
+        "firstname": "Gregor",
+        "lastname": "von Laszewski",
         "roles": [
-            "admin", 
+            "admin",
             "user"
-        ], 
-        "email": "laszewski@gmail.com", 
-        "firstname": "Gregor"
-    }, 
-    "key": {
-        "comment": "string", 
-        "source": "string", 
-        "uri": "string", 
-        "value": "string", 
-        "fingerprint": "string, unique"
-    }, 
+        ],
+        "email": "laszewski@gmail.com"
+    },
+    "file": {
+        "endpoint": "file://gregor@machine.edu:/data/report.dat",
+        "name": "report.dat",
+        "created": "1.1.2017:05:00:00:EST",
+        "checksum": {
+            "md5": "8c324f12047dc2254b74031b8f029ad0"
+        },
+        "modified": "1.1.2017:05:00:00:EST",
+        "accessed": "1.1.2017:05:00:00:EST",
+        "size": [
+            "GB",
+            "Byte"
+        ]
+    },
     "deployment": {
         "cluster": [
             {
                 "name": "myCluster"
-            }, 
+            },
             {
                 "id": "cm-0001"
             }
-        ], 
+        ],
         "stack": {
             "layers": [
-                "zookeeper", 
-                "hadoop", 
-                "spark", 
+                "zookeeper",
+                "hadoop",
+                "spark",
                 "postgresql"
-            ], 
+            ],
             "parameters": {
                 "hadoop": {
                     "zookeeper.quorum": [
-                        "IP", 
-                        "IP", 
+                        "IP",
+                        "IP",
                         "IP"
                     ]
                 }
             }
         }
-    }, 
-    "reservation": {
-        "start_time": [
-            "date", 
-            "time"
-        ], 
-        "hosts": "string", 
-        "description": "string", 
-        "end_time": [
-            "date", 
-            "time"
+    },
+    "mapreduce": {
+        "layers": [
+            "hadoop"
+        ],
+        "hdfs_datanode": "IP ADDRESS",
+        "java": {
+            "platform": "OpenJDK",
+            "version": "1.8"
+        },
+        "supervisord": "",
+        "yarn_historyserver": "IP ADDRESS",
+        "zookeeper": "IP ADDRESS",
+        "hdfs_namenode": "IP ADDRESS",
+        "hdfs_journalnode": "IP ADDRESS",
+        "yarn_resourcemanager": "IP ADDRESS"
+    },
+    "group": {
+        "users": [
+            "objectid:user"
+        ],
+        "name": "users",
+        "description": "This group contains all users"
+    },
+    "role": {
+        "users": [
+            "objectid:user"
+        ],
+        "name": "editor",
+        "description": "This role contains all editors"
+    },
+    "virtual_directory": {
+        "endpoint": "http://.../data/",
+        "protocol": "http",
+        "name": "data",
+        "collection": [
+            "report.dat",
+            "file2"
         ]
-    }, 
+    },
     "file_alias": {
-        "alias": "report-alias.dat", 
+        "alias": "report-alias.dat",
         "name": "report.dat"
-    }, 
+    },
+    "virtual_cluster": {
+        "nodes": [
+            "objectid:virtual_machine"
+        ],
+        "frontend": "objectid:virtual_machine",
+        "name": "myvc"
+    },
+    "libcloud_flavor": {
+        "uuid": "string",
+        "price": "string",
+        "ram": "string",
+        "bandwidth": "string",
+        "flavor_id": "string",
+        "disk": "string",
+        "cpu": "string"
+    },
+    "batchjob": {
+        "output_file": "string",
+        "group": "string",
+        "job_id": "string",
+        "script": "string, the batch job script",
+        "cmd": "string, executes the cmd, if None path is used",
+        "queue": "string",
+        "cluster": "string",
+        "time": "string",
+        "path": "string, path of the batchjob, if non cmd is used",
+        "nodes": "string",
+        "dir": "string"
+    },
+    "organization": {
+        "users": [
+            "objectid:user"
+        ]
+    },
+    "container": {
+        "ip": "127.0.0.1",
+        "endpoint": "http://.../container/",
+        "name": "container1",
+        "memoryGB": 16,
+        "label": "server-001"
+    },
+    "sshkey": {
+        "comment": "string",
+        "source": "string",
+        "uri": "string",
+        "value": "ssh-rsa AAA......",
+        "fingerprint": "string, unique"
+    },
+    "stream": {
+        "attributes": {
+            "rate": 10,
+            "limit": 1000
+        },
+        "name": "name of the variable",
+        "format": "the format of the data exchanged in the stream"
+    },
+    "database": {
+        "endpoint": "http://.../data/",
+        "protocol": "mongo",
+        "name": "data"
+    },
+    "default": {
+        "context": "string  - defines the context of the default (user, cloud, ...)",
+        "name": "string",
+        "value": "string"
+    },
+    "openstack_image": {
+        "status": "string",
+        "username": "string",
+        "updated": "string",
+        "uuid": "string",
+        "created": "string",
+        "minDisk": "string",
+        "progress": "string",
+        "minRam": "string",
+        "os_image_size": "string",
+        "metadata": {
+            "instance_uuid": "string",
+            "image_location": "string",
+            "image_state": "string",
+            "instance_type_memory_mb": "string",
+            "user_id": "string",
+            "description": "string",
+            "kernel_id": "string",
+            "instance_type_name": "string",
+            "ramdisk_id": "string",
+            "instance_type_id": "string",
+            "instance_type_ephemeral_gb": "string",
+            "instance_type_rxtx_factor": "string",
+            "image_type": "string",
+            "network_allocated": "string",
+            "instance_type_flavorid": "string",
+            "instance_type_vcpus": "string",
+            "instance_type_root_gb": "string",
+            "base_image_ref": "string",
+            "instance_type_swap": "string",
+            "owner_id": "string"
+        }
+    },
+    "azure_image": {
+        "_uuid": "None",
+        "driver": "libcloud",
+        "id": "03f55de797f546a1b29d1....",
+        "name": "CoreCLR x64 Beta5 (11624) with PartsUnlimited Demo App on Ubuntu Server 14.04 LTS",
+        "extra": {
+            "category": "Public",
+            "description": "Linux VM image with coreclr-x64-beta5-11624 installed to /opt/dnx. This image is based on Ubuntu 14.04 LTS, with prerequisites of CoreCLR installed. It also contains PartsUnlimited demo app which runs on the installed coreclr. The demo app is installed to /opt/demo. To run the demo, please type the command /opt/demo/Kestrel in a terminal window. The website is listening on port 5004. Please enable or map a endpoint of HTTP port 5004 for your azure VM.",
+            "vm_image": "False",
+            "location": "East Asia;Southeast Asia;Australia East;Australia Southeast;Brazil South;North Europe;West Europe;Japan East;Japan West;Central US;East US;East US 2; North Central US;South Central US;West US",
+            "affinity_group": "",
+            "os": "Linux",
+            "media_link": ""
+        }
+    },
+    "hadoop": {
+        "deployers": {
+            "ansible": "git://github.com/cloudmesh_roles/hadoop"
+        },
+        "requires": {
+            "java": {
+                "implementation": "OpenJDK",
+                "version": "1.8",
+                "zookeeper": "TBD",
+                "supervisord": "TBD"
+            }
+        },
+        "parameters": {
+            "num_resourcemanagers": 1,
+            "num_namenodes": 1,
+            "use_yarn": false,
+            "num_datanodes": 1,
+            "use_hdfs": true,
+            "num_historyservers": 1,
+            "num_journalnodes": 1
+        }
+    },
+    "compute_resource": {
+        "kind": "baremetal",
+        "endpoint": "http://.../cluster/",
+        "name": "Compute1"
+    },
     "node_new": {
         "authorized_keys": [
-            "ssh-rsa AAAA...", 
-            "ssh-ed25519 AAAA...", 
+            "ssh-rsa AAAA...",
+            "ssh-ed25519 AAAA...",
             "...etc"
-        ], 
-        "name": "example-001", 
-        "external_ip": "", 
-        "memory": 2048, 
-        "create_external_ip": true, 
-        "internal_ip": "", 
-        "loginuser": "root", 
-        "owner": "", 
-        "cores": 2, 
-        "disk": 80, 
+        ],
+        "name": "example-001",
+        "external_ip": "",
+        "memory": 2048,
+        "create_external_ip": true,
+        "internal_ip": "",
+        "loginuser": "root",
+        "owner": "",
+        "cores": 2,
+        "disk": 80,
         "ssh_keys": [
             {
-                "to": ".ssh/id_rsa", 
+                "to": ".ssh/id_rsa",
                 "password": {
-                    "from": "yaml", 
-                    "decrypt": "gpg", 
-                    "key": "users.hello.ssh[0]", 
+                    "from": "yaml",
+                    "decrypt": "gpg",
+                    "key": "users.hello.ssh[0]",
                     "file": "secrets.yml.gpg"
-                }, 
-                "method": "ed25519", 
+                },
+                "method": "ed25519",
                 "ssh_keygen": true
-            }, 
+            },
             {
-                "to": ".ssh/testing", 
+                "to": ".ssh/testing",
                 "password": {
-                    "from": "yaml", 
-                    "decrypt": "gpg", 
-                    "key": "users.hello.ssh[1]", 
+                    "from": "yaml",
+                    "decrypt": "gpg",
+                    "key": "users.hello.ssh[1]",
                     "file": "secrets.yml.gpg"
-                }, 
-                "bits": 4098, 
-                "method": "rsa", 
+                },
+                "bits": 4098,
+                "method": "rsa",
                 "ssh_keygen": true
-            }, 
+            },
             {
-                "from": "secrets/ssh/hello/copied.gpg", 
-                "decrypt": "gpg", 
-                "ssh_keygen": false, 
+                "from": "secrets/ssh/hello/copied.gpg",
+                "decrypt": "gpg",
+                "ssh_keygen": false,
                 "to": ".ssh/copied"
             }
-        ], 
+        ],
         "security_groups": [
             {
-                "ingress": "0.0.0.0/32", 
-                "egress": "0.0.0.0/32", 
+                "ingress": "0.0.0.0/32",
+                "egress": "0.0.0.0/32",
                 "ports": [
-                    22, 
-                    443, 
-                    80, 
+                    22,
+                    443,
+                    80,
                     8080
-                ], 
+                ],
                 "protocols": [
-                    "tcp", 
+                    "tcp",
                     "udp"
                 ]
             }
-        ], 
+        ],
         "users": {
-            "name": "hello", 
+            "name": "hello",
             "groups": [
                 "wheel"
             ]
         }
-    }, 
-    "batchjob": {
-        "output_file": "string", 
-        "group": "string", 
-        "job_id": "string", 
-        "script": "string, the batch job script", 
-        "cmd": "string, executes the cmd, if None path is used", 
-        "queue": "string", 
-        "cluster": "string", 
-        "time": "string", 
-        "path": "string, path of the batchjob, if non cmd is used", 
-        "nodes": "string", 
-        "dir": "string"
-    }, 
-    "name": "CoreCLR x64 Beta5 (11624) with PartsUnlimited Demo App on Ubuntu Server 14.04 LTS", 
-    "database": {
-        "endpoint": "http://.../data/", 
-        "protocol": "mongo", 
-        "name": "data"
-    }, 
-    "default": {
-        "context": "string  - defines teh context of the default (user, cloud, ...)", 
-        "name": "string", 
-        "value": "string"
-    }, 
-    "openstack_image": {
-        "status": "string", 
-        "username": "string", 
-        "updated": "string", 
-        "uuid": "string", 
-        "created": "string", 
-        "minDisk": "string", 
-        "progress": "string", 
-        "minRam": "string", 
-        "os_image_size": "string", 
-        "metadata": {
-            "instance_uuid": "string", 
-            "image_location": "string", 
-            "image_state": "string", 
-            "instance_type_memory_mb": "string", 
-            "user_id": "string", 
-            "description": "string", 
-            "kernel_id": "string", 
-            "instance_type_name": "string", 
-            "ramdisk_id": "string", 
-            "instance_type_id": "string", 
-            "instance_type_ephemeral_gb": "string", 
-            "instance_type_rxtx_factor": "string", 
-            "image_type": "string", 
-            "network_allocated": "string", 
-            "instance_type_flavorid": "string", 
-            "instance_type_vcpus": "string", 
-            "instance_type_root_gb": "string", 
-            "base_image_ref": "string", 
-            "instance_type_swap": "string", 
-            "owner_id": "string"
-        }
-    }, 
-    "mapreduce": {
-        "layers": [
-            "hadoop"
-        ], 
-        "hdfs_datanode": "IP ADDRESS", 
-        "java": {
-            "platform": "OpenJDK", 
-            "version": "1.8"
-        }, 
-        "supervisord": "", 
-        "yarn_historyserver": "IP ADDRESS", 
-        "zookeeper": "IP ADDRESS", 
-        "hdfs_namenode": "IP ADDRESS", 
-        "hdfs_journalnode": "IP ADDRESS", 
-        "yarn_resourcemanager": "IP ADDRESS"
-    }, 
-    "compute_resource": {
-        "kind": "baremetal", 
-        "endpoint": "http://.../cluster/", 
-        "name": "Compute1"
-    }, 
+    },
+    "filter": {
+        "function": "the function  of the data exchanged in the stream",
+        "name": "name of the filter"
+    },
+    "reservation": {
+        "start_time": [
+            "date",
+            "time"
+        ],
+        "hosts": "string",
+        "description": "string",
+        "end_time": [
+            "date",
+            "time"
+        ]
+    },
     "replica": {
-        "endpoint": "file://gregor@machine.edu:/data/replica_report.dat", 
-        "name": "replica_report.dat", 
+        "endpoint": "file://gregor@machine.edu:/data/replica_report.dat",
+        "name": "replica_report.dat",
         "checksum": {
             "md5": "8c324f12047dc2254b74031b8f029ad0"
-        }, 
-        "replica": "report.dat", 
-        "accessed": "1.1.2017:05:00:00:EST", 
+        },
+        "replica": "report.dat",
+        "accessed": "1.1.2017:05:00:00:EST",
         "size": [
-            "GB", 
+            "GB",
             "Byte"
         ]
-    }, 
+    },
+    "microservice": {
+        "function": "microservice spec",
+        "endpoint": "http://.../ms/",
+        "name": "ms1"
+    },
+    "var": {
+        "type": "the datatype of the variable such as int, str, float, ...",
+        "name": "name of the variable",
+        "value": "the value of the variable as string"
+    },
+    "mesos-docker": {
+        "container": {
+            "docker": {
+                "credential": {
+                    "secret": "my-secret",
+                    "principal": "my-principal"
+                },
+                "image": "mesosphere/inky"
+            },
+            "type": "MESOS"
+        },
+        "mem": 16.0,
+        "args": [
+            "argument"
+        ],
+        "cpus": 0.2,
+        "instances": 1,
+        "id": "mesos-docker"
+    },
     "libcloud_vm": {
-        "username": "string", 
-        "status": "string", 
-        "root_device_type": "string", 
-        "private_ips": "string", 
-        "instance_type": "string", 
-        "image": "string", 
-        "private_dns": "string", 
-        "image_name": "string", 
-        "instance_id": "string", 
-        "image_id": "string", 
-        "public_ips": "string", 
-        "state": "string", 
-        "root_device_name": "string", 
-        "key": "string", 
-        "group": "string", 
-        "flavor": "string", 
-        "availability": "string", 
+        "username": "string",
+        "status": "string",
+        "root_device_type": "string",
+        "private_ips": "string",
+        "instance_type": "string",
+        "image": "string",
+        "private_dns": "string",
+        "image_name": "string",
+        "instance_id": "string",
+        "image_id": "string",
+        "public_ips": "string",
+        "state": "string",
+        "root_device_name": "string",
+        "key": "string",
+        "group": "string",
+        "flavor": "string",
+        "availability": "string",
         "uuid": "string"
     }
 }
