@@ -1,18 +1,14 @@
 {
   "mapreduce": {
-      "layers": [
-          "hadoop"
-      ],
-      "hdfs_datanode": "IP ADDRESS",
-      "java": {
-          "platform": "OpenJDK",
-          "version": "1.8"
+      "function": {
+          "source": "file://.",
+          "args": {}
       },
-      "supervisord": "",
-      "hdfs_namenode": "IP ADDRESS",
-      "zookeeper": "IP ADDRESS",
-      "yarn_historyserver": "IP ADDRESS",
-      "hdfs_journalnode": "IP ADDRESS",
-      "yarn_resourcemanager": "IP ADDRESS"
+      "data": {
+          "source": "ftp:///...",
+          "dest": "/data"
+      },
+      "fault_tolerant": true,
+      "backend": {"type": "hadoop"}
   }
 }

@@ -558,6 +558,52 @@ software \textit{stack} to be deployed (e.g., hadoop, spark).
 \section{Mapreduce}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Mapreduce}
+
+The \textbf{mapreduce} deployment has as inputs parameters defining
+the applied function and the input data.  Both function and data
+objects define a ``source'' parameter, which specify the location it
+is retrieved from. For instance, the ``file://'' URI indicates sending
+a directory structure from the local file system where the ``ftp://''
+indicates that the data should be fetched from a FTP resource. It is
+the framework's responsibility to materialize and instantiation of the
+desired environment along with the function and data.
+
+\codeFromJson{json}{mapreduce.json}{mapreduce}{s:mapreduce}
+
+Additional parameters include the ``fault\_tolerant'' and ``backend''
+parameters.  The former flag indicates if the \textbf{mapreduce}
+deployment should operate in a fault tolerant mode. For instance, in
+the case of Hadoop, this may mean configuring automatic failover of
+name nodes using Zookeeper.  The ``backend'' parameter accepts an
+object describing the system providing the \textbf{mapreduce}
+workflow.  This may be a native deployment of Hadoop, or a special
+instantiation using other frameworks such as Mesos.
+
+A function prototype is defined in Listing~\ref{lst:s:mr.f.prototype}.
+Key properties are that functions describe their input parameters and
+generated results. For the former, the ``buildInputs'' and
+``systemBuildInputs'' respectively describe the objects which should
+be evaluated and system packages which should be present before this
+function can be installed. The ``eval'' attribute describes how to
+apply this function to its input data. Parameters affecting the
+evaluation of the function may be passed in as the ``args'' attribute.
+The results of the function application can be accessed via the
+``outputs'' object, which is a mapping from arbitrary keys
+(e.g. ``data'', ``processed'', ``model'') to an object representing
+the result.
+
+\codeFromJson{json}{mapreduce_function_prototype.json}{mapreduce function}{s:mr.f.prototype}
+
+
+Some example functions include the ``NoOp'' or identity function show
+in Listing~\ref{lst:s:mr.f.noop}.  In the case of undefined arguments,
+the parameters default to an identity element. In the case of mappings
+this is the empty mapping while for lists this is the empty list.
+
+\codeFromJson{json}{mapreduce_function_noop.json}{mapreduce noop}{s:mr.f.noop}
+
+
 \subsection{Hadoop}
 
 A \textbf{hadoop} definition defines which \textit{deployer} to be used,
@@ -567,13 +613,6 @@ as the library origin, version, etc.
 
 \codeFromJson{json}{hadoop.json}{hadoop}{s:hadoop}
 
-
-\subsection{Mapreduce}
-
-This defines a \textbf{mapreduce} deployment with its layered
-components.
-
-\codeFromJson{json}{mapreduce.json}{mapreduce}{s:mapreduce}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Security}
