@@ -9,6 +9,14 @@ all:
 	pdflatex  -shell-escape ${FILE}
 	pdflatex  -shell-escape ${FILE}
 
+watch:
+	pandoc ../README.rst -o readme.tex
+	pandoc ../../classes/docs/source/lesson/prg/rest.rst -o rest.tex
+	pandoc ../../classes/docs/source/lesson/prg/python_cmd5.rst -o python-cmd5.tex
+	latexmk -pvc -pdf -pdflatex="pdflatex -shell-escape" ${FILE}
+
+
+
 spec:
 	cms schema spec2tex ../specification specification
 
