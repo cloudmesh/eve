@@ -1,0 +1,76 @@
+{
+  "node": {
+    "id": "instance_id",
+    "name": "name",
+    "state": "state",
+    "public_ips": ["111.222.111.1"],
+    "private_ips": ["192.168.1.101"],
+    "driver": "connection.driver",
+    "created_at": "created_timestamp",
+    "extra": {
+    }
+  },
+  "ec2NodeExtra": {
+    "block_device_mapping": "deviceMapping",
+    "groups": ["security_group1", "security_group2"],
+    "network_interfaces": ["nic1", "nic2"],
+    "product_codes": "product_codes",
+    "tags": ["tag1", "tag2"]
+  },
+  "OpenStackNodeExtra": {
+    "addresses": ["addresses"],
+    "hostId": "hostId",
+    "access_ip": "accessIPv4",
+    "access_ipv6": "accessIPv6",
+    "tenantId": "tenant_id",
+    "userId": "user_id",
+    "imageId": "image_id",
+    "flavorId": "flavor_id",
+    "uri": "",
+    "service_name": "",
+    "metadata": ["metadata"],
+    "password": "adminPass",
+    "created": "created",
+    "updated": "updated",
+    "key_name": "key_name",
+    "disk_config": "diskConfig",
+    "config_drive": "config_drive",
+    "availability_zone": "availability_zone",
+    "volumes_attached": "volumes_attached",
+    "task_state": "task_state",
+    "vm_state": "vm_state",
+    "power_state": "power_state",
+    "progress": "progress",
+    "fault": "fault"
+  },
+  "AzureNodeExtra": {
+    "instance_endpoints": "instance_endpoints",
+    "remote_desktop_port": "remote_desktop_port",
+    "ssh_port": "ssh_port",
+    "power_state": "power_state",
+    "instance_size": "instance_size",
+    "ex_cloud_service_name": "ex_cloud_service_name"
+  },
+  "GCENodeExtra": {
+    "status": "status",
+    "statusMessage": "statusMessage",
+    "description": "description",
+    "zone": "zone",
+    "image": "image",
+    "machineType": "machineType",
+    "disks": "disks",
+    "networkInterfaces": "networkInterfaces",
+    "id": "node_id",
+    "selfLink": "selfLink",
+    "kind": "kind",
+    "creationTimestamp": "creationTimestamp",
+    "name": "name",
+    "metadata": "metadata",
+    "tags_fingerprint": "fingerprint",
+    "scheduling": "scheduling",
+    "deprecated": "True or False"
+    "canIpForward": "canIpForward",
+    "serviceAccounts": "serviceAccounts",
+    "boot_disk":  ""
+  }
+}
