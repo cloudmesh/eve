@@ -16,12 +16,12 @@ watch:
 	latexmk -pvc -pdf -pdflatex="pdflatex -shell-escape" ${FILE}
 
 
-
-spec:
-	cms schema spec2tex ../specification specification
-
 man:
-	cms schema hel > schema-man.tex
+	cms schema help > schema-man.tex
+	#cms schema help > schema-man.txt
+	#echo '\\begin{verbatim}' > schema-man.tex
+	#cat schema-man.txt >> schema-man.tex
+	#echo '\\end{verbatim}' >> schema-man.tex
 
 real-clean: clean
 	rm -rf *.pdf

@@ -1,6 +1,41 @@
-\documentclass[9pt,twocolumn,twoside]{styles/osajnl} 
+\documentclass[9pt,twocolumn]{styles/osajnl} 
 \input{format}
+\usepackage{titlesec}
+\titleclass{\subsubsubsection}{straight}[\subsection]
 
+\newcounter{subsubsubsection}[subsubsection]
+
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}}
+\renewcommand\thesubparagraph{\theparagraph.\arabic{subparagraph}}
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\@addtoreset{subsubsubsection}{section}
+\@addtoreset{subsubsubsection}{subsection}
+\@addtoreset{paragraph}{subsubsubsection}
+\makeatother
+
+\setcounter{secnumdepth}{6}
+\setcounter{tocdepth}{6}
 \title{Cloudmesh REST Interface for Virtual Clusters} 
 
 \author[1,*]{Gregor von Laszewski} 
@@ -36,6 +71,142 @@ TBD
 \tableofcontents % Print the contents section
 \maketitle
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{NBDRA Interface Requirements}
+
+The Volume 6 Reference Architecture document provides a list of comprehensive high-level reference architecture requirements and introduces the NIST Big Data Reference Architecture (NBDRA) (see Figure 1). To enable interoperability between the NBDRA components, a list of well-defined NBDRA interface is needed.  To introduce them, we will follow the NBDRA and focus on interfaces that allow us to bootstrap the NBDRA. Each section will introduce an Interface while documenting the requirement as well as a simple specification addressing the immediate interface needs. We expect that this document will grow with the help of contributions from the community to achieve a comprehensive set of interfaces that will be usable for the implementation of Big Data Architectures. Validation of this approach can be achieved while applying it to the use cases that have been gathered in Volume 3. These use cases have considerably contributed towards the design of the NBDRA. Hence our expectation is that (a) the interfaces can be used to help implementing a big data architecture for a specific use case, and (b) the proper implementation can validate the NBDRA. Through this approach, we can facilitate subsequent analysis and comparison of the use cases. 
+
+\subsection{High Level Requirements of the Interface Approach}
+
+Next, we focus on the high-level requirements of the interface approach. 
+
+Figure 1: NIST Big Data Reference Architecture (NBDRA)
+
+\subsubsection{Technology and Vendor Agnostic}
+
+Due to the many different tools, services, and infrastructures available in the general area of big data an interface ought to be as vendor independent as possible, while at the same time be able to leverage best practices. As such we need to provide a methodology that allows extension of interfaces to adapt and leverage existing approaches, but also allows the interfaces to provide merit in easy specifications that assist the formulation and definition of the NBDRA. 
+
+\subsubsection{Support of Plug-In Compute Infrastructure}
+
+As big data is not just about hosting data, but about analyzing data the interfaces we provide must encapsulate a rich infrastructure environment that is used by data scientists. This includes the ability to integrate (or plug-in) various compute resources and services to provide the necessary compute power to analyze the data. This includes (a) access to hierarchy of compute resources, from the laptop/desktop, servers, data clusters, and clouds, (b) he ability to integrate special purpose hardware such as GPUs and FPGAs that are used in accelerated analysis of data, and (c) the integration of services including micro services that allow the analysis of the data by delegating them to hosted or dynamically deployed services on the infrastructure of choice.
+
+\subsubsection{Orchestration of Infrastructure and Services}
+
+As part of the use case collection we present in Volume 3, it is obvious that we need to address the mechanism of preparing the preparation of infrastructures suitable for various use cases. As such we are not attempting to deliver a single deployed BDRA, but allow the setup of an infrastructure that satisfies the particular uses case. To achieve this task, we need to provision software tacks and services on infrastructures and orchestrate their deployment, It is not focus of this document to replace existing orchestration software and services, but provide an interface to them to leverage them as part of defining and creating the infrastructure. Various orchestration frameworks and services could therefore be leveraged and work in orchestrated fashion to achieve the goal of preparing an infrastructure suitable for one or more applications.
+
+\subsubsection{Orchestration of Big Data Applications and Experiments}
+
+The creation of the infrastructure suitable for big data applications provides the basic infrastructure. However big data applications may require the creation of sophisticated applications as part of interactive experiments to analyze and probe the data. For this purpose, we need to be able to orchestrate and interact with experiments conducted on the data while assuring reproducibility and correctness of the data. For this purpose, a System Orchestrator (either the Data Scientists or a service acting in behalf of the scientist) uses the BD Application Provider as the command center to orchestrate dataflow from Data Provider, carryout the BD application lifecycle with the help of the BD Framework Provider, and enable Data Consumer to consume Big Data processing results. An interface is needed to describe the interactions and to allow leveraging of experiment management frameworks in scripted fashion. We require a customization of parameters on several levels. On the highest level, we require high level- application motivated parameters to drive the orchestration of the experiment. On lower levels these high-level parameters may drive and create service level agreement augmented specifications and parameters that could even lead to the orchestration of infrastructure and services to satisfy experiment needs.
+
+\subsubsection{Reusability}
+
+The interfaces provided must encourage reusability of the infrastructure, services and experiments described by them. This includes (a) reusability of available analytics packages and services for adoption (b) deployment of customizable analytics tools and services, and (c) operational adjustments that allow the services and infrastructure to be adapted while at the same time allowing for reproducible experiment execution
+
+\subsubsection{Execution Workloads}
+
+One of the important aspects of distributed big data services can be that the data served is simply to big to be moved to a different location. Instead we are in the need of an interface allowing us to describe and package analytics algorithms and potentially also tools as a payload to a data service. This can be best achieved not by sending the detailed execution, but sending an interface description that describes how such an algorithm or tool can be created on the server end and be executed under security considerations integrated with authentication and authorization in mind.
+
+\subsubsection{Security and Privacy Fabric Requirements}
+
+Subsection Scope: Discussion of high-level requirements of the interface approach for the Security and Privacy Fabric.
+
+\subsubsection{System Orchestration Requirement}
+
+Subsection Scope: Discussion of high-level requirements of the interface approach for the System Orchestrator.
+
+\subsubsection{Application Providers Requirements}
+
+Subsection Scope: Discussion of high-level requirements of the interface approach for the Application Provider.
+
+\subsection{Component Specific Interface Requirements}
+
+In this section, we summarize a set of requirements for the interface of a particular component in the NBDRA. The components are listed in Figure 1 and addressed in each of the subsections as part of Section 2.2 of this document. The five main functional components of the NBDRA represent the different technical roles within a Big Data system. The functional components are listed below and discussed in subsequent subsections.
+System Orchestrator: Defines and integrates the required data application activities into an operational vertical system;
+Big Data Application Provider: Executes a data life cycle to meet security and privacy requirements as well as System Orchestrator-defined requirements;
+Data Provider: Introduces new data or information feeds into the Big Data system;
+Big Data Framework Provider: Establishes a computing framework in which to execute certain transformation applications while protecting the privacy and integrity of data; and
+Data Consumer: Includes end users or other systems that use the results of the Big Data Application Provider.
+
+\subsubsection{System Orchestrator Interface Requirement}
+
+The System Orchestrator role includes defining and integrating the required data application activities into an operational vertical system. Typically, the System Orchestrator involves a collection of more specific roles, performed by one or more actors, which manage and orchestrate the operation of the Big Data system. These actors may be human components, software components, or some combination of the two. The function of the System Orchestrator is to configure and manage the other components of the Big Data architecture to implement one or more workloads that the architecture is designed to execute. The workloads managed by the System Orchestrator may be assigning/provisioning framework components to individual physical or virtual nodes at the lower level, or providing a graphical user interface that supports the specification of workflows linking together multiple applications and components at the higher level. The System Orchestrator may also, through the Management Fabric, monitor the workloads and system to confirm that specific quality of service requirements are met for each workload, and may actually elastically assign and provision additional physical or virtual resources to meet workload requirements resulting from changes/surges in the data or number of users/transactions.
+The interface to the system orchestrator must be capable of specifying the task of orchestration the deployment, configuration, and the execution of applications within the NBDRA. A simple vendor neutral specification to coordinate the various parts either as simple parallel language tasks or as a workflow specification is needed to facilitate the overall coordination. Integration of existing tools and services into the orchestrator as extensible interface is desirable.
+
+\subsubsection{Data Provider Interface Requirement}
+
+The Data Provider role introduces new data or information feeds into the Big Data system for discovery, access, and transformation by the Big Data system. New data feeds are distinct from the data already in use by the system and residing in the various system repositories. Similar technologies can be used to access both new data feeds and existing data. The Data Provider actors can be anything from a sensor, to a human inputting data manually, to another Big Data system.
+Interfaces for data providers must be able to specify a data provider so it can be located by a data consumer. It also must include enough details to identify the services offered so they can be pragmatically reused by consumers. Interfaces to describe pipes and filters must be addressed.
+
+\subsubsection{Data Consumer Interface Requirement}
+
+Similar to the Data Provider, the role of Data Consumer within the NBDRA can be an actual end user or another system. In many ways, this role is the mirror image of the Data Provider, with the entire Big Data framework appearing like a Data Provider to the Data Consumer. The activities associated with the Data Consumer role include (a) Search and Retrieve (b) Download (c) Analyze Locally (d) Reporting (d) Visualization (e) Data to Use for Their Own Processes. The interface for the data consumer must be able to describe the consuming services and how they retrieve information or leverage data consumers.
+
+\subsubsection{Big Data Application Interface Provide}
+
+The Big Data Application Provider role executes a specific set of operations along the data life cycle to meet the requirements established by the System Orchestrator, as well as meeting security and privacy requirements. The Big Data Application Provider is the architecture component that encapsulates the business logic and functionality to be executed by the architecture. 
+The interfaces to describe big data applications include interfaces for the various subcomponents including collections, preparation/curation, analytics, visualization, and access. Some if the interfaces used in these components can be reused from other interfaces introduced in other sections of this document. Where appropriate we will identify application specific interfaces and provide examples of them while focusing on a use case as identified in Volume 3 of this series.
+
+\subsubsubsection{Collection}
+
+In general, the collection activity of the Big Data Application Provider handles the interface with the Data Provider. This may be a general service, such as a file server or web server configured by the System Orchestrator to accept or perform specific collections of data, or it may be an application-specific service designed to pull data or receive pushes of data from the Data Provider. Since this activity is receiving data at a minimum, it must store/buffer the received data until it is persisted through the Big Data Framework Provider. This persistence need not be to physical media but may simply be to an in-memory queue or other service provided by the processing frameworks of the Big Data Framework Provider. The collection activity is likely where the extraction portion of the Extract, Transform, Load (ETL)/Extract, Load, Transform (ELT) cycle is performed. At the initial collection stage, sets of data (e.g., data records) of similar structure are collected (and combined), resulting in uniform security, policy, and other considerations. Initial metadata is created (e.g., subjects with keys are identified) to facilitate subsequent aggregation or look-up methods.
+
+\subsubsubsection{Preparation}
+
+The preparation activity is where the transformation portion of the ETL/ELT cycle is likely performed, although analytics activity will also likely perform advanced parts of the transformation. Tasks performed by this activity could include data validation (e.g., checksums/hashes, format checks), cleansing (e.g., eliminating bad records/fields), outlier removal, standardization, reformatting, or encapsulating. This activity is also where source data will frequently be persisted to archive storage in the Big Data Framework Provider and provenance data will be verified or attached/associated. Verification or attachment may include optimization of data through manipulations (e.g., deduplication) and indexing to optimize the analytics process. This activity may also aggregate data from different Data Providers, leveraging metadata keys to create an expanded and enhanced data set.
+
+\subsubsubsection{Analytics}
+
+The analytics activity of the Big Data Application Provider includes the encoding of the low-level business logic of the Big Data system (with higher-level business process logic being encoded by the System Orchestrator). The activity implements the techniques to extract knowledge from the data based on the requirements of the vertical application. The requirements specify the data processing algorithms for processing the data to produce new insights that will address the technical goal. The analytics activity will leverage the processing frameworks to implement the associated logic. This typically involves the activity providing software that implements the analytic logic to the batch and/or streaming elements of the processing framework for execution. The messaging/communication framework of the Big Data Framework Provider may be used to pass data or control functions to the application logic running in the processing frameworks. The analytic logic may be broken up into multiple modules to be executed by the processing frameworks which communicate, through the messaging/communication framework, with each other and other functions instantiated by the Big Data Application Provider.
+
+\subsubsubsection{Visualization}
+
+The visualization activity of the Big Data Application Provider prepares elements of the processed data and the output of the analytic activity for presentation to the Data Consumer. The objective of this activity is to format and present data in such a way as to optimally communicate meaning and knowledge. The visualization preparation may involve producing a text-based report or rendering the analytic results as some form of graphic. The resulting output may be a static visualization and may simply be stored through the Big Data Framework Provider for later access. However, the visualization activity frequently interacts with the access activity, the analytics activity, and the Big Data Framework Provider (processing and platform) to provide interactive visualization of the data to the Data Consumer based on parameters provided to the access activity by the Data Consumer. The visualization activity may be completely application-implemented, leverage one or more application libraries, or may use specialized visualization processing frameworks within the Big Data Framework Provider. 
+
+\subsubsubsection{Access}
+
+The access activity within the Big Data Application Provider is focused on the communication/interaction with the Data Consumer. Similar to the collection activity, the access activity may be a generic service such as a web server or application server that is configured by the System Orchestrator to handle specific requests from the Data Consumer. This activity would interface with the visualization and analytic activities to respond to requests from the Data Consumer (who may be a person) and uses the processing and platform frameworks to retrieve data to respond to Data Consumer requests. In addition, the access activity confirms that descriptive and administrative metadata and metadata schemes are captured and maintained for access by the Data Consumer and as data is transferred to the Data Consumer. The interface with the Data Consumer may be synchronous or asynchronous in nature and may use a pull or push paradigm for data transfer. 
+
+\subsubsubsection{Big Data Provider Framework Interface Requirements}
+
+Data for Big Data applications are delivered through data providers. They can be either local providers contributed by a user or distributed data providers that refer to data on the internet.  We must be able to provide the following functionality (1) interfaces to files (2) interfaces ti virtual data directories (3) interfaces ti data streams (4) and interfaces to data filters.
+
+\subsubsubsection{Infrastructures Interface Requirements}
+
+This Big Data Framework Provider element provides all of the resources necessary to host/run the activities of the other components of the Big Data system. Typically, these resources consist of some combination of physical resources, which may host/support similar virtual resources.
+As part of the NBDRA we need interfaces that can be used to deal with the underlying infrastructure to address networking, computing, and storage
+
+\subsubsubsection{Platforms Interface Requirements}
+
+As part of the NBDRA platforms we need interfaces that can address platform needs and services for data organization, data distribution, indexed storage, and file systems.
+
+\subsubsubsection{Processing Interface Requirements}
+
+The processing frameworks for Big Data provide the necessary infrastructure software to support implementation of applications that can deal with the volume, velocity, variety, and variability of data. Processing frameworks define how the computation and processing of the data is organized. Big Data applications rely on various platforms and technologies to meet the challenges of scalable data analytics and operation. 
+We need to be able to interface easily with computing services that offer specific analytics services, batch processing capabilities, interactive analysis, and data streaming.
+
+\subsubsubsection{Crosscutting Interface Requirements}
+
+A number of crosscutting interface requirements within the NBDRA provider frameworks include messaging, communication, and resource management. Often these eservices may actually be hidden from explicit interface use as they are part of larger systems that expose higher level functionality through their interfaces. However, it may be needed to expose such interfaces also on a lower level in case finer grained control is needed. We will identify the need for such crosscutting interface requirements form Volume 3 of this series.
+
+\paragraph{Messaging/Communications Frameworks}
+
+Messaging and communications frameworks have their roots in the High Performance Computing (HPC) environments long popular in the scientific and research communities. Messaging/Communications Frameworks were developed to provide APIs for the reliable queuing, transmission, and receipt of data
+
+\paragraph{Resource Management Framework}
+
+As Big Data systems have evolved and become more complex, and as businesses work to leverage limited computation and storage resources to address a broader range of applications and business challenges, the requirement to effectively manage those resources has grown significantly. While tools for resource management and “elastic computing” have expanded and matured in response to the needs of cloud providers and virtualization technologies, Big Data introduces unique requirements for these tools. However, Big Data frameworks tend to fall more into a distributed computing paradigm, which presents additional challenges. 
+
+\subsubsection{BD Application Provider to Framework Provider
+  Interface}
+
+The Big Data Framework Provider typically consists of one or more hierarchically organized instances of the components in the NBDRA IT value chain (Figure 2). There is no requirement that all instances at a given level in the hierarchy be of the same technology. In fact, most Big Data implementations are hybrids that combine multiple technology approaches in order to provide flexibility or meet the complete range of requirements, which are driven from the Big Data Application Provider. 
+
+
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -672,7 +843,8 @@ We are looking for volunteers to contribute here.
 
 \section{Schema Command}
 
-%\codeFromFile{txt}{schema-man.tex}{man page}{s:manpage}
+
+\codeFromFile{bash}{schema-man.tex}{man page}{s:manpage}
 
 
 \section{Schema}\label{a:schema}
@@ -818,6 +990,27 @@ classes lessons rest.rst
 classes lesson python cmd5.rst
 \input{python-cmd5}
 
+\section{Acronyms}
+
+\begin{description}
+\item[ACID] 	Atomicity, Consistency, Isolation, Durability
+\item[API] 	Application Programming Interface
+\item[ASCII] 	American Standard Code for Information Interchange 
+\item[BASE] 	Basically Available, Soft state, Eventual consistency
+\item[DevOps] 	A clipped compound of {\em software DEVelopment} and
+  {\em information technology OPerationS}
+\item[HTTP] 	HyperText Transfer Protocol HTTPS HTTP Secure
+\item[IaaS] 	Infrastructure as a Service SaaS Software as a Service
+\item[ITL] 	Information Technology Laboratory
+\item[NBD-PWG]	NIST Big Data Public Working Group
+\item[NBDRA] 	NIST Big Data Reference Architecture 
+\item[NBDRAI] 	NIST Big Data Reference Architecture Interface
+\item[NIST] 	Big Data Interoperability Framework: Volume 8, Reference Architecture Interface
+\item[NIST] 	National Institute of Standards
+\item[OS] 	Operating System
+\item[REST] 	REpresentational State Transfer
+\item[WWW] 	World Wide Web
+\end{description}
 
 
 \end{document}
