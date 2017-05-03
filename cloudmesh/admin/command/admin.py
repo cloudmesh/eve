@@ -34,9 +34,9 @@ class AdminCommand(PluginCommand):
                 admin [mongo|rest] info
                 admin mongo backup
                 admin mongo reset
-                admin settings FILENAME
                 admin rest init [SETTINGS]
                 admin rest run
+                admin rest info
                 admin objects DIRECTORY FILENAME
                 
           Description:
@@ -142,11 +142,15 @@ class AdminCommand(PluginCommand):
             service = RestService()
             service.run()
 
-        if arguments.rest and arguments.init:
+        elif arguments.rest and arguments.init:
 
             source = path_expand(arguments.SETTINGS)
-            destination = path_expand("~/.cloudmesh/eve/settings.py")
-            r = Shell.mkdir(path_expand("~/.cloudmesh/eve"))
+            destination = path_expand("~/.cloudmesh/db/settings.py")
+            r = Shell.mkdir(path_expand("~/.cloudmesh/db"))
+
+            if not source.endswith(".py"):
+                Console.error("not a rest service configuration file")
+                return ""
 
             if source != destination:
                 r = shutil.copy (source, destination)
@@ -170,19 +174,6 @@ class AdminCommand(PluginCommand):
                 print(service.name)
                 _manage_service(service, arguments)
 
-        elif arguments.settings:
-            if arguments.FILENAME is None:
-                filename = "~/.cloudmesh/db/settings.py"
-            filename = path_expand(arguments.SETTINGS)
-
-            # if ends in json
-            #    create settings.py file first
-            #    copy settings.py to ~/.cloudmesh/db
-
-            # e = RestService(settings=filename)
-            # copying and handleing .py or .json extension  may be included in RestService method
-
-
         elif arguments.backup:
 
             print("not yet implemented")
@@ -193,3 +184,5 @@ class AdminCommand(PluginCommand):
             directory = arguments.DIRECTORY
             filename = arguments.FILENAME
             elements = Elements(directory, filename)
+
+        return ""
