@@ -63,8 +63,8 @@ class RestService(object):
         # TODO: implement
 
         Console.ok("loading eve_settings ...")
-        print (os.path.expanduser('~/.cloudmesh/eve'))
-        sys.path.insert(1,os.path.expanduser('~/.cloudmesh/eve'))
+        print (os.path.expanduser('~/.cloudmesh/db'))
+        sys.path.insert(1,os.path.expanduser('~/.cloudmesh/db'))
         print(sys.path)
         from settings import eve_settings
 
