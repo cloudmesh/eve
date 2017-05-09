@@ -367,7 +367,7 @@ objects and data to a particular person or group. While we do not want
 to replace with our efforts more elaborate solutions such as proposed
 by eduPerson (\url{
 http://software.internet2.edu/eduperson/internet2-mace-dir-eduperson-201602.html})
-or others \cite{??}, we need a very simple way of distinguishing
+or others \TODO{\cite{??}}, we need a very simple way of distinguishing
 users. Therefore we have introduced a number of simple objects
 including a profile and a user.
 
@@ -378,12 +378,21 @@ user profile. It contains name and e-mail information. It may have an
 optional uuid and/or use a unique e-mail to distinguish a
 user. 
 
+\TODO{what does the ``context'' represent? What are possible values?
+  How do those values alter the interpretation of a profile?}
+
+
 \codeFromJson{json}{profile.json}{User profile}{s:profile}
 
 \subsubsection{User}
 
 In contrast to the profile a user contains additional attributs that
 define the role of the user within the system.
+
+\TODO{There's redundancy in the definition of Profile and User, namely
+  everything except ``roles''. I don't think the current definitions
+  clearly illustrate what each is supposed to represent and how they
+  fit together in the system.}
 
 \codeFromJson{json}{user.json}{user}{s:user}
 
@@ -406,6 +415,9 @@ similar to the organization
 
 A group contains a number of users. It is used to manage authorized
 services.
+
+\TODO{The examples objects for Organization, Group, and Role should
+  clearly illustrate the differences. Right now it is a bit unclear.}
 
 \codeFromJson{json}{group.json}{group}{s:group}
 
@@ -433,16 +445,22 @@ directories, data streams, and data filters.
   and type.
 
 \item[Default] is a special type of variable that allows adding of a
-  context. defaults can than created for different contexts.
+  context. Defaults can than created for different contexts.
 
-\item[Files] are used to represent information collected within the context
-of classical files in an operating system. 
+\item[Files] are used to represent information collected within the
+  context of classical files in an operating system. \TODO{I don't
+    think this is very clear. Elaborate with examples?}.
 
-\item[Streams] are services that offer the consumer a stream of data. Streams may allow the initiation of filters to reduce the amount of data requested by the consumer 
-Stream Filters operate in streams or on files converting them to streams 
+\item[Streams] are services that offer the consumer a stream of
+  data. Streams may allow the initiation of filters to reduce the
+  amount of data requested by the consumer.  Stream Filters operate in
+  streams or on files converting them to streams.
+  \TODO{What are the semantics of streams?}
 
 \item[Batch Filters] operate on streams and on files while working in
-  the background and delivering as output Files 
+  the background and delivering as output Files. \TODO{Whats the
+    difference between Batch Filters and Stream Filters mentioned in
+    Streams?}
 
 \item[Virtual directories] and non-virtual directories are collection
   of files that organize them. For our initial purpose the distinction
@@ -451,13 +469,14 @@ Stream Filters operate in streams or on files converting them to streams
   mean that the files are physically hosted on different
   disks. However, it is important to note that virtual data
   directories can hold more than files, they can also contain data
-  streams and data filters.
+  streams and data filters. \TODO{Do we have examples of what this
+    would look like?}
 
 \end{description}
 
 \subsubsection{Var}
 
-variables are used to store a simple values. Each variable can have a
+Variables are used to store a simple values. Each variable can have a
 type. The variable value format is defined as string to allow maximal
 probability. The type of the value is also provided.
 
@@ -466,9 +485,9 @@ probability. The type of the value is also provided.
 \subsubsection{Default}
 
 A default is a special variable that has a context associated with
-it. This allow su to define values that can be easily retrieved based
-on its context. A good example for a default would be the image name
-for a cloud where the context is defined by the cloud name.
+it. This allows one to define values that can be easily retrieved
+based on its context. A good example for a default would be the image
+name for a cloud where the context is defined by the cloud name.
 
 \codeFromJson{json}{default.json}{default}{s:default}
 
@@ -485,12 +504,14 @@ The \textbf{file} object has \textit{name}, \textit{endpoint} (location), \texti
 in GB, MB, Byte, \textit{checksum} for integrity check, and last
 \textit{accessed} timestamp. 
 
+\TODO{Don't use md5}
 \codeFromJson{json}{file.json}{file}{s:file}
 
 \subsubsection{File Alias}
 
 A file could have one alias or even multiple ones.
 
+\TODO{The motivations for a File Alias should be clearly described.}
 \codeFromJson{json}{file_alias.json}{file alias}{s:file-alias}
 
 \subsubsection{Replica}
@@ -499,6 +520,9 @@ In many distributed systems, it is of importance that a file can be
 replicated among different systems in order to provide faster
 access. It is important to provide a mechanism that allows to trace
 the pedigree of the file while pointing to its original source 
+
+\TODO{We need to describe why a Replica is different from a File
+  object.}
 
 \codeFromJson{json}{replica.json}{replica}{s:replica}
 
