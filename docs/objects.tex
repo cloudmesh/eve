@@ -36,24 +36,20 @@
 This document summarizes a number of objects that are instrumental for
 the interaction with Clouds, Containers, and HPC systems to manage
 virtual clusters. 
+
+Big Data is a term used to describe the large amount of data in the networked, digitized, sensor-laden, information-driven world. While opportunities exist with Big Data, the data can overwhelm traditional technical approaches, and the growth of data is outpacing scientific and technological advances in data analytics. To advance progress in Big Data, the NIST Big Data Public Working Group (NBD-PWG) is working to develop consensus on important fundamental concepts related to Big Data. The results are reported in the NIST Big Data Interoperability Framework series of volumes. This volume, Volume 6, summarizes the work performed by the NBD-PWG to characterize Big Data from an architecture perspective, presents the NIST Big Data Reference Architecture (NBDRA) conceptual model, and discusses the components and fabrics of the NBDRA. 
+
 }
 
 \ifdraft
 \begin{abstract}
 \ABSTRACT
 \end{abstract}
-\fi
+
+
+
 
 \begin{document}
-
-\ifdraft
-\else
-\section*{Abstract}
-\ABSTRACT
-
-\fi
-
-\input{nist}
 
 \flushbottom % Makes all text pages the same height
 
@@ -61,6 +57,22 @@ virtual clusters.
 
 \tableofcontents % Print the contents section
 \maketitle
+
+\else
+\begin{document}
+
+
+\input{nist}
+
+\section*{\hfil \hspace{4cm} Abstract \hfil}
+\ABSTRACT
+
+\section*{\hfil  \hspace{4cm} Keywords \hfil}
+Application Provider; Big Data; Big Data characteristics; Data Consumer; Data Provider; Framework Provider; Management Fabric; reference architecture; Security and Privacy Fabric; System Orchestrator; use cases.
+
+\newpage
+\fi
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
@@ -504,14 +516,12 @@ The \textbf{file} object has \textit{name}, \textit{endpoint} (location), \texti
 in GB, MB, Byte, \textit{checksum} for integrity check, and last
 \textit{accessed} timestamp. 
 
-\TODO{Don't use md5}
 \codeFromJson{json}{file.json}{file}{s:file}
 
 \subsubsection{File Alias}
 
-A file could have one alias or even multiple ones.
+A file could have one alias or even multiple ones. The reason for an alias is that a file may have a complex name but a user may want to refer to that file in a name space that is suitable for the users application.
 
-\TODO{The motivations for a File Alias should be clearly described.}
 \codeFromJson{json}{file_alias.json}{file alias}{s:file-alias}
 
 \subsubsection{Replica}
@@ -519,7 +529,7 @@ A file could have one alias or even multiple ones.
 In many distributed systems, it is of importance that a file can be
 replicated among different systems in order to provide faster
 access. It is important to provide a mechanism that allows to trace
-the pedigree of the file while pointing to its original source 
+the pedigree of the file while pointing to its original source. The need for the replicat is  
 
 \TODO{We need to describe why a Replica is different from a File
   object.}
@@ -866,6 +876,10 @@ each of them.
 
 We are looking for volunteers to contribute here.
 
+\cite{*}
+
+\bibliography{references}
+
 \newpage
 
 \appendix
@@ -1046,6 +1060,7 @@ The following acronyms are used in the paper
 \item[REST] 	REpresentational State Transfer
 \item[WWW] 	World Wide Web
 \end{description}
+
 
 
 \end{document}
