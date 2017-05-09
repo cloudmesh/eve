@@ -80,10 +80,10 @@
 \RequirePackage{algorithm}
 \RequirePackage[noend]{algpseudocode}
 \RequirePackage{changepage}
-\RequirePackage[left=48pt,%
+\RequirePackage[left=42pt,%
                 right=42pt,%
-                top=46pt,%
-                bottom=60pt,%
+                top=42pt,%
+                bottom=42pt,%
                 headheight=15pt,%
                 headsep=10pt,%
                 letterpaper,twoside]{geometry}%
@@ -138,12 +138,14 @@
 \RequirePackage{lastpage}  % Number of pages in the document
 \pagestyle{fancy}          % Enables the custom headers/footers
 % Headers
-\fancyhead[LE]{\headerfont \begin{tabular*}{\textwidth}{!{\color{black}\vrule}c!{\color{black}\vrule} @{\extracolsep{\fill}} c!{\color{black}\vrule}}\arrayrulecolor{black}
+\fancyhf{}
+\fancyheadoffset{1cm}
+\fancyhead[LE]{\headerfont \begin{tabular*}{1.1\textwidth}{!{\color{black}\vrule}c!{\color{black}\vrule} @{\extracolsep{\fill}} c!{\color{black}\vrule}}\arrayrulecolor{black}
       \hline
       \cellcolor{black}\textcolor{white}{\ifthenelse{\boolean{shortarticle}}{\journalshorttype}{\journallongtype}} & \journalname\hspace{21pt}\thepage \\
       \hline
     \end{tabular*}}
-\fancyhead[RO]{\headerfont \begin{tabular*}{\textwidth}{!{\color{black}\vrule}c!{\color{black}\vrule} @{\extracolsep{\fill}} c!{\color{black}\vrule}}\arrayrulecolor{black}
+\fancyhead[RO]{\headerfont \begin{tabular*}{1.1\textwidth}{!{\color{black}\vrule}c!{\color{black}\vrule} @{\extracolsep{\fill}} c!{\color{black}\vrule}}\arrayrulecolor{black}
       \hline
       \cellcolor{black}\textcolor{white}{\ifthenelse{\boolean{shortarticle}}{\journalshorttype}{\journallongtype}} & \journalname\hspace{21pt}\thepage \\
       \hline

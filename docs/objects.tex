@@ -1,68 +1,59 @@
-\documentclass[9pt,twocolumn]{styles/osajnl} 
-\input{format}
-\usepackage{titlesec}
-\titleclass{\subsubsubsection}{straight}[\subsection]
+\newif\ifdraft
 
-\newcounter{subsubsubsection}[subsubsection]
+\drafttrue 
+\draftfalse
 
-\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
-\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}}
-\renewcommand\thesubparagraph{\theparagraph.\arabic{subparagraph}}
-
-\titleformat{\subsubsubsection}
-  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
-\titlespacing*{\subsubsubsection}
-{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-
-\makeatletter
-\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
-  {3.25ex \@plus1ex \@minus.2ex}%
-  {-1em}%
-  {\normalfont\normalsize\bfseries}}
-\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}
-  {3.25ex \@plus1ex \@minus .2ex}%
-  {-1em}%
-  {\normalfont\normalsize\bfseries}}
-\def\toclevel@subsubsubsection{4}
-\def\toclevel@paragraph{5}
-\def\toclevel@paragraph{6}
-\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
-\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
-\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
-\@addtoreset{subsubsubsection}{section}
-\@addtoreset{subsubsubsection}{subsection}
-\@addtoreset{paragraph}{subsubsubsection}
-\makeatother
-
-\setcounter{secnumdepth}{6}
-\setcounter{tocdepth}{6}
-\title{Cloudmesh REST Interface for Virtual Clusters} 
-
-\author[1,*]{Gregor von Laszewski} 
-\author[1]{Fugang Wang}
-\author[1]{Badi Abdhul-Wahid}
-
-\affil[1]{School of Informatics and Computing, Bloomington, IN 47408, U.S.A.} 
-\affil[*]{Corresponding authors: laszewski@gmal.com} 
-
-\dates{Draft v0.0.1, \today} 
-
-\ociscodes{Cloudmesh, REST, NIST}
-
-\doi{\url{https://github.com/cloudmesh/rest/tree/master/docs}} 
+\ifdraft
+  \documentclass[9pt,twocolumn]{styles/osajnl} 
+\else
+  \documentclass[10pt]{styles/osajnl} 
 
 
-\begin{abstract}
+\fi
+  \input{format}
+  \journal{nist}
 
+\renewcommand*{\journallongtype}{NIST Big Data Interoperability Framework: Volume 8, Reference Architecture Interface}
+  \title{NIST Big Data Interoperability Framework: Volume 8, Reference Architecture Interface}
+
+  \author[1,*]{Gregor von Laszewski} 
+  \author[1]{Fugang Wang}
+  \author[1]{Badi Abdhul-Wahid}
+  \author[2]{Wo L. Chang}
+
+  \affil[1]{School of Informatics and Computing, Bloomington, IN 47408, U.S.A.} 
+  \affil[2]{National INstitute of Standards, 100 Bureau Drive, Gaithersburg, MD 20899} 
+  \affil[*]{Corresponding author: laszewski@gmal.com} 
+
+  \dates{Draft v0.0.1, \today} 
+
+  \ociscodes{Cloudmesh, REST, NIST}
+
+  \doi{\url{https://github.com/cloudmesh/rest/tree/master/docs}} 
+
+
+\newcommand{\ABSTRACT}{
 This document summarizes a number of objects that are instrumental for
 the interaction with Clouds, Containers, and HPC systems to manage
 virtual clusters. 
-TBD
+}
 
+\ifdraft
+\begin{abstract}
+\ABSTRACT
 \end{abstract}
+\fi
 
 \begin{document}
 
+\ifdraft
+\else
+\section*{Abstract}
+\ABSTRACT
+
+\fi
+
+\input{nist}
 
 \flushbottom % Makes all text pages the same height
 
@@ -78,13 +69,22 @@ TBD
 
 \section{NBDRA Interface Requirements}
 
-The Volume 6 Reference Architecture document provides a list of comprehensive high-level reference architecture requirements and introduces the NIST Big Data Reference Architecture (NBDRA) (see Figure 1). To enable interoperability between the NBDRA components, a list of well-defined NBDRA interface is needed.  To introduce them, we will follow the NBDRA and focus on interfaces that allow us to bootstrap the NBDRA. Each section will introduce an Interface while documenting the requirement as well as a simple specification addressing the immediate interface needs. We expect that this document will grow with the help of contributions from the community to achieve a comprehensive set of interfaces that will be usable for the implementation of Big Data Architectures. Validation of this approach can be achieved while applying it to the use cases that have been gathered in Volume 3. These use cases have considerably contributed towards the design of the NBDRA. Hence our expectation is that (a) the interfaces can be used to help implementing a big data architecture for a specific use case, and (b) the proper implementation can validate the NBDRA. Through this approach, we can facilitate subsequent analysis and comparison of the use cases. 
+The Volume 6 Reference Architecture document provides a list of comprehensive high-level reference architecture requirements and introduces the NIST Big Data Reference Architecture (NBDRA) (see Figure \ref{F:architecture}). To enable interoperability between the NBDRA components, a list of well-defined NBDRA interface is needed.  To introduce them, we will follow the NBDRA and focus on interfaces that allow us to bootstrap the NBDRA. Each section will introduce an Interface while documenting the requirement as well as a simple specification addressing the immediate interface needs. We expect that this document will grow with the help of contributions from the community to achieve a comprehensive set of interfaces that will be usable for the implementation of Big Data Architectures. Validation of this approach can be achieved while applying it to the use cases that have been gathered in Volume 3. These use cases have considerably contributed towards the design of the NBDRA. Hence our expectation is that (a) the interfaces can be used to help implementing a big data architecture for a specific use case, and (b) the proper implementation can validate the NBDRA. Through this approach, we can facilitate subsequent analysis and comparison of the use cases. 
 
 \subsection{High Level Requirements of the Interface Approach}
 
-Next, we focus on the high-level requirements of the interface approach. 
+Next, we focus on the high-level requirements of the interface approach as depicted in \ref{F:architecture}
 
-Figure 1: NIST Big Data Reference Architecture (NBDRA)
+\begin{figure*}[h]\centering
+\ifdraft
+  \includegraphics[width=\linewidth]{images/vol8-diagrams}
+\else
+  \includegraphics[width=1.1\textwidth]{images/vol8-diagrams}
+\fi
+\caption{NIST Big Data Reference Architecture (NBDRA)}
+\label{F:architecture}
+\end{figure*}
+
 
 \subsubsection{Technology and Vendor Agnostic}
 
@@ -208,7 +208,7 @@ The Big Data Framework Provider typically consists of one or more hierarchically
 
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
+\section{Specification Paradigm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In this document we summarize elementary objects that are important to
@@ -354,7 +354,12 @@ compliancy. We define it as follows
 \end{description}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{User and Profile}
+\section{Specification}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{User and Profile}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In a multiuser environment we need a simple mechanism of associating
@@ -366,7 +371,7 @@ or others \cite{??}, we need a very simple way of distinguishing
 users. Therefore we have introduced a number of simple objects
 including a profile and a user.
 
-\subsection{Profile}
+\subsubsection{Profile}
 
 A profile is simple the most elementary information to distinguish a
 user profile. It contains name and e-mail information. It may have an
@@ -375,14 +380,14 @@ user.
 
 \codeFromJson{json}{profile.json}{User profile}{s:profile}
 
-\subsection{User}
+\subsubsection{User}
 
 In contrast to the profile a user contains additional attributs that
 define the role of the user within the system.
 
 \codeFromJson{json}{user.json}{user}{s:user}
 
-\subsection{Organization}
+\subsubsection{Organization}
 
 An important concept in many applications is the management of a roup
 of users in a virtual organization. This can be achieved through two
@@ -397,7 +402,7 @@ similar to the organization
 
 \codeFromJson{json}{organization.json}{user}{s:organization}
 
-\subsection{Group/Role}
+\subsubsection{Group/Role}
 
 A group contains a number of users. It is used to manage authorized
 services.
@@ -412,7 +417,7 @@ specifically read and write privileges to the data within the repository.
 \codeFromJson{json}{role.json}{role}{s:role}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Data}
+\subsection{Data}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Data for Big Data applications are delivered through data
@@ -450,7 +455,7 @@ Stream Filters operate in streams or on files converting them to streams
 
 \end{description}
 
-\subsection{Var}
+\subsubsection{Var}
 
 variables are used to store a simple values. Each variable can have a
 type. The variable value format is defined as string to allow maximal
@@ -458,7 +463,7 @@ probability. The type of the value is also provided.
 
 \codeFromJson{json}{var.json}{var}{s:var}
 
-\subsection{Default}
+\subsubsection{Default}
 
 A default is a special variable that has a context associated with
 it. This allow su to define values that can be easily retrieved based
@@ -467,7 +472,7 @@ for a cloud where the context is defined by the cloud name.
 
 \codeFromJson{json}{default.json}{default}{s:default}
 
-\subsection{File}
+\subsubsection{File}
 
 A file is a computer resource allowing to store data that is being
 processed. The interface to a file provides the mechanism to
@@ -482,13 +487,13 @@ in GB, MB, Byte, \textit{checksum} for integrity check, and last
 
 \codeFromJson{json}{file.json}{file}{s:file}
 
-\subsection{File Alias}
+\subsubsection{File Alias}
 
 A file could have one alias or even multiple ones.
 
 \codeFromJson{json}{file_alias.json}{file alias}{s:file-alias}
 
-\subsection{Replica}
+\subsubsection{Replica}
 
 In many distributed systems, it is of importance that a file can be
 replicated among different systems in order to provide faster
@@ -498,7 +503,7 @@ the pedigree of the file while pointing to its original source
 \codeFromJson{json}{replica.json}{replica}{s:replica}
 
 
-\subsection{Virtual Directory}
+\subsubsection{Virtual Directory}
 
 A collection of files or replicas. A virtual directory can contain an
 number of entities cincluding files, streams, and other virtual
@@ -508,14 +513,14 @@ either be defined by uuid or by name.
 \codeFromJson{json}{virtual_directory.json}{virtual
   directory}{s:virtual-directory}
 
-\subsection{Database}
+\subsubsection{Database}
 
 A \textbf{database} could have a name, an \textit{endpoint} (e.g., host:port),
 and protocol used (e.g., SQL, mongo, etc.).
 
 \codeFromJson{json}{database.json}{database}{s:database}
 
-\subsection{Stream} 
+\subsubsection{Stream} 
 
 A stream proveds a stream of data while providing information about
 rate and number of items exchanged while issuing requests to the
@@ -536,47 +541,47 @@ filters to the subscribed stream.
 \TODO{Filter needs to be refined}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{IaaS}
+\subsection{IaaS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this section we are defining resources related to Infrastructure as
+In this subsection we are defining resources related to Infrastructure as
 a Service frameworks. This includes specific objects useful for
 OpenStack, Azure, and AWS, as well as others.
 
 % ----------------------------------------------------------------------
-\subsection{Openstack}
+\subsubsection{Openstack}
 % ----------------------------------------------------------------------
 
-\subsubsection{Openstack Flavor}
+\subsubsubsection{Openstack Flavor}
 
 \codeFromJson{json}{openstack_flavor.json}{openstack flavor}{s:openstack-flavor}
 
-\subsubsection{Openstack Image}
+\subsubsubsection{Openstack Image}
 
 \codeFromJson{json}{openstack_image.json}{openstack
   image}{s:openstack-image}
 
-\subsubsection{Openstack Vm}
+\subsubsubsection{Openstack Vm}
 
 \codeFromJson{json}{openstack_vm.json}{openstack
   vm}{s:openstack-vm}
 
 % ----------------------------------------------------------------------
-\subsection{Azure}
+\subsubsection{Azure}
 % ----------------------------------------------------------------------
 
-\subsubsection{Azure Size}
+\subsubsubsection{Azure Size}
 
 The size description of an azure vm
 
 \codeFromJson{json}{azure-size.json}{azure-size}{s:azure-size}
 
 
-\subsubsection{Azure Image}
+\subsubsubsection{Azure Image}
 
 \codeFromJson{json}{azure-image.json}{azure-image}{s:azure-image}
 
-\subsubsection{Azure Vm}
+\subsubsubsection{Azure Vm}
 
 An Azure virtual machine
 \codeFromJson{json}{azure-vm.json}{azure-vm}{s:azure-vm}
@@ -584,18 +589,18 @@ An Azure virtual machine
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{HPC}
+\subsection{HPC}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Batch Job}
+\subsubsection{Batch Job}
 
 \codeFromJson{json}{batchjob.json}{batchjob}{s:batchjob}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Virtual Cluster}
+\subsection{Virtual Cluster}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Cluster}
+\subsubsection{Cluster}
 
 The cluster object has name, label, endpoint and provider. The
 \textit{endpoint} defines....  The \textit{provider} defines the
@@ -605,11 +610,11 @@ cloud, or from AWS, or a bare-metal cluster.
 
 \codeFromJson{json}{cluster.json}{cluster}{s:cluster}
 
-\subsection{New Cluster}
+\subsubsection{New Cluster}
 
 \codeFromJson{json}{cluster_new.json}{cluster}{s:cluster}
 \
-\subsection{Compute Resource}
+\subsubsection{Compute Resource}
 
 An important concept for big data analysis it the representation of a
 compute resource on which we execute the analysis. We define a compute
@@ -623,7 +628,7 @@ specifies ... The \textit{kind} could be \textit{baremetal} or \textit{VC}.
 
 \codeFromJson{json}{compute_resource.json}{compute resource}{s:compute-resource}
 
-\subsection{Computer}
+\subsubsection{Computer}
 
 This defines a \textbf{computer} object. A computer has name, label,
 IP address. It also listed the relevant specs such as memory, disk
@@ -632,7 +637,7 @@ size, etc.
 \codeFromJson{json}{computer.json}{computer}{s:computer}
 
 
-\subsection{Compute Node}
+\subsubsection{Compute Node}
 
 A node is composed of multiple components:
 
@@ -673,7 +678,7 @@ egress TCP and UDP traffic is allowed provided they are to ports 22
 
 
 
-\subsection{Virtual Cluster}
+\subsubsection{Virtual Cluster}
 
 A virtual cluster is an agglomeration of virtual compute nodes that
 constitute the cluster. Nodes can be assembled to be baremetal,
@@ -683,45 +688,45 @@ of virtual compute nodes.
 \codeFromJson{json}{virtual_cluster.json}{virtual
   cluster}{s:virtual-cluster}
 
-\subsection{Virtual Compute node}
+\subsubsection{Virtual Compute node}
 
 \codeFromJson{json}{virtual_compute_node.json}{virtual
   compute node}{s:virtual-compute-node}
 
-\subsection{Virtual Machine}
+\subsubsection{Virtual Machine}
 
 Virtual Machine 
 Virtual machines are an emulation of a computer system. We are maintaining a very basic set of information. It is expected that through the endpoint the virtual machine can be introspected and more detailed information can be retrieved. 
 
 \codeFromJson{json}{virtual_machine.json}{virtual machine}{s:virtual-machine}
 
-\subsection{Mesos}
+\subsubsection{Mesos}
 
 \TODO{Refine}
 
 \codeFromJson{json}{mesos.json}{mesos}{s:mesos}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Containers}
+\subsection{Containers}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Container}
+\subsubsection{Container}
 
 This defines \textbf{container} object.
 
 \codeFromJson{json}{container.json}{container}{s:container}
 
-\subsection{Kubernetes}
+\subsubsection{Kubernetes}
 
 \TODO{REFINE}
 
 \codeFromJson{json}{kubernetes.json}{kubernetes}{s:kubernetes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Deployment}
+\subsection{Deployment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Deployment}
+\subsubsection{Deployment}
 
 A \textbf{deployment} consists of the resource \- \textit{cluster},
 the location \- \textit{provider}, e.g., AWS, OpenStack, etc., and
@@ -730,10 +735,10 @@ software \textit{stack} to be deployed (e.g., hadoop, spark).
 \codeFromJson{json}{deployment.json}{deployment}{s:deployment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Mapreduce}
+\subsection{Mapreduce}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Mapreduce}
+\subsubsection{Mapreduce}
 
 The \textbf{mapreduce} deployment has as inputs parameters defining
 the applied function and the input data.  Both function and data
@@ -779,7 +784,7 @@ this is the empty mapping while for lists this is the empty list.
 \codeFromJson{json}{mapreduce_function_noop.json}{mapreduce noop}{s:mr.f.noop}
 
 
-\subsection{Hadoop}
+\subsubsection{Hadoop}
 
 A \textbf{hadoop} definition defines which \textit{deployer} to be used,
 the \textit{parameters} of the deployment, and the system packages as
@@ -790,18 +795,18 @@ as the library origin, version, etc.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Security}
+\subsection{Security}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Key}
+\subsubsection{Key}
 
 \codeFromJson{json}{key.json}{key}{s:key}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Microservice}
+\subsection{Microservice}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Microservice}
+\subsubsection{Microservice}
 
  
 introduce registry we can register many things to it 
@@ -826,13 +831,13 @@ each of them.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Reservation}
+\subsubsection{Reservation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \codeFromJson{json}{reservation.json}{reservation}{s:reservation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Network}
+\subsection{Network}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 We are looking for volunteers to contribute here.
@@ -841,23 +846,27 @@ We are looking for volunteers to contribute here.
 
 \appendix
 
-\section{Schema Command}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Appendix}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Schema Command}
 
 
 \codeFromFile{bash}{schema-man.tex}{man page}{s:manpage}
 
 
-\section{Schema}\label{a:schema}
+\subsection{Schema}\label{a:schema}
 
 TBD
 
 \codeFromJson{python}{../settings.settings.py}{schema}{s:schema}
 
-\section{Contributing}
+\subsection{Contributing}
 
 We invite you to contribute to this paper and its discussion to
 improve it. Improvements can be done with pull requests. We suggest
-you do {\em small} individual changes to a single section and object
+you do {\em small} individual changes to a single subsection and object
 rather than large changes as this allows us to integrate the changes
 individually and comment on your contribution via github.
 
@@ -865,7 +874,7 @@ Once contributed we will appropriately acknoledge you either as
 contributor or author. Please discuss with us how we best acknowledge
 you.
 
-\section{Using the Cloudmesh REST Service} 
+\subsection{Using the Cloudmesh REST Service} 
 
 Components are written as YAML markup in files in the
 \verb+resources/samples+ directory.
@@ -874,13 +883,13 @@ For example:
 
 \codeFromJson{json}{profile.json}{profile}{s:profile}
 
-\subsection{Element Definition}
+\subsubsection{Element Definition}
 
 Each resource should have a \verb+description+ entry to act as
 documentation. The documentation should be formated as
 reStructuredText. For example:
 
-\subsection{Yaml}
+\subsubsection{Yaml}
 
 \begin{Verbatim}
 entry = yaml.read('''
@@ -895,7 +904,7 @@ profile:
 '''}
 \end{Verbatim}
 
-\subsection{Cerberus}
+\subsubsection{Cerberus}
 
 \begin{Verbatim}
 schema = {
@@ -908,7 +917,7 @@ schema = {
 }
 \end{Verbatim}
 
-\section{Mongoengine}
+\subsection{Mongoengine}
 
 \begin{Verbatim}
 class profile(Document):
@@ -919,7 +928,7 @@ class profile(Document):
     height = FloatField(max_length=50)
 \end{Verbatim}
 
-\section{Cloudmesh Notation}
+\subsection{Cloudmesh Notation}
 
 \begin{Verbatim}
 profile:
@@ -945,7 +954,7 @@ cms schema FILENAME --input=evegenie -o OUTPUT
 \end{Verbatim}
 
 
-\subsection{Defining Elements for the REST Service}
+\subsubsection{Defining Elements for the REST Service}
 
 To manage a large number of elements defined in our REST service
 easily, we manage them trhough definitions in yaml files. To generate
@@ -971,18 +980,18 @@ use the following command:
 cms elements resources/samples all.json
 \end{verbatim}
 
-\subsection{DOIT}
+\subsubsection{DOIT}
 
 
 cms schema spec2tex resources/specification resources/tex
 
-\subsection{Generating service}
+\subsubsection{Generating service}
 
 With evegenie installed, the generated JSON file from the above step
 is processed to create the stub REST service definitions.
 
 
-\section{ABC}
+\subsection{ABC}
 {\bf README.rst}
 \input{readme}
 classes lessons rest.rst
@@ -990,9 +999,11 @@ classes lessons rest.rst
 classes lesson python cmd5.rst
 \input{python-cmd5}
 
-\section{Acronyms}
+\subsection{Acronyms}
 
-\begin{description}
+The following acronyms are used in the paper
+
+\begin{description}[leftmargin=8em,style=nextline]
 \item[ACID] 	Atomicity, Consistency, Isolation, Durability
 \item[API] 	Application Programming Interface
 \item[ASCII] 	American Standard Code for Information Interchange 
