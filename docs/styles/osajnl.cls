@@ -186,15 +186,23 @@
   {0.5em}
   {#1}
   []
-\titleformat{\paragraph}[runin]
+\titleformat{\paragraph}
   {\sffamily\small\bfseries}
-  {}
-  {0em}
+  {\theparagraph}
+  {1em}
   {#1}
+  []
+\titleformat{\subparagraph}
+  {\sffamily\small\bfseries}
+  {\thesubparagraph}
+  {1em}
+  {#1}
+  []
 \titlespacing*{\section}{0pc}{3ex \@plus4pt \@minus3pt}{5pt}
 \titlespacing*{\subsection}{0pc}{2.5ex \@plus3pt \@minus2pt}{2pt}
 \titlespacing*{\subsubsection}{0pc}{2ex \@plus2.5pt \@minus1.5pt}{2pt}
-\titlespacing*{\paragraph}{0pc}{1.5ex \@plus2pt \@minus1pt}{12pt}
+\titlespacing*{\paragraph}{0pc}{2ex \@plus2.5pt \@minus1.5pt}{2pt}
+\titlespacing*{\subparagraph}{0pc}{2ex \@plus2.5pt \@minus1.5pt}{2pt}
 
 
 % Article meta data additional fields

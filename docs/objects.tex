@@ -70,6 +70,11 @@ Big Data is a term used to describe the large amount of data in the networked, d
 \section*{\hfil  \hspace{4cm} Keywords \hfil}
 Application Provider; Big Data; Big Data characteristics; Data Consumer; Data Provider; Framework Provider; Management Fabric; reference architecture; Security and Privacy Fabric; System Orchestrator; use cases.
 
+\cite{*}
+
+\bibliography{references}
+
+
 \newpage
 \fi
 
@@ -124,15 +129,15 @@ One of the important aspects of distributed big data services can be that the da
 
 \subsubsection{Security and Privacy Fabric Requirements}
 
-Subsection Scope: Discussion of high-level requirements of the interface approach for the Security and Privacy Fabric.
+\TODO{Subsection Scope: Discussion of high-level requirements of the interface approach for the Security and Privacy Fabric.}
 
 \subsubsection{System Orchestration Requirement}
 
-Subsection Scope: Discussion of high-level requirements of the interface approach for the System Orchestrator.
+\TODO{Subsection Scope: Discussion of high-level requirements of the interface approach for the System Orchestrator.}
 
 \subsubsection{Application Providers Requirements}
 
-Subsection Scope: Discussion of high-level requirements of the interface approach for the Application Provider.
+\TODO{Subsection Scope: Discussion of high-level requirements of the interface approach for the Application Provider.}
 
 \subsection{Component Specific Interface Requirements}
 
@@ -162,45 +167,45 @@ Similar to the Data Provider, the role of Data Consumer within the NBDRA can be 
 The Big Data Application Provider role executes a specific set of operations along the data life cycle to meet the requirements established by the System Orchestrator, as well as meeting security and privacy requirements. The Big Data Application Provider is the architecture component that encapsulates the business logic and functionality to be executed by the architecture. 
 The interfaces to describe big data applications include interfaces for the various subcomponents including collections, preparation/curation, analytics, visualization, and access. Some if the interfaces used in these components can be reused from other interfaces introduced in other sections of this document. Where appropriate we will identify application specific interfaces and provide examples of them while focusing on a use case as identified in Volume 3 of this series.
 
-\subsubsubsection{Collection}
+\paragraph{Collection}
 
 In general, the collection activity of the Big Data Application Provider handles the interface with the Data Provider. This may be a general service, such as a file server or web server configured by the System Orchestrator to accept or perform specific collections of data, or it may be an application-specific service designed to pull data or receive pushes of data from the Data Provider. Since this activity is receiving data at a minimum, it must store/buffer the received data until it is persisted through the Big Data Framework Provider. This persistence need not be to physical media but may simply be to an in-memory queue or other service provided by the processing frameworks of the Big Data Framework Provider. The collection activity is likely where the extraction portion of the Extract, Transform, Load (ETL)/Extract, Load, Transform (ELT) cycle is performed. At the initial collection stage, sets of data (e.g., data records) of similar structure are collected (and combined), resulting in uniform security, policy, and other considerations. Initial metadata is created (e.g., subjects with keys are identified) to facilitate subsequent aggregation or look-up methods.
 
-\subsubsubsection{Preparation}
+\paragraph{Preparation}
 
 The preparation activity is where the transformation portion of the ETL/ELT cycle is likely performed, although analytics activity will also likely perform advanced parts of the transformation. Tasks performed by this activity could include data validation (e.g., checksums/hashes, format checks), cleansing (e.g., eliminating bad records/fields), outlier removal, standardization, reformatting, or encapsulating. This activity is also where source data will frequently be persisted to archive storage in the Big Data Framework Provider and provenance data will be verified or attached/associated. Verification or attachment may include optimization of data through manipulations (e.g., deduplication) and indexing to optimize the analytics process. This activity may also aggregate data from different Data Providers, leveraging metadata keys to create an expanded and enhanced data set.
 
-\subsubsubsection{Analytics}
+\paragraph{Analytics}
 
 The analytics activity of the Big Data Application Provider includes the encoding of the low-level business logic of the Big Data system (with higher-level business process logic being encoded by the System Orchestrator). The activity implements the techniques to extract knowledge from the data based on the requirements of the vertical application. The requirements specify the data processing algorithms for processing the data to produce new insights that will address the technical goal. The analytics activity will leverage the processing frameworks to implement the associated logic. This typically involves the activity providing software that implements the analytic logic to the batch and/or streaming elements of the processing framework for execution. The messaging/communication framework of the Big Data Framework Provider may be used to pass data or control functions to the application logic running in the processing frameworks. The analytic logic may be broken up into multiple modules to be executed by the processing frameworks which communicate, through the messaging/communication framework, with each other and other functions instantiated by the Big Data Application Provider.
 
-\subsubsubsection{Visualization}
+\paragraph{Visualization}
 
 The visualization activity of the Big Data Application Provider prepares elements of the processed data and the output of the analytic activity for presentation to the Data Consumer. The objective of this activity is to format and present data in such a way as to optimally communicate meaning and knowledge. The visualization preparation may involve producing a text-based report or rendering the analytic results as some form of graphic. The resulting output may be a static visualization and may simply be stored through the Big Data Framework Provider for later access. However, the visualization activity frequently interacts with the access activity, the analytics activity, and the Big Data Framework Provider (processing and platform) to provide interactive visualization of the data to the Data Consumer based on parameters provided to the access activity by the Data Consumer. The visualization activity may be completely application-implemented, leverage one or more application libraries, or may use specialized visualization processing frameworks within the Big Data Framework Provider. 
 
-\subsubsubsection{Access}
+\paragraph{Access}
 
 The access activity within the Big Data Application Provider is focused on the communication/interaction with the Data Consumer. Similar to the collection activity, the access activity may be a generic service such as a web server or application server that is configured by the System Orchestrator to handle specific requests from the Data Consumer. This activity would interface with the visualization and analytic activities to respond to requests from the Data Consumer (who may be a person) and uses the processing and platform frameworks to retrieve data to respond to Data Consumer requests. In addition, the access activity confirms that descriptive and administrative metadata and metadata schemes are captured and maintained for access by the Data Consumer and as data is transferred to the Data Consumer. The interface with the Data Consumer may be synchronous or asynchronous in nature and may use a pull or push paradigm for data transfer. 
 
-\subsubsubsection{Big Data Provider Framework Interface Requirements}
+\paragraph{Big Data Provider Framework Interface Requirements}
 
 Data for Big Data applications are delivered through data providers. They can be either local providers contributed by a user or distributed data providers that refer to data on the internet.  We must be able to provide the following functionality (1) interfaces to files (2) interfaces ti virtual data directories (3) interfaces ti data streams (4) and interfaces to data filters.
 
-\subsubsubsection{Infrastructures Interface Requirements}
+\paragraph{Infrastructures Interface Requirements}
 
 This Big Data Framework Provider element provides all of the resources necessary to host/run the activities of the other components of the Big Data system. Typically, these resources consist of some combination of physical resources, which may host/support similar virtual resources.
 As part of the NBDRA we need interfaces that can be used to deal with the underlying infrastructure to address networking, computing, and storage
 
-\subsubsubsection{Platforms Interface Requirements}
+\paragraph{Platforms Interface Requirements}
 
 As part of the NBDRA platforms we need interfaces that can address platform needs and services for data organization, data distribution, indexed storage, and file systems.
 
-\subsubsubsection{Processing Interface Requirements}
+\paragraph{Processing Interface Requirements}
 
 The processing frameworks for Big Data provide the necessary infrastructure software to support implementation of applications that can deal with the volume, velocity, variety, and variability of data. Processing frameworks define how the computation and processing of the data is organized. Big Data applications rely on various platforms and technologies to meet the challenges of scalable data analytics and operation. 
 We need to be able to interface easily with computing services that offer specific analytics services, batch processing capabilities, interactive analysis, and data streaming.
 
-\subsubsubsection{Crosscutting Interface Requirements}
+\paragraph{Crosscutting Interface Requirements}
 
 A number of crosscutting interface requirements within the NBDRA provider frameworks include messaging, communication, and resource management. Often these eservices may actually be hidden from explicit interface use as they are part of larger systems that expose higher level functionality through their interfaces. However, it may be needed to expose such interfaces also on a lower level in case finer grained control is needed. We will identify the need for such crosscutting interface requirements form Volume 3 of this series.
 
@@ -377,9 +382,7 @@ compliancy. We define it as follows
 In a multiuser environment we need a simple mechanism of associating
 objects and data to a particular person or group. While we do not want
 to replace with our efforts more elaborate solutions such as proposed
-by eduPerson (\url{
-http://software.internet2.edu/eduperson/internet2-mace-dir-eduperson-201602.html})
-or others \TODO{\cite{??}}, we need a very simple way of distinguishing
+by eduPerson \cite{www-eduperson} or others, we need a very simple way of distinguishing
 users. Therefore we have introduced a number of simple objects
 including a profile and a user.
 
@@ -586,16 +589,16 @@ OpenStack, Azure, and AWS, as well as others.
 \subsubsection{Openstack}
 % ----------------------------------------------------------------------
 
-\subsubsubsection{Openstack Flavor}
+\paragraph{Openstack Flavor}
 
 \codeFromJson{json}{openstack_flavor.json}{openstack flavor}{s:openstack-flavor}
 
-\subsubsubsection{Openstack Image}
+\paragraph{Openstack Image}
 
 \codeFromJson{json}{openstack_image.json}{openstack
   image}{s:openstack-image}
 
-\subsubsubsection{Openstack Vm}
+\paragraph{Openstack Vm}
 
 \codeFromJson{json}{openstack_vm.json}{openstack
   vm}{s:openstack-vm}
@@ -604,18 +607,18 @@ OpenStack, Azure, and AWS, as well as others.
 \subsubsection{Azure}
 % ----------------------------------------------------------------------
 
-\subsubsubsection{Azure Size}
+\paragraph{Azure Size}
 
 The size description of an azure vm
 
 \codeFromJson{json}{azure-size.json}{azure-size}{s:azure-size}
 
 
-\subsubsubsection{Azure Image}
+\paragraph{Azure Image}
 
 \codeFromJson{json}{azure-image.json}{azure-image}{s:azure-image}
 
-\subsubsubsection{Azure Vm}
+\paragraph{Azure Vm}
 
 An Azure virtual machine
 \codeFromJson{json}{azure-vm.json}{azure-vm}{s:azure-vm}

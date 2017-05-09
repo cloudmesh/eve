@@ -1,0 +1,25 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{styles/nist}[2016/12/20 i524 - Gregor von Laszewski]
+
+% Set journal name for header
+\renewcommand*{\journalname}{Draft}
+
+% Set journal article types
+\renewcommand*{\journalshorttype}{Draft}
+\renewcommand*{\journallongtype}{NIST - Draft}
+
+% Set color for header, authors, table lines
+% For long articles
+\definecolor{color2}{RGB}{33,72,131} % blue
+% For short articles
+\definecolor{color2b}{RGB}{33,72,131} % blue
+
+% Set bibliography style
+\bibliographystyle{styles/IEEEtran}
+
+\setboolean{shortarticle}{false} 
+
+\renewcommand{\ociscodesname}{{\bf Keywords:}}
+\renewcommand{\copyrightstatement}{\, \textcopyright\, \the\year{}.}
+
+\endinput
