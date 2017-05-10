@@ -1,6 +1,11 @@
 \documentclass[10pt]{article} 
 
 \input{simple-format}
+\makeatother
+
+\setcounter{secnumdepth}{6}
+\setcounter{tocdepth}{6}
+
 
 %\input{format}
 %\journal{nist}
@@ -73,14 +78,10 @@ Application Provider; Big Data; Big Data characteristics; Data Consumer; Data Pr
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\begin{dot2tex}[neato,mathmode]
-%digraph G {
-%node [shape="circle"];
-%a_1 -> a_2 -> a_3 -> a_4 -> a_1;
-%}
-%\end{dot2tex} 
-
-  \digraph[scale=0.5]{MyGraph}{rankdir=LR; a->b; b->c}
+\begin{figure}[htb]
+{\centering \digraph[scale=1.0]{MyGraph}{rankdir=LR; a->b; b->c}}
+\caption{State diagram}\label{F:state1}
+\end{figure}
 
 \section{NBDRA Interface Requirements}
 
@@ -874,7 +875,6 @@ each of them.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
 As in big data applications and systems considerable amount of
 resources are used an accounting system must be present either on the
 server side or on the application and user side to allow checking of
@@ -892,6 +892,17 @@ implementation of the big data reference architecture.
 \codeFromJson{json}{accounting.json}{accounting}{s:accounting}
 
 \codeFromJson{json}{account.json}{account}{s:account}
+
+\paragraph{Usecase: Create a resource}
+
+
+\begin{figure}[htb]
+{\centering \digraph[scale=1.0]{CreateAccountResource}{rankdir=LR; 
+a->b [label="hallo"]
+b->c [label="hello"]
+}}
+\caption{Create Resource}\label{F:create resource}
+\end{figure}
 
 
 statediagram
