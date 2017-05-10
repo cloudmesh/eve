@@ -62,13 +62,13 @@
   breakable,
   enhanced jigsaw,
     %arc=1.5mm,
-  %colframe=brown,
-  %coltitle=White,
+  colframe=black!10,
+  coltitle=black,
   %boxrule=0.5mm,
-  %colback=white,
-  %coltext=Black,
+  colback=black!5,
+  coltext=black,
   title={Listing \thetcbcounter : #3 \hfill%
-    \href{https://github.com/cloudmesh/cloudmmesh.rest/cloudmesh/specification/examples/#2}{\smash{\raisebox{-6pt}{\includegraphics[width=.5cm,height=.5cm]{images/code2.png}}}}},
+    \href{https://github.com/cloudmesh/cloudmesh.rest/blob/master/cloudmesh/specification/examples/#2}{\smash{\raisebox{-6pt}{\includegraphics[width=.5cm,height=.5cm]{images/code2.png}}}}},
     list entry=Listing~\thetcbcounter : #3,
     %OR next two lines
     %title={Listing \thetcbcounter : #3},
@@ -107,6 +107,10 @@
 }
 
 \newcommand{\tightlist}{}
+
+%\DeclareRobustCommand{\em}{%
+%  \@nomath\em \if b\expandafter\@car\f@series\@nil
+%  \normalfont \else \itseries \fi}
 
 \makeatother
 

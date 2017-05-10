@@ -142,12 +142,12 @@
 \fancyheadoffset{1cm}
 \fancyhead[LE]{\headerfont \begin{tabular*}{1.1\textwidth}{!{\color{black}\vrule}c!{\color{black}\vrule} @{\extracolsep{\fill}} c!{\color{black}\vrule}}\arrayrulecolor{black}
       \hline
-      \cellcolor{black}\textcolor{white}{\ifthenelse{\boolean{shortarticle}}{\journalshorttype}{\journallongtype}} & \journalname\hspace{21pt}\thepage \\
+      \cellcolor{white}\textcolor{black}{\ifthenelse{\boolean{shortarticle}}{\journalshorttype}{\journallongtype}} & \journalname\hspace{21pt}\thepage \\
       \hline
     \end{tabular*}}
 \fancyhead[RO]{\headerfont \begin{tabular*}{1.1\textwidth}{!{\color{black}\vrule}c!{\color{black}\vrule} @{\extracolsep{\fill}} c!{\color{black}\vrule}}\arrayrulecolor{black}
       \hline
-      \cellcolor{black}\textcolor{white}{\ifthenelse{\boolean{shortarticle}}{\journalshorttype}{\journallongtype}} & \journalname\hspace{21pt}\thepage \\
+      \cellcolor{white}\textcolor{black}{\ifthenelse{\boolean{shortarticle}}{\journalshorttype}{\journallongtype}} & \journalname\hspace{21pt}\thepage \\
       \hline
     \end{tabular*}}
 \fancyhead[LO,RE]{}

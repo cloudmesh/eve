@@ -13,6 +13,13 @@
   \input{format}
   \journal{nist}
 
+
+\titleformat{\section}
+{\normalfont\Large\sffamily\bfseries}{}{0em}{\colorbox{black}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{\thesection\quad#1}}}}
+\titleformat{name=\section,numberless}
+{\normalfont\Large\sffamily\bfseries}{}{0em}{\colorbox{black}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{#1}}}}
+
+
 \renewcommand*{\journallongtype}{NIST Big Data Interoperability Framework: Volume 8, Reference Architecture Interface}
   \title{NIST Big Data Interoperability Framework: Volume 8, Reference Architecture Interface}
 
@@ -251,7 +258,7 @@ eliminating getting lost in complex syntactical specifications. The
 process and specifications used in this document will also allow us to
 automatically create a implementation of the objects that can be
 integrated into a reference architecture as provided by for example
-the cloudmesh client and rest project \cite{??}.
+the cloudmesh client and rest project \cite{www-cloudmesh-client}.
 
 An example object will demonstrate our approach. The following object
 defines a JSON object representing a user. 
@@ -262,7 +269,7 @@ defines a JSON object representing a user.
  
 Such an object can be transformed to a schema specification 
 while introspecting the types of the original example. The resulting
-schema object follows the Cerberus \cite{??} specification and looks
+schema object follows the Cerberus \cite{www-cerberus} specification and looks
 for our object as follows:
 
 \begin{Verbatim}
@@ -515,7 +522,7 @@ include the name, and andpoint, the checksum and the size. Additional
 parameters such as the lasst access time could be stored also. As such
 the Interface only describes the location of the file 
 
-The \textbf{file} object has \textit{name}, \textit{endpoint} (location), \textit{size}
+The \textit{file} object has \textit{name}, \textit{endpoint} (location), \textit{size}
 in GB, MB, Byte, \textit{checksum} for integrity check, and last
 \textit{accessed} timestamp. 
 
@@ -552,7 +559,7 @@ either be defined by uuid or by name.
 
 \subsubsection{Database}
 
-A \textbf{database} could have a name, an \textit{endpoint} (e.g., host:port),
+A \textit{database} could have a name, an \textit{endpoint} (e.g., host:port),
 and protocol used (e.g., SQL, mongo, etc.).
 
 \codeFromJson{json}{database.json}{database}{s:database}
@@ -660,14 +667,14 @@ concept and can be instantiated through virtual machines, containers,
 or bare metal resources. This is defined by the “kind” of the compute
 resource 
 
-\textbf{compute\_resource} object has attribute \textit{endpoint} which
+\textit{compute\_resource} object has attribute \textit{endpoint} which
 specifies ... The \textit{kind} could be \textit{baremetal} or \textit{VC}.
 
 \codeFromJson{json}{compute_resource.json}{compute resource}{s:compute-resource}
 
 \subsubsection{Computer}
 
-This defines a \textbf{computer} object. A computer has name, label,
+This defines a \textit{computer} object. A computer has name, label,
 IP address. It also listed the relevant specs such as memory, disk
 size, etc.
 
@@ -749,7 +756,7 @@ Virtual machines are an emulation of a computer system. We are maintaining a ver
 
 \subsubsection{Container}
 
-This defines \textbf{container} object.
+This defines {\em container} object.
 
 \codeFromJson{json}{container.json}{container}{s:container}
 
@@ -765,7 +772,7 @@ This defines \textbf{container} object.
 
 \subsubsection{Deployment}
 
-A \textbf{deployment} consists of the resource \- \textit{cluster},
+A \textit{deployment} consists of the resource \- \textit{cluster},
 the location \- \textit{provider}, e.g., AWS, OpenStack, etc., and
 software \textit{stack} to be deployed (e.g., hadoop, spark).
 
@@ -777,7 +784,7 @@ software \textit{stack} to be deployed (e.g., hadoop, spark).
 
 \subsubsection{Mapreduce}
 
-The \textbf{mapreduce} deployment has as inputs parameters defining
+The \textit{mapreduce} deployment has as inputs parameters defining
 the applied function and the input data.  Both function and data
 objects define a ``source'' parameter, which specify the location it
 is retrieved from. For instance, the ``file://'' URI indicates sending
@@ -789,11 +796,11 @@ desired environment along with the function and data.
 \codeFromJson{json}{mapreduce.json}{mapreduce}{s:mapreduce}
 
 Additional parameters include the ``fault\_tolerant'' and ``backend''
-parameters.  The former flag indicates if the \textbf{mapreduce}
+parameters.  The former flag indicates if the \textit{mapreduce}
 deployment should operate in a fault tolerant mode. For instance, in
 the case of Hadoop, this may mean configuring automatic failover of
 name nodes using Zookeeper.  The ``backend'' parameter accepts an
-object describing the system providing the \textbf{mapreduce}
+object describing the system providing the \textit{mapreduce}
 workflow.  This may be a native deployment of Hadoop, or a special
 instantiation using other frameworks such as Mesos.
 
@@ -823,7 +830,7 @@ this is the empty mapping while for lists this is the empty list.
 
 \subsubsection{Hadoop}
 
-A \textbf{hadoop} definition defines which \textit{deployer} to be used,
+A \textit{hadoop} definition defines which \textit{deployer} to be used,
 the \textit{parameters} of the deployment, and the system packages as
 \textit{requires}. For each requirement, it could have attributes such
 as the library origin, version, etc.
@@ -1040,28 +1047,40 @@ classes lessons rest.rst
 classes lesson python cmd5.rst
 \input{python-cmd5}
 
-\subsection{Acronyms}
+\subsection{Acronyms and Terms}
 
-The following acronyms are used in the paper
+The following acronyms and terms are used in the paper
 
 \begin{description}[leftmargin=8em,style=nextline]
-\item[ACID] 	Atomicity, Consistency, Isolation, Durability
-\item[API] 	Application Programming Interface
-\item[ASCII] 	American Standard Code for Information Interchange 
-\item[BASE] 	Basically Available, Soft state, Eventual consistency
-\item[DevOps] 	A clipped compound of {\em software DEVelopment} and
-  {\em information technology OPerationS}
-\item[HTTP] 	HyperText Transfer Protocol HTTPS HTTP Secure
-\item[IaaS] 	Infrastructure as a Service SaaS Software as a Service
-\item[ITL] 	Information Technology Laboratory
-\item[NBD-PWG]	NIST Big Data Public Working Group
-\item[NBDRA] 	NIST Big Data Reference Architecture 
-\item[NBDRAI] 	NIST Big Data Reference Architecture Interface
-\item[NIST] 	Big Data Interoperability Framework: Volume 8, Reference Architecture Interface
-\item[NIST] 	National Institute of Standards
-\item[OS] 	Operating System
-\item[REST] 	REpresentational State Transfer
-\item[WWW] 	World Wide Web
+\item[ACID] 	       Atomicity, Consistency, Isolation, Durability
+\item[API] 	       Application Programming Interface
+\item[ASCII] 	       American Standard Code for Information Interchange 
+\item[BASE] 	       Basically Available, Soft state, Eventual consistency
+\item[Container]       \TODO{define}
+\item[Cloud]           \TODO{define}
+\item[DevOps] 	       A clipped compound of {\em software DEVelopment} and
+                       {\em information technology OPerationS}
+\item[Deployment]      \TODO{define}
+\item[HTTP] 	       HyperText Transfer Protocol HTTPS HTTP Secure
+\item[Hybrid Cloud]    \TODO{define}
+\item[IaaS] 	       Infrastructure as a Service SaaS Software as a Service
+\item[ITL] 	       Information Technology Laboratory
+\item[Microservice]    \TODO{define}
+\item[NBD-PWG]	       NIST Big Data Public Working Group
+\item[NBDRA] 	       NIST Big Data Reference Architecture 
+\item[NBDRAI] 	       NIST Big Data Reference Architecture Interface
+\item[NIST] 	       Big Data Interoperability Framework: Volume 8, Reference Architecture Interface
+\item[NIST] 	       National Institute of Standards
+\item[OS] 	       Operating System
+\item[REST] 	       REpresentational State Transfer
+\item[Replica]         \TODO{define}
+\item[Serverless Computing] \TODO{define}
+\item[Software Stack]  \TODO{define}
+\item[Virtual Filesysyem] \TODO{define}
+\item[Virtual Machine] \TODO{define}
+\item[Virtual Cluster] \TODO{define}
+\item[Workflow]        \TODO{define}
+\item[WWW] 	       World Wide Web
 \end{description}
 
 
