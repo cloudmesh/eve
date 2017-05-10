@@ -1,0 +1,15 @@
+{
+  "accounting_resource": {
+    "description": "The Description of a resource that we apply accounting to",
+    "uuid": "unique uuid for this resource",
+    "name": "the name of the resource",        
+    "charge": "1.1 * parameter1 + 3.1 * parameter2",
+    "parameters": {"parameter1": 1.0,
+                   "parameter2": 1.0},
+    "unites": {"parameter1": "GB",
+               "parameter2": "cores"},
+    "user": "username",
+      "group": "groupname",
+    "account": "accountname"
+  }
+}

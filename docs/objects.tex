@@ -7,14 +7,6 @@
 \setcounter{tocdepth}{6}
 
 
-%\input{format}
-%\journal{nist}
-
-%\usepackage{dot2texi}
-%\usepackage{tikz}
-%\usetikzlibrary{shapes,arrows}
-
-
 %\titleformat{\section}
 %{\normalfont\Large\sffamily\bfseries}{}{0em}{\colorbox{black}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{\thesecti%on\quad#1}}}}
 %\titleformat{name=\section,numberless}
@@ -43,7 +35,19 @@ This document summarizes a number of objects that are instrumental for
 the interaction with Clouds, Containers, and HPC systems to manage
 virtual clusters. 
 
-Big Data is a term used to describe the large amount of data in the networked, digitized, sensor-laden, information-driven world. While opportunities exist with Big Data, the data can overwhelm traditional technical approaches, and the growth of data is outpacing scientific and technological advances in data analytics. To advance progress in Big Data, the NIST Big Data Public Working Group (NBD-PWG) is working to develop consensus on important fundamental concepts related to Big Data. The results are reported in the NIST Big Data Interoperability Framework series of volumes. This volume, Volume 6, summarizes the work performed by the NBD-PWG to characterize Big Data from an architecture perspective, presents the NIST Big Data Reference Architecture (NBDRA) conceptual model, and discusses the components and fabrics of the NBDRA. 
+Big Data is a term used to describe the large amount of data in the
+networked, digitized, sensor-laden, information-driven world. While
+opportunities exist with Big Data, the data can overwhelm traditional
+technical approaches, and the growth of data is outpacing scientific
+and technological advances in data analytics. To advance progress in
+Big Data, the NIST Big Data Public Working Group (NBD-PWG) is working
+to develop consensus on important fundamental concepts related to Big
+Data. The results are reported in the NIST Big Data Interoperability
+Framework series of volumes. This volume, Volume 6, summarizes the
+work performed by the NBD-PWG to characterize Big Data from an
+architecture perspective, presents the NIST Big Data Reference
+Architecture (NBDRA) conceptual model, and discusses the components
+and fabrics of the NBDRA.
 
 }
 
@@ -78,10 +82,6 @@ Application Provider; Big Data; Big Data characteristics; Data Consumer; Data Pr
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[htb]
-{\centering \digraph[scale=1.0]{MyGraph}{rankdir=LR; a->b; b->c}}
-\caption{State diagram}\label{F:state1}
-\end{figure}
 
 \section{NBDRA Interface Requirements}
 
@@ -893,33 +893,20 @@ implementation of the big data reference architecture.
 
 \codeFromJson{json}{account.json}{account}{s:account}
 
-\paragraph{Usecase: Create a resource}
+\paragraph{Usecase: Accounting Service}
 
+Figure \ref{F:create resource} depicts a possible accounting service that allows an administrator to register a variety of resources to an account for a user. The services that are than invoked by the user can than consume the resource and are charged accordingly.
 
 \begin{figure}[htb]
-{\centering \digraph[scale=1.0]{CreateAccountResource}{rankdir=LR; 
-a->b [label="hallo"]
-b->c [label="hello"]
-}}
+\includegraphics[width=\columnwidth]{account.pdf}
 \caption{Create Resource}\label{F:create resource}
 \end{figure}
 
+%\begin{figure}[htb]
+%\includegraphics[width=\columnwidth]{uml/a.svg}
+%\caption{Create Resource}\label{F:create resource}
+%\end{figure}
 
-statediagram
-actions on the state diagram
-calling rest methods
-
-\begin{verbatim}
-
-resume action in vm
-
-
-actions issued via post
-
-
-charge(user -> account)
-
-\end{verbatim}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -928,9 +915,8 @@ charge(user -> account)
 
 We are looking for volunteers to contribute here.
 
-\cite{*}
 
-\bibliography{references}
+%\bibliography{references}
 
 \newpage
 
@@ -960,7 +946,7 @@ you do {\em small} individual changes to a single subsection and object
 rather than large changes as this allows us to integrate the changes
 individually and comment on your contribution via github.
 
-Once contributed we will appropriately acknoledge you either as
+Once contributed we will appropriately acknowledge you either as
 contributor or author. Please discuss with us how we best acknowledge
 you.
 
@@ -1040,15 +1026,15 @@ cms schema FILENAME --format=yaml -o OUTPUT
 
 
 cms schema FILENAME --input=evegenie -o OUTPUT
-   reads eavegene example and create settings for eve
+   reads evegene example and create settings for eve
 \end{Verbatim}
 
 
 \subsubsection{Defining Elements for the REST Service}
 
 To manage a large number of elements defined in our REST service
-easily, we manage them trhough definitions in yaml files. To generate
-the appropriate settings file for the rest service, we can use teh
+easily, we manage them though definitions in yaml files. To generate
+the appropriate settings file for the rest service, we can use the
 following command:
 
 \begin{verbatim}

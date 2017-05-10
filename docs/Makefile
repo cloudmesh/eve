@@ -1,6 +1,6 @@
 FILE=objects
 
-all: 
+all: dot
 	pandoc ../README.rst -o readme.tex
 	pandoc ../../classes/docs/source/lesson/prg/rest.rst -o rest.tex
 	pandoc ../../classes/docs/source/lesson/prg/python_cmd5.rst -o python-cmd5.tex
@@ -8,6 +8,9 @@ all:
 #	bibtex ${FILE}
 	pdflatex  -shell-escape ${FILE}
 	pdflatex  -shell-escape ${FILE}
+
+dot:
+	dot -Tpdf -o account.pdf  account.dot 
 
 watch:
 	pandoc ../README.rst -o readme.tex
@@ -27,6 +30,7 @@ real-clean: clean
 	rm -rf *.pdf
 
 clean:
+	rm -rf rm objects-pics.pdf
 	rm -rf *~ *.aux *.bbl *.dvi *.log *.out *.blg *.toc *.fdb_latexmk *.fls *.tdo *.bcf
 
 view:

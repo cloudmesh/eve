@@ -1,0 +1,13 @@
+{
+  "account": {
+      "description": "The Description of the account",
+      "uuid": "unique uuid for this resource",
+      "name": "the name of the account",
+      "startDate": "10/10/2017:00:00:00",
+      "endDate": "10/10/2017:00:00:00",
+      "status": "one of active, suspended, closed",
+      "balance": 1.0,
+      "user": ["username"],
+      "group": ["groupname"]
+  }
+}
