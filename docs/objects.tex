@@ -1,42 +1,36 @@
-\newif\ifdraft
+\documentclass[10pt]{article} 
 
-\drafttrue 
-\draftfalse
+\input{simple-format}
 
-\ifdraft
-  \documentclass[9pt,twocolumn]{styles/osajnl} 
-\else
-  \documentclass[10pt]{styles/osajnl} 
+%\input{format}
+%\journal{nist}
 
-
-\fi
-  \input{format}
-  \journal{nist}
+%\usepackage{dot2texi}
+%\usepackage{tikz}
+%\usetikzlibrary{shapes,arrows}
 
 
-\titleformat{\section}
-{\normalfont\Large\sffamily\bfseries}{}{0em}{\colorbox{black}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{\thesection\quad#1}}}}
-\titleformat{name=\section,numberless}
-{\normalfont\Large\sffamily\bfseries}{}{0em}{\colorbox{black}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{#1}}}}
+%\titleformat{\section}
+%{\normalfont\Large\sffamily\bfseries}{}{0em}{\colorbox{black}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{\thesecti%on\quad#1}}}}
+%\titleformat{name=\section,numberless}
+%{\normalfont\Large\sffamily\bfseries}{}{0em}{\colorbox{black}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{#1}}}}
 
 
-\renewcommand*{\journallongtype}{NIST Big Data Interoperability Framework: Volume 8, Reference Architecture Interface}
-  \title{NIST Big Data Interoperability Framework: Volume 8, Reference Architecture Interface}
+%\renewcommand*{\journallongtype}{NIST Big Data Interoperability Framework: Volume 8, Reference Architecture Interface}
 
-  \author[1,*]{Gregor von Laszewski} 
-  \author[1]{Fugang Wang}
-  \author[1]{Badi Abdhul-Wahid}
-  \author[2]{Wo L. Chang}
+\title{NIST Big Data Interoperability Framework: Volume 8, Reference Architecture Interface}
 
-  \affil[1]{School of Informatics and Computing, Bloomington, IN 47408, U.S.A.} 
-  \affil[2]{National INstitute of Standards, 100 Bureau Drive, Gaithersburg, MD 20899} 
-  \affil[*]{Corresponding author: laszewski@gmal.com} 
+\author{Gregor von Laszewski,Fugang Wang, Badi Abdhul-Wahid, Wo L. Chang}
 
-  \dates{Draft v0.0.1, \today} 
+%  \affil[1]{School of Informatics and Computing, Bloomington, IN 47408, U.S.A.} 
+%  \affil[2]{National INstitute of Standards, 100 Bureau Drive, Gaithersburg, MD 20899} 
+%  \affil[*]{Corresponding author: laszewski@gmal.com} 
 
-  \ociscodes{Cloudmesh, REST, NIST}
+\date{Draft v0.0.1, \today} 
 
-  \doi{\url{https://github.com/cloudmesh/rest/tree/master/docs}} 
+%  \ociscodes{Cloudmesh, REST, NIST}
+
+%  \doi{\url{https://github.com/cloudmesh/rest/tree/master/docs}} 
 
 
 \newcommand{\ABSTRACT}{
@@ -48,13 +42,6 @@ Big Data is a term used to describe the large amount of data in the networked, d
 
 }
 
-\ifdraft
-\begin{abstract}
-\ABSTRACT
-\end{abstract}
-
-
-
 
 \begin{document}
 
@@ -65,11 +52,8 @@ Big Data is a term used to describe the large amount of data in the networked, d
 \tableofcontents % Print the contents section
 \maketitle
 
-\else
-\begin{document}
 
-
-\input{nist}
+%\input{nist}
 
 \section*{\hfil \hspace{4cm} Abstract \hfil}
 \ABSTRACT
@@ -83,28 +67,32 @@ Application Provider; Big Data; Big Data characteristics; Data Consumer; Data Pr
 
 
 \newpage
-\fi
 
-
+\linenumbers
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%\begin{dot2tex}[neato,mathmode]
+%digraph G {
+%node [shape="circle"];
+%a_1 -> a_2 -> a_3 -> a_4 -> a_1;
+%}
+%\end{dot2tex} 
+
+  \digraph[scale=0.5]{MyGraph}{rankdir=LR; a->b; b->c}
 
 \section{NBDRA Interface Requirements}
 
 The Volume 6 Reference Architecture document provides a list of comprehensive high-level reference architecture requirements and introduces the NIST Big Data Reference Architecture (NBDRA) (see Figure \ref{F:architecture}). To enable interoperability between the NBDRA components, a list of well-defined NBDRA interface is needed.  To introduce them, we will follow the NBDRA and focus on interfaces that allow us to bootstrap the NBDRA. Each section will introduce an Interface while documenting the requirement as well as a simple specification addressing the immediate interface needs. We expect that this document will grow with the help of contributions from the community to achieve a comprehensive set of interfaces that will be usable for the implementation of Big Data Architectures. Validation of this approach can be achieved while applying it to the use cases that have been gathered in Volume 3. These use cases have considerably contributed towards the design of the NBDRA. Hence our expectation is that (a) the interfaces can be used to help implementing a big data architecture for a specific use case, and (b) the proper implementation can validate the NBDRA. Through this approach, we can facilitate subsequent analysis and comparison of the use cases. 
+
 
 \subsection{High Level Requirements of the Interface Approach}
 
 Next, we focus on the high-level requirements of the interface approach as depicted in \ref{F:architecture}
 
 \begin{figure*}[h]\centering
-\ifdraft
-  \includegraphics[width=\linewidth]{images/vol8-diagrams}
-\else
-  \includegraphics[width=1.1\textwidth]{images/vol8-diagrams}
-\fi
+\includegraphics[width=1.1\textwidth]{images/vol8-diagrams}
 \caption{NIST Big Data Reference Architecture (NBDRA)}
 \label{F:architecture}
 \end{figure*}
@@ -879,6 +867,49 @@ each of them.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \codeFromJson{json}{reservation.json}{reservation}{s:reservation}
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Accounting}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+As in big data applications and systems considerable amount of
+resources are used an accounting system must be present either on the
+server side or on the application and user side to allow checking of
+balances. Due to the potential heterogeneous nature of the services
+used existing accounting frameworks may not be present to dela with
+this issue. E.g. we see potentially the use of multiple accounting
+systems with different scales of accurAcy information feedback
+rates. For example, if the existing accounting system informs the user
+only hours after she has started a job this could pose a significant
+risk because charging is started immediately. While making access to
+big data infrastructure and services more simple, the user or
+application may underestimate the overall cost projected by the
+implementation of the big data reference architecture.
+
+\codeFromJson{json}{accounting.json}{accounting}{s:accounting}
+
+\codeFromJson{json}{account.json}{account}{s:account}
+
+
+statediagram
+actions on the state diagram
+calling rest methods
+
+\begin{verbatim}
+
+resume action in vm
+
+
+actions issued via post
+
+
+charge(user -> account)
+
+\end{verbatim}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Network}

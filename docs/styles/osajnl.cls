@@ -73,7 +73,8 @@
 \newcommand{\copyrightstatement}{\, \textcopyright\, \the\year{} Optical Society of America}
 
 % Graphics, tables and other formatting
-\RequirePackage{graphicx,xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
 \RequirePackage{wrapfig} % For author photos and bios for AOP articles
 \RequirePackage{colortbl}
 \RequirePackage{booktabs}
@@ -349,3 +350,5 @@ THE ABSTRACT\vskip12pt}\let\go\relax\fi
 \newcommand{\SE}{\TODO{Spelling}}
 \newcommand{\TE}{\TODO{Term}}
 \newcommand{\CE}{\TODO{Citation}}
+
+% \usepackage[pdf]{graphicx}
