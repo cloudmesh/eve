@@ -1,0 +1,126 @@
+\usepackage{auto-pst-pdf}
+\usepackage{fullpage}
+\usepackage{enumitem}
+\usepackage{lineno}
+\usepackage[explicit]{titlesec}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{graphviz}
+\usepackage[colorinlistoftodos,prependcaption,textsize=normal]{todonotes}
+\newcommand{\TODO}[2][]{\todo[color=red!10,inline,#1]{#2}}
+\newcommand{\GE}{\TODO{Grammar}}
+\newcommand{\SE}{\TODO{Spelling}}
+\newcommand{\TE}{\TODO{Term}}
+\newcommand{\CE}{\TODO{Citation}}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage[most]{tcolorbox}
+
+
+\titleformat{\section}
+  {\large\sffamily\bfseries}
+  {\thesection.}
+  {0.5em}
+  {\MakeUppercase{#1}}
+  []
+\titleformat{name=\section,numberless}
+  {\large\sffamily\bfseries}
+  {}
+  {0em}
+  {\MakeUppercase{#1}}
+  []
+\titleformat{\subsection}
+  {\sffamily\bfseries}
+  {\thesubsection.}
+  {0.5em}
+  {#1}
+  []
+\titleformat{\subsubsection}
+  {\sffamily\small\bfseries\itshape}
+  {\thesubsubsection.}
+  {0.5em}
+  {#1}
+  []
+\titleformat{\paragraph}
+  {\sffamily\small\bfseries}
+  {\theparagraph}
+  {1em}
+  {#1}
+  []
+\titleformat{\subparagraph}
+  {\sffamily\small\bfseries}
+  {\thesubparagraph}
+  {1em}
+  {#1}
+  []
+\titlespacing*{\section}{0pc}{3ex \@plus4pt \@minus3pt}{5pt}
+\titlespacing*{\subsection}{0pc}{2.5ex \@plus3pt \@minus2pt}{2pt}
+\titlespacing*{\subsubsection}{0pc}{2ex \@plus2.5pt \@minus1.5pt}{2pt}
+\titlespacing*{\paragraph}{0pc}{2ex \@plus2.5pt \@minus1.5pt}{2pt}
+\titlespacing*{\subparagraph}{0pc}{2ex \@plus2.5pt \@minus1.5pt}{2pt}
+
+
+
+\newcommand{\tightlist}{}
+
+\tcbuselibrary{minted}
+
+\definecolor{codebggray}{rgb}{0.95,0.95,0.95}
+
+
+
+\newcounter{filePrg}
+
+
+\tcbuselibrary{listings}
+\tcbuselibrary{minted}
+
+\newtcbinputlisting[use counter=filePrg, number within=section, list inside=mypyg]{\codeFromFile}[4]{%
+  listing engine=minted,
+  minted language=#1,
+  listing file={#2},
+  minted options={autogobble,linenos,breaklines},
+  listing only,
+  size=title,
+    drop fuzzy shadow,
+  breakable,
+  enhanced jigsaw,
+    %arc=1.5mm,
+  %colframe=brown,
+  %coltitle=White,
+  %boxrule=0.5mm,
+  %colback=white,
+  %coltext=Black,
+  title={Listing \thetcbcounter : #3 \hfill%
+    \smash{\raisebox{-6pt}{\includegraphics[width=.5cm,height=.5cm]{images/code2.png}}}},
+    list entry=Listing~\thetcbcounter : #3,
+    %OR next two lines
+    %title={Listing \thetcbcounter : #3},
+    %overlay={\node[anchor=north east,outer sep=-9pt] at ([xshift=-25pt]frame.north east) {\includegraphics[width=1cm,height=1cm]{images/code2.png}}; },
+  label=lst:#4
+}
+
+\newtcbinputlisting[use counter=filePrg, number within=section, list inside=mypyg]{\codeFromJson}[4]{%
+  listing engine=minted,
+  minted language=#1,
+  listing file={../cloudmesh/specification/examples/#2},
+  minted options={autogobble,linenos,breaklines},
+  listing only,
+  size=title,
+    drop fuzzy shadow,
+  breakable,
+  enhanced jigsaw,
+    %arc=1.5mm,
+  colframe=black!10,
+  coltitle=black,
+  %boxrule=0.5mm,
+  colback=black!5,
+  coltext=black,
+  title={Listing \thetcbcounter : #3 \hfill%
+    \href{https://github.com/cloudmesh/cloudmesh.rest/blob/master/cloudmesh/specification/examples/#2}{\smash{\raisebox{-6pt}{\includegraphics[width=.5cm,height=.5cm]{images/code2.png}}}}},
+    list entry=Listing~\thetcbcounter : #3,
+    %OR next two lines
+    %title={Listing \thetcbcounter : #3},
+    %overlay={\node[anchor=north east,outer sep=-9pt] at ([xshift=-25pt]frame.north east) {\includegraphics[width=1cm,height=1cm]{images/code2.png}}; },
+  label=lst:#4
+}
