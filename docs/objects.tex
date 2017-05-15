@@ -85,6 +85,12 @@ Application Provider; Big Data; Big Data characteristics; Data Consumer; Data Pr
 
 \section{NBDRA Interface Requirements}
 
+\begin{figure}[htb]
+\includegraphics[width=0.5\columnwidth]{uml/a.pdf}
+\caption{Create Resource}\label{F:uml}
+\end{figure}
+
+
 The Volume 6 Reference Architecture document provides a list of comprehensive high-level reference architecture requirements and introduces the NIST Big Data Reference Architecture (NBDRA) (see Figure \ref{F:architecture}). To enable interoperability between the NBDRA components, a list of well-defined NBDRA interface is needed.  To introduce them, we will follow the NBDRA and focus on interfaces that allow us to bootstrap the NBDRA. Each section will introduce an Interface while documenting the requirement as well as a simple specification addressing the immediate interface needs. We expect that this document will grow with the help of contributions from the community to achieve a comprehensive set of interfaces that will be usable for the implementation of Big Data Architectures. Validation of this approach can be achieved while applying it to the use cases that have been gathered in Volume 3. These use cases have considerably contributed towards the design of the NBDRA. Hence our expectation is that (a) the interfaces can be used to help implementing a big data architecture for a specific use case, and (b) the proper implementation can validate the NBDRA. Through this approach, we can facilitate subsequent analysis and comparison of the use cases. 
 
 
@@ -502,6 +508,14 @@ name for a cloud where the context is defined by the cloud name.
 
 \codeFromJson{json}{default.json}{default}{s:default}
 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\columnwidth]{uml/boot.pdf}
+\caption{Booting a virtual machine from defaults}\label{F:uml-boot}
+\end{figure}
+
+
 \subsubsection{File}
 
 A file is a computer resource allowing to store data that is being
@@ -881,7 +895,7 @@ server side or on the application and user side to allow checking of
 balances. Due to the potential heterogeneous nature of the services
 used existing accounting frameworks may not be present to dela with
 this issue. E.g. we see potentially the use of multiple accounting
-systems with different scales of accurAcy information feedback
+systems with different scales of accuracy information feedback
 rates. For example, if the existing accounting system informs the user
 only hours after she has started a job this could pose a significant
 risk because charging is started immediately. While making access to
@@ -897,15 +911,16 @@ implementation of the big data reference architecture.
 
 Figure \ref{F:create resource} depicts a possible accounting service that allows an administrator to register a variety of resources to an account for a user. The services that are than invoked by the user can than consume the resource and are charged accordingly.
 
-\begin{figure}[htb]
+\begin{figure}[!h]
 \includegraphics[width=\columnwidth]{account.pdf}
-\caption{Create Resource}\label{F:create resource}
+\caption{Create Resource}\label{F:createresource}
 \end{figure}
 
-%\begin{figure}[htb]
-%\includegraphics[width=\columnwidth]{uml/a.svg}
-%\caption{Create Resource}\label{F:create resource}
-%\end{figure}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\columnwidth]{uml/account.pdf}
+\caption{Accounting}\label{F:uml-accounting}
+\end{figure}
 
 
 
