@@ -1,0 +1,22 @@
+@startuml
+== Set Cloud_A ==
+User->Defaults: default cloud=Cloud_A
+== Boot VM on Cloud A ==
+User->cm: vm boot
+cm->Defaults: get cloud
+cm->Defaults: get image(cloud)
+cm->Defaults: get flavor(coud)
+cm->Cloud_A: boot vm
+Cloud_A->cm: status update
+cm->User: status update
+== Set Cloud B ==
+User->Defaults: default cloud=Cloud_B
+== Boot VM on Cloud B ==
+User->cm: vm boot
+cm->Defaults: get cloud
+cm->Defaults: get image(cloud)
+cm->Defaults: get flavor(coud)
+cm->Cloud_B: boot vm
+Cloud_B->cm: status update
+cm->User: status update
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+== Register ==
+User->Admin: apply
+User->Service: apply
+Admin->Account: create
+Admin->Service:register
+Service->Account:register
+== Deposit ==
+User->Admin: deposit
+Admin->Admin:approve
+Admin->Account: deposit
+Account->Account: activate
+== Use ==
+User->Service: request
+Service->Account: charge
+Account->Service: authorize
+User->Service: use
+Service->Account: refund
+== Deactivation ==
+...
+Admin->Account: suspend
+Account->User: notify
+...
+Account->Account: suspend
+Account->User: notify
+...
+Admin->Account: delete
+Account->User: notify
+...
+@enduml
