@@ -1,0 +1,16 @@
+digraph CreateAccountResource {rankdir=LR;
+admin -> account [label="create"]
+admin -> account [label="activate"]
+admin -> account [label="suspend"]
+admin -> account [label="close"]
+admin -> account [label="refund"]
+user -> admin -> account [label="add"]
+resource -> account [label="register"]
+resource -> account [label="unregister"]
+service -> account [label="charge"]
+account -> service [label="authorized"]
+service -> account [label="refund"]
+user -> service [label="invoke"]
+user -> account [label="list"]
+service -> resource [label="consume"]
+}

@@ -1,6 +1,6 @@
 \documentclass[10pt]{article} 
 
-\input{simple-format}
+\input{styles/simple-format}
 \makeatother
 
 \setcounter{secnumdepth}{6}
@@ -84,12 +84,6 @@ Application Provider; Big Data; Big Data characteristics; Data Consumer; Data Pr
 
 
 \section{NBDRA Interface Requirements}
-
-\begin{figure}[htb]
-\includegraphics[width=0.5\columnwidth]{uml/a.pdf}
-\caption{Create Resource}\label{F:uml}
-\end{figure}
-
 
 The Volume 6 Reference Architecture document provides a list of comprehensive high-level reference architecture requirements and introduces the NIST Big Data Reference Architecture (NBDRA) (see Figure \ref{F:architecture}). To enable interoperability between the NBDRA components, a list of well-defined NBDRA interface is needed.  To introduce them, we will follow the NBDRA and focus on interfaces that allow us to bootstrap the NBDRA. Each section will introduce an Interface while documenting the requirement as well as a simple specification addressing the immediate interface needs. We expect that this document will grow with the help of contributions from the community to achieve a comprehensive set of interfaces that will be usable for the implementation of Big Data Architectures. Validation of this approach can be achieved while applying it to the use cases that have been gathered in Volume 3. These use cases have considerably contributed towards the design of the NBDRA. Hence our expectation is that (a) the interfaces can be used to help implementing a big data architecture for a specific use case, and (b) the proper implementation can validate the NBDRA. Through this approach, we can facilitate subsequent analysis and comparison of the use cases. 
 
@@ -511,7 +505,7 @@ name for a cloud where the context is defined by the cloud name.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.5\columnwidth]{uml/boot.pdf}
+\includegraphics[width=0.5\columnwidth]{images/uml/boot.pdf}
 \caption{Booting a virtual machine from defaults}\label{F:uml-boot}
 \end{figure}
 
@@ -912,13 +906,13 @@ implementation of the big data reference architecture.
 Figure \ref{F:create resource} depicts a possible accounting service that allows an administrator to register a variety of resources to an account for a user. The services that are than invoked by the user can than consume the resource and are charged accordingly.
 
 \begin{figure}[!h]
-\includegraphics[width=\columnwidth]{account.pdf}
+\includegraphics[width=\columnwidth]{images/dot/account.pdf}
 \caption{Create Resource}\label{F:createresource}
 \end{figure}
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.5\columnwidth]{uml/account.pdf}
+\includegraphics[width=0.5\columnwidth]{images/uml/account.pdf}
 \caption{Accounting}\label{F:uml-accounting}
 \end{figure}
 
@@ -1084,11 +1078,11 @@ is processed to create the stub REST service definitions.
 
 \subsection{ABC}
 {\bf README.rst}
-\input{readme}
+\input{includes/readme}
 classes lessons rest.rst
-\input{rest}
+\input{includes/rest}
 classes lesson python cmd5.rst
-\input{python-cmd5}
+\input{includes/python-cmd5}
 
 \subsection{Acronyms and Terms}
 
