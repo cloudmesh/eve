@@ -1,8 +1,14 @@
-
+%
+% FRONTPAGE
+%
 %\newpage
 %\listoftodos[Notes]
 %\newpage
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PAGE 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{flushright}
 {\Large\bf DRAFT - NIST Special Publication 1500-8} 
 
@@ -11,14 +17,12 @@
 \hrule
 \bigskip\bigskip
 
-{\Huge\bf\sf
-NIST Big Data Interoperability 
+{\Huge\bf \sf
+NIST Big Data Interoperability Framework:
 
-Framework:
+\bigskip
 
-Volume 8, Reference Architecture 
-
-Interface
+Volume 8, Reference Architecture Interface
 }
 
 
@@ -55,6 +59,9 @@ Version 0.1
 
 \newpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PAGE 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{flushright}
 NIST Special Publication 1500-6
 
@@ -62,9 +69,9 @@ Information Technology Laboratory
 
 \bigskip 
 
-{\Large\bf NIST Big Data Interoperability Framework:
+{\Huge\bf\sf NIST Big Data Interoperability Framework:
 
-\smallskip
+\bigskip
 
 Volume 8, Reference Architecture Interface
 }
@@ -108,16 +115,16 @@ National Institute of Standards and Technology
 {\it Willie May, Under Secretary of Commerce for Standards and Technology and Director}
 \end{flushright}
 
-\newpage
-
-\tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PAGE 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 \begin{center}
 {\bf National Institute of Standards and Technology (NIST) Special
   Publication 1500-8}
 
-20 pages (\today)
+\pageref{LastPage} pages (\today)
 \end{center}
 
 NIST Special Publication series 1500 is intended to capture external perspectives related to NIST 
@@ -140,7 +147,8 @@ operative. For planning and transition purposes, federal agencies may wish to cl
 these new publications by NIST. 
 
 Organizations are encouraged to review all draft publications during public comment periods and provide feedback 
-to NIST. All NIST publications are available at \url{http://www.nist.gov/publication-portal.cfm}.
+to NIST. All NIST publications are available at \\
+\url{http://www.nist.gov/publication-portal.cfm}.
 
 \end{mdframed}
 
@@ -180,13 +188,62 @@ This document reflects the contributions and discussions by the
 membership of the NBD-PWG, co-chaired by Wo Chang of the NIST ITL,
 Robert Marcus of ET-Strategies, and Chaitanya Baru, University of
 California San Diego Supercomputer Center.  The document contains
-input from members of the NBD-PWG: \TODO{<TBD>} NIST SP1500-8, Version
-1 has been collaboratively authored by the NBD-PWG. As of the date of
-publication, there are over \TODO{<TBD>} NIST acknowledges the
-specific contributions to this volume by the following NBD-PWG
-members:
+input from members of the NBD-PWG Interface Subgroup, led by Gregor
+von Laszewski (Indiana University).
 
-\TODO{<TBD>}
+NIST SP1500-8, Version 1 has been collaboratively authored by the
+NBD-PWG.  As of the date of this publication, there are over six
+hundred NBD-PWG participants from industry, academia, and government.
+Federal agency participants include the National Archives and Records
+Administration (NARA), National Aeronautics and Space Administration
+(NASA), National Science Foundation (NSF), and the U.S.  Departments
+of Agriculture, Commerce, Defense, Energy, Health and Human Services,
+Homeland Security, Transportation, Treasury, and Veterans
+Affairs. NIST acknowledges the specific contributions to this volume
+by the following NBD-PWG members.
+
+\begin{center}
+\parindent0pt 
+\begin{tabular}{p{0.3\textwidth}p{0.3\textwidth}p{0.3\textwidth}}
+ \makecell[l]{Gregor von Laszewski\\{\it Indiana University}} &
+ \makecell[l]{Wo Chang\\{\it National Institute of Standard}} &
+ \makecell[l]{Fugang Wang\\{\it Indiana University}}  \\
+\multicolumn{3}{c}{~} \\
+ \makecell[l]{Badi Abdhul Wahid\\{\it Indiana University}} & 
+ \makecell[l]{Geoffrey C. Fox\\{\it Indiana University}} &
+ \makecell[l]{Pratik Thakkar\\{\it Philips}} \\
+\multicolumn{3}{c}{~} \\
+ \makecell[l]{Alicia María Zuniga-Alvarado\\{\it Consultant}} &
+ \makecell[l]{~\\~} & 
+ \makecell[l]{~\\~} \\
+\end{tabular}
+\end{center}
+
+\parindent0pt The editors for this document were Gregor von Laszewski and Wo Chang.
+
+\newpage
+
+\section*{\hfil \hspace{4cm} Abstract \hfil}
+\ABSTRACT
+
+\section*{\hfil  \hspace{4cm} Keywords \hfil}
+\KEYWORDS
+
+\newpage
+
+\input{exec}
+
+\newpage
+
+\nocite{*}
+
+\bibliography{references}
 
 
-The editors for this document were Gregor von Laszewski and Wo Chang.
+\newpage
+
+\tableofcontents
+
+\listoffigures
+ 
+% \listoftables

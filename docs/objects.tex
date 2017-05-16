@@ -7,27 +7,11 @@
 \setcounter{tocdepth}{6}
 
 
-%\titleformat{\section}
-%{\normalfont\Large\sffamily\bfseries}{}{0em}{\colorbox{black}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{\thesecti%on\quad#1}}}}
-%\titleformat{name=\section,numberless}
-%{\normalfont\Large\sffamily\bfseries}{}{0em}{\colorbox{black}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{#1}}}}
-
-
-%\renewcommand*{\journallongtype}{NIST Big Data Interoperability Framework: Volume 8, Reference Architecture Interface}
-
 \title{NIST Big Data Interoperability Framework: Volume 8, Reference Architecture Interface}
 
 \author{Gregor von Laszewski,Fugang Wang, Badi Abdhul-Wahid, Wo L. Chang}
 
-%  \affil[1]{School of Informatics and Computing, Bloomington, IN 47408, U.S.A.} 
-%  \affil[2]{National INstitute of Standards, 100 Bureau Drive, Gaithersburg, MD 20899} 
-%  \affil[*]{Corresponding author: laszewski@gmal.com} 
-
 \date{Draft v0.0.1, \today} 
-
-%  \ociscodes{Cloudmesh, REST, NIST}
-
-%  \doi{\url{https://github.com/cloudmesh/rest/tree/master/docs}} 
 
 
 \newcommand{\ABSTRACT}{
@@ -48,31 +32,25 @@ work performed by the NBD-PWG to characterize Big Data from an
 architecture perspective, presents the NIST Big Data Reference
 Architecture (NBDRA) conceptual model, and discusses the components
 and fabrics of the NBDRA.
-
 }
 
+\newcommand{\KEYWORDS}{Application Provider; Big Data; Big Data characteristics; Data Consumer; Data Provider; Framework Provider; Management Fabric; reference architecture; Security and Privacy Fabric; System Orchestrator; use cases.
+}
 
 \begin{document}
 
+\input{includes/nist}
+
+
 \flushbottom % Makes all text pages the same height
 
-\maketitle % Print the title and abstract box
+% \maketitle % Print the title and abstract box
 
-\tableofcontents % Print the contents section
-\maketitle
+%\tableofcontents % Print the contents section
+% \maketitle
 
 
 %\input{nist}
-
-\section*{\hfil \hspace{4cm} Abstract \hfil}
-\ABSTRACT
-
-\section*{\hfil  \hspace{4cm} Keywords \hfil}
-Application Provider; Big Data; Big Data characteristics; Data Consumer; Data Provider; Framework Provider; Management Fabric; reference architecture; Security and Privacy Fabric; System Orchestrator; use cases.
-
-\cite{*}
-
-\bibliography{references}
 
 
 \newpage
@@ -82,15 +60,7 @@ Application Provider; Big Data; Big Data characteristics; Data Consumer; Data Pr
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\section{NBDRA Interface Requirements}
-
-The Volume 6 Reference Architecture document provides a list of comprehensive high-level reference architecture requirements and introduces the NIST Big Data Reference Architecture (NBDRA) (see Figure \ref{F:architecture}). To enable interoperability between the NBDRA components, a list of well-defined NBDRA interface is needed.  To introduce them, we will follow the NBDRA and focus on interfaces that allow us to bootstrap the NBDRA. Each section will introduce an Interface while documenting the requirement as well as a simple specification addressing the immediate interface needs. We expect that this document will grow with the help of contributions from the community to achieve a comprehensive set of interfaces that will be usable for the implementation of Big Data Architectures. Validation of this approach can be achieved while applying it to the use cases that have been gathered in Volume 3. These use cases have considerably contributed towards the design of the NBDRA. Hence our expectation is that (a) the interfaces can be used to help implementing a big data architecture for a specific use case, and (b) the proper implementation can validate the NBDRA. Through this approach, we can facilitate subsequent analysis and comparison of the use cases. 
-
-
-\subsection{High Level Requirements of the Interface Approach}
-
-Next, we focus on the high-level requirements of the interface approach as depicted in \ref{F:architecture}
+The Volume 6 Reference Architecture document provides a list of comprehensive high-level reference architecture requirements and introduces the NIST Big Data Reference Architecture (NBDRA).  To enable interoperability between the NBDRA components, a list of well-defined NBDRA interface is needed. To introduce them, we will follow the NBDRA and focus on interfaces that allow us to bootstrap the NBDRA. Each section will introduce an interface while documenting the requirement as well as a simple specification addressing the immediate interface needs. We will showcase a selected number of use cases to outline how the specific interface can be used in a refernce implementation of the NBDRA. We expect that this document will grow with the help of contributions from the community to achieve a comprehensive set of interfaces that will be usable for the implementation of Big Data Architectures. Validation of this approach can be achieved while applying it to the application use cases that have been gathered in Volume 3 \cite{}. These apllication use cases have considerably contributed towards the design of the NBDRA. Hence our expectation is that (a) the interfaces can be used to help implementing a big data architecture for a specific use case, and (b) the proper implementation can validate the NBDRA. Through this approach, we can facilitate subsequent analysis and comparison of the use cases. To correlate this document and the definition of its interfaces we augmented the NBDRA with section numbers refering to the section that we use to describe the specific interface categories in support of teh NBDRA  (see Figure~\ref{F:architecture}). 
 
 \begin{figure*}[h]\centering
 \includegraphics[width=1.1\textwidth]{images/vol8-diagrams}
@@ -98,6 +68,14 @@ Next, we focus on the high-level requirements of the interface approach as depic
 \label{F:architecture}
 \end{figure*}
 
+
+\section{NBDRA Interface Requirements}
+
+Before we start the specific interfaces, we introduce some general requirements and outline how we are goind to define the interfaces while encouraging discussions. 
+
+\subsection{High Level Requirements of the Interface Approach}
+
+First, we focus on the high-level requirements of the interface approach as depicted in Figure~\ref{F:architecture}.
 
 \subsubsection{Technology and Vendor Agnostic}
 
@@ -125,7 +103,7 @@ One of the important aspects of distributed big data services can be that the da
 
 \subsubsection{Security and Privacy Fabric Requirements}
 
-\TODO{Subsection Scope: Discussion of high-level requirements of the interface approach for the Security and Privacy Fabric.}
+Although the focus of this document is not security and privacy, which are documented in Volume 4 of the NBDRA, we must make sure that the interfaces we define can be integrated into a secure refrence architecture that supports privacy. Consequently, the interfaces that we define here can be augmented with frameworks and solutions that provide such mechanisms. As such, we need to distinguish diverse requirement needs stemming from different use cases. Although many of the interfaces and its objects to support physics big data application are similar to those in health care, they distinguish themselves from the integration of security interfaces and policies. In future versions of this document we intend to mors specifically address such interfaces. IN the meanwhile we consider them as an advanced usecase showcasing that the validity of the specificatins introduced here is preserved even if security and privaciy requirements vastly differ among application use cases.
 
 \subsubsection{System Orchestration Requirement}
 
