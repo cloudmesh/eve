@@ -362,21 +362,18 @@ including a profile and a user.
 
 \subsubsection{Profile}
 
-A profile is simple the most elementary information to distinguish a
-user profile. It contains name and e-mail information. It may have an
-optional uuid and/or use a unique e-mail to distinguish a
-user. 
-
-\TODO{what does the ``context'' represent? What are possible values?
-  How do those values alter the interpretation of a profile?}
-
+A profile defines the identity of an individual. It contains name and
+e-mail information. It may have an optional uuid and/or use a unique
+e-mail to distinguish a user.
 
 \codeFromJson{json}{profile.json}{User profile}{s:profile}
 
 \subsubsection{User}
 
 In contrast to the profile a user contains additional attributs that
-define the role of the user within the system.
+define the role of the user within the multi-user system. This
+associates different roles to individuals, these roles potentially
+have gradations of responsibility and privilege.
 
 \TODO{There's redundancy in the definition of Profile and User, namely
   everything except ``roles''. I don't think the current definitions
@@ -404,9 +401,6 @@ similar to the organization
 
 A group contains a number of users. It is used to manage authorized
 services.
-
-\TODO{The examples objects for Organization, Group, and Role should
-  clearly illustrate the differences. Right now it is a bit unclear.}
 
 \codeFromJson{json}{group.json}{group}{s:group}
 
@@ -625,6 +619,22 @@ The cluster object has name, label, endpoint and provider. The
 \textit{endpoint} defines....  The \textit{provider} defines the
 nature of the cluster, e.g., its a virtual cluster on an openstack
 cloud, or from AWS, or a bare-metal cluster.
+
+Figure~\ref{fig:F:uml-virtualcluster} illustrates the process for
+allocating and provisioning a virtual cluster.  The user defines the
+desired physical properties of the cluster such CPU, memory, disk and
+the intended configuration (such as software, users, etc).  After
+requesting the stack to be deployed, cloudmesh allocates the machines
+as desired by matching the desired properties with the available
+images and booting. The stack definition is then parsed then evaluated
+to provision the cluster.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\columnwidth]{images/uml/virtualcluster.pdf}
+\caption{Allocating and provisioning a virtual cluster}\label{F:uml-virtualcluster}
+\end{figure}
+
 
 
 \codeFromJson{json}{cluster.json}{cluster}{s:cluster}

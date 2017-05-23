@@ -1,0 +1,9 @@
+@startuml
+User -> Cluster: define (cpu, memory, disk, network)
+User -> Stack: define (software)
+User -> cm: deploy stack
+cm -> Cluster: read
+cm -> Cloud: boot
+cm -> Stack: read
+cm -> Cloud: provision
+@enduml
