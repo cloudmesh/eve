@@ -22,6 +22,7 @@ dot:
 	$(call generate_dot,account)
 	$(call generate_uml,boot)
 	$(call generate_uml,account)
+	$(call generate_uml,virtualcluster)
 
 t1:
 	suml --png --font-family "Comic Sans MS" --scruffy -i f.uml > test.png; e test.png 
