@@ -1,9 +1,9 @@
 FILE=objects
 
 all: 
-	pandoc ../README.rst -o readme.tex
-	pandoc ../../classes/docs/source/lesson/prg/rest.rst -o includes/rest.tex
-	pandoc ../../classes/docs/source/lesson/prg/python_cmd5.rst -o includes/python-cmd5.tex
+	# pandoc ../README.rst -o readme.tex
+	# pandoc ../../classes/docs/source/lesson/prg/rest.rst -o includes/rest.tex
+	# pandoc ../../classes/docs/source/lesson/prg/python_cmd5.rst -o includes/python-cmd5.tex
 	pdflatex  -shell-escape ${FILE}
 #	bibtex ${FILE}
 	pdflatex  -shell-escape ${FILE}

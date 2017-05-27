@@ -1,11 +1,6 @@
 \documentclass[10pt]{article} 
 
 \input{styles/simple-format}
-\makeatother
-
-\setcounter{secnumdepth}{6}
-\setcounter{tocdepth}{6}
-
 
 \title{NIST Big Data Interoperability Framework: Volume 8, Reference
        Architecture Interface}
@@ -527,7 +522,7 @@ An example object will demonstrate our approach. The following object
 defines a JSON object representing a user. 
 
 
-\codeFromJson{json}{profile.json}{User profile}{s:profile}
+\codeFromJson{json}{profile.json}{Example object specification}{s:profile}
 
  
 Such an object can be transformed to a schema specification 
@@ -662,7 +657,7 @@ A profile defines the identity of an individual. It contains name and
 e-mail information. It may have an optional uuid and/or use a unique
 e-mail to distinguish a user.
 
-\codeFromJson{json}{profile.json}{User profile}{s:profile}
+\codeFromJson{json}{profile.json}{Profile}{s:profile}
 
 \subsubsection{User}
 
@@ -676,7 +671,7 @@ have gradations of responsibility and privilege.
   clearly illustrate what each is supposed to represent and how they
   fit together in the system.}
 
-\codeFromJson{json}{user.json}{user}{s:user}
+\codeFromJson{json}{user.json}{User}{s:user}
 
 \subsubsection{Organization}
 
@@ -691,21 +686,21 @@ either as part of the user definition or as part of a simple list
 similar to the organization
 
 
-\codeFromJson{json}{organization.json}{user}{s:organization}
+\codeFromJson{json}{organization.json}{User}{s:organization}
 
 \subsubsection{Group/Role}
 
 A group contains a number of users. It is used to manage authorized
 services.
 
-\codeFromJson{json}{group.json}{group}{s:group}
+\codeFromJson{json}{group.json}{Group}{s:group}
 
 A role is a further refinement of a group. Group members can have
 specific roles. A good example is that ability to formulate a group of
 users that have access to a repository. However the role defines more
 specifically read and write privileges to the data within the repository.
 
-\codeFromJson{json}{role.json}{role}{s:role}
+\codeFromJson{json}{role.json}{Role}{s:role}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Data}
@@ -759,7 +754,7 @@ Variables are used to store a simple values. Each variable can have a
 type. The variable value format is defined as string to allow maximal
 probability. The type of the value is also provided.
 
-\codeFromJson{json}{var.json}{var}{s:var}
+\codeFromJson{json}{var.json}{Var}{s:var}
 
 \subsubsection{Default}
 
@@ -768,7 +763,7 @@ it. This allows one to define values that can be easily retrieved
 based on its context. A good example for a default would be the image
 name for a cloud where the context is defined by the cloud name.
 
-\codeFromJson{json}{default.json}{default}{s:default}
+\codeFromJson{json}{default.json}{Default}{s:default}
 
 
 \begin{figure}[!h]
@@ -791,7 +786,7 @@ The \textit{file} object has \textit{name}, \textit{endpoint} (location), \texti
 in GB, MB, Byte, \textit{checksum} for integrity check, and last
 \textit{accessed} timestamp. 
 
-\codeFromJson{json}{file.json}{file}{s:file}
+\codeFromJson{json}{file.json}{File}{s:file}
 
 \subsubsection{File Alias}
 
@@ -800,7 +795,7 @@ alias is that a file may have a complex name but a user may want to
 refer to that file in a name space that is suitable for the users
 application.
 
-\codeFromJson{json}{file_alias.json}{file alias}{s:file-alias}
+\codeFromJson{json}{file_alias.json}{File alias}{s:file-alias}
 
 \subsubsection{Replica}
 
@@ -812,7 +807,7 @@ the pedigree of the file while pointing to its original source. The need for the
 \TODO{We need to describe why a Replica is different from a File
   object.}
 
-\codeFromJson{json}{replica.json}{replica}{s:replica}
+\codeFromJson{json}{replica.json}{Replica}{s:replica}
 
 
 \subsubsection{Virtual Directory}
@@ -822,7 +817,7 @@ number of entities cincluding files, streams, and other virtual
 directories as part of a collection. The element in the collection can
 either be defined by uuid or by name. 
 
-\codeFromJson{json}{virtual_directory.json}{virtual
+\codeFromJson{json}{virtual_directory.json}{Virtual
   directory}{s:virtual-directory}
 
 \subsubsection{Database}
@@ -830,7 +825,7 @@ either be defined by uuid or by name.
 A \textit{database} could have a name, an \textit{endpoint} (e.g., host:port),
 and protocol used (e.g., SQL, mongo, etc.).
 
-\codeFromJson{json}{database.json}{database}{s:database}
+\codeFromJson{json}{database.json}{Database}{s:database}
 
 \subsubsection{Stream} 
 
@@ -839,7 +834,7 @@ rate and number of items exchanged while issuing requests to the
 stream. A stream my return data items in a specific fromat that is
 defined by the stream. 
 
-\codeFromJson{json}{stream.json}{stream}{s:stream}
+\codeFromJson{json}{stream.json}{Stream}{s:stream}
 
 Examples for streams could be a stream of random numbers but could
 also include more complex formats such as the retrieval of data
@@ -848,7 +843,7 @@ records.
 Services can subscribe, unsubscribe from a stream, while also applying
 filters to the subscribed stream.
 
-\codeFromJson{json}{filter.json}{filter}{s:filter}
+\codeFromJson{json}{filter.json}{Filter}{s:filter}
 
 \TODO{Filter needs to be refined}
 
@@ -866,16 +861,16 @@ OpenStack, Azure, and AWS, as well as others.
 
 \paragraph{Openstack Flavor}
 
-\codeFromJson{json}{openstack_flavor.json}{openstack flavor}{s:openstack-flavor}
+\codeFromJson{json}{openstack_flavor.json}{Openstack flavor}{s:openstack-flavor}
 
 \paragraph{Openstack Image}
 
-\codeFromJson{json}{openstack_image.json}{openstack
+\codeFromJson{json}{openstack_image.json}{Openstack
   image}{s:openstack-image}
 
 \paragraph{Openstack Vm}
 
-\codeFromJson{json}{openstack_vm.json}{openstack
+\codeFromJson{json}{openstack_vm.json}{Openstack
   vm}{s:openstack-vm}
 
 % ----------------------------------------------------------------------
@@ -886,17 +881,17 @@ OpenStack, Azure, and AWS, as well as others.
 
 The size description of an azure vm
 
-\codeFromJson{json}{azure-size.json}{azure-size}{s:azure-size}
+\codeFromJson{json}{azure-size.json}{Azure-size}{s:azure-size}
 
 
 \paragraph{Azure Image}
 
-\codeFromJson{json}{azure-image.json}{azure-image}{s:azure-image}
+\codeFromJson{json}{azure-image.json}{Azure-image}{s:azure-image}
 
 \paragraph{Azure Vm}
 
 An Azure virtual machine
-\codeFromJson{json}{azure-vm.json}{azure-vm}{s:azure-vm}
+\codeFromJson{json}{azure-vm.json}{Azure-vm}{s:azure-vm}
 
 
 
@@ -906,7 +901,7 @@ An Azure virtual machine
 
 \subsubsection{Batch Job}
 
-\codeFromJson{json}{batchjob.json}{batchjob}{s:batchjob}
+\codeFromJson{json}{batchjob.json}{Batchjob}{s:batchjob}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Virtual Cluster}
@@ -936,11 +931,11 @@ to provision the cluster.
 
 
 
-\codeFromJson{json}{cluster.json}{cluster}{s:cluster}
+\codeFromJson{json}{cluster.json}{Cluster}{s:cluster}
 
 \subsubsection{New Cluster}
 
-\codeFromJson{json}{cluster_new.json}{cluster}{s:cluster}
+\codeFromJson{json}{cluster_new.json}{Cluster}{s:cluster}
 \
 \subsubsection{Compute Resource}
 
@@ -954,7 +949,7 @@ resource
 \textit{compute\_resource} object has attribute \textit{endpoint} which
 specifies ... The \textit{kind} could be \textit{baremetal} or \textit{VC}.
 
-\codeFromJson{json}{compute_resource.json}{compute resource}{s:compute-resource}
+\codeFromJson{json}{compute_resource.json}{Compute resource}{s:compute-resource}
 
 \subsubsection{Computer}
 
@@ -962,7 +957,7 @@ This defines a \textit{computer} object. A computer has name, label,
 IP address. It also listed the relevant specs such as memory, disk
 size, etc.
 
-\codeFromJson{json}{computer.json}{computer}{s:computer}
+\codeFromJson{json}{computer.json}{Computer}{s:computer}
 
 
 \subsubsection{Compute Node}
@@ -1002,7 +997,7 @@ egress TCP and UDP traffic is allowed provided they are to ports 22
 (SSH), 443 (SSL), and 80 and 8080 (web).
 
 
-\codeFromJson{json}{node.json}{node}{s:node}
+\codeFromJson{json}{node.json}{Node}{s:node}
 
 
 
@@ -1013,12 +1008,12 @@ constitute the cluster. Nodes can be assembled to be baremetal,
 virtual machines, and containers. A virtual cluster contains a number
 of virtual compute nodes.  
  
-\codeFromJson{json}{virtual_cluster.json}{virtual
+\codeFromJson{json}{virtual_cluster.json}{Virtual
   cluster}{s:virtual-cluster}
 
 \subsubsection{Virtual Compute node}
 
-\codeFromJson{json}{virtual_compute_node.json}{virtual
+\codeFromJson{json}{virtual_compute_node.json}{Virtual
   compute node}{s:virtual-compute-node}
 
 \subsubsection{Virtual Machine}
@@ -1028,13 +1023,13 @@ maintaining a very basic set of information. It is expected that
 through the endpoint the virtual machine can be introspected and more
 detailed information can be retrieved.
 
-\codeFromJson{json}{virtual_machine.json}{virtual machine}{s:virtual-machine}
+\codeFromJson{json}{virtual_machine.json}{Virtual machine}{s:virtual-machine}
 
 \subsubsection{Mesos}
 
 \TODO{Refine}
 
-\codeFromJson{json}{mesos.json}{mesos}{s:mesos}
+\codeFromJson{json}{mesos.json}{Mesos}{s:mesos}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Containers}
@@ -1044,13 +1039,13 @@ detailed information can be retrieved.
 
 This defines {\em container} object.
 
-\codeFromJson{json}{container.json}{container}{s:container}
+\codeFromJson{json}{container.json}{Container}{s:container}
 
 \subsubsection{Kubernetes}
 
 \TODO{REFINE}
 
-\codeFromJson{json}{kubernetes.json}{kubernetes}{s:kubernetes}
+\codeFromJson{json}{kubernetes.json}{Kubernetes}{s:kubernetes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Deployment}
@@ -1062,7 +1057,7 @@ A \textit{deployment} consists of the resource \- \textit{cluster},
 the location \- \textit{provider}, e.g., AWS, OpenStack, etc., and
 software \textit{stack} to be deployed (e.g., hadoop, spark).
 
-\codeFromJson{json}{deployment.json}{deployment}{s:deployment}
+\codeFromJson{json}{deployment.json}{Deployment}{s:deployment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Mapreduce}
@@ -1079,7 +1074,7 @@ indicates that the data should be fetched from a FTP resource. It is
 the framework's responsibility to materialize and instantiation of the
 desired environment along with the function and data.
 
-\codeFromJson{json}{mapreduce.json}{mapreduce}{s:mapreduce}
+\codeFromJson{json}{mapreduce.json}{Mapreduce}{s:mapreduce}
 
 Additional parameters include the ``fault\_tolerant'' and ``backend''
 parameters.  The former flag indicates if the \textit{mapreduce}
@@ -1103,7 +1098,7 @@ The results of the function application can be accessed via the
 (e.g. ``data'', ``processed'', ``model'') to an object representing
 the result.
 
-\codeFromJson{json}{mapreduce_function_prototype.json}{mapreduce function}{s:mr.f.prototype}
+\codeFromJson{json}{mapreduce_function_prototype.json}{Mapreduce function}{s:mr.f.prototype}
 
 
 Some example functions include the ``NoOp'' function shown in
@@ -1111,7 +1106,7 @@ Listing~\ref{lst:s:mr.f.noop}.  In the case of undefined arguments,
 the parameters default to an identity element. In the case of mappings
 this is the empty mapping while for lists this is the empty list.
 
-\codeFromJson{json}{mapreduce_function_noop.json}{mapreduce noop}{s:mr.f.noop}
+\codeFromJson{json}{mapreduce_function_noop.json}{Mapreduce noop}{s:mr.f.noop}
 
 
 \subsubsection{Hadoop}
@@ -1121,7 +1116,7 @@ the \textit{parameters} of the deployment, and the system packages as
 \textit{requires}. For each requirement, it could have attributes such
 as the library origin, version, etc.
 
-\codeFromJson{json}{hadoop.json}{hadoop}{s:hadoop}
+\codeFromJson{json}{hadoop.json}{Hadoop}{s:hadoop}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1130,7 +1125,7 @@ as the library origin, version, etc.
 
 \subsubsection{Key}
 
-\codeFromJson{json}{key.json}{key}{s:key}
+\codeFromJson{json}{key.json}{Key}{s:key}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Microservice}
@@ -1161,14 +1156,14 @@ the
 A system could be composed of from various microservices, and this defines
 each of them.
 
-\codeFromJson{json}{microservice.json}{microservice}{s:microservice}
+\codeFromJson{json}{microservice.json}{Microservice}{s:microservice}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Reservation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\codeFromJson{json}{reservation.json}{reservation}{s:reservation}
+\codeFromJson{json}{reservation.json}{Reservation}{s:reservation}
 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1190,9 +1185,9 @@ big data infrastructure and services more simple, the user or
 application may underestimate the overall cost projected by the
 implementation of the big data reference architecture.
 
-\codeFromJson{json}{accounting.json}{accounting}{s:accounting}
+\codeFromJson{json}{accounting.json}{Accounting}{s:accounting}
 
-\codeFromJson{json}{account.json}{account}{s:account}
+\codeFromJson{json}{account.json}{Account}{s:account}
 
 \paragraph{Usecase: Accounting Service}
 
@@ -1202,13 +1197,13 @@ account for a user. The services that are than invoked by the user can
 than consume the resource and are charged accordingly.
 
 \begin{figure}[!h]
-\includegraphics[height=\textheight]{images/dot/account.pdf}
+\includegraphics[height=0.8\columnwidth]{images/dot/account.pdf}
 \caption{Create Resource}\label{F:createresource}
 \end{figure}
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.5\columnwidth]{images/uml/account.pdf}
+\includegraphics[width=0.8\textheight]{images/uml/account.pdf}
 \caption{Accounting}\label{F:uml-accounting}
 \end{figure}
 
@@ -1223,162 +1218,47 @@ We are looking for volunteers to contribute here.
 
 %\bibliography{references}
 
-\newpage
+\section{Status Codes and Error Responses}
 
-\appendix
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Appendix}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Schema Command}
-
-
-\codeFromFile{bash}{schema-man.tex}{man page}{s:manpage}
-
-
-\subsection{Schema}\label{a:schema}
-
-TBD
-
-\codeFromJson{python}{../settings.settings.py}{schema}{s:schema}
-
-\subsection{Contributing}
-
-We invite you to contribute to this paper and its discussion to
-improve it. Improvements can be done with pull requests. We suggest
-you do {\em small} individual changes to a single subsection and object
-rather than large changes as this allows us to integrate the changes
-individually and comment on your contribution via github.
-
-Once contributed we will appropriately acknowledge you either as
-contributor or author. Please discuss with us how we best acknowledge
-you.
-
-\subsection{Using the Cloudmesh REST Service} 
-
-Components are written as YAML markup in files in the
-\verb+resources/samples+ directory.
-
-For example:
-
-\codeFromJson{json}{profile.json}{profile}{s:profile}
-
-\subsubsection{Element Definition}
-
-Each resource should have a \verb+description+ entry to act as
-documentation. The documentation should be formated as
-reStructuredText. For example:
-
-\subsubsection{Yaml}
-
-\begin{Verbatim}
-entry = yaml.read('''
-profile:
-  description: |
-    A user profile that specifies general information 
-    about the user
-  email: laszewski@gmail.com, required
-  firtsname: Gregor, required
-  lastname: von Laszewski, required
-  height: 180
-'''}
-\end{Verbatim}
-
-\subsubsection{Cerberus}
-
-\begin{Verbatim}
-schema = {
-'profile': {
-  'description': {'type': 'string'}
-  'email':       {'type': 'string', 'required': True}
-  'firtsname':   {'type': 'string', 'required': True}
-  'lastname':    {'type': 'string', 'required': True}
-  'height':      {'type': 'float'}
-}
-\end{Verbatim}
-
-\subsection{Mongoengine}
-
-\begin{Verbatim}
-class profile(Document):
-    description = StringField()
-    email = EmailField(required=True)
-    firstname = StringField(required=True)
-    lastname = StringField(required=True)
-    height = FloatField(max_length=50)
-\end{Verbatim}
-
-\subsection{Cloudmesh Notation}
-
-\begin{Verbatim}
-profile:
-    description: string
-    email: email, required
-    firstname: string, required
-    lastname: string, required
-    height: flat, max=10
-\end{Verbatim}
-
-\begin{Verbatim}
-proposed command
-
-cms schema FILENAME --format=mongo -o OUTPUT
-cms schema FILENAME --format=cerberus -o OUTPUT
-cms schema FILENAME --format=yaml -o OUTPUT
-
-  reads FILENAME in cloudmesh notation and returns format
-
-
-cms schema FILENAME --input=evegenie -o OUTPUT
-   reads evegene example and create settings for eve
-\end{Verbatim}
-
-
-\subsubsection{Defining Elements for the REST Service}
-
-To manage a large number of elements defined in our REST service
-easily, we manage them though definitions in yaml files. To generate
-the appropriate settings file for the rest service, we can use the
-following command:
-
-\begin{verbatim}
-cms admin elements <directory> <out.json>
-\end{verbatim}
-
-where
+In case of an error or a successful response, the response header contains a HTTP code. The response
+body usually contains 
 
 \begin{itemize}
-\item \verb+<directory>+: directory where the YAML definitions reside
-\item \verb+<out.json>+: path to the combined definition
+\item the HTTP response code
+\item an accompanying message for the HTTP response code
+\item a field or object where the error occurred 
 \end{itemize}
 
-For example, to generate a file called all.json that integrates all
-yml objects defined in the directory \verb+resources/samples+ you can
-use the following command:
+\begin{table}[!h]
+\caption{HTTP response codes}
+\begin{tabular}{p{1cm}p{5cm}}
+HTTP & response Description code \\
+\hline
+200 & {\it OK} success code, for GET or HEAD request. \\
+201 & {\it Created} success code, for POST request. \\
+204 & {\it No Content} success code, for DELETE request. \\
+300 & The value returned when an external ID exists in more than one
+      record. \\
+304 & The request content has not changed since a specified date and
+      time. \\
+400 & The request could not be understood. \\
+401 & The session ID or OAuth token used has expired or is invalid. \\
+403 & The request has been refused. \\
+404 & The requested resource couldnot be found. \\
+405 & The method specified in the Request-Line isn’t allowed for the
+      resource specified in the URI. \\
+415 & The entity in the request is in a format that’s not supported by
+      the specified method. \\
+\end{tabular}
+\end{table}
 
-\begin{verbatim}
-cms elements resources/samples all.json
-\end{verbatim}
+\url{http://www.restapitutorial.com/httpstatuscodes.html}
 
-\subsubsection{DOIT}
-
-
-cms schema spec2tex resources/specification resources/tex
-
-\subsubsection{Generating service}
-
-With evegenie installed, the generated JSON file from the above step
-is processed to create the stub REST service definitions.
+\url{https://en.wikipedia.org/wiki/List_of_HTTP_status_codes}
+\url{http://www.ietf.org/assignments/http-status-codes/http-status-codes.xml}
+\url{https://tools.ietf.org/html/rfc7231}
 
 
-\subsection{ABC}
-{\bf README.rst}
-\input{includes/readme}
-classes lessons rest.rst
-\input{includes/rest}
-classes lesson python cmd5.rst
-\input{includes/python-cmd5}
 
 \subsection{Acronyms and Terms}
 
@@ -1416,39 +1296,45 @@ The following acronyms and terms are used in the paper
 \item[WWW] 	       World Wide Web
 \end{description}
 
-\section{Status Codes and Error Responses}
 
-In case of an error or a successful response, the response header contains a HTTP code. The response
-body usually contains 
+\newpage
 
-\begin{itemize}
-\item the HTTP response code
-\ite an accompanying message for the HTTP response code
-\item a field or object where the error occurred 
-\end{itemize}
+\appendix
 
-\begin{verbatim}
-HTTP response Description code
-200 “OK” success code, for GET or HEAD request.
-201 “Created” success code, for POST request.
-204 “No Content” success code, for DELETE request.
-300 The value returned when an external ID exists in more than one record.
-304 The request content has not changed since a specified date and time.
-400 The request couldn’t be understood.
-401 The session ID or OAuth token used has expired or is invalid. 
-403 The request has been refused. 
-404 The requested resource couldn’t be found. 
-405 The method specified in the Request-Line isn’t allowed for the resource specified in the URI.
-415 The entity in the request is in a format that’s not supported by the specified method.
-\end{verbatim}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Appendix}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\url{http://www.restapitutorial.com/httpstatuscodes.html}
+\subsection{Schema}\label{l:schema}
 
-\url{https://en.wikipedia.org/wiki/List_of_HTTP_status_codes}
-\url{http://www.ietf.org/assignments/http-status-codes/http-status-codes.xml}
-\url{https://tools.ietf.org/html/rfc7231}
+Listing \ref{l:schema} showcases the schema generated from the objects
+defined in this document.
+
+\codeFromJson{python}{../settings.settings.py}{schema}{l:schema}
+
+\input{includes/readme}
+
+\section{Contributing}
+
+We invite you to contribute to this paper and its discussion to
+improve it. Improvements can be done with pull requests. We suggest
+you do {\em small} individual changes to a single subsection and
+object rather than large changes as this allows us to integrate the
+changes individually and comment on your contribution via github. Once
+contributed we will appropriately acknowledge you either as
+contributor or author. Please discuss with us how we best acknowledge
+you.
 
 \end{document}
+
+% classes lessons rest.rst
+% \input{includes/rest}
+% classes lesson python cmd5.rst
+% \input{includes/python-cmd5}
+
+
+
+
 
 
 

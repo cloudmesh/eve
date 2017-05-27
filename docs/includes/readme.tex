@@ -1,73 +1,33 @@
 \section{Cloudmesh Rest}\label{cloudmesh-rest}
 
+Cloudmesh Resst is a refernce implementattion for the NBDRA. It
+allows to define automatically a REST service based on the objects
+specified by the NBDRA document. In collaboration with other cloudmesh
+components it allows easy interaction with hybrid clouds and the
+creation of user managed big data services. 
+
 \subsection{Prerequistis}\label{prerequistis}
 
-\begin{itemize}
-\tightlist
-\item
-  mongo instalation
-\item
-  eve instalation
-\item
-  cloudmesh cmd5
-\item
-  cloudmesh rest
-\end{itemize}
-
-\subsubsection{Install Mongo on OSX}\label{install-mongo-on-osx}
+The preriquisits for Cloudmesh REST are python 2.7.13 or python 3.6.1
+it can easily be installed on a variety of systems (at this time we
+have only tried ubuntu greater 16.04 and OSX Sierra. However, it would
+naturally be possible to also port it to Windows. The instalation
+instruction in this document are not complete and we recommend to
+refer to the cloudmesh manuals which are under development. The goal
+will be to make the instalation (after your system is set up for
+developing python) as simple as 
 
 \begin{verbatim}
-brew update
-brew install mongodb
-
-# brew install mongodb --with-openssl
+    pip install cloudmesh.rest
 \end{verbatim}
 
-\subsubsection{Install Mongo on OSX}\label{install-mongo-on-osx-1}
 
-ASSIGNMET TO STUDENTS, PROVIDE PULL REQUEST WITH INSTRUCTIONS
-
-\subsection{Introduction}\label{introduction}
+\subsection{REST Service}\label{cm-rest}
 
 With the cloudmesh REST framework it is easy to create REST services
-while defining the resources in the service easily with examples. The
-service is based on eve and the examples are defined in yml to be
-converted to json and from json with evegenie into a valid eve settings
-file.
-
-Thus oyou can eother wite your examples in yaml or in json. The
-resources are individually specified in a directory. The directory can
-contain multiple resource files. We recomment that for each resource you
-define your own file. Conversion of the specifications can be achieved
-with the schema command.
-
-\subsection{Yaml Specification}\label{yaml-specification}
-
-Let us first introduce you to a yaml specification. Let us assume that
-your yaml file is called profile.yaml and located in a directory called
-`example`:
-
-\begin{verbatim}
-profile:
-  description: The Profile of a user
-  email: laszewski@gmail.com
-  firstname: Gregor
-  lastname: von Laszewski
-  username: gregor
-\end{verbatim}
-
-As eve takes json objects as default we need to convert it first to
-json. This is achieved wih:
-
-\begin{verbatim}
-cd example
-cms schema convert profile.yml profile.json
-\end{verbatim}
-
-This will provide the json file profile.json as Listed in the next
-section
-
-\subsection{Json Specification}\label{json-specification}
+while defining the resources via example json objects. This is achieved
+while leveraging the python eve \cite{www-eve} and a modified version of python
+evengine \cite{www-cloudmesh-eveengine}. 
 
 A valid json resource specification looks like this:
 
@@ -83,77 +43,29 @@ A valid json resource specification looks like this:
 }
 \end{verbatim}
 
-\subsection{Conversion to Eve
-Settings}\label{conversion-to-eve-settings}
-
-The json files in the \textasciitilde{}/sample directory need now to be
-converted to a valid eve schema. This is achieved with tow commands.
-First, we must concatenate all json specified resource examples into a
-single json file. We do this with:
+here we define an object called profile, that contains a number of
+attributes and values. The type of the values are automatically
+determined. All json specifications are contained in a directory and
+can easily be converted into a valid schema for the eve rest service
+by executing the commands
 
 \begin{verbatim}
 cms schema cat . all.json
-\end{verbatim}
-
-As we assume you are in the samples directory, we use a . for the
-current location of the directory that containes the samples. Next, we
-need to convert it to the settings file. THis can be achieved with the
-convert program when you specify a json file:
-
-\begin{verbatim}
 cms schema convert all.json
 \end{verbatim}
 
-THe result will be a eve configuration file that you can use to start an
-eve service. The file is called all.settings.py
+This will create a the configuration \verb|all.settings.py| that can
+be used to start an eve service
 
-\subsubsection{Managing Mongo}\label{managing-mongo}
+Once the schema has defined, cloudmesh specifies defaults for managing
+a sample data base that is coupled with the REST service. We use
+mongodb which could be placed on a sharded mongo service. 
 
-Next you need to start the mongo service with
+\subsection{Limitations}
 
-\begin{verbatim}
-cms admin mongo start
-\end{verbatim}
+The current implementation is a demonstration and showcases that it is
+easy to generate a fully functioning REST service based on the
+specifications provided in this document. However, it is expected that
+scalability, distribution of services, and other advanced options
+need to be addrassed based on application requirements.
 
-You can look at the status and information about the service with :
-
-\begin{verbatim}
-cms admin mongo info
-cms admin mongo status
-\end{verbatim}
-
-If you need to stop the service you can use:
-
-\begin{verbatim}
-cms admin mongo stop
-\end{verbatim}
-
-\subsubsection{Manageing Eve}\label{manageing-eve}
-
-Now it is time to start the REST service. THis is done in a separate
-window with the following commands:
-
-\begin{verbatim}
-cms admin settings all.settings.json
-cms admin rest start
-\end{verbatim}
-
-The first command coppies the settings file to
-
-\begin{quote}
-\textasciitilde{}/cloudmesh/eve/settings.py
-\end{quote}
-
-This file is than used by the start action to start the eve service.
-Please make sure that you execute this command in a separate window, as
-for debugging purposses you will be able to monitor this way
-interactions with this service
-
-Testing - OLD \^{}\^{}\^{}\^{}\^{}\^{}\^{} :
-
-\begin{verbatim}
-make setup    # install mongo and eve
-make install  # installs the code and integrates it into cmd5
-make deploy
-make test
-\end{verbatim}

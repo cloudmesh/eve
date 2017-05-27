@@ -78,7 +78,7 @@
 \tcbuselibrary{listings}
 \tcbuselibrary{minted}
 
-\newtcbinputlisting[use counter=filePrg, number within=section, list inside=mypyg]{\codeFromFile}[4]{%
+\newtcbinputlisting[use counter=filePrg, number within=section, list inside=lol]{\codeFromFile}[4]{%
   listing engine=minted,
   minted language=#1,
   listing file={#2},
@@ -103,7 +103,7 @@
   label=lst:#4
 }
 
-\newtcbinputlisting[use counter=filePrg, number within=section, list inside=mypyg]{\codeFromJson}[4]{%
+\newtcbinputlisting[use counter=filePrg, number within=section, list inside=lol]{\codeFromJson}[4]{%
   listing engine=minted,
   minted language=#1,
   listing file={../cloudmesh/specification/examples/#2},
@@ -119,9 +119,9 @@
   %boxrule=0.5mm,
   colback=black!5,
   coltext=black,
-  title={Listing \thetcbcounter : #3 \hfill%
+  title={Object \thetcbcounter : #3 \hfill%
     \href{https://github.com/cloudmesh/cloudmesh.rest/blob/master/cloudmesh/specification/examples/#2}{\smash{\raisebox{-6pt}{\includegraphics[width=.5cm,height=.5cm]{images/code2.png}}}}},
-    list entry=Listing~\thetcbcounter : #3,
+    list entry=Object~\thetcbcounter : #3,
     %OR next two lines
     %title={Listing \thetcbcounter : #3},
     %overlay={\node[anchor=north east,outer sep=-9pt] at ([xshift=-25pt]frame.north east) {\includegraphics[width=1cm,height=1cm]{images/code2.png}}; },
@@ -129,3 +129,12 @@
 }
 
 \renewcommand{\contentsname}{Table of Contents}
+%\renewcommand{\lstlistingname}{List of Objects}
+%\renewcommand{\lstlistlistingname}{List of Objects}
+\renewcommand\listoflistingscaption{List of Objects}
+
+\makeatother
+
+\setcounter{secnumdepth}{6}
+\setcounter{tocdepth}{6}
+
