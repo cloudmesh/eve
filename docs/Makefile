@@ -8,6 +8,12 @@ all:
 	pdflatex  -shell-escape ${FILE}
 	cp objects.pdf NIST.SP.1500-8-${VERSION}.pdf
 
+publish:
+	cp NIST.SP.1500-8-${VERSION}.pdf ../../../laszewsk/laszewski.github.io/papers
+	cd ../../../laszewsk/laszewski.github.io/papers; git add NIST.SP.1500-8-${VERSION}.pdf
+	cd ../../../laszewsk/laszewski.github.io/papers; git commit -m "new version of NIST Volume 8" NIST.SP.1500-8-${VERSION}.pdf
+	cd ../../../laszewsk/laszewski.github.io/papers; git push
+
 donotdo:
 	# pandoc ../README.rst -o readme.tex
 	# pandoc ../../classes/docs/source/lesson/prg/rest.rst -o includes/rest.tex

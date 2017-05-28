@@ -65,21 +65,21 @@ bootstrap the NBDRA. Each section will introduce an interface while
 documenting the requirement as well as a simple specification
 addressing the immediate interface needs. We will showcase a selected
 number of use cases to outline how the specific interface can be used
-in a refernce implementation of the NBDRA. We expect that this
+in a reference implementation of the NBDRA. We expect that this
 document will grow with the help of contributions from the community
 to achieve a comprehensive set of interfaces that will be usable for
 the implementation of Big Data Architectures. Validation of this
 approach can be achieved while applying it to the application use
 cases that have been gathered in Volume 3 \cite{nist-vol-3}. These
-apllication use cases have considerably contributed towards the design
+application use cases have considerably contributed towards the design
 of the NBDRA. Hence our expectation is that (a) the interfaces can be
 used to help implementing a big data architecture for a specific use
 case, and (b) the proper implementation can validate the NBDRA.
 Through this approach, we can facilitate subsequent analysis and
 comparison of the use cases. To correlate this document and the
 definition of its interfaces we augmented the NBDRA with section
-numbers refering to the section that we use to describe the specific
-interface categories in support of teh NBDRA (see
+numbers referring to the section that we use to describe the specific
+interface categories in support of the NBDRA (see
 Figure~\ref{F:architecture}).
 
 \begin{figure*}[h]\centering
@@ -192,7 +192,7 @@ with authentication and authorization in mind.
 
 Although the focus of this document is not security and privacy, which
 are documented in Volume 4 \cite{nist-vol-4} of the NBDRA, we must make sure that the
-interfaces we define can be integrated into a secure refrence
+interfaces we define can be integrated into a secure reference
 architecture that supports privacy. Consequently, the interfaces that
 we define here can be augmented with frameworks and solutions that
 provide such mechanisms. As such, we need to distinguish diverse
@@ -201,9 +201,9 @@ the interfaces and its objects to support physics big data application
 are similar to those in health care, they distinguish themselves from
 the integration of security interfaces and policies. In future
 versions of this document we intend to mors specifically address such
-interfaces. IN the meanwhile we consider them as an advanced usecase
-showcasing that the validity of the specificatins introduced here is
-preserved even if security and privaciy requirements vastly differ
+interfaces. IN the meanwhile we consider them as an advanced use case
+showcasing that the validity of the specifications introduced here is
+preserved even if security and privacy requirements vastly differ
 among application use cases.
 
 \subsection{Component Specific Interface Requirements}
@@ -436,12 +436,13 @@ capabilities, interactive analysis, and data streaming.
 
 A number of crosscutting interface requirements within the NBDRA
 provider frameworks include messaging, communication, and resource
-management. Often these eservices may actually be hidden from explicit
+management. Often these services may actually be hidden from explicit
 interface use as they are part of larger systems that expose higher
 level functionality through their interfaces. However, it may be
 needed to expose such interfaces also on a lower level in case finer
 grained control is needed. We will identify the need for such
-crosscutting interface requirements form Volume 3 \cite{nist-vol-3} of this series.
+crosscutting interface requirements form Volume 3 \cite{nist-vol-3} of
+this series.
 
 \paragraph{Messaging/Communications Frameworks}
 
@@ -540,7 +541,7 @@ profile = {
 
 As mentioned before, the Appendix\ref{a:schema} will list the schema
 that is automatically created from the definitions. More information
-about the creatin can be found in Appendix \ref{s:cloudmesh-rest}.
+about the creation can be found in Appendix \ref{s:cloudmesh-rest}.
 
 When using the objets we assume one can implement the typical CRUD
 actions using HTTP methods mapped as follows: \\ ~\\
@@ -598,9 +599,9 @@ compliancy. We define it as follows
 In a multiuser environment we need a simple mechanism of associating
 objects and data to a particular person or group. While we do not want
 to replace with our efforts more elaborate solutions such as proposed
-by eduPerson \cite{www-eduperson} or others, we need a very simple way of distinguishing
-users. Therefore we have introduced a number of simple objects
-including a profile and a user.
+by eduPerson \cite{www-eduperson} or others, we need a very simple way
+of distinguishing users. Therefore we have introduced a number of
+simple objects including a profile and a user.
 
 \subsubsection{Profile}
 
@@ -626,9 +627,9 @@ have gradations of responsibility and privilege.
 
 \subsubsection{Organization}
 
-An important concept in many applications is the management of a roup
+An important concept in many applications is the management of a group
 of users in a virtual organization. This can be achieved through two
-concepts. First, it can be achieved while useing the profile and user
+concepts. First, it can be achieved while using the profile and user
 resources itself as they contain the ability to manage multiple users
 as part of the REST interface. The second concept is to create a
 virtual organization that lists all users of this virtual
@@ -729,13 +730,13 @@ name for a cloud where the context is defined by the cloud name.
 A file is a computer resource allowing to store data that is being
 processed. The interface to a file provides the mechanism to
 appropriately locate a file in a distributed system. Identification
-include the name, and andpoint, the checksum and the size. Additional
+include the name, and endpoint, the checksum and the size. Additional
 parameters such as the lasst access time could be stored also. As such
 the Interface only describes the location of the file 
 
-The \textit{file} object has \textit{name}, \textit{endpoint} (location), \textit{size}
-in GB, MB, Byte, \textit{checksum} for integrity check, and last
-\textit{accessed} timestamp. 
+The \textit{file} object has \textit{name}, \textit{endpoint}
+(location), \textit{size} in GB, MB, Byte, \textit{checksum} for
+integrity check, and last \textit{accessed} timestamp.
 
 \codeFromJson{json}{file.json}{File}{s:file}
 
@@ -751,9 +752,10 @@ application.
 \subsubsection{Replica}
 
 In many distributed systems, it is of importance that a file can be
-replicated among different systems in order to provide faster
-access. It is important to provide a mechanism that allows to trace
-the pedigree of the file while pointing to its original source. The need for the replicat is  
+replicated among different systems in order to provide faster access.
+It is important to provide a mechanism that allows to trace the
+pedigree of the file while pointing to its original source. The need
+for the replica is
 
 \TODO{We need to describe why a Replica is different from a File
   object.}
@@ -764,7 +766,7 @@ the pedigree of the file while pointing to its original source. The need for the
 \subsubsection{Virtual Directory}
 
 A collection of files or replicas. A virtual directory can contain an
-number of entities cincluding files, streams, and other virtual
+number of entities including files, streams, and other virtual
 directories as part of a collection. The element in the collection can
 either be defined by uuid or by name. 
 
@@ -782,7 +784,7 @@ and protocol used (e.g., SQL, mongo, etc.).
 
 A stream proveds a stream of data while providing information about
 rate and number of items exchanged while issuing requests to the
-stream. A stream my return data items in a specific fromat that is
+stream. A stream my return data items in a specific format that is
 defined by the stream. 
 
 \codeFromJson{json}{stream.json}{Stream}{s:stream}
@@ -862,7 +864,7 @@ An Azure virtual machine
 
 The cluster object has name, label, endpoint and provider. The
 \textit{endpoint} defines....  The \textit{provider} defines the
-nature of the cluster, e.g., its a virtual cluster on an openstack
+nature of the cluster, e.g., its a virtual cluster on an OpenStack
 cloud, or from AWS, or a bare-metal cluster.
 
 Figure~\ref{fig:F:uml-virtualcluster} illustrates the process for
@@ -1094,14 +1096,14 @@ Mimd model to storage
 Kubernetis, mesos can not spin up ?  
 
 Takes time to spin them up and coordinate them. While setting up
-environment takes more thsn using the microservice, so we must make
+environment takes more than using the microservice, so we must make
 sure that the micorservices are used sufficiently to offset spinup
 cost.
  
 limitation of resource capacity such as networking. 
  
 Benchmarking to find out thing about service level agreement to access
-the 
+the
 
 
 A system could be composed of from various microservices, and this defines
@@ -1171,8 +1173,8 @@ We are looking for volunteers to contribute here.
 
 \section{Status Codes and Error Responses}
 
-In case of an error or a successful response, the response header contains a HTTP code. The response
-body usually contains 
+In case of an error or a successful response, the response header
+contains a HTTP code. The response body usually contains
 
 \begin{itemize}
 \item the HTTP response code
@@ -1195,7 +1197,7 @@ HTTP & response Description code \\
 400 & The request could not be understood. \\
 401 & The session ID or OAuth token used has expired or is invalid. \\
 403 & The request has been refused. \\
-404 & The requested resource couldnot be found. \\
+404 & The requested resource could not be found. \\
 405 & The method specified in the Request-Line isn’t allowed for the
       resource specified in the URI. \\
 415 & The entity in the request is in a format that’s not supported by
@@ -1283,7 +1285,7 @@ The following acronyms and terms are used in the paper
 
 \item[Virtual Cluster] A virtual cluster is a software cluster that
   integrate either virtual machines, containers or physical resources into an
-  agglomoration of compute resources. A virtual cluster allows user
+  agglomeration of compute resources. A virtual cluster allows user
   sto authenticate and authorize to the virtual compute nodes tu
   utilize them for calculations. Optional high level services that can
   be deployed on a virtual cluster may simplify
@@ -1348,8 +1350,8 @@ github. Currently the document is located at:
 \item \url{https://github.com/cloudmesh/cloudmesh.rest/tree/master/docs}
 \end{itemize}
 
-Managing the document ther has provided us with the advantage that a
-refernce implementation can be automatically derived from the
+Managing the document in github has provided us with the advantage that a
+reference implementation can be automatically derived from the
 specified objects. Also it is easy to contribute as all text is
 written in ASCII while using \LaTeX syntax to allow for formating in
 PDF. 
@@ -1363,7 +1365,7 @@ Contributions can be mades as follows:
 \item[Contribution with direct access]: Cloudmesh.rest developers have
   direct access to the repository. If you are a frequent contributor
   to the document and are familiar with github we can grant you
-  access. HOwever we do prefer pull requests as this minimizes our
+  access. However, we do prefer pull requests as this minimizes our
   administrative overhead to avoid issues with git
 \item[Contributing ASCII sections with git issues]: You can identify
   the version of the document, specify the section and line numbers
