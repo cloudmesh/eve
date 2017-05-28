@@ -2,14 +2,16 @@ VERSION=draft
 FILE=objects
 
 all: 
-	# pandoc ../README.rst -o readme.tex
-	# pandoc ../../classes/docs/source/lesson/prg/rest.rst -o includes/rest.tex
-	# pandoc ../../classes/docs/source/lesson/prg/python_cmd5.rst -o includes/python-cmd5.tex
 	pdflatex  -shell-escape ${FILE}
-#	bibtex ${FILE}
+	bibtex ${FILE}
 	pdflatex  -shell-escape ${FILE}
 	pdflatex  -shell-escape ${FILE}
 	cp objects.pdf NIST.SP.1500-8-${VERSION}.pdf
+
+donotdo:
+	# pandoc ../README.rst -o readme.tex
+	# pandoc ../../classes/docs/source/lesson/prg/rest.rst -o includes/rest.tex
+	# pandoc ../../classes/docs/source/lesson/prg/python_cmd5.rst -o includes/python-cmd5.tex
 
 define generate_uml
 	cd images/uml; java -jar plantuml.jar -Tsvg $(1).uml
