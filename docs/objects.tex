@@ -14,7 +14,7 @@
 \newcommand{\ABSTRACT}{
 This document summarizes a number of objects that are instrumental for
 the interaction with Clouds, Containers, and HPC systems to manage
-virtual clusters. 
+virtual clusters to support the Big Data Reference Architecture.
 
 Big Data is a term used to describe the large amount of data in the
 networked, digitized, sensor-laden, information-driven world. While
@@ -24,11 +24,9 @@ and technological advances in data analytics. To advance progress in
 Big Data, the NIST Big Data Public Working Group (NBD-PWG) is working
 to develop consensus on important fundamental concepts related to Big
 Data. The results are reported in the NIST Big Data Interoperability
-Framework series of volumes. This volume, Volume 6, summarizes the
-work performed by the NBD-PWG to characterize Big Data from an
-architecture perspective, presents the NIST Big Data Reference
-Architecture (NBDRA) conceptual model, and discusses the components
-and fabrics of the NBDRA.
+Framework series of volumes. This volume, Volume 8, summarizes the
+work performed by the NBD-PWG to identify objects instrumental for the
+Big Data Reference Architecture (NBDRA) as introduced in Volume 6.
 }
 
 \newcommand{\KEYWORDS}{Application Provider; Big Data; Big Data
@@ -59,31 +57,33 @@ and fabrics of the NBDRA.
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Volume 6 Reference Architecture document provides a list of
-comprehensive high-level reference architecture requirements and
-introduces the NIST Big Data Reference Architecture (NBDRA). To enable
-interoperability between the NBDRA components, a list of well-defined
-NBDRA interface is needed. To introduce them, we will follow the NBDRA
-and focus on interfaces that allow us to bootstrap the NBDRA. Each
-section will introduce an interface while documenting the requirement
-as well as a simple specification addressing the immediate interface
-needs. We will showcase a selected number of use cases to outline how
-the specific interface can be used in a refernce implementation of the
-NBDRA. We expect that this document will grow with the help of
-contributions from the community to achieve a comprehensive set of
-interfaces that will be usable for the implementation of Big Data
-Architectures. Validation of this approach can be achieved while
-applying it to the application use cases that have been gathered in
-Volume 3 \cite{}. These apllication use cases have considerably
-contributed towards the design of the NBDRA. Hence our expectation is
-that (a) the interfaces can be used to help implementing a big data
-architecture for a specific use case, and (b) the proper
-implementation can validate the NBDRA. Through this approach, we can
-facilitate subsequent analysis and comparison of the use cases. To
-correlate this document and the definition of its interfaces we
-augmented the NBDRA with section numbers refering to the section that
-we use to describe the specific interface categories in support of teh
-NBDRA (see Figure~\ref{F:architecture}).
+The Volume 6 Reference Architecture document \cite{nist-vol-6}
+provides a list of comprehensive high-level reference architecture
+requirements and introduces the NIST Big Data Reference Architecture
+(NBDRA). To enable interoperability between the NBDRA components, a
+list of well-defined NBDRA interface is needed. These interfaces are
+documented in this volume 8 \cite{nist-vol-8}. To introduce them, we
+will follow the NBDRA and focus on interfaces that allow us to
+bootstrap the NBDRA. Each section will introduce an interface while
+documenting the requirement as well as a simple specification
+addressing the immediate interface needs. We will showcase a selected
+number of use cases to outline how the specific interface can be used
+in a refernce implementation of the NBDRA. We expect that this
+document will grow with the help of contributions from the community
+to achieve a comprehensive set of interfaces that will be usable for
+the implementation of Big Data Architectures. Validation of this
+approach can be achieved while applying it to the application use
+cases that have been gathered in Volume 3 \cite{nist-vol-3}. These
+apllication use cases have considerably contributed towards the design
+of the NBDRA. Hence our expectation is that (a) the interfaces can be
+used to help implementing a big data architecture for a specific use
+case, and (b) the proper implementation can validate the NBDRA.
+Through this approach, we can facilitate subsequent analysis and
+comparison of the use cases. To correlate this document and the
+definition of its interfaces we augmented the NBDRA with section
+numbers refering to the section that we use to describe the specific
+interface categories in support of teh NBDRA (see
+Figure~\ref{F:architecture}).
 
 \begin{figure*}[h]\centering
 \includegraphics[width=1.1\textwidth]{images/vol8-diagrams}
@@ -131,19 +131,19 @@ infrastructure of choice.
 
 \subsubsection{Orchestration of Infrastructure and Services}
 
-As part of the use case collection we present in Volume 3, it is
-obvious that we need to address the mechanism of preparing the
-preparation of infrastructures suitable for various use cases. As such
-we are not attempting to deliver a single deployed BDRA, but allow the
-setup of an infrastructure that satisfies the particular uses case. To
-achieve this task, we need to provision software tacks and services on
-infrastructures and orchestrate their deployment, It is not focus of
-this document to replace existing orchestration software and services,
-but provide an interface to them to leverage them as part of defining
-and creating the infrastructure. Various orchestration frameworks and
-services could therefore be leveraged and work in orchestrated fashion
-to achieve the goal of preparing an infrastructure suitable for one or
-more applications.
+As part of the use case collection we present in Volume 3
+\cite(nist-vol-3), it is obvious that we need to address the mechanism
+of preparing the preparation of infrastructures suitable for various
+use cases. As such we are not attempting to deliver a single deployed
+BDRA, but allow the setup of an infrastructure that satisfies the
+particular uses case. To achieve this task, we need to provision
+software tacks and services on infrastructures and orchestrate their
+deployment, It is not focus of this document to replace existing
+orchestration software and services, but provide an interface to them
+to leverage them as part of defining and creating the infrastructure.
+Various orchestration frameworks and services could therefore be
+leveraged and work in orchestrated fashion to achieve the goal of
+preparing an infrastructure suitable for one or more applications.
 
 \subsubsection{Orchestration of Big Data Applications and Experiments}
 
@@ -194,7 +194,7 @@ with authentication and authorization in mind.
 \subsubsection{Security and Privacy Fabric Requirements}
 
 Although the focus of this document is not security and privacy, which
-are documented in Volume 4 of the NBDRA, we must make sure that the
+are documented in Volume 4 \cite{nist-vol-4} of the NBDRA, we must make sure that the
 interfaces we define can be integrated into a secure refrence
 architecture that supports privacy. Consequently, the interfaces that
 we define here can be augmented with frameworks and solutions that
@@ -209,34 +209,25 @@ showcasing that the validity of the specificatins introduced here is
 preserved even if security and privaciy requirements vastly differ
 among application use cases.
 
-\subsubsection{System Orchestration Requirement}
-
-\TODO{Subsection Scope: Discussion of high-level requirements of the
-  interface approach for the System Orchestrator.}
-
-\subsubsection{Application Providers Requirements}
-
-\TODO{Subsection Scope: Discussion of high-level requirements of the
-  interface approach for the Application Provider.}
-
 \subsection{Component Specific Interface Requirements}
 
 In this section, we summarize a set of requirements for the interface
 of a particular component in the NBDRA. The components are listed in
-Figure 1 and addressed in each of the subsections as part of Section
-2.2 of this document. The five main functional components of the NBDRA
-represent the different technical roles within a Big Data system. The
-functional components are listed below and discussed in subsequent
-subsections. System Orchestrator: Defines and integrates the required
-data application activities into an operational vertical system; Big
-Data Application Provider: Executes a data life cycle to meet security
-and privacy requirements as well as System Orchestrator-defined
-requirements; Data Provider: Introduces new data or information feeds
-into the Big Data system; Big Data Framework Provider: Establishes a
-computing framework in which to execute certain transformation
-applications while protecting the privacy and integrity of data; and
-Data Consumer: Includes end users or other systems that use the
-results of the Big Data Application Provider.
+Figure~\ref{F:architecture} and addressed in each of the subsections
+as part of Section \ref{??} of this document. The five main functional
+components of the NBDRA represent the different technical roles within
+a Big Data system. The functional components are listed below and
+discussed in subsequent subsections. System Orchestrator: Defines and
+integrates the required data application activities into an
+operational vertical system; Big Data Application Provider: Executes a
+data life cycle to meet security and privacy requirements as well as
+System Orchestrator-defined requirements; Data Provider: Introduces
+new data or information feeds into the Big Data system; Big Data
+Framework Provider: Establishes a computing framework in which to
+execute certain transformation applications while protecting the
+privacy and integrity of data; and Data Consumer: Includes end users
+or other systems that use the results of the Big Data Application
+Provider.
 
 \subsubsection{System Orchestrator Interface Requirement}
 
@@ -294,7 +285,7 @@ Visualization (e) Data to Use for Their Own Processes. The interface
 for the data consumer must be able to describe the consuming services
 and how they retrieve information or leverage data consumers.
 
-\subsubsection{Big Data Application Interface Provide}
+\subsubsection{Big Data Application Interface Provider Requirements}
 
 The Big Data Application Provider role executes a specific set of
 operations along the data life cycle to meet the requirements
@@ -308,7 +299,8 @@ visualization, and access. Some if the interfaces used in these
 components can be reused from other interfaces introduced in other
 sections of this document. Where appropriate we will identify
 application specific interfaces and provide examples of them while
-focusing on a use case as identified in Volume 3 of this series.
+focusing on a use case as identified in Volume 3 \cite{nist-vol-3} of
+this series.
 
 \paragraph{Collection}
 
@@ -452,7 +444,7 @@ interface use as they are part of larger systems that expose higher
 level functionality through their interfaces. However, it may be
 needed to expose such interfaces also on a lower level in case finer
 grained control is needed. We will identify the need for such
-crosscutting interface requirements form Volume 3 of this series.
+crosscutting interface requirements form Volume 3 \cite{nist-vol-3} of this series.
 
 \paragraph{Messaging/Communications Frameworks}
 
@@ -468,8 +460,8 @@ As Big Data systems have evolved and become more complex, and as
 businesses work to leverage limited computation and storage resources
 to address a broader range of applications and business challenges,
 the requirement to effectively manage those resources has grown
-significantly. While tools for resource management and “elastic
-computing” have expanded and matured in response to the needs of cloud
+significantly. While tools for resource management and {\it elastic
+computing} have expanded and matured in response to the needs of cloud
 providers and virtualization technologies, Big Data introduces unique
 requirements for these tools. However, Big Data frameworks tend to
 fall more into a distributed computing paradigm, which presents
@@ -498,11 +490,20 @@ for the NBDRA.
 
 \subsection{Lessons Learned}
 
-\TODO{TBD}
+Originally we used a full REST specification for defining the objets
+related to the BDRA. However we found quickly that at this stage of
+the document it would introduce a more complex notation framework.
+This would result in (a) a considerable increase in length of this
+document (b) a more complex framework for participation and (c) a more
+complex framework for developing a reference implementation. Thus we
+have decided in this version of the document to introduce a design
+concept by example that is used to automatically create a schema.
 
-\subsection{Hybrid Cloud}
+\subsection{Hybrid and Multiple Frameworks}
 
-\TODO{TBD}
+It is obvious that we must be able to deal with hybrid and multiple
+frameworks to avoid vendor lock in. This is not only true for Cloud,
+container, but also other components of the NBDRA. 
 
 \subsection{Design by Example}
 
@@ -541,70 +542,20 @@ profile = {
 \end{Verbatim}
 
 As mentioned before, the Appendix\ref{a:schema} will list the schema
-that is automatically created from the definitions.
+that is automatically created from the definitions. More information
+about the creatin can be found in Appendix \ref{s:cloudmesh-rest}.
 
-\subsection{Tools to Create the Specifications}
+When using the objets we assume one can implement the typical CRUD
+actions using HTTP methods mapped as follows: \\ ~\\
 
-The tools to create the schema and object are all available opensource
-and are hosted on github. It includes the following repositories:
-
-\begin{description}
-\item[cloudmesh.common] ~\\
-  \url{https://github.com/cloudmesh/cloudmesh.common}
-\item[cloudmesh.cmd5] ~\\
-  \url{https://github.com/cloudmesh/cloudmesh.cmd5}
-\item[cloudmesh.rest] ~\\
-  \url{https://github.com/cloudmesh/cloudmesh.rest}
-\item[cloudmesh/evegenie] ~\\
-  \url{https://github.com/cloudmesh/evegenie}
-\end{description}
-
-\subsection{Installation of the Tools}
-
-The current best way to install the tools is from source. A convenient
-shell script conducting the install is located at:
-
-TBD
-
-Once we have stabilized the code the package will be available from
-pypi and can be installed as follows:
-
-\begin{Verbatim}
-pip install cloudmesh.rest
-pip install cloudmesh.evengine
-\end{Verbatim} 
-
-\subsection{Document Creation}
-
-It is assumed that you have installed all the tools. TO create the
-document you can simply do
-
-\begin{Verbatim}
-git clone https://github.com/cloudmesh/cloudmesh.rest
-cd cloudmesh.rest/docs
-make
-\end{Verbatim}
-
-This will produce in that directory a file called object.pdf
-containing this document.
-
-\subsection{Conversion to Word}
-
-We found that it is inconvenient for the developers to maintain this
-document in Microsoft Word as typically is done for other
-documents. This is because the majority of the information contains
-specifications that are directly integrated in a reference
-implementation, as well as that the current majority of contributors
-are developers. We would hope that editorial staff provides direct
-help to improve this document, which even can be done through the
-github Web interface and does not require any access either to the
-tools mentioned above or the availability of \LaTeX.
-
-The files are located at:
-
-\begin{itemize}
-\item \url{https://github.com/cloudmesh/cloudmesh.rest/tree/master/docs}
-\end{itemize}
+\begin{tabular}{lll}
+GET & \/profile & Retrieves a list of profile \\
+GET & \/profile\/12 & Retrieves a specific profile \\
+POST & \/profile & Creates a new profile \\
+PUT & \/profile\/12 & Updates profile \#12 \\
+PATCH & \/profile\/12 &  Partially updates profile \#12 \\
+DELETE & \/profile\/12 &  Deletes profile \#12 \\
+\end{tabular}
 
 \subsection{Interface Compliancy}
 
@@ -635,9 +586,12 @@ compliancy. We define it as follows
 
 \end{description}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Specification}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -655,7 +609,7 @@ including a profile and a user.
 
 A profile defines the identity of an individual. It contains name and
 e-mail information. It may have an optional uuid and/or use a unique
-e-mail to distinguish a user.
+e-mail to distinguish a user. 
 
 \codeFromJson{json}{profile.json}{Profile}{s:profile}
 
@@ -943,7 +897,7 @@ An important concept for big data analysis it the representation of a
 compute resource on which we execute the analysis. We define a compute
 resource by name and by endpoint. A compute resource is an abstract
 concept and can be instantiated through virtual machines, containers,
-or bare metal resources. This is defined by the “kind” of the compute
+or bare metal resources. This is defined by the {\it kind} of the compute
 resource 
 
 \textit{compute\_resource} object has attribute \textit{endpoint} which
@@ -1197,13 +1151,13 @@ account for a user. The services that are than invoked by the user can
 than consume the resource and are charged accordingly.
 
 \begin{figure}[!h]
-\includegraphics[height=0.8\columnwidth]{images/dot/account.pdf}
+\includegraphics[width=0.8\columnwidth]{images/dot/account.pdf}
 \caption{Create Resource}\label{F:createresource}
 \end{figure}
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.8\textheight]{images/uml/account.pdf}
+\includegraphics[height=0.8\textheight]{images/uml/account.pdf}
 \caption{Accounting}\label{F:uml-accounting}
 \end{figure}
 
@@ -1231,7 +1185,7 @@ body usually contains
 
 \begin{table}[!h]
 \caption{HTTP response codes}
-\begin{tabular}{p{1cm}p{5cm}}
+\begin{tabular}{p{1cm}p{15cm}}
 HTTP & response Description code \\
 \hline
 200 & {\it OK} success code, for GET or HEAD request. \\
@@ -1325,12 +1279,58 @@ contributed we will appropriately acknowledge you either as
 contributor or author. Please discuss with us how we best acknowledge
 you.
 
+\subsection{Document Creation}
+
+It is assumed that you have installed all the tools. TO create the
+document you can simply do
+
+\begin{Verbatim}
+git clone https://github.com/cloudmesh/cloudmesh.rest
+cd cloudmesh.rest/docs
+make
+\end{Verbatim}
+
+This will produce in that directory a file called object.pdf
+containing this document.
+
+\subsection{Conversion to Word}
+
+We found that it is most convenient to manage the draft document on
+github. Currently the document is located at:
+
+\begin{itemize}
+\item \url{https://github.com/cloudmesh/cloudmesh.rest/tree/master/docs}
+\end{itemize}
+
+Managing the document ther has provided us with the advantage that a
+refernce implementation can be automatically derived from the
+specified objects. Also it is easy to contribute as all text is
+written in ASCII while using \LaTeX syntax to allow for formating in
+PDF. 
+
+Contributions can be mades as follows:
+
+\begin{description}
+\item[Contributions with git pull requests]: You can fork the
+  repository, make modifications and create a pull request that we
+  than review and integrate
+\item[Contribution with direct access]: Cloudmesh.rest developers have
+  direct access to the repository. If you are a frequent contributor
+  to the document and are familiar with github we can grant you
+  access. HOwever we do prefer pull requests as this minimizes our
+  administrative overhead to avoid issues with git
+\item[Contributing ASCII sections with git issues]: You can identify
+  the version of the document, specify the section and line numbers
+  you want to modify and include the new text. We will integrate and
+  address these issues ASAP. Issues can be submitted at 
+  \url{https://github.com/cloudmesh/cloudmesh.rest/issues}
+\end{description}
+
+
+
+
 \end{document}
 
-% classes lessons rest.rst
-% \input{includes/rest}
-% classes lesson python cmd5.rst
-% \input{includes/python-cmd5}
 
 
 

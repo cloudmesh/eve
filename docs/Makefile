@@ -1,3 +1,4 @@
+VERSION=draft
 FILE=objects
 
 all: 
@@ -8,6 +9,7 @@ all:
 #	bibtex ${FILE}
 	pdflatex  -shell-escape ${FILE}
 	pdflatex  -shell-escape ${FILE}
+	cp objects.pdf NIST.SP.1500-8-${VERSION}.pdf
 
 define generate_uml
 	cd images/uml; java -jar plantuml.jar -Tsvg $(1).uml
