@@ -2,8 +2,7 @@
 
 \input{styles/simple-format}
 
-\title{NIST Big Data Interoperability Framework: Volume 8, Reference
-       Architecture Interface}
+\title{NIST Big Data Interoperability Framework: Volume 8, Interfaces}
 
 \author{Gregor von Laszewski,Fugang Wang, Badi Abdhul-Wahid, 
         Wo L. Chang}
@@ -12,9 +11,11 @@
 
 
 \newcommand{\ABSTRACT}{
-This document summarizes a number of objects that are instrumental for
+This document summarizes interfaces that are instrumental for
 the interaction with Clouds, Containers, and HPC systems to manage
-virtual clusters to support the Big Data Reference Architecture.
+virtual clusters to support the Big Data Reference Architecture. The
+REST paradigm is used to define these interfaces allowing easy
+integration and adoption by a wide variety of frameworks.
 
 Big Data is a term used to describe the large amount of data in the
 networked, digitized, sensor-laden, information-driven world. While
@@ -26,13 +27,11 @@ to develop consensus on important fundamental concepts related to Big
 Data. The results are reported in the NIST Big Data Interoperability
 Framework series of volumes. This volume, Volume 8, summarizes the
 work performed by the NBD-PWG to identify objects instrumental for the
-Big Data Reference Architecture (NBDRA) as introduced in Volume 6.
-}
+Big Data Reference Architecture (NBDRA) which is introduced in Volume
+6.}
 
-\newcommand{\KEYWORDS}{Application Provider; Big Data; Big Data
-  characteristics; Data Consumer; Data Provider; Framework Provider;
-  Management Fabric; reference architecture; Security and Privacy
-  Fabric; System Orchestrator; use cases. }
+\newcommand{\KEYWORDS}{NIST Big Data Reference Architecture;
+  Interfaces, REST}
 
 \begin{document}
 
@@ -55,35 +54,36 @@ Big Data Reference Architecture (NBDRA) as introduced in Volume 6.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The Volume 6 Reference Architecture document \cite{nist-vol-6}
-provides a list of comprehensive high-level reference architecture
-requirements and introduces the NIST Big Data Reference Architecture
-(NBDRA). To enable interoperability between the NBDRA components, a
-list of well-defined NBDRA interface is needed. These interfaces are
-documented in this volume 8 \cite{nist-vol-8}. To introduce them, we
+provides a list of high-level reference architecture requirements and
+introduces the NIST Big Data Reference Architecture (NBDRA).
+Figure~\ref{F:architecture} depicts the high-level overview of the
+NBDRA.
+
+To enable interoperability between the NBDRA components, a list of
+well-defined NBDRA interface is needed. These interfaces are
+documented in this Volume 8 \cite{nist-vol-8}. To introduce them, we
 will follow the NBDRA and focus on interfaces that allow us to
-bootstrap the NBDRA. Each section will introduce an interface while
-documenting the requirement as well as a simple specification
-addressing the immediate interface needs. We will showcase a selected
-number of use cases to outline how the specific interface can be used
-in a reference implementation of the NBDRA. We expect that this
-document will grow with the help of contributions from the community
-to achieve a comprehensive set of interfaces that will be usable for
-the implementation of Big Data Architectures. Validation of this
-approach can be achieved while applying it to the application use
-cases that have been gathered in Volume 3 \cite{nist-vol-3}. These
-application use cases have considerably contributed towards the design
-of the NBDRA. Hence our expectation is that (a) the interfaces can be
-used to help implementing a big data architecture for a specific use
-case, and (b) the proper implementation can validate the NBDRA.
-Through this approach, we can facilitate subsequent analysis and
-comparison of the use cases. To correlate this document and the
-definition of its interfaces we augmented the NBDRA with section
-numbers referring to the section that we use to describe the specific
-interface categories in support of the NBDRA (see
-Figure~\ref{F:architecture}).
+bootstrap the NBDRA. We will start the document with a summary of
+requirements that we will integrate into our specifications.
+Subsequently, each section will introduce a number of objects that
+build the core of the interface addressing a specific aspect of the
+NBDRA. We will showcase a selected number of {\it interface use cases}
+to outline how the specific interface can be used in a reference
+implementation of the NBDRA. Validation of this approach can be
+achieved while applying it to the application use cases that have been
+gathered in Volume 3 \cite{nist-vol-3}. These application use cases
+have considerably contributed towards the design of the NBDRA. Hence
+our expectation is that (a) the interfaces can be used to help
+implementing a big data architecture for a specific use case, and (b)
+the proper implementation. Through this approach, we can facilitate
+subsequent analysis and comparison of the use cases. We expect that
+this document will grow with the help of contributions from the
+community to achieve a comprehensive set of interfaces that will be
+usable for the implementation of Big Data Architectures.
+
 
 \begin{figure*}[h]\centering
-\includegraphics[width=1.1\textwidth]{images/vol8-diagrams}
+\includegraphics[width=1.1\textwidth]{images/vol8-nbdra}
 \caption{NIST Big Data Reference Architecture (NBDRA)}
 \label{F:architecture}
 \end{figure*}
@@ -91,21 +91,22 @@ Figure~\ref{F:architecture}).
 
 \section{NBDRA Interface Requirements}
 
-Before we start the specific interfaces, we introduce some general
-requirements and outline how we are goind to define the interfaces
-while encouraging discussions.
+Before we start outlining the specific interfaces, we introduce
+general requirements and explain how we define the interfaces while
+encouraging discussions.
 
 \subsection{High Level Requirements of the Interface Approach}
 
 First, we focus on the high-level requirements of the interface
-approach as depicted in Figure~\ref{F:architecture}.
+approach that we need to implement the refernce architecture depicted
+in Figure~\ref{F:architecture}.
 
 \subsubsection{Technology and Vendor Agnostic}
 
 Due to the many different tools, services, and infrastructures
-available in the general area of big data an interface ought to be as
+available in the general area of big data, an interface ought to be as
 vendor independent as possible, while at the same time be able to
-leverage best practices. As such we need to provide a methodology that
+leverage best practices. Hence, we need to provide a methodology that
 allows extension of interfaces to adapt and leverage existing
 approaches, but also allows the interfaces to provide merit in easy
 specifications that assist the formulation and definition of the
@@ -130,16 +131,18 @@ infrastructure of choice.
 
 As part of the use case collection we present in Volume 3
 \cite{nist-vol-3}, it is obvious that we need to address the mechanism
-of preparing the preparation of infrastructures suitable for various
-use cases. As such we are not attempting to deliver a single deployed
-BDRA, but allow the setup of an infrastructure that satisfies the
-particular uses case. To achieve this task, we need to provision
-software tacks and services on infrastructures and orchestrate their
-deployment, It is not focus of this document to replace existing
-orchestration software and services, but provide an interface to them
-to leverage them as part of defining and creating the infrastructure.
-Various orchestration frameworks and services could therefore be
-leveraged and work in orchestrated fashion to achieve the goal of
+of preparing a suitable infrastructures for various use cases. As not
+every infrastructure is suited for every use case a custom
+infrastructure may be needed. As such we are not attempting to deliver
+a single deployed BDRA, but allow the setup of an infrastructure that
+satisfies the particular uses case. To achieve this task, we need to
+provision software stacks and services while orchestrate their
+deployment and leveraging infrastructures. It is not focus of this
+document to replace existing orchestration software and services, but
+provide an interface to them to leverage them as part of defining and
+creating the infrastructure. Various orchestration frameworks and
+services could therefore be leveraged even as part of the same
+framework and work in orchestrated fashion to achieve the goal of
 preparing an infrastructure suitable for one or more applications.
 
 \subsubsection{Orchestration of Big Data Applications and Experiments}
@@ -150,21 +153,21 @@ require the creation of sophisticated applications as part of
 interactive experiments to analyze and probe the data. For this
 purpose, we need to be able to orchestrate and interact with
 experiments conducted on the data while assuring reproducibility and
-correctness of the data. For this purpose, a System Orchestrator
+correctness of the data. For this purpose, a {\it System Orchestrator}
 (either the Data Scientists or a service acting in behalf of the
-scientist) uses the BD Application Provider as the command center to
-orchestrate dataflow from Data Provider, carryout the BD application
-lifecycle with the help of the BD Framework Provider, and enable Data
-Consumer to consume Big Data processing results. An interface is
-needed to describe the interactions and to allow leveraging of
-experiment management frameworks in scripted fashion. We require a
-customization of parameters on several levels. On the highest level,
-we require high level- application motivated parameters to drive the
-orchestration of the experiment. On lower levels these high-level
-parameters may drive and create service level agreement augmented
-specifications and parameters that could even lead to the
-orchestration of infrastructure and services to satisfy experiment
-needs.
+scientist) is used as the command center to interact in behalf of the
+BD Application Provider to orchestrate dataflow from Data Provider,
+carryout the BD application lifecycle with the help of the BD
+Framework Provider, and enable Data Consumer to consume Big Data
+processing results. An interface is needed to describe the
+interactions and to allow leveraging of experiment management
+frameworks in scripted fashion. We require a customization of
+parameters on several levels. On the highest level, we require high
+level- application motivated parameters to drive the orchestration of
+the experiment. On lower levels these high-level parameters may drive
+and create service level agreement augmented specifications and
+parameters that could even lead to the orchestration of infrastructure
+and services to satisfy experiment needs.
 
 \subsubsection{Reusability}
 
@@ -185,48 +188,78 @@ describe and package analytics algorithms and potentially also tools
 as a payload to a data service. This can be best achieved not by
 sending the detailed execution, but sending an interface description
 that describes how such an algorithm or tool can be created on the
-server end and be executed under security considerations integrated
+server and be executed under security considerations integrated
 with authentication and authorization in mind.
 
 \subsubsection{Security and Privacy Fabric Requirements}
 
 Although the focus of this document is not security and privacy, which
-are documented in Volume 4 \cite{nist-vol-4} of the NBDRA, we must make sure that the
-interfaces we define can be integrated into a secure reference
-architecture that supports privacy. Consequently, the interfaces that
-we define here can be augmented with frameworks and solutions that
-provide such mechanisms. As such, we need to distinguish diverse
-requirement needs stemming from different use cases. Although many of
-the interfaces and its objects to support physics big data application
-are similar to those in health care, they distinguish themselves from
-the integration of security interfaces and policies. In future
-versions of this document we intend to mors specifically address such
-interfaces. IN the meanwhile we consider them as an advanced use case
-showcasing that the validity of the specifications introduced here is
-preserved even if security and privacy requirements vastly differ
-among application use cases.
+are documented in Volume 4 \cite{nist-vol-4} of the NBDRA, we must
+make sure that the interfaces we define can be integrated into a
+secure reference architecture that supports secure execution, secure
+data transfer and privacy. Consequently, the interfaces that we define
+here can be augmented with frameworks and solutions that provide such
+mechanisms. Thus, we need to distinguish diverse requirement needs
+stemming from different use cases addressing security. To contrast
+that the security requirements between applications can drastically
+vary we use the following example. Although many of the interfaces and
+its objects to support physics big data application are similar to
+those in health care, they distinguish themselves from the integration
+of security interfaces and policies. While in physics the protection
+of the data is less of an issue, it is s stringent requirement in
+healthcare. Thus deriving architectural frameworks for both may use
+largely similar components, but while addressing security they are
+expected to be very different. In future versions of this document we
+intend to specifically address interfaces and their security. In the
+meanwhile we consider them as an advanced use case showcasing that the
+validity of the specifications introduced here is preserved even if
+security and privacy requirements vastly differ among application use
+cases.
 
 \subsection{Component Specific Interface Requirements}
 
 In this section, we summarize a set of requirements for the interface
 of a particular component in the NBDRA. The components are listed in
 Figure~\ref{F:architecture} and addressed in each of the subsections
-as part of Section \ref{??} of this document. The five main functional
-components of the NBDRA represent the different technical roles within
-a Big Data system. The functional components are listed below and
-discussed in subsequent subsections. System Orchestrator: Defines and
-integrates the required data application activities into an
-operational vertical system; Big Data Application Provider: Executes a
-data life cycle to meet security and privacy requirements as well as
-System Orchestrator-defined requirements; Data Provider: Introduces
-new data or information feeds into the Big Data system; Big Data
-Framework Provider: Establishes a computing framework in which to
-execute certain transformation applications while protecting the
-privacy and integrity of data; and Data Consumer: Includes end users
-or other systems that use the results of the Big Data Application
-Provider.
+as part of Section \ref{S:r-orchestrator}--\ref{S:r-app-provider} of this
+document. The five main functional components of the NBDRA represent
+the different technical roles within a Big Data system. The functional
+components are listed below and discussed in subsequent subsections.
 
-\subsubsection{System Orchestrator Interface Requirement}
+\begin{quote}
+\begin{description}
+
+\item[System Orchestrator:] Defines and integrates the required data
+  application activities into an operational vertical system (see
+  Section \ref{S:r-orchestrator});
+
+\item[Data Provider:] Introduces new data or information feeds into
+  the Big Data system  (see
+  Section \ref{S:r-provider});
+
+\item[Data Consumer:] Includes end users or other systems that use the
+  results of the Big Data Application Provider  (see
+  Section \ref{S:r-consumer}).
+
+\item[Big Data Application Provider:] Executes a data life cycle to
+  meet security and privacy requirements as well as System
+  Orchestrator-defined requirements  (see
+  Section \ref{S:r-app});
+
+\item [Big Data Framework Provider:] Establishes a computing framework
+  in which to execute certain transformation applications while
+  protecting the privacy and integrity of data  (see
+  Section \ref{S:r-provider}); and
+
+\item[Big Data Application Provider to Framework Provider
+  Interface:] Defines an interface between the application
+  specification and the provider (see Section \ref{S:r-app-provider}).
+
+\end{description}
+\end{quote}
+
+
+\subsubsection{System Orchestrator Interface Requirement}\label{S:r-orchestrator}
 
 The System Orchestrator role includes defining and integrating the
 required data application activities into an operational vertical
@@ -255,7 +288,7 @@ parallel language tasks or as a workflow specification is needed to
 facilitate the overall coordination. Integration of existing tools and
 services into the orchestrator as extensible interface is desirable.
 
-\subsubsection{Data Provider Interface Requirement}
+\subsubsection{Data Provider Interface Requirement}\label{S:r-provider}
 
 The Data Provider role introduces new data or information feeds into
 the Big Data system for discovery, access, and transformation by the
@@ -270,7 +303,7 @@ details to identify the services offered so they can be pragmatically
 reused by consumers. Interfaces to describe pipes and filters must be
 addressed.
 
-\subsubsection{Data Consumer Interface Requirement}
+\subsubsection{Data Consumer Interface Requirement}\label{S:r-consumer}
 
 Similar to the Data Provider, the role of Data Consumer within the
 NBDRA can be an actual end user or another system. In many ways, this
@@ -282,7 +315,7 @@ Visualization (e) Data to Use for Their Own Processes. The interface
 for the data consumer must be able to describe the consuming services
 and how they retrieve information or leverage data consumers.
 
-\subsubsection{Big Data Application Interface Provider Requirements}
+\subsubsection{Big Data Application Interface Provider Requirements}\label{S:r-app}
 
 The Big Data Application Provider role executes a specific set of
 operations along the data life cycle to meet the requirements
@@ -395,13 +428,13 @@ to the Data Consumer. The interface with the Data Consumer may be
 synchronous or asynchronous in nature and may use a pull or push
 paradigm for data transfer.
 
-\paragraph{Big Data Provider Framework Interface Requirements}
+\subsubsection{Big Data Provider Framework Interface Requirements}\label{S:r-provider}
 
 Data for Big Data applications are delivered through data providers.
 They can be either local providers contributed by a user or
 distributed data providers that refer to data on the internet. We must
 be able to provide the following functionality (1) interfaces to files
-(2) interfaces ti virtual data directories (3) interfaces ti data
+(2) interfaces to virtual data directories (3) interfaces to data
 streams (4) and interfaces to data filters.
 
 \paragraph{Infrastructures Interface Requirements}
@@ -412,7 +445,7 @@ Big Data system. Typically, these resources consist of some
 combination of physical resources, which may host/support similar
 virtual resources. As part of the NBDRA we need interfaces that can be
 used to deal with the underlying infrastructure to address networking,
-computing, and storage
+computing, and storage.
 
 \paragraph{Platforms Interface Requirements}
 
@@ -466,7 +499,7 @@ fall more into a distributed computing paradigm, which presents
 additional challenges.
 
 \subsubsection{BD Application Provider to Framework Provider
-  Interface}
+  Interface}\label{S:r-app-provider}
 
 The Big Data Framework Provider typically consists of one or more
 hierarchically organized instances of the components in the NBDRA IT
@@ -590,6 +623,14 @@ compliancy. We define it as follows
 \section{Specification}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+The interfaces are summarized in Figure \ref{F:interfaces}.
+
+\begin{figure*}[h]\centering
+\includegraphics[width=1.1\textwidth]{images/interfaces}
+\caption{NIST Big Data Reference Architecture Interfaces}
+\label{F:interfaces}
+\end{figure*}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
