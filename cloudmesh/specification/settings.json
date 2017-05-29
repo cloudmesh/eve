@@ -413,17 +413,10 @@
         "uuid": "string"
     },
     "user": {
-        "username": "gregor",
-        "context:": "resource",
-        "description": "The Profile of a user",
-        "firstname": "Gregor",
-        "lastname": "von Laszewski",
-        "publickey": "ssh ....",
+        "profile": "objectid:profile",
         "roles": [
             "admin"
-        ],
-        "email": "laszewski@gmail.com",
-        "uuid": "jshdjkdh..."
+        ]
     },
     "GCENodeExtra": {
         "status": "status",

@@ -1011,35 +1011,19 @@ libcloud_image = {
 
 user = {
     'schema': {
-        'username': {
-            'type': 'string'
-        },
-        'context:': {
-            'type': 'string'
-        },
-        'description': {
-            'type': 'string'
-        },
-        'firstname': {
-            'type': 'string'
-        },
-        'lastname': {
-            'type': 'string'
-        },
-        'publickey': {
-            'type': 'string'
+        'profile': {
+            'type': 'objectid',
+            'data_relation': {
+                'resource': 'profile',
+                'field': '_id',
+                'embeddable': True
+            }
         },
         'roles': {
             'type': 'list',
             'schema': {
                 'type': 'string'
             }
-        },
-        'email': {
-            'type': 'string'
-        },
-        'uuid': {
-            'type': 'string'
         }
     }
 }

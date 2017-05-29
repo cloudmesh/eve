@@ -98,7 +98,7 @@ encouraging discussions.
 \subsection{High Level Requirements of the Interface Approach}
 
 First, we focus on the high-level requirements of the interface
-approach that we need to implement the refernce architecture depicted
+approach that we need to implement the reference architecture depicted
 in Figure~\ref{F:architecture}.
 
 \subsubsection{Technology and Vendor Agnostic}
@@ -249,7 +249,7 @@ components are listed below and discussed in subsequent subsections.
 \item [Big Data Framework Provider:] Establishes a computing framework
   in which to execute certain transformation applications while
   protecting the privacy and integrity of data  (see
-  Section \ref{S:r-provider}); and
+  Section \ref{S:r-provider-interface}); and
 
 \item[Big Data Application Provider to Framework Provider
   Interface:] Defines an interface between the application
@@ -428,7 +428,7 @@ to the Data Consumer. The interface with the Data Consumer may be
 synchronous or asynchronous in nature and may use a pull or push
 paradigm for data transfer.
 
-\subsubsection{Big Data Provider Framework Interface Requirements}\label{S:r-provider}
+\subsubsection{Big Data Provider Framework Interface Requirements}\label{S:r-provider-interface}
 
 Data for Big Data applications are delivered through data providers.
 They can be either local providers contributed by a user or
@@ -540,48 +540,56 @@ containers, DevOps, but also other components of the NBDRA.
 \subsection{Design by Example}
 
 To accelerate discussion among the team we use an approach to define
-objects and its interfaces by example. These examples are than taken
-and a schema is generated from it. The schema is added to the
-Appendix~\ref{s:schema} of the document.
+objects and its interfaces by example. These examples can than be taken
+and a schema can generated from them automatically. The schema is added to the
+Appendix~\ref{s:schema} of the document. 
 
-While focusing first on examples it allows us to speed
-up our design and simplifies discussions of the objects and interfaces
-eliminating getting lost in complex syntactical specifications. The
+While focusing first on examples it allows us to speed up our design
+process and simplify discussions about the objects and interfaces
+Hence, we eliminate getting lost in complex specifications. The
 process and specifications used in this document will also allow us to
 automatically create a implementation of the objects that can be
 integrated into a reference architecture as provided by for example
 the cloudmesh client and rest project \cite{www-cloudmesh-client}.
 
 An example object will demonstrate our approach. The following object
-defines a JSON object representing a user. 
+defines a JSON object representing a user (see Object \ref{sample:profile}). 
 
+\codeFromJson{json}{profile.json}{Example object specification}{sample:profile}
 
-\codeFromJson{json}{profile.json}{Example object specification}{s:profile}
-
-
-Such an object can be transformed to a schema specification 
+Such an object can be translated to a schema specification 
 while introspecting the types of the original example. 
 
 All examples are managed in Github and links to them are automatically
-generated. A hyperlink is introduced in the Object specification than
-when clicking on the \verb|</>| icon you will be redirected to the
-specification in github.
+generated to be included into this document. A hyperlink is introduced
+in the Object specification and when clicking on the \verb|</>| icon
+you will be redirected to the specification in github. The resulting
+schema object follows the Cerberus \cite{www-cerberus} specification
+and looks for our specific object we introduced earlier as follows:
 
-
-The resulting schema object follows the Cerberus \cite{www-cerberus}
-specification and looks for our object as follows:
-
+\begin{quote}
 \begin{Verbatim}
-profile = {  
-   'description': { ’type’: ’string’},  
-   ’email’: { ’type’: ’email’ },  
-   ’firstname’: { ’type’: ’string’},  
-   ’lastname’: { ’type’: ’string’ },   
-   ’username’: { ’type’: ‘string’ } 
-}  
+profile = {
+  'schema': {
+    'username':    {'type': 'string'},
+    'context:':    {'type': 'string'},
+    'description': {'type': 'string'},
+    'firstname':   {'type': 'string'},
+    'lastname':    {'type': 'string'},
+    'publickey':   {'type': 'string'},
+    'email':       {'type': 'string'},
+    'uuid':        {'type': 'string'}
+  }
+}
 \end{Verbatim}
+\end{quote}
 
-As mentioned before, the Appendix~\ref{s:schema} will list the schema
+Defined objects can alse be embedded into other objects by using the
+{\it objectid} tag. This is later demonstrated between the profile
+and the user objects (see Objects \ref{o:profile} and \ref{o:user}).
+
+
+As mentioned before, the Appendix~\ref{s:schema} lists the schema
 that is automatically created from the definitions. More information
 about the creation can be found in Appendix~\ref{s:cloudmesh-rest}.
 
@@ -597,11 +605,14 @@ PATCH & \/profile\/12 &  Partially updates profile \#12 \\
 DELETE & \/profile\/12 &  Deletes profile \#12 \\
 \end{tabular}
 
+In our reference implementation these methods are provided
+automatically.
+
 \subsection{Interface Compliancy}
 
-Due to the extensibility of our interfaces it is important to
-introduce a terminology that allows us to define interface
-compliancy. We define it as follows
+Due to the easy extensibility of our objects and their implicit
+interfaces it is important to introduce a terminology that allows us
+to define interface compliancy. We define it as follows
 
 \begin{description}
 
@@ -618,13 +629,19 @@ compliancy. We define it as follows
   implementation will implement a partial list of the objects. A
   document is accompanied that lists all objects defined, but also
   lists the objects that are not defined by the reference
-  architecture.
+  architecture. A document will outline which objects and interfaces
+  have been implemented.
 
 \item[Full and extended Compliance:] These are interfaces that in
   addition to the full compliance also introduce additional interfaces
-  and extend them.
+  and extend them. A document will be provided that lists the
+  differences to the document defined here.
 
 \end{description}
+
+Such documents can than be forwarded to the subgroup for further
+discussion and for possible future modifications based on additional
+practical user feedback.
 
 
 
@@ -632,8 +649,10 @@ compliancy. We define it as follows
 \section{Specification}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-The interfaces are summarized in Figure \ref{F:interfaces}.
+As several objects are used across the NBDRA we have not organized
+them by component as introduced in
+Figure~\ref{F:architecture}. Instead we have grouped the objects by
+functional use as depicted summarized in Figure \ref{F:interfaces}.
 
 \begin{figure*}[h]\centering
 \includegraphics[width=1.1\textwidth]{images/interfaces}
@@ -660,50 +679,50 @@ e-mail information. It may have an optional uuid and/or use a unique
 e-mail to distinguish a user. Profiles are used to identify diffrent
 users.
 
-\codeFromJson{json}{profile.json}{Profile}{s:profile}
+\codeFromJson{json}{profile.json}{Profile}{o:profile}
 
 \subsubsection{User}
 
 In contrast to the profile a user contains additional attributs that
-define the role of the user within the multi-user system. This
+define the role of the user within the multi-user system.  This
 associates different roles to individuals, these roles potentially
 have gradations of responsibility and privilege.
 
-\TODO{There's redundancy in the definition of Profile and User, namely
-  everything except ``roles''. I don't think the current definitions
-  clearly illustrate what each is supposed to represent and how they
-  fit together in the system.}
-
-\codeFromJson{json}{user.json}{User}{s:user}
+\codeFromJson{json}{user.json}{Organization}{o:user}
 
 \subsubsection{Organization}
 
 An important concept in many applications is the management of a group
-of users in a virtual organization. This can be achieved through two
-concepts. First, it can be achieved while using the profile and user
-resources itself as they contain the ability to manage multiple users
-as part of the REST interface. The second concept is to create a
-virtual organization that lists all users of this virtual
-organization. The third concept is to introduce groups and roles
-either as part of the user definition or as part of a simple list
-similar to the organization
+of users in an organization that manages a big data application or
+infrastructure. This can be achieved through two concepts. First, it
+can be achieved while using the profile and user resources itself as
+they contain the ability to manage multiple users as part of the REST
+interface. The second concept is to create a (virtual) organization that
+lists all users of this virtual organization. The third concept is to
+introduce groups and roles either as part of the user definition or as
+part of a simple list similar to the organization
 
+\codeFromJson{json}{organization.json}{User}{o:organization}
 
-\codeFromJson{json}{organization.json}{User}{s:organization}
+Thes concepts allow now the clear definition of various roles such as 
+data provider, data consumer, data curator, and others. It also would
+allow the creation of services that restrict data access by role, or
+organizational affiliation.
+
 
 \subsubsection{Group/Role}
 
 A group contains a number of users. It is used to manage authorized
 services.
 
-\codeFromJson{json}{group.json}{Group}{s:group}
+\codeFromJson{json}{group.json}{Group}{o:group}
 
 A role is a further refinement of a group. Group members can have
 specific roles. A good example is that ability to formulate a group of
 users that have access to a repository. However the role defines more
 specifically read and write privileges to the data within the repository.
 
-\codeFromJson{json}{role.json}{Role}{s:role}
+\codeFromJson{json}{role.json}{Role}{o:role}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Data}
@@ -757,7 +776,7 @@ Variables are used to store a simple values. Each variable can have a
 type. The variable value format is defined as string to allow maximal
 probability. The type of the value is also provided.
 
-\codeFromJson{json}{var.json}{Var}{s:var}
+\codeFromJson{json}{var.json}{Var}{o:var}
 
 \subsubsection{Default}
 
@@ -766,7 +785,7 @@ it. This allows one to define values that can be easily retrieved
 based on its context. A good example for a default would be the image
 name for a cloud where the context is defined by the cloud name.
 
-\codeFromJson{json}{default.json}{Default}{s:default}
+\codeFromJson{json}{default.json}{Default}{o:default}
 
 
 \begin{figure}[!h]
@@ -789,7 +808,7 @@ The \textit{file} object has \textit{name}, \textit{endpoint}
 (location), \textit{size} in GB, MB, Byte, \textit{checksum} for
 integrity check, and last \textit{accessed} timestamp.
 
-\codeFromJson{json}{file.json}{File}{s:file}
+\codeFromJson{json}{file.json}{File}{o:file}
 
 \subsubsection{File Alias}
 
@@ -798,7 +817,7 @@ alias is that a file may have a complex name but a user may want to
 refer to that file in a name space that is suitable for the users
 application.
 
-\codeFromJson{json}{file_alias.json}{File alias}{s:file-alias}
+\codeFromJson{json}{file_alias.json}{File alias}{o:file-alias}
 
 \subsubsection{Replica}
 
@@ -811,7 +830,7 @@ for the replica is
 \TODO{We need to describe why a Replica is different from a File
   object.}
 
-\codeFromJson{json}{replica.json}{Replica}{s:replica}
+\codeFromJson{json}{replica.json}{Replica}{o:replica}
 
 
 \subsubsection{Virtual Directory}
@@ -822,14 +841,14 @@ directories as part of a collection. The element in the collection can
 either be defined by uuid or by name. 
 
 \codeFromJson{json}{virtual_directory.json}{Virtual
-  directory}{s:virtual-directory}
+  directory}{o:virtual-directory}
 
 \subsubsection{Database}
 
 A \textit{database} could have a name, an \textit{endpoint} (e.g., host:port),
 and protocol used (e.g., SQL, mongo, etc.).
 
-\codeFromJson{json}{database.json}{Database}{s:database}
+\codeFromJson{json}{database.json}{Database}{o:database}
 
 \subsubsection{Stream} 
 
@@ -838,7 +857,7 @@ rate and number of items exchanged while issuing requests to the
 stream. A stream my return data items in a specific format that is
 defined by the stream. 
 
-\codeFromJson{json}{stream.json}{Stream}{s:stream}
+\codeFromJson{json}{stream.json}{Stream}{o:stream}
 
 Examples for streams could be a stream of random numbers but could
 also include more complex formats such as the retrieval of data
@@ -847,7 +866,7 @@ records.
 Services can subscribe, unsubscribe from a stream, while also applying
 filters to the subscribed stream.
 
-\codeFromJson{json}{filter.json}{Filter}{s:filter}
+\codeFromJson{json}{filter.json}{Filter}{o:filter}
 
 \TODO{Filter needs to be refined}
 
@@ -865,17 +884,17 @@ OpenStack, Azure, and AWS, as well as others.
 
 \paragraph{Openstack Flavor}
 
-\codeFromJson{json}{openstack_flavor.json}{Openstack flavor}{s:openstack-flavor}
+\codeFromJson{json}{openstack_flavor.json}{Openstack flavor}{o:openstack-flavor}
 
 \paragraph{Openstack Image}
 
 \codeFromJson{json}{openstack_image.json}{Openstack
-  image}{s:openstack-image}
+  image}{o:openstack-image}
 
 \paragraph{Openstack Vm}
 
 \codeFromJson{json}{openstack_vm.json}{Openstack
-  vm}{s:openstack-vm}
+  vm}{o:openstack-vm}
 
 % ----------------------------------------------------------------------
 \subsubsection{Azure}
@@ -885,17 +904,17 @@ OpenStack, Azure, and AWS, as well as others.
 
 The size description of an azure vm
 
-\codeFromJson{json}{azure-size.json}{Azure-size}{s:azure-size}
+\codeFromJson{json}{azure-size.json}{Azure-size}{o:azure-size}
 
 
 \paragraph{Azure Image}
 
-\codeFromJson{json}{azure-image.json}{Azure-image}{s:azure-image}
+\codeFromJson{json}{azure-image.json}{Azure-image}{o:azure-image}
 
 \paragraph{Azure Vm}
 
 An Azure virtual machine
-\codeFromJson{json}{azure-vm.json}{Azure-vm}{s:azure-vm}
+\codeFromJson{json}{azure-vm.json}{Azure-vm}{o:azure-vm}
 
 
 
@@ -905,7 +924,7 @@ An Azure virtual machine
 
 \subsubsection{Batch Job}
 
-\codeFromJson{json}{batchjob.json}{Batchjob}{s:batchjob}
+\codeFromJson{json}{batchjob.json}{Batchjob}{o:batchjob}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Virtual Cluster}
@@ -918,7 +937,7 @@ The cluster object has name, label, endpoint and provider. The
 nature of the cluster, e.g., its a virtual cluster on an OpenStack
 cloud, or from AWS, or a bare-metal cluster.
 
-Figure~\ref{fig:F:uml-virtualcluster} illustrates the process for
+Figure~\ref{F:uml-virtualcluster} illustrates the process for
 allocating and provisioning a virtual cluster.  The user defines the
 desired physical properties of the cluster such CPU, memory, disk and
 the intended configuration (such as software, users, etc).  After
@@ -935,11 +954,11 @@ to provision the cluster.
 
 
 
-\codeFromJson{json}{cluster.json}{Cluster}{s:cluster}
+\codeFromJson{json}{cluster.json}{Cluster}{o:cluster}
 
 \subsubsection{New Cluster}
 
-\codeFromJson{json}{cluster_new.json}{Cluster}{s:cluster}
+\codeFromJson{json}{cluster_new.json}{Cluster}{o:cluster}
 \
 \subsubsection{Compute Resource}
 
@@ -953,7 +972,7 @@ resource
 \textit{compute\_resource} object has attribute \textit{endpoint} which
 specifies ... The \textit{kind} could be \textit{baremetal} or \textit{VC}.
 
-\codeFromJson{json}{compute_resource.json}{Compute resource}{s:compute-resource}
+\codeFromJson{json}{compute_resource.json}{Compute resource}{o:compute-resource}
 
 \subsubsection{Computer}
 
@@ -961,7 +980,7 @@ This defines a \textit{computer} object. A computer has name, label,
 IP address. It also listed the relevant specs such as memory, disk
 size, etc.
 
-\codeFromJson{json}{computer.json}{Computer}{s:computer}
+\codeFromJson{json}{computer.json}{Computer}{o:computer}
 
 
 \subsubsection{Compute Node}
@@ -1001,7 +1020,7 @@ egress TCP and UDP traffic is allowed provided they are to ports 22
 (SSH), 443 (SSL), and 80 and 8080 (web).
 
 
-\codeFromJson{json}{node.json}{Node}{s:node}
+\codeFromJson{json}{node.json}{Node}{o:node}
 
 
 
@@ -1013,12 +1032,12 @@ virtual machines, and containers. A virtual cluster contains a number
 of virtual compute nodes.  
  
 \codeFromJson{json}{virtual_cluster.json}{Virtual
-  cluster}{s:virtual-cluster}
+  cluster}{o:virtual-cluster}
 
 \subsubsection{Virtual Compute node}
 
 \codeFromJson{json}{virtual_compute_node.json}{Virtual
-  compute node}{s:virtual-compute-node}
+  compute node}{o:virtual-compute-node}
 
 \subsubsection{Virtual Machine}
 
@@ -1027,13 +1046,13 @@ maintaining a very basic set of information. It is expected that
 through the endpoint the virtual machine can be introspected and more
 detailed information can be retrieved.
 
-\codeFromJson{json}{virtual_machine.json}{Virtual machine}{s:virtual-machine}
+\codeFromJson{json}{virtual_machine.json}{Virtual machine}{o:virtual-machine}
 
 \subsubsection{Mesos}
 
 \TODO{Refine}
 
-\codeFromJson{json}{mesos.json}{Mesos}{s:mesos}
+\codeFromJson{json}{mesos.json}{Mesos}{o:mesos}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Containers}
@@ -1041,15 +1060,15 @@ detailed information can be retrieved.
 
 \subsubsection{Container}
 
-This defines {\em container} object.
+This defines {\em container} object. 
 
-\codeFromJson{json}{container.json}{Container}{s:container}
+\codeFromJson{json}{container.json}{Container}{o:container}
 
 \subsubsection{Kubernetes}
 
 \TODO{REFINE}
 
-\codeFromJson{json}{kubernetes.json}{Kubernetes}{s:kubernetes}
+\codeFromJson{json}{kubernetes.json}{Kubernetes}{o:kubernetes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Deployment}
@@ -1061,7 +1080,7 @@ A \textit{deployment} consists of the resource \- \textit{cluster},
 the location \- \textit{provider}, e.g., AWS, OpenStack, etc., and
 software \textit{stack} to be deployed (e.g., hadoop, spark).
 
-\codeFromJson{json}{deployment.json}{Deployment}{s:deployment}
+\codeFromJson{json}{deployment.json}{Deployment}{o:deployment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Mapreduce}
@@ -1078,7 +1097,7 @@ indicates that the data should be fetched from a FTP resource. It is
 the framework's responsibility to materialize and instantiation of the
 desired environment along with the function and data.
 
-\codeFromJson{json}{mapreduce.json}{Mapreduce}{s:mapreduce}
+\codeFromJson{json}{mapreduce.json}{Mapreduce}{o:mapreduce}
 
 Additional parameters include the ``fault\_tolerant'' and ``backend''
 parameters.  The former flag indicates if the \textit{mapreduce}
@@ -1089,7 +1108,7 @@ object describing the system providing the \textit{mapreduce}
 workflow.  This may be a native deployment of Hadoop, or a special
 instantiation using other frameworks such as Mesos.
 
-A function prototype is defined in Listing~\ref{lst:s:mr.f.prototype}.
+A function prototype is defined in Listing~\ref{o:mr.f.prototype}.
 Key properties are that functions describe their input parameters and
 generated results. For the former, the ``buildInputs'' and
 ``systemBuildInputs'' respectively describe the objects which should
@@ -1102,15 +1121,15 @@ The results of the function application can be accessed via the
 (e.g. ``data'', ``processed'', ``model'') to an object representing
 the result.
 
-\codeFromJson{json}{mapreduce_function_prototype.json}{Mapreduce function}{s:mr.f.prototype}
+\codeFromJson{json}{mapreduce_function_prototype.json}{Mapreduce function}{o:mr.f.prototype}
 
 
 Some example functions include the ``NoOp'' function shown in
-Listing~\ref{lst:s:mr.f.noop}.  In the case of undefined arguments,
+Listing~\ref{o:mr.f.noop}.  In the case of undefined arguments,
 the parameters default to an identity element. In the case of mappings
 this is the empty mapping while for lists this is the empty list.
 
-\codeFromJson{json}{mapreduce_function_noop.json}{Mapreduce noop}{s:mr.f.noop}
+\codeFromJson{json}{mapreduce_function_noop.json}{Mapreduce noop}{o:mr.f.noop}
 
 
 \subsubsection{Hadoop}
@@ -1120,7 +1139,7 @@ the \textit{parameters} of the deployment, and the system packages as
 \textit{requires}. For each requirement, it could have attributes such
 as the library origin, version, etc.
 
-\codeFromJson{json}{hadoop.json}{Hadoop}{s:hadoop}
+\codeFromJson{json}{hadoop.json}{Hadoop}{o:hadoop}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1129,7 +1148,7 @@ as the library origin, version, etc.
 
 \subsubsection{Key}
 
-\codeFromJson{json}{key.json}{Key}{s:key}
+\codeFromJson{json}{key.json}{Key}{o:key}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Microservice}
@@ -1160,14 +1179,14 @@ the
 A system could be composed of from various microservices, and this defines
 each of them.
 
-\codeFromJson{json}{microservice.json}{Microservice}{s:microservice}
+\codeFromJson{json}{microservice.json}{Microservice}{o:microservice}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Reservation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\codeFromJson{json}{reservation.json}{Reservation}{s:reservation}
+\codeFromJson{json}{reservation.json}{Reservation}{o:reservation}
 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1189,9 +1208,9 @@ big data infrastructure and services more simple, the user or
 application may underestimate the overall cost projected by the
 implementation of the big data reference architecture.
 
-\codeFromJson{json}{accounting.json}{Accounting}{s:accounting}
+\codeFromJson{json}{accounting.json}{Accounting}{o:accounting}
 
-\codeFromJson{json}{account.json}{Account}{s:account}
+\codeFromJson{json}{account.json}{Account}{o:account}
 
 \paragraph{Usecase: Accounting Service}
 
@@ -1367,7 +1386,7 @@ defined in this document.
 
 \section{Cloudmesh Rest}\label{s:cloudmesh-rest}
 
-Cloudmesh Resst is a refernce implementattion for the NBDRA. It
+Cloudmesh Rest is a refernce implementattion for the NBDRA. It
 allows to define automatically a REST service based on the objects
 specified by the NBDRA document. In collaboration with other cloudmesh
 components it allows easy interaction with hybrid clouds and the
