@@ -42,6 +42,8 @@ install:
 	python setup.py install; pip install -e .
 
 source:
+	#cd ../cloudmesh.evengine; pip install -e .
+	cd ../cloudmesh.evegenie; pip install -e .
 	python setup.py install; pip install -e .
 	cms help
 

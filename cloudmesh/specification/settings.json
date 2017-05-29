@@ -5,8 +5,260 @@
         "description": "The Profile of a user",
         "firstname": "Gregor",
         "lastname": "von Laszewski",
+        "publickey": "ssh ....",
         "email": "laszewski@gmail.com",
         "uuid": "jshdjkdh..."
+    },
+    "stream": {
+        "attributes": {
+            "rate": 10,
+            "limit": 1000
+        },
+        "name": "name of the variable",
+        "format": "the format of the data exchanged in the stream"
+    },
+    "azure_image": {
+        "_uuid": "None",
+        "driver": "libcloud",
+        "id": "03f55de797f546a1b29d1....",
+        "name": "CoreCLR x64 Beta5 (11624) with PartsUnlimited Demo App on Ubuntu Server 14.04 LTS",
+        "extra": {
+            "category": "Public",
+            "description": "Linux VM image with coreclr-x64-beta5-11624 installed to /opt/dnx. This image is based on Ubuntu 14.04 LTS, with prerequisites of CoreCLR installed. It also contains PartsUnlimited demo app which runs on the installed coreclr. The demo app is installed to /opt/demo. To run the demo, please type the command /opt/demo/Kestrel in a terminal window. The website is listening on port 5004. Please enable or map a endpoint of HTTP port 5004 for your azure VM.",
+            "vm_image": "False",
+            "location": "East Asia;Southeast Asia;Australia East;Australia Southeast;Brazil South;North Europe;West Europe;Japan East;Japan West;Central US;East US;East US 2; North Central US;South Central US;West US",
+            "affinity_group": "",
+            "os": "Linux",
+            "media_link": ""
+        }
+    },
+    "virtual_compute_node": {
+        "status": "TBD",
+        "endpoint": "http://.../cluster/",
+        "name": "data",
+        "ip": [
+            "TBD"
+        ],
+        "image": "Ubuntu-16.04",
+        "flavor": "TBD",
+        "metadata": {
+            "experiment": "exp-001"
+        }
+    },
+    "deployment": {
+        "cluster": [
+            {
+                "name": "myCluster"
+            },
+            {
+                "id": "cm-0001"
+            }
+        ],
+        "stack": {
+            "layers": [
+                "zookeeper",
+                "hadoop",
+                "spark",
+                "postgresql"
+            ],
+            "parameters": {
+                "hadoop": {
+                    "zookeeper.quorum": [
+                        "IP",
+                        "IP",
+                        "IP"
+                    ]
+                }
+            }
+        }
+    },
+    "azure-size": {
+        "ram": 114688,
+        "name": "D14 Faster Compute Instance",
+        "extra": {
+            "cores": 16,
+            "max_data_disks": 32
+        },
+        "price": 1.6261,
+        "_uuid": "None",
+        "driver": "libcloud",
+        "bandwidth": "None",
+        "disk": 127,
+        "id": "Standard_D14"
+    },
+    "cluster": {
+        "provider": [
+            "openstack",
+            "aws",
+            "azure",
+            "eucalyptus"
+        ],
+        "endpoint": {
+            "passwd": "secret",
+            "url": "https"
+        },
+        "name": "myCLuster",
+        "label": "c0"
+    },
+    "computer": {
+        "ip": "127.0.0.1",
+        "name": "myComputer",
+        "memoryGB": 16,
+        "label": "server-001"
+    },
+    "mesos-docker": {
+        "container": {
+            "docker": {
+                "credential": {
+                    "secret": "my-secret",
+                    "principal": "my-principal"
+                },
+                "image": "mesosphere/inky"
+            },
+            "type": "MESOS"
+        },
+        "mem": 16.0,
+        "args": [
+            "argument"
+        ],
+        "cpus": 0.2,
+        "instances": 1,
+        "id": "mesos-docker"
+    },
+    "file": {
+        "endpoint": "file://gregor@machine.edu:/data/report.dat",
+        "name": "report.dat",
+        "created": "1.1.2017:05:00:00:EST",
+        "checksum": {
+            "sha256": "c01b39c7a35ccc ....... ebfeb45c69f08e17dfe3ef375a7b"
+        },
+        "modified": "1.1.2017:05:00:00:EST",
+        "accessed": "1.1.2017:05:00:00:EST",
+        "size": [
+            "GB",
+            "Byte"
+        ]
+    },
+    "reservation": {
+        "start_time": [
+            "date",
+            "time"
+        ],
+        "hosts": "string",
+        "description": "string",
+        "end_time": [
+            "date",
+            "time"
+        ]
+    },
+    "microservice": {
+        "function": "microservice spec",
+        "endpoint": "http://.../ms/",
+        "name": "ms1"
+    },
+    "virtual_directory": {
+        "endpoint": "http://.../data/",
+        "protocol": "http",
+        "name": "data",
+        "collection": [
+            "report.dat",
+            "file2"
+        ]
+    },
+    "mapreduce_function": {
+        "name": "name of this function",
+        "outputs": {
+            "key": "value"
+        },
+        "args": [
+            {
+                "argument": "value"
+            }
+        ],
+        "systemBuildInputs": [
+            "list of packages"
+        ],
+        "source": "a URI to obtain the resource",
+        "install": {
+            "description": "instructions to install the source if needed",
+            "script": "source://install.sh"
+        },
+        "eval": {
+            "description": "How to evaluate this function",
+            "script": "source://run.sh"
+        },
+        "buildInputs": [
+            "list of dependent objects"
+        ],
+        "description": "These should be self-describing"
+    },
+    "virtual_cluster": {
+        "nodes": [
+            "objectid:virtual_machine"
+        ],
+        "frontend": "objectid:virtual_machine",
+        "name": "myvc"
+    },
+    "libcloud_flavor": {
+        "uuid": "string",
+        "price": "string",
+        "ram": "string",
+        "bandwidth": "string",
+        "flavor_id": "string",
+        "disk": "string",
+        "cpu": "string"
+    },
+    "group": {
+        "users": [
+            "objectid:user"
+        ],
+        "name": "users",
+        "description": "This group contains all users"
+    },
+    "sshkey": {
+        "comment": "string",
+        "source": "string",
+        "uri": "string",
+        "value": "ssh-rsa AAA......",
+        "fingerprint": "string, unique"
+    },
+    "mapreduce_noop": {
+        "name": "noop",
+        "description": "A function with no effect"
+    },
+    "role": {
+        "users": [
+            "objectid:user"
+        ],
+        "name": "editor",
+        "description": "This role contains all editors"
+    },
+    "AzureNodeExtra": {
+        "ssh_port": "ssh_port",
+        "instance_size": "instance_size",
+        "remote_desktop_port": "remote_desktop_port",
+        "ex_cloud_service_name": "ex_cloud_service_name",
+        "power_state": "power_state",
+        "instance_endpoints": "instance_endpoints"
+    },
+    "var": {
+        "type": "the datatype of the variable such as int, str, float, ...",
+        "name": "name of the variable",
+        "value": "the value of the variable as string"
+    },
+    "node": {
+        "private_ips": [
+            "192.168.1.101"
+        ],
+        "extra": {},
+        "created_at": "created_timestamp",
+        "driver": "connection.driver",
+        "state": "state",
+        "public_ips": [
+            "111.222.111.1"
+        ],
+        "id": "instance_id",
+        "name": "name"
     },
     "virtual_machine": {
         "status": "active",
@@ -91,19 +343,6 @@
         "type": "ethernet",
         "gateway": "123.123.1.1"
     },
-    "virtual_compute_node": {
-        "status": "TBD",
-        "endpoint": "http://.../cluster/",
-        "name": "data",
-        "ip": [
-            "TBD"
-        ],
-        "image": "Ubuntu-16.04",
-        "flavor": "TBD",
-        "metadata": {
-            "experiment": "exp-001"
-        }
-    },
     "openstack_flavor": {
         "os_flv_disabled": "string",
         "uuid": "string",
@@ -136,70 +375,21 @@
         "disk_name": "string",
         "uuid": "string"
     },
-    "azure-size": {
-        "ram": 114688,
-        "name": "D14 Faster Compute Instance",
-        "extra": {
-            "cores": 16,
-            "max_data_disks": 32
-        },
-        "price": 1.6261,
-        "_uuid": "None",
-        "driver": "libcloud",
-        "bandwidth": "None",
-        "disk": 127,
-        "id": "Standard_D14"
-    },
-    "openstack_vm": {
-        "vm_state": "string",
-        "availability_zone": "string",
-        "terminated_at": "string",
-        "image": "string",
-        "diskConfig": "string",
-        "flavor": "string",
-        "security_groups": "string",
-        "volumes_attached": "string",
-        "user_id": "string",
-        "uuid": "string",
-        "accessIPv4": "string",
-        "accessIPv6": "string",
-        "power_state": "string",
-        "progress": "string",
-        "image__id": "string",
-        "launched_at": "string",
-        "config_drive": "string",
-        "username": "string",
-        "updated": "string",
-        "hostId": "string",
-        "floating_ip": "string",
-        "static_ip": "string",
-        "key": "string",
-        "flavor__id": "string",
-        "group": "string",
-        "task_state": "string",
-        "created": "string",
-        "tenant_id": "string",
-        "status": "string"
-    },
-    "cluster": {
-        "provider": [
-            "openstack",
-            "aws",
-            "azure",
-            "eucalyptus"
+    "ec2NodeExtra": {
+        "product_codes": "product_codes",
+        "tags": [
+            "tag1",
+            "tag2"
         ],
-        "endpoint": {
-            "passwd": "secret",
-            "url": "https"
-        },
-        "name": "myCLuster",
-        "label": "c0"
-    },
-    "computer": {
-        "ip": "127.0.0.1",
-        "name": "myComputer",
-        "memoryGB": 16,
-        "label": "server-001"
+        "network_interfaces": [
+            "nic1",
+            "nic2"
+        ],
+        "groups": [
+            "security_group1",
+            "security_group2"
+        ],
+        "block_device_mapping": "deviceMapping"
     },
     "libcloud_image": {
         "username": "string",
@@ -225,132 +415,37 @@
     "user": {
         "username": "gregor",
         "context:": "resource",
-        "uuid": "jshdjkdh...",
+        "description": "The Profile of a user",
         "firstname": "Gregor",
         "lastname": "von Laszewski",
+        "publickey": "ssh ....",
         "roles": [
-            "admin",
-            "user"
+            "admin"
         ],
-        "email": "laszewski@gmail.com"
+        "email": "laszewski@gmail.com",
+        "uuid": "jshdjkdh..."
     },
-    "file": {
-        "endpoint": "file://gregor@machine.edu:/data/report.dat",
-        "name": "report.dat",
-        "created": "1.1.2017:05:00:00:EST",
-        "checksum": {
-            "md5": "8c324f12047dc2254b74031b8f029ad0"
-        },
-        "modified": "1.1.2017:05:00:00:EST",
-        "accessed": "1.1.2017:05:00:00:EST",
-        "size": [
-            "GB",
-            "Byte"
-        ]
-    },
-    "deployment": {
-        "cluster": [
-            {
-                "name": "myCluster"
-            },
-            {
-                "id": "cm-0001"
-            }
-        ],
-        "stack": {
-            "layers": [
-                "zookeeper",
-                "hadoop",
-                "spark",
-                "postgresql"
-            ],
-            "parameters": {
-                "hadoop": {
-                    "zookeeper.quorum": [
-                        "IP",
-                        "IP",
-                        "IP"
-                    ]
-                }
-            }
-        }
-    },
-    "mapreduce": {
-        "layers": [
-            "hadoop"
-        ],
-        "hdfs_datanode": "IP ADDRESS",
-        "java": {
-            "platform": "OpenJDK",
-            "version": "1.8"
-        },
-        "supervisord": "",
-        "yarn_historyserver": "IP ADDRESS",
-        "zookeeper": "IP ADDRESS",
-        "hdfs_namenode": "IP ADDRESS",
-        "hdfs_journalnode": "IP ADDRESS",
-        "yarn_resourcemanager": "IP ADDRESS"
-    },
-    "group": {
-        "users": [
-            "objectid:user"
-        ],
-        "name": "users",
-        "description": "This group contains all users"
-    },
-    "role": {
-        "users": [
-            "objectid:user"
-        ],
-        "name": "editor",
-        "description": "This role contains all editors"
-    },
-    "virtual_directory": {
-        "endpoint": "http://.../data/",
-        "protocol": "http",
-        "name": "data",
-        "collection": [
-            "report.dat",
-            "file2"
-        ]
-    },
-    "file_alias": {
-        "alias": "report-alias.dat",
-        "name": "report.dat"
-    },
-    "virtual_cluster": {
-        "nodes": [
-            "objectid:virtual_machine"
-        ],
-        "frontend": "objectid:virtual_machine",
-        "name": "myvc"
-    },
-    "libcloud_flavor": {
-        "uuid": "string",
-        "price": "string",
-        "ram": "string",
-        "bandwidth": "string",
-        "flavor_id": "string",
-        "disk": "string",
-        "cpu": "string"
-    },
-    "batchjob": {
-        "output_file": "string",
-        "group": "string",
-        "job_id": "string",
-        "script": "string, the batch job script",
-        "cmd": "string, executes the cmd, if None path is used",
-        "queue": "string",
-        "cluster": "string",
-        "time": "string",
-        "path": "string, path of the batchjob, if non cmd is used",
-        "nodes": "string",
-        "dir": "string"
-    },
-    "organization": {
-        "users": [
-            "objectid:user"
-        ]
+    "GCENodeExtra": {
+        "status": "status",
+        "kind": "kind",
+        "machineType": "machineType",
+        "description": "description",
+        "zone": "zone",
+        "deprecated": "True or False",
+        "image": "image",
+        "disks": "disks",
+        "tags_fingerprint": "fingerprint",
+        "name": "name",
+        "boot_disk": "disk",
+        "selfLink": "selfLink",
+        "scheduling": "scheduling",
+        "canIpForward": "canIpForward",
+        "serviceAccounts": "serviceAccounts",
+        "metadata": "metadata",
+        "creationTimestamp": "creationTimestamp",
+        "id": "node_id",
+        "statusMessage": "statusMessage",
+        "networkInterfaces": "networkInterfaces"
     },
     "container": {
         "ip": "127.0.0.1",
@@ -359,105 +454,9 @@
         "memoryGB": 16,
         "label": "server-001"
     },
-    "sshkey": {
-        "comment": "string",
-        "source": "string",
-        "uri": "string",
-        "value": "ssh-rsa AAA......",
-        "fingerprint": "string, unique"
-    },
-    "stream": {
-        "attributes": {
-            "rate": 10,
-            "limit": 1000
-        },
-        "name": "name of the variable",
-        "format": "the format of the data exchanged in the stream"
-    },
-    "database": {
-        "endpoint": "http://.../data/",
-        "protocol": "mongo",
-        "name": "data"
-    },
-    "default": {
-        "context": "string  - defines the context of the default (user, cloud, ...)",
-        "name": "string",
-        "value": "string"
-    },
-    "openstack_image": {
-        "status": "string",
-        "username": "string",
-        "updated": "string",
-        "uuid": "string",
-        "created": "string",
-        "minDisk": "string",
-        "progress": "string",
-        "minRam": "string",
-        "os_image_size": "string",
-        "metadata": {
-            "instance_uuid": "string",
-            "image_location": "string",
-            "image_state": "string",
-            "instance_type_memory_mb": "string",
-            "user_id": "string",
-            "description": "string",
-            "kernel_id": "string",
-            "instance_type_name": "string",
-            "ramdisk_id": "string",
-            "instance_type_id": "string",
-            "instance_type_ephemeral_gb": "string",
-            "instance_type_rxtx_factor": "string",
-            "image_type": "string",
-            "network_allocated": "string",
-            "instance_type_flavorid": "string",
-            "instance_type_vcpus": "string",
-            "instance_type_root_gb": "string",
-            "base_image_ref": "string",
-            "instance_type_swap": "string",
-            "owner_id": "string"
-        }
-    },
-    "azure_image": {
-        "_uuid": "None",
-        "driver": "libcloud",
-        "id": "03f55de797f546a1b29d1....",
-        "name": "CoreCLR x64 Beta5 (11624) with PartsUnlimited Demo App on Ubuntu Server 14.04 LTS",
-        "extra": {
-            "category": "Public",
-            "description": "Linux VM image with coreclr-x64-beta5-11624 installed to /opt/dnx. This image is based on Ubuntu 14.04 LTS, with prerequisites of CoreCLR installed. It also contains PartsUnlimited demo app which runs on the installed coreclr. The demo app is installed to /opt/demo. To run the demo, please type the command /opt/demo/Kestrel in a terminal window. The website is listening on port 5004. Please enable or map a endpoint of HTTP port 5004 for your azure VM.",
-            "vm_image": "False",
-            "location": "East Asia;Southeast Asia;Australia East;Australia Southeast;Brazil South;North Europe;West Europe;Japan East;Japan West;Central US;East US;East US 2; North Central US;South Central US;West US",
-            "affinity_group": "",
-            "os": "Linux",
-            "media_link": ""
-        }
-    },
-    "hadoop": {
-        "deployers": {
-            "ansible": "git://github.com/cloudmesh_roles/hadoop"
-        },
-        "requires": {
-            "java": {
-                "implementation": "OpenJDK",
-                "version": "1.8",
-                "zookeeper": "TBD",
-                "supervisord": "TBD"
-            }
-        },
-        "parameters": {
-            "num_resourcemanagers": 1,
-            "num_namenodes": 1,
-            "use_yarn": false,
-            "num_datanodes": 1,
-            "use_hdfs": true,
-            "num_historyservers": 1,
-            "num_journalnodes": 1
-        }
-    },
-    "compute_resource": {
-        "kind": "baremetal",
-        "endpoint": "http://.../cluster/",
-        "name": "Compute1"
+    "file_alias": {
+        "alias": "report-alias.dat",
+        "name": "report.dat"
     },
     "node_new": {
         "authorized_keys": [
@@ -528,63 +527,33 @@
             ]
         }
     },
-    "filter": {
-        "function": "the function  of the data exchanged in the stream",
-        "name": "name of the filter"
+    "batchjob": {
+        "output_file": "string",
+        "group": "string",
+        "job_id": "string",
+        "script": "string, the batch job script",
+        "cmd": "string, executes the cmd, if None path is used",
+        "queue": "string",
+        "cluster": "string",
+        "time": "string",
+        "path": "string, path of the batchjob, if non cmd is used",
+        "nodes": "string",
+        "dir": "string"
     },
-    "reservation": {
-        "start_time": [
-            "date",
-            "time"
+    "account": {
+        "status": "one of active, suspended, closed",
+        "startDate": "10/10/2017:00:00:00",
+        "endDate": "10/10/2017:00:00:00",
+        "description": "The Description of the account",
+        "uuid": "unique uuid for this resource",
+        "user": [
+            "username"
         ],
-        "hosts": "string",
-        "description": "string",
-        "end_time": [
-            "date",
-            "time"
-        ]
-    },
-    "replica": {
-        "endpoint": "file://gregor@machine.edu:/data/replica_report.dat",
-        "name": "replica_report.dat",
-        "checksum": {
-            "md5": "8c324f12047dc2254b74031b8f029ad0"
-        },
-        "replica": "report.dat",
-        "accessed": "1.1.2017:05:00:00:EST",
-        "size": [
-            "GB",
-            "Byte"
-        ]
-    },
-    "microservice": {
-        "function": "microservice spec",
-        "endpoint": "http://.../ms/",
-        "name": "ms1"
-    },
-    "var": {
-        "type": "the datatype of the variable such as int, str, float, ...",
-        "name": "name of the variable",
-        "value": "the value of the variable as string"
-    },
-    "mesos-docker": {
-        "container": {
-            "docker": {
-                "credential": {
-                    "secret": "my-secret",
-                    "principal": "my-principal"
-                },
-                "image": "mesosphere/inky"
-            },
-            "type": "MESOS"
-        },
-        "mem": 16.0,
-        "args": [
-            "argument"
+        "group": [
+            "groupname"
         ],
-        "cpus": 0.2,
-        "instances": 1,
-        "id": "mesos-docker"
+        "balance": 1.0,
+        "name": "the name of the account"
     },
     "libcloud_vm": {
         "username": "string",
@@ -605,5 +574,189 @@
         "flavor": "string",
         "availability": "string",
         "uuid": "string"
+    },
+    "database": {
+        "endpoint": "http://.../data/",
+        "protocol": "mongo",
+        "name": "data"
+    },
+    "default": {
+        "context": "string  - defines the context of the default (user, cloud, ...)",
+        "name": "string",
+        "value": "string"
+    },
+    "openstack_image": {
+        "status": "string",
+        "username": "string",
+        "updated": "string",
+        "uuid": "string",
+        "created": "string",
+        "minDisk": "string",
+        "progress": "string",
+        "minRam": "string",
+        "os_image_size": "string",
+        "metadata": {
+            "instance_uuid": "string",
+            "image_location": "string",
+            "image_state": "string",
+            "instance_type_memory_mb": "string",
+            "user_id": "string",
+            "description": "string",
+            "kernel_id": "string",
+            "instance_type_name": "string",
+            "ramdisk_id": "string",
+            "instance_type_id": "string",
+            "instance_type_ephemeral_gb": "string",
+            "instance_type_rxtx_factor": "string",
+            "image_type": "string",
+            "network_allocated": "string",
+            "instance_type_flavorid": "string",
+            "instance_type_vcpus": "string",
+            "instance_type_root_gb": "string",
+            "base_image_ref": "string",
+            "instance_type_swap": "string",
+            "owner_id": "string"
+        }
+    },
+    "OpenStackNodeExtra": {
+        "vm_state": "vm_state",
+        "addresses": [
+            "addresses"
+        ],
+        "availability_zone": "availability_zone",
+        "service_name": "",
+        "userId": "user_id",
+        "imageId": "image_id",
+        "volumes_attached": "volumes_attached",
+        "task_state": "task_state",
+        "disk_config": "diskConfig",
+        "power_state": "power_state",
+        "progress": "progress",
+        "metadata": [
+            "metadata"
+        ],
+        "updated": "updated",
+        "hostId": "hostId",
+        "key_name": "key_name",
+        "flavorId": "flavor_id",
+        "password": "adminPass",
+        "access_ip": "accessIPv4",
+        "access_ipv6": "accessIPv6",
+        "created": "created",
+        "fault": "fault",
+        "uri": "",
+        "tenantId": "tenant_id",
+        "config_drive": "config_drive"
+    },
+    "mapreduce": {
+        "function": {
+            "source": "file://.",
+            "args": {}
+        },
+        "fault_tolerant": true,
+        "data": {
+            "dest": "/data",
+            "source": "ftp:///..."
+        },
+        "backend": {
+            "type": "hadoop"
+        }
+    },
+    "compute_resource": {
+        "kind": "baremetal",
+        "endpoint": "http://.../cluster/",
+        "name": "Compute1"
+    },
+    "filter": {
+        "function": "the function  of the data exchanged in the stream",
+        "name": "name of the filter"
+    },
+    "replica": {
+        "endpoint": "file://gregor@machine.edu:/data/replica_report.dat",
+        "name": "replica_report.dat",
+        "checksum": {
+            "md5": "8c324f12047dc2254b74031b8f029ad0"
+        },
+        "replica": "report.dat",
+        "accessed": "1.1.2017:05:00:00:EST",
+        "size": [
+            "GB",
+            "Byte"
+        ]
+    },
+    "openstack_vm": {
+        "vm_state": "string",
+        "availability_zone": "string",
+        "terminated_at": "string",
+        "image": "string",
+        "diskConfig": "string",
+        "flavor": "string",
+        "security_groups": "string",
+        "volumes_attached": "string",
+        "user_id": "string",
+        "uuid": "string",
+        "accessIPv4": "string",
+        "accessIPv6": "string",
+        "power_state": "string",
+        "progress": "string",
+        "image__id": "string",
+        "launched_at": "string",
+        "config_drive": "string",
+        "username": "string",
+        "updated": "string",
+        "hostId": "string",
+        "floating_ip": "string",
+        "static_ip": "string",
+        "key": "string",
+        "flavor__id": "string",
+        "group": "string",
+        "task_state": "string",
+        "created": "string",
+        "tenant_id": "string",
+        "status": "string"
+    },
+    "organization": {
+        "users": [
+            "objectid:user"
+        ]
+    },
+    "hadoop": {
+        "deployers": {
+            "ansible": "git://github.com/cloudmesh_roles/hadoop"
+        },
+        "requires": {
+            "java": {
+                "implementation": "OpenJDK",
+                "version": "1.8",
+                "zookeeper": "TBD",
+                "supervisord": "TBD"
+            }
+        },
+        "parameters": {
+            "num_resourcemanagers": 1,
+            "num_namenodes": 1,
+            "use_yarn": false,
+            "num_datanodes": 1,
+            "use_hdfs": true,
+            "num_historyservers": 1,
+            "num_journalnodes": 1
+        }
+    },
+    "accounting_resource": {
+        "account": "accountname",
+        "group": "groupname",
+        "description": "The Description of a resource that we apply accounting to",
+        "parameters": {
+            "parameter1": 1.0,
+            "parameter2": 1.0
+        },
+        "uuid": "unique uuid for this resource",
+        "charge": "1.1 * parameter1 + 3.1 * parameter2",
+        "unites": {
+            "parameter1": "GB",
+            "parameter2": "cores"
+        },
+        "user": "username",
+        "name": "the name of the resource"
     }
 }

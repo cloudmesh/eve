@@ -522,27 +522,29 @@ for the NBDRA.
 \subsection{Lessons Learned}
 
 Originally we used a full REST specification for defining the objets
-related to the BDRA. However we found quickly that at this stage of
-the document it would introduce a more complex notation framework.
+related to the BDRA. However, we found quickly that at this stage of
+the document it would introduce too complex of a notation framework.
 This would result in (a) a considerable increase in length of this
-document (b) a more complex framework for participation and (c) a more
-complex framework for developing a reference implementation. Thus we
-have decided in this version of the document to introduce a design
-concept by example that is used to automatically create a schema.
+document (b) a more complex framework reducing participation and (c) a
+more complex framework for developing a reference implementation. Thus
+we have decided in this version of the document to introduce a design
+concept by example that is used to automatically create a schema as
+well as a reference implementation.
 
 \subsection{Hybrid and Multiple Frameworks}
 
 It is obvious that we must be able to deal with hybrid and multiple
-frameworks to avoid vendor lock in. This is not only true for Cloud,
-container, but also other components of the NBDRA. 
+frameworks to avoid vendor lock in. This is not only true for Clouds,
+containers, DevOps, but also other components of the NBDRA. 
 
 \subsection{Design by Example}
 
 To accelerate discussion among the team we use an approach to define
 objects and its interfaces by example. These examples are than taken
-in a later version of the document and a schema is generated from
-it. The schema will be added in its complete form to the appendix
-\ref{a:schema}. While focusing first on examples it allows us to speed
+and a schema is generated from it. The schema is added to the
+Appendix~\ref{s:schema} of the document.
+
+While focusing first on examples it allows us to speed
 up our design and simplifies discussions of the objects and interfaces
 eliminating getting lost in complex syntactical specifications. The
 process and specifications used in this document will also allow us to
@@ -556,11 +558,18 @@ defines a JSON object representing a user.
 
 \codeFromJson{json}{profile.json}{Example object specification}{s:profile}
 
- 
+
 Such an object can be transformed to a schema specification 
-while introspecting the types of the original example. The resulting
-schema object follows the Cerberus \cite{www-cerberus} specification and looks
-for our object as follows:
+while introspecting the types of the original example. 
+
+All examples are managed in Github and links to them are automatically
+generated. A hyperlink is introduced in the Object specification than
+when clicking on the \verb|</>| icon you will be redirected to the
+specification in github.
+
+
+The resulting schema object follows the Cerberus \cite{www-cerberus}
+specification and looks for our object as follows:
 
 \begin{Verbatim}
 profile = {  
@@ -572,9 +581,9 @@ profile = {
 }  
 \end{Verbatim}
 
-As mentioned before, the Appendix\ref{a:schema} will list the schema
+As mentioned before, the Appendix~\ref{s:schema} will list the schema
 that is automatically created from the definitions. More information
-about the creation can be found in Appendix \ref{s:cloudmesh-rest}.
+about the creation can be found in Appendix~\ref{s:cloudmesh-rest}.
 
 When using the objets we assume one can implement the typical CRUD
 actions using HTTP methods mapped as follows: \\ ~\\
@@ -648,7 +657,8 @@ simple objects including a profile and a user.
 
 A profile defines the identity of an individual. It contains name and
 e-mail information. It may have an optional uuid and/or use a unique
-e-mail to distinguish a user. 
+e-mail to distinguish a user. Profiles are used to identify diffrent
+users.
 
 \codeFromJson{json}{profile.json}{Profile}{s:profile}
 
@@ -1348,14 +1358,85 @@ The following acronyms and terms are used in the paper
 \section{Appendix}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Schema}\label{l:schema}
+\subsection{Schema}\label{s:schema}
 
 Listing \ref{l:schema} showcases the schema generated from the objects
 defined in this document.
 
 \codeFromJson{python}{../settings.settings.py}{schema}{l:schema}
 
-\input{includes/readme}
+\section{Cloudmesh Rest}\label{s:cloudmesh-rest}
+
+Cloudmesh Resst is a refernce implementattion for the NBDRA. It
+allows to define automatically a REST service based on the objects
+specified by the NBDRA document. In collaboration with other cloudmesh
+components it allows easy interaction with hybrid clouds and the
+creation of user managed big data services. 
+
+\subsection{Prerequistis}\label{prerequistis}
+
+The preriquisits for Cloudmesh REST are Python 2.7.13 or 3.6.1
+it can easily be installed on a variety of systems (at this time we
+have only tried ubuntu greater 16.04 and OSX Sierra. However, it would
+naturally be possible to also port it to Windows. The instalation
+instruction in this document are not complete and we recommend to
+refer to the cloudmesh manuals which are under development. The goal
+will be to make the instalation (after your system is set up for
+developing python) as simple as 
+
+\begin{verbatim}
+    pip install cloudmesh.rest
+\end{verbatim}
+
+
+\subsection{REST Service}\label{cm-rest}
+
+With the cloudmesh REST framework it is easy to create REST services
+while defining the resources via example json objects. This is achieved
+while leveraging the python eve \cite{www-eve} and a modified version of python
+evengine \cite{www-cloudmesh-eveengine}. 
+
+A valid json resource specification looks like this:
+
+\begin{verbatim}
+{
+  "profile": {
+    "description": "The Profile of a user",
+    "email": "laszewski@gmail.com",
+    "firstname": "Gregor",
+    "lastname": "von Laszewski",
+    "username": "gregor"
+  }
+}
+\end{verbatim}
+
+here we define an object called profile, that contains a number of
+attributes and values. The type of the values are automatically
+determined. All json specifications are contained in a directory and
+can easily be converted into a valid schema for the eve rest service
+by executing the commands
+
+\begin{verbatim}
+cms schema cat . all.json
+cms schema convert all.json
+\end{verbatim}
+
+This will create a the configuration \verb|all.settings.py| that can
+be used to start an eve service
+
+Once the schema has defined, cloudmesh specifies defaults for managing
+a sample data base that is coupled with the REST service. We use
+mongodb which could be placed on a sharded mongo service. 
+
+\subsection{Limitations}
+
+The current implementation is a demonstration and showcases that it is
+easy to generate a fully functioning REST service based on the
+specifications provided in this document. However, it is expected that
+scalability, distribution of services, and other advanced options
+need to be addrassed based on application requirements.
+
+
 
 \section{Contributing}
 

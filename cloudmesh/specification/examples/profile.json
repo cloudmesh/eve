@@ -6,6 +6,7 @@
     "email": "laszewski@gmail.com",
     "firstname": "Gregor",
     "lastname": "von Laszewski",
-    "username": "gregor"
+    "username": "gregor",
+    "publickey": "ssh ...."  
   }
 }

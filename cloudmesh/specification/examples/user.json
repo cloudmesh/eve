@@ -1,11 +1,13 @@
 {
-  "user": {
-    "uuid": "jshdjkdh...",
-    "context:": "resource",  
-    "email": "laszewski@gmail.com",
-    "firstname": "Gregor",
-    "lastname": "von Laszewski",
-    "username": "gregor",
-    "roles": ["admin", "user"]
+    "user": {
+        "description": "The Profile of a user",
+        "uuid": "jshdjkdh...",
+        "context:": "resource",        
+        "email": "laszewski@gmail.com",
+        "firstname": "Gregor",
+        "lastname": "von Laszewski",
+        "username": "gregor",
+        "publickey": "ssh ....",  
+        "roles": ["admin"]
   }
 }

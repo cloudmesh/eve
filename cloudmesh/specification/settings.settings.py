@@ -16,10 +16,649 @@ profile = {
         'lastname': {
             'type': 'string'
         },
+        'publickey': {
+            'type': 'string'
+        },
         'email': {
             'type': 'string'
         },
         'uuid': {
+            'type': 'string'
+        }
+    }
+}
+
+stream = {
+    'schema': {
+        'attributes': {
+            'type': 'dict',
+            'schema': {
+                'rate': {
+                    'type': 'integer'
+                },
+                'limit': {
+                    'type': 'integer'
+                }
+            }
+        },
+        'name': {
+            'type': 'string'
+        },
+        'format': {
+            'type': 'string'
+        }
+    }
+}
+
+azure_image = {
+    'schema': {
+        '_uuid': {
+            'type': 'string'
+        },
+        'driver': {
+            'type': 'string'
+        },
+        'id': {
+            'type': 'string'
+        },
+        'name': {
+            'type': 'string'
+        },
+        'extra': {
+            'type': 'dict',
+            'schema': {
+                'category': {
+                    'type': 'string'
+                },
+                'description': {
+                    'type': 'string'
+                },
+                'vm_image': {
+                    'type': 'string'
+                },
+                'location': {
+                    'type': 'string'
+                },
+                'affinity_group': {
+                    'type': 'string'
+                },
+                'os': {
+                    'type': 'string'
+                },
+                'media_link': {
+                    'type': 'string'
+                }
+            }
+        }
+    }
+}
+
+virtual_compute_node = {
+    'schema': {
+        'status': {
+            'type': 'string'
+        },
+        'endpoint': {
+            'type': 'string'
+        },
+        'name': {
+            'type': 'string'
+        },
+        'ip': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        },
+        'image': {
+            'type': 'string'
+        },
+        'flavor': {
+            'type': 'string'
+        },
+        'metadata': {
+            'type': 'dict',
+            'schema': {
+                'experiment': {
+                    'type': 'string'
+                }
+            }
+        }
+    }
+}
+
+deployment = {
+    'schema': {
+        'cluster': {
+            'type': 'list',
+            'schema': {
+                'type': 'dict',
+                'schema': {
+                    'id': {
+                        'type': 'string'
+                    }
+                }
+            }
+        },
+        'stack': {
+            'type': 'dict',
+            'schema': {
+                'layers': {
+                    'type': 'list',
+                    'schema': {
+                        'type': 'string'
+                    }
+                },
+                'parameters': {
+                    'type': 'dict',
+                    'schema': {
+                        'hadoop': {
+                            'type': 'dict',
+                            'schema': {
+                                'zookeeper.quorum': {
+                                    'type': 'list',
+                                    'schema': {
+                                        'type': 'string'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+azure_size = {
+    'schema': {
+        'ram': {
+            'type': 'integer'
+        },
+        'name': {
+            'type': 'string'
+        },
+        'extra': {
+            'type': 'dict',
+            'schema': {
+                'cores': {
+                    'type': 'integer'
+                },
+                'max_data_disks': {
+                    'type': 'integer'
+                }
+            }
+        },
+        'price': {
+            'type': 'float'
+        },
+        '_uuid': {
+            'type': 'string'
+        },
+        'driver': {
+            'type': 'string'
+        },
+        'bandwidth': {
+            'type': 'string'
+        },
+        'disk': {
+            'type': 'integer'
+        },
+        'id': {
+            'type': 'string'
+        }
+    }
+}
+
+cluster = {
+    'schema': {
+        'provider': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        },
+        'endpoint': {
+            'type': 'dict',
+            'schema': {
+                'passwd': {
+                    'type': 'string'
+                },
+                'url': {
+                    'type': 'string'
+                }
+            }
+        },
+        'name': {
+            'type': 'string'
+        },
+        'label': {
+            'type': 'string'
+        }
+    }
+}
+
+computer = {
+    'schema': {
+        'ip': {
+            'type': 'string'
+        },
+        'name': {
+            'type': 'string'
+        },
+        'memoryGB': {
+            'type': 'integer'
+        },
+        'label': {
+            'type': 'string'
+        }
+    }
+}
+
+mesos_docker = {
+    'schema': {
+        'container': {
+            'type': 'dict',
+            'schema': {
+                'docker': {
+                    'type': 'dict',
+                    'schema': {
+                        'credential': {
+                            'type': 'dict',
+                            'schema': {
+                                'secret': {
+                                    'type': 'string'
+                                },
+                                'principal': {
+                                    'type': 'string'
+                                }
+                            }
+                        },
+                        'image': {
+                            'type': 'string'
+                        }
+                    }
+                },
+                'type': {
+                    'type': 'string'
+                }
+            }
+        },
+        'mem': {
+            'type': 'float'
+        },
+        'args': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        },
+        'cpus': {
+            'type': 'float'
+        },
+        'instances': {
+            'type': 'integer'
+        },
+        'id': {
+            'type': 'string'
+        }
+    }
+}
+
+file = {
+    'schema': {
+        'endpoint': {
+            'type': 'string'
+        },
+        'name': {
+            'type': 'string'
+        },
+        'created': {
+            'type': 'string'
+        },
+        'checksum': {
+            'type': 'dict',
+            'schema': {
+                'sha256': {
+                    'type': 'string'
+                }
+            }
+        },
+        'modified': {
+            'type': 'string'
+        },
+        'accessed': {
+            'type': 'string'
+        },
+        'size': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        }
+    }
+}
+
+reservation = {
+    'schema': {
+        'start_time': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        },
+        'hosts': {
+            'type': 'string'
+        },
+        'description': {
+            'type': 'string'
+        },
+        'end_time': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        }
+    }
+}
+
+microservice = {
+    'schema': {
+        'function': {
+            'type': 'string'
+        },
+        'endpoint': {
+            'type': 'string'
+        },
+        'name': {
+            'type': 'string'
+        }
+    }
+}
+
+virtual_directory = {
+    'schema': {
+        'endpoint': {
+            'type': 'string'
+        },
+        'protocol': {
+            'type': 'string'
+        },
+        'name': {
+            'type': 'string'
+        },
+        'collection': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        }
+    }
+}
+
+mapreduce_function = {
+    'schema': {
+        'name': {
+            'type': 'string'
+        },
+        'outputs': {
+            'type': 'dict',
+            'schema': {
+                'key': {
+                    'type': 'string'
+                }
+            }
+        },
+        'args': {
+            'type': 'list',
+            'schema': {
+                'type': 'dict',
+                'schema': {
+                    'argument': {
+                        'type': 'string'
+                    }
+                }
+            }
+        },
+        'systemBuildInputs': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        },
+        'source': {
+            'type': 'string'
+        },
+        'install': {
+            'type': 'dict',
+            'schema': {
+                'description': {
+                    'type': 'string'
+                },
+                'script': {
+                    'type': 'string'
+                }
+            }
+        },
+        'eval': {
+            'type': 'dict',
+            'schema': {
+                'description': {
+                    'type': 'string'
+                },
+                'script': {
+                    'type': 'string'
+                }
+            }
+        },
+        'buildInputs': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        },
+        'description': {
+            'type': 'string'
+        }
+    }
+}
+
+virtual_cluster = {
+    'schema': {
+        'nodes': {
+            'type': 'list',
+            'schema': {
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'virtual_machine',
+                    'field': '_id',
+                    'embeddable': True
+                }
+            }
+        },
+        'frontend': {
+            'type': 'objectid',
+            'data_relation': {
+                'resource': 'virtual_machine',
+                'field': '_id',
+                'embeddable': True
+            }
+        },
+        'name': {
+            'type': 'string'
+        }
+    }
+}
+
+libcloud_flavor = {
+    'schema': {
+        'uuid': {
+            'type': 'string'
+        },
+        'price': {
+            'type': 'string'
+        },
+        'ram': {
+            'type': 'string'
+        },
+        'bandwidth': {
+            'type': 'string'
+        },
+        'flavor_id': {
+            'type': 'string'
+        },
+        'disk': {
+            'type': 'string'
+        },
+        'cpu': {
+            'type': 'string'
+        }
+    }
+}
+
+group = {
+    'schema': {
+        'users': {
+            'type': 'list',
+            'schema': {
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'user',
+                    'field': '_id',
+                    'embeddable': True
+                }
+            }
+        },
+        'name': {
+            'type': 'string'
+        },
+        'description': {
+            'type': 'string'
+        }
+    }
+}
+
+sshkey = {
+    'schema': {
+        'comment': {
+            'type': 'string'
+        },
+        'source': {
+            'type': 'string'
+        },
+        'uri': {
+            'type': 'string'
+        },
+        'value': {
+            'type': 'string'
+        },
+        'fingerprint': {
+            'type': 'string'
+        }
+    }
+}
+
+mapreduce_noop = {
+    'schema': {
+        'name': {
+            'type': 'string'
+        },
+        'description': {
+            'type': 'string'
+        }
+    }
+}
+
+role = {
+    'schema': {
+        'users': {
+            'type': 'list',
+            'schema': {
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'user',
+                    'field': '_id',
+                    'embeddable': True
+                }
+            }
+        },
+        'name': {
+            'type': 'string'
+        },
+        'description': {
+            'type': 'string'
+        }
+    }
+}
+
+AzureNodeExtra = {
+    'schema': {
+        'ssh_port': {
+            'type': 'string'
+        },
+        'instance_size': {
+            'type': 'string'
+        },
+        'remote_desktop_port': {
+            'type': 'string'
+        },
+        'ex_cloud_service_name': {
+            'type': 'string'
+        },
+        'power_state': {
+            'type': 'string'
+        },
+        'instance_endpoints': {
+            'type': 'string'
+        }
+    }
+}
+
+var = {
+    'schema': {
+        'type': {
+            'type': 'string'
+        },
+        'name': {
+            'type': 'string'
+        },
+        'value': {
+            'type': 'string'
+        }
+    }
+}
+
+node = {
+    'schema': {
+        'private_ips': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        },
+        'extra': {
+            'type': 'dict',
+            'schema': {}
+        },
+        'created_at': {
+            'type': 'string'
+        },
+        'driver': {
+            'type': 'string'
+        },
+        'state': {
+            'type': 'string'
+        },
+        'public_ips': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        },
+        'id': {
+            'type': 'string'
+        },
+        'name': {
             'type': 'string'
         }
     }
@@ -185,40 +824,6 @@ nic = {
     }
 }
 
-virtual_compute_node = {
-    'schema': {
-        'status': {
-            'type': 'string'
-        },
-        'endpoint': {
-            'type': 'string'
-        },
-        'name': {
-            'type': 'string'
-        },
-        'ip': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
-            }
-        },
-        'image': {
-            'type': 'string'
-        },
-        'flavor': {
-            'type': 'string'
-        },
-        'metadata': {
-            'type': 'dict',
-            'schema': {
-                'experiment': {
-                    'type': 'string'
-                }
-            }
-        }
-    }
-}
-
 openstack_flavor = {
     'schema': {
         'os_flv_disabled': {
@@ -313,178 +918,30 @@ azure_vm = {
     }
 }
 
-azure_size = {
+ec2NodeExtra = {
     'schema': {
-        'ram': {
-            'type': 'integer'
-        },
-        'name': {
+        'product_codes': {
             'type': 'string'
         },
-        'extra': {
-            'type': 'dict',
-            'schema': {
-                'cores': {
-                    'type': 'integer'
-                },
-                'max_data_disks': {
-                    'type': 'integer'
-                }
-            }
-        },
-        'price': {
-            'type': 'float'
-        },
-        '_uuid': {
-            'type': 'string'
-        },
-        'driver': {
-            'type': 'string'
-        },
-        'bandwidth': {
-            'type': 'string'
-        },
-        'disk': {
-            'type': 'integer'
-        },
-        'id': {
-            'type': 'string'
-        }
-    }
-}
-
-openstack_vm = {
-    'schema': {
-        'vm_state': {
-            'type': 'string'
-        },
-        'availability_zone': {
-            'type': 'string'
-        },
-        'terminated_at': {
-            'type': 'string'
-        },
-        'image': {
-            'type': 'string'
-        },
-        'diskConfig': {
-            'type': 'string'
-        },
-        'flavor': {
-            'type': 'string'
-        },
-        'security_groups': {
-            'type': 'string'
-        },
-        'volumes_attached': {
-            'type': 'string'
-        },
-        'user_id': {
-            'type': 'string'
-        },
-        'uuid': {
-            'type': 'string'
-        },
-        'accessIPv4': {
-            'type': 'string'
-        },
-        'accessIPv6': {
-            'type': 'string'
-        },
-        'power_state': {
-            'type': 'string'
-        },
-        'progress': {
-            'type': 'string'
-        },
-        'image__id': {
-            'type': 'string'
-        },
-        'launched_at': {
-            'type': 'string'
-        },
-        'config_drive': {
-            'type': 'string'
-        },
-        'username': {
-            'type': 'string'
-        },
-        'updated': {
-            'type': 'string'
-        },
-        'hostId': {
-            'type': 'string'
-        },
-        'floating_ip': {
-            'type': 'string'
-        },
-        'static_ip': {
-            'type': 'string'
-        },
-        'key': {
-            'type': 'string'
-        },
-        'flavor__id': {
-            'type': 'string'
-        },
-        'group': {
-            'type': 'string'
-        },
-        'task_state': {
-            'type': 'string'
-        },
-        'created': {
-            'type': 'string'
-        },
-        'tenant_id': {
-            'type': 'string'
-        },
-        'status': {
-            'type': 'string'
-        }
-    }
-}
-
-cluster = {
-    'schema': {
-        'provider': {
+        'tags': {
             'type': 'list',
             'schema': {
                 'type': 'string'
             }
         },
-        'endpoint': {
-            'type': 'dict',
+        'network_interfaces': {
+            'type': 'list',
             'schema': {
-                'passwd': {
-                    'type': 'string'
-                },
-                'url': {
-                    'type': 'string'
-                }
+                'type': 'string'
             }
         },
-        'name': {
-            'type': 'string'
+        'groups': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
         },
-        'label': {
-            'type': 'string'
-        }
-    }
-}
-
-computer = {
-    'schema': {
-        'ip': {
-            'type': 'string'
-        },
-        'name': {
-            'type': 'string'
-        },
-        'memoryGB': {
-            'type': 'integer'
-        },
-        'label': {
+        'block_device_mapping': {
             'type': 'string'
         }
     }
@@ -560,13 +1017,16 @@ user = {
         'context:': {
             'type': 'string'
         },
-        'uuid': {
+        'description': {
             'type': 'string'
         },
         'firstname': {
             'type': 'string'
         },
         'lastname': {
+            'type': 'string'
+        },
+        'publickey': {
             'type': 'string'
         },
         'roles': {
@@ -577,190 +1037,94 @@ user = {
         },
         'email': {
             'type': 'string'
+        },
+        'uuid': {
+            'type': 'string'
         }
     }
 }
 
-file = {
+GCENodeExtra = {
     'schema': {
+        'status': {
+            'type': 'string'
+        },
+        'kind': {
+            'type': 'string'
+        },
+        'machineType': {
+            'type': 'string'
+        },
+        'description': {
+            'type': 'string'
+        },
+        'zone': {
+            'type': 'string'
+        },
+        'deprecated': {
+            'type': 'string'
+        },
+        'image': {
+            'type': 'string'
+        },
+        'disks': {
+            'type': 'string'
+        },
+        'tags_fingerprint': {
+            'type': 'string'
+        },
+        'name': {
+            'type': 'string'
+        },
+        'boot_disk': {
+            'type': 'string'
+        },
+        'selfLink': {
+            'type': 'string'
+        },
+        'scheduling': {
+            'type': 'string'
+        },
+        'canIpForward': {
+            'type': 'string'
+        },
+        'serviceAccounts': {
+            'type': 'string'
+        },
+        'metadata': {
+            'type': 'string'
+        },
+        'creationTimestamp': {
+            'type': 'string'
+        },
+        'id': {
+            'type': 'string'
+        },
+        'statusMessage': {
+            'type': 'string'
+        },
+        'networkInterfaces': {
+            'type': 'string'
+        }
+    }
+}
+
+container = {
+    'schema': {
+        'ip': {
+            'type': 'string'
+        },
         'endpoint': {
             'type': 'string'
         },
         'name': {
             'type': 'string'
         },
-        'created': {
+        'memoryGB': {
+            'type': 'integer'
+        },
+        'label': {
             'type': 'string'
-        },
-        'checksum': {
-            'type': 'dict',
-            'schema': {
-                'md5': {
-                    'type': 'string'
-                }
-            }
-        },
-        'modified': {
-            'type': 'string'
-        },
-        'accessed': {
-            'type': 'string'
-        },
-        'size': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
-            }
-        }
-    }
-}
-
-deployment = {
-    'schema': {
-        'cluster': {
-            'type': 'list',
-            'schema': {
-                'type': 'dict',
-                'schema': {
-                    'id': {
-                        'type': 'string'
-                    }
-                }
-            }
-        },
-        'stack': {
-            'type': 'dict',
-            'schema': {
-                'layers': {
-                    'type': 'list',
-                    'schema': {
-                        'type': 'string'
-                    }
-                },
-                'parameters': {
-                    'type': 'dict',
-                    'schema': {
-                        'hadoop': {
-                            'type': 'dict',
-                            'schema': {
-                                'zookeeper.quorum': {
-                                    'type': 'list',
-                                    'schema': {
-                                        'type': 'string'
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-mapreduce = {
-    'schema': {
-        'layers': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
-            }
-        },
-        'hdfs_datanode': {
-            'type': 'string'
-        },
-        'java': {
-            'type': 'dict',
-            'schema': {
-                'platform': {
-                    'type': 'string'
-                },
-                'version': {
-                    'type': 'string'
-                }
-            }
-        },
-        'supervisord': {
-            'type': 'string'
-        },
-        'yarn_historyserver': {
-            'type': 'string'
-        },
-        'zookeeper': {
-            'type': 'string'
-        },
-        'hdfs_namenode': {
-            'type': 'string'
-        },
-        'hdfs_journalnode': {
-            'type': 'string'
-        },
-        'yarn_resourcemanager': {
-            'type': 'string'
-        }
-    }
-}
-
-group = {
-    'schema': {
-        'users': {
-            'type': 'list',
-            'schema': {
-                'type': 'objectid',
-                'data_relation': {
-                    'resource': 'user',
-                    'field': '_id',
-                    'embeddable': True
-                }
-            }
-        },
-        'name': {
-            'type': 'string'
-        },
-        'description': {
-            'type': 'string'
-        }
-    }
-}
-
-role = {
-    'schema': {
-        'users': {
-            'type': 'list',
-            'schema': {
-                'type': 'objectid',
-                'data_relation': {
-                    'resource': 'user',
-                    'field': '_id',
-                    'embeddable': True
-                }
-            }
-        },
-        'name': {
-            'type': 'string'
-        },
-        'description': {
-            'type': 'string'
-        }
-    }
-}
-
-virtual_directory = {
-    'schema': {
-        'endpoint': {
-            'type': 'string'
-        },
-        'protocol': {
-            'type': 'string'
-        },
-        'name': {
-            'type': 'string'
-        },
-        'collection': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
-            }
         }
     }
 }
@@ -776,55 +1140,100 @@ file_alias = {
     }
 }
 
-virtual_cluster = {
+node_new = {
     'schema': {
-        'nodes': {
+        'authorized_keys': {
             'type': 'list',
             'schema': {
-                'type': 'objectid',
-                'data_relation': {
-                    'resource': 'virtual_machine',
-                    'field': '_id',
-                    'embeddable': True
-                }
-            }
-        },
-        'frontend': {
-            'type': 'objectid',
-            'data_relation': {
-                'resource': 'virtual_machine',
-                'field': '_id',
-                'embeddable': True
+                'type': 'string'
             }
         },
         'name': {
             'type': 'string'
-        }
-    }
-}
-
-libcloud_flavor = {
-    'schema': {
-        'uuid': {
+        },
+        'external_ip': {
             'type': 'string'
         },
-        'price': {
+        'memory': {
+            'type': 'integer'
+        },
+        'create_external_ip': {
+            'type': 'boolean'
+        },
+        'internal_ip': {
             'type': 'string'
         },
-        'ram': {
+        'loginuser': {
             'type': 'string'
         },
-        'bandwidth': {
+        'owner': {
             'type': 'string'
         },
-        'flavor_id': {
-            'type': 'string'
+        'cores': {
+            'type': 'integer'
         },
         'disk': {
-            'type': 'string'
+            'type': 'integer'
         },
-        'cpu': {
-            'type': 'string'
+        'ssh_keys': {
+            'type': 'list',
+            'schema': {
+                'type': 'dict',
+                'schema': {
+                    'from': {
+                        'type': 'string'
+                    },
+                    'decrypt': {
+                        'type': 'string'
+                    },
+                    'ssh_keygen': {
+                        'type': 'boolean'
+                    },
+                    'to': {
+                        'type': 'string'
+                    }
+                }
+            }
+        },
+        'security_groups': {
+            'type': 'list',
+            'schema': {
+                'type': 'dict',
+                'schema': {
+                    'ingress': {
+                        'type': 'string'
+                    },
+                    'egress': {
+                        'type': 'string'
+                    },
+                    'ports': {
+                        'type': 'list',
+                        'schema': {
+                            'type': 'integer'
+                        }
+                    },
+                    'protocols': {
+                        'type': 'list',
+                        'schema': {
+                            'type': 'string'
+                        }
+                    }
+                }
+            }
+        },
+        'users': {
+            'type': 'dict',
+            'schema': {
+                'name': {
+                    'type': 'string'
+                },
+                'groups': {
+                    'type': 'list',
+                    'schema': {
+                        'type': 'string'
+                    }
+                }
+            }
         }
     }
 }
@@ -867,79 +1276,98 @@ batchjob = {
     }
 }
 
-organization = {
+account = {
     'schema': {
-        'users': {
+        'status': {
+            'type': 'string'
+        },
+        'startDate': {
+            'type': 'string'
+        },
+        'endDate': {
+            'type': 'string'
+        },
+        'description': {
+            'type': 'string'
+        },
+        'uuid': {
+            'type': 'string'
+        },
+        'user': {
             'type': 'list',
             'schema': {
-                'type': 'objectid',
-                'data_relation': {
-                    'resource': 'user',
-                    'field': '_id',
-                    'embeddable': True
-                }
+                'type': 'string'
             }
-        }
-    }
-}
-
-container = {
-    'schema': {
-        'ip': {
-            'type': 'string'
         },
-        'endpoint': {
-            'type': 'string'
-        },
-        'name': {
-            'type': 'string'
-        },
-        'memoryGB': {
-            'type': 'integer'
-        },
-        'label': {
-            'type': 'string'
-        }
-    }
-}
-
-sshkey = {
-    'schema': {
-        'comment': {
-            'type': 'string'
-        },
-        'source': {
-            'type': 'string'
-        },
-        'uri': {
-            'type': 'string'
-        },
-        'value': {
-            'type': 'string'
-        },
-        'fingerprint': {
-            'type': 'string'
-        }
-    }
-}
-
-stream = {
-    'schema': {
-        'attributes': {
-            'type': 'dict',
+        'group': {
+            'type': 'list',
             'schema': {
-                'rate': {
-                    'type': 'integer'
-                },
-                'limit': {
-                    'type': 'integer'
-                }
+                'type': 'string'
             }
+        },
+        'balance': {
+            'type': 'float'
         },
         'name': {
             'type': 'string'
+        }
+    }
+}
+
+libcloud_vm = {
+    'schema': {
+        'username': {
+            'type': 'string'
         },
-        'format': {
+        'status': {
+            'type': 'string'
+        },
+        'root_device_type': {
+            'type': 'string'
+        },
+        'private_ips': {
+            'type': 'string'
+        },
+        'instance_type': {
+            'type': 'string'
+        },
+        'image': {
+            'type': 'string'
+        },
+        'private_dns': {
+            'type': 'string'
+        },
+        'image_name': {
+            'type': 'string'
+        },
+        'instance_id': {
+            'type': 'string'
+        },
+        'image_id': {
+            'type': 'string'
+        },
+        'public_ips': {
+            'type': 'string'
+        },
+        'state': {
+            'type': 'string'
+        },
+        'root_device_name': {
+            'type': 'string'
+        },
+        'key': {
+            'type': 'string'
+        },
+        'group': {
+            'type': 'string'
+        },
+        'flavor': {
+            'type': 'string'
+        },
+        'availability': {
+            'type': 'string'
+        },
+        'uuid': {
             'type': 'string'
         }
     }
@@ -1070,43 +1498,286 @@ openstack_image = {
     }
 }
 
-azure_image = {
+OpenStackNodeExtra = {
     'schema': {
-        '_uuid': {
+        'vm_state': {
             'type': 'string'
         },
-        'driver': {
+        'addresses': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        },
+        'availability_zone': {
             'type': 'string'
         },
-        'id': {
+        'service_name': {
+            'type': 'string'
+        },
+        'userId': {
+            'type': 'string'
+        },
+        'imageId': {
+            'type': 'string'
+        },
+        'volumes_attached': {
+            'type': 'string'
+        },
+        'task_state': {
+            'type': 'string'
+        },
+        'disk_config': {
+            'type': 'string'
+        },
+        'power_state': {
+            'type': 'string'
+        },
+        'progress': {
+            'type': 'string'
+        },
+        'metadata': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        },
+        'updated': {
+            'type': 'string'
+        },
+        'hostId': {
+            'type': 'string'
+        },
+        'key_name': {
+            'type': 'string'
+        },
+        'flavorId': {
+            'type': 'string'
+        },
+        'password': {
+            'type': 'string'
+        },
+        'access_ip': {
+            'type': 'string'
+        },
+        'access_ipv6': {
+            'type': 'string'
+        },
+        'created': {
+            'type': 'string'
+        },
+        'fault': {
+            'type': 'string'
+        },
+        'uri': {
+            'type': 'string'
+        },
+        'tenantId': {
+            'type': 'string'
+        },
+        'config_drive': {
+            'type': 'string'
+        }
+    }
+}
+
+mapreduce = {
+    'schema': {
+        'function': {
+            'type': 'dict',
+            'schema': {
+                'source': {
+                    'type': 'string'
+                },
+                'args': {
+                    'type': 'dict',
+                    'schema': {}
+                }
+            }
+        },
+        'fault_tolerant': {
+            'type': 'boolean'
+        },
+        'data': {
+            'type': 'dict',
+            'schema': {
+                'dest': {
+                    'type': 'string'
+                },
+                'source': {
+                    'type': 'string'
+                }
+            }
+        },
+        'backend': {
+            'type': 'dict',
+            'schema': {
+                'type': {
+                    'type': 'string'
+                }
+            }
+        }
+    }
+}
+
+compute_resource = {
+    'schema': {
+        'kind': {
+            'type': 'string'
+        },
+        'endpoint': {
+            'type': 'string'
+        },
+        'name': {
+            'type': 'string'
+        }
+    }
+}
+
+filter = {
+    'schema': {
+        'function': {
+            'type': 'string'
+        },
+        'name': {
+            'type': 'string'
+        }
+    }
+}
+
+replica = {
+    'schema': {
+        'endpoint': {
             'type': 'string'
         },
         'name': {
             'type': 'string'
         },
-        'extra': {
+        'checksum': {
             'type': 'dict',
             'schema': {
-                'category': {
+                'md5': {
                     'type': 'string'
-                },
-                'description': {
-                    'type': 'string'
-                },
-                'vm_image': {
-                    'type': 'string'
-                },
-                'location': {
-                    'type': 'string'
-                },
-                'affinity_group': {
-                    'type': 'string'
-                },
-                'os': {
-                    'type': 'string'
-                },
-                'media_link': {
-                    'type': 'string'
+                }
+            }
+        },
+        'replica': {
+            'type': 'string'
+        },
+        'accessed': {
+            'type': 'string'
+        },
+        'size': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        }
+    }
+}
+
+openstack_vm = {
+    'schema': {
+        'vm_state': {
+            'type': 'string'
+        },
+        'availability_zone': {
+            'type': 'string'
+        },
+        'terminated_at': {
+            'type': 'string'
+        },
+        'image': {
+            'type': 'string'
+        },
+        'diskConfig': {
+            'type': 'string'
+        },
+        'flavor': {
+            'type': 'string'
+        },
+        'security_groups': {
+            'type': 'string'
+        },
+        'volumes_attached': {
+            'type': 'string'
+        },
+        'user_id': {
+            'type': 'string'
+        },
+        'uuid': {
+            'type': 'string'
+        },
+        'accessIPv4': {
+            'type': 'string'
+        },
+        'accessIPv6': {
+            'type': 'string'
+        },
+        'power_state': {
+            'type': 'string'
+        },
+        'progress': {
+            'type': 'string'
+        },
+        'image__id': {
+            'type': 'string'
+        },
+        'launched_at': {
+            'type': 'string'
+        },
+        'config_drive': {
+            'type': 'string'
+        },
+        'username': {
+            'type': 'string'
+        },
+        'updated': {
+            'type': 'string'
+        },
+        'hostId': {
+            'type': 'string'
+        },
+        'floating_ip': {
+            'type': 'string'
+        },
+        'static_ip': {
+            'type': 'string'
+        },
+        'key': {
+            'type': 'string'
+        },
+        'flavor__id': {
+            'type': 'string'
+        },
+        'group': {
+            'type': 'string'
+        },
+        'task_state': {
+            'type': 'string'
+        },
+        'created': {
+            'type': 'string'
+        },
+        'tenant_id': {
+            'type': 'string'
+        },
+        'status': {
+            'type': 'string'
+        }
+    }
+}
+
+organization = {
+    'schema': {
+        'users': {
+            'type': 'list',
+            'schema': {
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'user',
+                    'field': '_id',
+                    'embeddable': True
                 }
             }
         }
@@ -1174,319 +1845,54 @@ hadoop = {
     }
 }
 
-compute_resource = {
+accounting_resource = {
     'schema': {
-        'kind': {
-            'type': 'string'
-        },
-        'endpoint': {
-            'type': 'string'
-        },
-        'name': {
-            'type': 'string'
-        }
-    }
-}
-
-node_new = {
-    'schema': {
-        'authorized_keys': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
-            }
-        },
-        'name': {
-            'type': 'string'
-        },
-        'external_ip': {
-            'type': 'string'
-        },
-        'memory': {
-            'type': 'integer'
-        },
-        'create_external_ip': {
-            'type': 'boolean'
-        },
-        'internal_ip': {
-            'type': 'string'
-        },
-        'loginuser': {
-            'type': 'string'
-        },
-        'owner': {
-            'type': 'string'
-        },
-        'cores': {
-            'type': 'integer'
-        },
-        'disk': {
-            'type': 'integer'
-        },
-        'ssh_keys': {
-            'type': 'list',
-            'schema': {
-                'type': 'dict',
-                'schema': {
-                    'from': {
-                        'type': 'string'
-                    },
-                    'decrypt': {
-                        'type': 'string'
-                    },
-                    'ssh_keygen': {
-                        'type': 'boolean'
-                    },
-                    'to': {
-                        'type': 'string'
-                    }
-                }
-            }
-        },
-        'security_groups': {
-            'type': 'list',
-            'schema': {
-                'type': 'dict',
-                'schema': {
-                    'ingress': {
-                        'type': 'string'
-                    },
-                    'egress': {
-                        'type': 'string'
-                    },
-                    'ports': {
-                        'type': 'list',
-                        'schema': {
-                            'type': 'integer'
-                        }
-                    },
-                    'protocols': {
-                        'type': 'list',
-                        'schema': {
-                            'type': 'string'
-                        }
-                    }
-                }
-            }
-        },
-        'users': {
-            'type': 'dict',
-            'schema': {
-                'name': {
-                    'type': 'string'
-                },
-                'groups': {
-                    'type': 'list',
-                    'schema': {
-                        'type': 'string'
-                    }
-                }
-            }
-        }
-    }
-}
-
-filter = {
-    'schema': {
-        'function': {
-            'type': 'string'
-        },
-        'name': {
-            'type': 'string'
-        }
-    }
-}
-
-reservation = {
-    'schema': {
-        'start_time': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
-            }
-        },
-        'hosts': {
-            'type': 'string'
-        },
-        'description': {
-            'type': 'string'
-        },
-        'end_time': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
-            }
-        }
-    }
-}
-
-replica = {
-    'schema': {
-        'endpoint': {
-            'type': 'string'
-        },
-        'name': {
-            'type': 'string'
-        },
-        'checksum': {
-            'type': 'dict',
-            'schema': {
-                'md5': {
-                    'type': 'string'
-                }
-            }
-        },
-        'replica': {
-            'type': 'string'
-        },
-        'accessed': {
-            'type': 'string'
-        },
-        'size': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
-            }
-        }
-    }
-}
-
-microservice = {
-    'schema': {
-        'function': {
-            'type': 'string'
-        },
-        'endpoint': {
-            'type': 'string'
-        },
-        'name': {
-            'type': 'string'
-        }
-    }
-}
-
-var = {
-    'schema': {
-        'type': {
-            'type': 'string'
-        },
-        'name': {
-            'type': 'string'
-        },
-        'value': {
-            'type': 'string'
-        }
-    }
-}
-
-mesos_docker = {
-    'schema': {
-        'container': {
-            'type': 'dict',
-            'schema': {
-                'docker': {
-                    'type': 'dict',
-                    'schema': {
-                        'credential': {
-                            'type': 'dict',
-                            'schema': {
-                                'secret': {
-                                    'type': 'string'
-                                },
-                                'principal': {
-                                    'type': 'string'
-                                }
-                            }
-                        },
-                        'image': {
-                            'type': 'string'
-                        }
-                    }
-                },
-                'type': {
-                    'type': 'string'
-                }
-            }
-        },
-        'mem': {
-            'type': 'float'
-        },
-        'args': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
-            }
-        },
-        'cpus': {
-            'type': 'float'
-        },
-        'instances': {
-            'type': 'integer'
-        },
-        'id': {
-            'type': 'string'
-        }
-    }
-}
-
-libcloud_vm = {
-    'schema': {
-        'username': {
-            'type': 'string'
-        },
-        'status': {
-            'type': 'string'
-        },
-        'root_device_type': {
-            'type': 'string'
-        },
-        'private_ips': {
-            'type': 'string'
-        },
-        'instance_type': {
-            'type': 'string'
-        },
-        'image': {
-            'type': 'string'
-        },
-        'private_dns': {
-            'type': 'string'
-        },
-        'image_name': {
-            'type': 'string'
-        },
-        'instance_id': {
-            'type': 'string'
-        },
-        'image_id': {
-            'type': 'string'
-        },
-        'public_ips': {
-            'type': 'string'
-        },
-        'state': {
-            'type': 'string'
-        },
-        'root_device_name': {
-            'type': 'string'
-        },
-        'key': {
+        'account': {
             'type': 'string'
         },
         'group': {
             'type': 'string'
         },
-        'flavor': {
+        'description': {
             'type': 'string'
         },
-        'availability': {
-            'type': 'string'
+        'parameters': {
+            'type': 'dict',
+            'schema': {
+                'parameter1': {
+                    'type': 'float'
+                },
+                'parameter2': {
+                    'type': 'float'
+                }
+            }
         },
         'uuid': {
+            'type': 'string'
+        },
+        'charge': {
+            'type': 'string'
+        },
+        'unites': {
+            'type': 'dict',
+            'schema': {
+                'parameter1': {
+                    'type': 'string'
+                },
+                'parameter2': {
+                    'type': 'string'
+                }
+            }
+        },
+        'user': {
+            'type': 'string'
+        },
+        'name': {
             'type': 'string'
         }
     }
 }
+
 
 
 eve_settings = {
@@ -1496,45 +1902,54 @@ eve_settings = {
     'BANDWIDTH_SAVER': False,
     'DOMAIN': {
         'profile': profile,
+        'stream': stream,
+        'azure_image': azure_image,
+        'virtual_compute_node': virtual_compute_node,
+        'deployment': deployment,
+        'azure-size': azure_size,
+        'cluster': cluster,
+        'computer': computer,
+        'mesos-docker': mesos_docker,
+        'file': file,
+        'reservation': reservation,
+        'microservice': microservice,
+        'virtual_directory': virtual_directory,
+        'mapreduce_function': mapreduce_function,
+        'virtual_cluster': virtual_cluster,
+        'libcloud_flavor': libcloud_flavor,
+        'group': group,
+        'sshkey': sshkey,
+        'mapreduce_noop': mapreduce_noop,
+        'role': role,
+        'AzureNodeExtra': AzureNodeExtra,
+        'var': var,
+        'node': node,
         'virtual_machine': virtual_machine,
         'kubernetes': kubernetes,
         'nic': nic,
-        'virtual_compute_node': virtual_compute_node,
         'openstack_flavor': openstack_flavor,
         'azure-vm': azure_vm,
-        'azure-size': azure_size,
-        'openstack_vm': openstack_vm,
-        'cluster': cluster,
-        'computer': computer,
+        'ec2NodeExtra': ec2NodeExtra,
         'libcloud_image': libcloud_image,
         'user': user,
-        'file': file,
-        'deployment': deployment,
-        'mapreduce': mapreduce,
-        'group': group,
-        'role': role,
-        'virtual_directory': virtual_directory,
-        'file_alias': file_alias,
-        'virtual_cluster': virtual_cluster,
-        'libcloud_flavor': libcloud_flavor,
-        'batchjob': batchjob,
-        'organization': organization,
+        'GCENodeExtra': GCENodeExtra,
         'container': container,
-        'sshkey': sshkey,
-        'stream': stream,
+        'file_alias': file_alias,
+        'node_new': node_new,
+        'batchjob': batchjob,
+        'account': account,
+        'libcloud_vm': libcloud_vm,
         'database': database,
         'default': default,
         'openstack_image': openstack_image,
-        'azure_image': azure_image,
-        'hadoop': hadoop,
+        'OpenStackNodeExtra': OpenStackNodeExtra,
+        'mapreduce': mapreduce,
         'compute_resource': compute_resource,
-        'node_new': node_new,
         'filter': filter,
-        'reservation': reservation,
         'replica': replica,
-        'microservice': microservice,
-        'var': var,
-        'mesos-docker': mesos_docker,
-        'libcloud_vm': libcloud_vm,
+        'openstack_vm': openstack_vm,
+        'organization': organization,
+        'hadoop': hadoop,
+        'accounting_resource': accounting_resource,
     },
 }

@@ -1,3 +1,6 @@
-{ "name": "noop",
-  "description": "A function with no effect"
+{
+  "mapreduce_noop": {
+    "name": "noop",
+    "description": "A function with no effect"
+  }
 }

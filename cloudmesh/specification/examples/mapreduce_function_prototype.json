@@ -1,27 +1,29 @@
-{"name": "name of this function",
- "description": "These should be self-describing",
- "source": "a URI to obtain the resource",
- "install": {
-     "description": "instructions to install the source if needed",
-     "script": "source://install.sh"
- },
- "eval": {
-     "description": "How to evaluate this function",
-     "script": "source://run.sh",
- },
- "args": [],
- "buildInputs": [
-     "list of",
-     "objects this function",
-     "depends on"
- ],
- "systemBuildInputs": [
-     "list of",
-     "packages required",
-     "to install"
- ],
- "outputs": {
-     "key1": {},
-     "key2": {}
- }
+{
+  "mapreduce_function": {
+    "name": "name of this function",
+    "description": "These should be self-describing",
+    "source": "a URI to obtain the resource",
+    "install": {
+      "description": "instructions to install the source if needed",
+      "script": "source://install.sh"
+    },
+    "eval": {
+      "description": "How to evaluate this function",
+      "script": "source://run.sh"
+    },
+    "args": [
+      {
+        "argument": "value"
+      }
+    ],
+    "buildInputs": [
+      "list of dependent objects"
+    ],
+    "systemBuildInputs": [
+      "list of packages"
+    ],
+    "outputs": {
+      "key": "value"
+    }
+  }
 }

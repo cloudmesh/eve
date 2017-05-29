@@ -1,9 +1,0 @@
-{
-  "sshkey": {
-    "comment": "string",
-    "source": "string",
-    "uri": "string",
-    "value": "ssh-rsa",
-    "fingerprint": "string, unique"
-  }
-}

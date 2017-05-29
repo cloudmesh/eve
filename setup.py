@@ -69,6 +69,9 @@ setup \
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
     ],
+    package_data={
+        '': ['*.j2'],     
+    },
     install_requires=requiers,
     tests_require=[
         "flake8",

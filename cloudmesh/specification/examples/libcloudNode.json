@@ -68,9 +68,9 @@
     "metadata": "metadata",
     "tags_fingerprint": "fingerprint",
     "scheduling": "scheduling",
-    "deprecated": "True or False"
+    "deprecated": "True or False",
     "canIpForward": "canIpForward",
     "serviceAccounts": "serviceAccounts",
-    "boot_disk":  ""
+    "boot_disk":  "disk"
   }
 }
