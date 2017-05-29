@@ -558,6 +558,20 @@ sshkey = {
     }
 }
 
+timestamp = {
+    'schema': {
+        'accessed': {
+            'type': 'string'
+        },
+        'modified': {
+            'type': 'string'
+        },
+        'created': {
+            'type': 'string'
+        }
+    }
+}
+
 mapreduce_noop = {
     'schema': {
         'name': {
@@ -1113,17 +1127,6 @@ container = {
     }
 }
 
-file_alias = {
-    'schema': {
-        'alias': {
-            'type': 'string'
-        },
-        'name': {
-            'type': 'string'
-        }
-    }
-}
-
 node_new = {
     'schema': {
         'authorized_keys': {
@@ -1629,6 +1632,17 @@ filter = {
     }
 }
 
+alias = {
+    'schema': {
+        'origin': {
+            'type': 'string'
+        },
+        'name': {
+            'type': 'string'
+        }
+    }
+}
+
 replica = {
     'schema': {
         'endpoint': {
@@ -1903,6 +1917,7 @@ eve_settings = {
         'libcloud_flavor': libcloud_flavor,
         'group': group,
         'sshkey': sshkey,
+        'timestamp': timestamp,
         'mapreduce_noop': mapreduce_noop,
         'role': role,
         'AzureNodeExtra': AzureNodeExtra,
@@ -1918,7 +1933,6 @@ eve_settings = {
         'user': user,
         'GCENodeExtra': GCENodeExtra,
         'container': container,
-        'file_alias': file_alias,
         'node_new': node_new,
         'batchjob': batchjob,
         'account': account,
@@ -1930,6 +1944,7 @@ eve_settings = {
         'mapreduce': mapreduce,
         'compute_resource': compute_resource,
         'filter': filter,
+        'alias': alias,
         'replica': replica,
         'openstack_vm': openstack_vm,
         'organization': organization,

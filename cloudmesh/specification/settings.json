@@ -222,6 +222,11 @@
         "value": "ssh-rsa AAA......",
         "fingerprint": "string, unique"
     },
+    "timestamp": {
+        "accessed": "1.1.2017:05:00:00:EST",
+        "modified": "1.1.2017:05:00:00:EST",
+        "created": "1.1.2017:05:00:00:EST"
+    },
     "mapreduce_noop": {
         "name": "noop",
         "description": "A function with no effect"
@@ -447,15 +452,9 @@
         "memoryGB": 16,
         "label": "server-001"
     },
-    "file_alias": {
-        "alias": "report-alias.dat",
-        "name": "report.dat"
-    },
     "node_new": {
         "authorized_keys": [
-            "ssh-rsa AAAA...",
-            "ssh-ed25519 AAAA...",
-            "...etc"
+            "ssh-rsa AAAA..."
         ],
         "name": "example-001",
         "external_ip": "",
@@ -663,6 +662,10 @@
     "filter": {
         "function": "the function  of the data exchanged in the stream",
         "name": "name of the filter"
+    },
+    "alias": {
+        "origin": "the original object name",
+        "name": "a better name for the object"
     },
     "replica": {
         "endpoint": "file://gregor@machine.edu:/data/replica_report.dat",

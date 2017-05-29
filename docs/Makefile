@@ -43,6 +43,8 @@ watch:
 s:
 	suml --png --scruffy --sequence  > tmp/sequence1-scruffy.png
 
+schema:
+	cd ..; make schema
 
 man:
 	cms schema help > schema-man.tex

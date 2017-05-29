@@ -1,10 +1,6 @@
 {
   "node_new": {
-    "authorized_keys": [
-      "ssh-rsa AAAA...",
-      "ssh-ed25519 AAAA...",
-      "...etc"
-    ],
+    "authorized_keys": ["ssh-rsa AAAA..."],
     "name": "example-001",
     "external_ip": "",
     "loginuser": "root",
@@ -15,25 +11,15 @@
     "cores": 2,
     "users": {
       "name": "hello",
-      "groups": [
-        "wheel"
-      ]
+      "groups": ["wheel"]
     },
     "disk": 80,
     "security_groups": [
       {
         "ingress": "0.0.0.0/32",
         "egress": "0.0.0.0/32",
-        "ports": [
-          22,
-          443,
-          80,
-          8080
-        ],
-        "protocols": [
-          "tcp",
-          "udp"
-        ]
+        "ports": [22, 443, 80, 8080],
+        "protocols": ["tcp", "udp"]
       }
     ],
     "ssh_keys": [

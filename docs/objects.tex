@@ -740,35 +740,57 @@ directories, data streams, and data filters.
   in programming language as a variable. A variable has a name, value
   and type.
 
-\item[Default] is a special type of variable that allows adding of a
-  context. Defaults can than created for different contexts.
+\item[Defaults] are special type of variables that allow adding of a
+  context. Defaults can created for different contexts.
 
 \item[Files] are used to represent information collected within the
-  context of classical files in an operating system. \TODO{I don't
-    think this is very clear. Elaborate with examples?}.
+  context of classical files in an operating system.
 
-\item[Streams] are services that offer the consumer a stream of
-  data. Streams may allow the initiation of filters to reduce the
-  amount of data requested by the consumer.  Stream Filters operate in
-  streams or on files converting them to streams.
-  \TODO{What are the semantics of streams?}
+\item[Directories] are locations for storing and organizing multiple
+  files on a compute resource.
 
-\item[Batch Filters] operate on streams and on files while working in
-  the background and delivering as output Files. \TODO{Whats the
-    difference between Batch Filters and Stream Filters mentioned in
-    Streams?}
-
-\item[Virtual directories] and non-virtual directories are collection
-  of files that organize them. For our initial purpose the distinction
+\item[Virtual Directories] are collection
+  of endpoints to files. Files in a virtual directory may be located
+  on different resources. For our initial purpose the distinction
   between virtual and non-virtual directories is non-essential and we
   will focus on abstracting all directories to be virtual. This could
   mean that the files are physically hosted on different
   disks. However, it is important to note that virtual data
   directories can hold more than files, they can also contain data
-  streams and data filters. \TODO{Do we have examples of what this
-    would look like?}
+  streams and data filters. 
+
+\item[Streams] are services that offer the consumer a stream of
+  data. Streams may allow the initiation of filters to reduce the
+  amount of data requested by the consumer.  Stream Filters operate in
+  streams or on files converting them to streams.
+
+\item[Batch Filters] operate on streams and on files while working in
+  the background and delivering as output Files. In contrast to
+  Streams Batch filters process on the data set and return after all
+  operations have been applied.
+
+\item[Indexed Stores] are storage systems that store objects and can be
+  accessed by an index for each objects. Search and Filter functions
+  are integrated to allow identifying objects from it.
+
+\item[Databases] are traditional but also NoSQL databases.
+
+\item[Collections] are agglomeration of any type of data.
+
+\item[Replicas] are duplication of data objects in order to avoid
+  overhead due to network or other physical restrictions on a remote
+  resource.
 
 \end{description}
+
+
+\subsubsection{TimeStamp}
+
+Often data needs to be time stamped to indicate when it has been
+accessed, created or modified. All objects defined in this document
+will have in its final version a time stamp.
+
+\codeFromJson{json}{timestamp.json}{Timestamp}{o:timestamp}
 
 \subsubsection{Var}
 
@@ -802,7 +824,7 @@ processed. The interface to a file provides the mechanism to
 appropriately locate a file in a distributed system. Identification
 include the name, and endpoint, the checksum and the size. Additional
 parameters such as the lasst access time could be stored also. As such
-the Interface only describes the location of the file 
+the Interface only describes the location of the file.
 
 The \textit{file} object has \textit{name}, \textit{endpoint}
 (location), \textit{size} in GB, MB, Byte, \textit{checksum} for
@@ -810,9 +832,9 @@ integrity check, and last \textit{accessed} timestamp.
 
 \codeFromJson{json}{file.json}{File}{o:file}
 
-\subsubsection{File Alias}
+\subsubsection{Alias}
 
-A file could have one alias or even multiple ones. The reason for an
+A data object could have one alias or even multiple ones. The reason for an
 alias is that a file may have a complex name but a user may want to
 refer to that file in a name space that is suitable for the users
 application.
@@ -824,11 +846,8 @@ application.
 In many distributed systems, it is of importance that a file can be
 replicated among different systems in order to provide faster access.
 It is important to provide a mechanism that allows to trace the
-pedigree of the file while pointing to its original source. The need
-for the replica is
-
-\TODO{We need to describe why a Replica is different from a File
-  object.}
+pedigree of the file while pointing to its original source. A replica
+can be applied to all data types introduced in this document.
 
 \codeFromJson{json}{replica.json}{Replica}{o:replica}
 
@@ -861,14 +880,18 @@ defined by the stream.
 
 Examples for streams could be a stream of random numbers but could
 also include more complex formats such as the retrieval of data
-records. 
+records. Services can subscribe, unsubscribe from a stream, while also
+applying filters to the subscribed stream.
 
-Services can subscribe, unsubscribe from a stream, while also applying
-filters to the subscribed stream.
+
+\subsubsection{Filter} 
+
+Filters can operate on a variety of objects and reduce and filter
+information based on a search criterion.
 
 \codeFromJson{json}{filter.json}{Filter}{o:filter}
 
-\TODO{Filter needs to be refined}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{IaaS}
@@ -877,6 +900,28 @@ filters to the subscribed stream.
 In this subsection we are defining resources related to Infrastructure as
 a Service frameworks. This includes specific objects useful for
 OpenStack, Azure, and AWS, as well as others.
+
+
+% ----------------------------------------------------------------------
+\subsubsection{LibCloud}
+% ----------------------------------------------------------------------
+
+\paragraph{LibCloud Flavor}
+
+\codeFromJson{json}{libcloud_flavor.json}{Libcloud flavor}{o:libcloud-flavor}
+
+\paragraph{LibCloud Image}
+
+\codeFromJson{json}{libcloud_image.json}{Libcloud image}{o:libcloud-image}
+
+\paragraph{LibCloud Node}
+
+\codeFromJson{json}{libcloudNode.json}{LibCloud Node}{o:libcloud-node}
+
+\paragraph{LibCloud VM}
+
+\codeFromJson{json}{libcloud_vm.json}{LibCloud VM}{o:libcloud-node}
+
 
 % ----------------------------------------------------------------------
 \subsubsection{Openstack}
@@ -958,7 +1003,7 @@ to provision the cluster.
 
 \subsubsection{New Cluster}
 
-\codeFromJson{json}{cluster_new.json}{Cluster}{o:cluster}
+\codeFromJson{json}{cluster_new.json}{Cluster}{o:cluster-new}
 \
 \subsubsection{Compute Resource}
 
@@ -1021,6 +1066,8 @@ egress TCP and UDP traffic is allowed provided they are to ports 22
 
 
 \codeFromJson{json}{node.json}{Node}{o:node}
+
+\codeFromJson{json}{node-new.json}{Node}{o:node}
 
 
 
@@ -1148,7 +1195,7 @@ as the library origin, version, etc.
 
 \subsubsection{Key}
 
-\codeFromJson{json}{key.json}{Key}{o:key}
+\codeFromJson{json}{sshkey.json}{Key}{o:key}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Microservice}
