@@ -1,7 +1,8 @@
 VERSION=draft
 FILE=objects
 
-all: 
+all:
+	cd images; pdfcrop interfaces.pdf interfaces.pdf
 	pdflatex  -shell-escape ${FILE}
 	bibtex ${FILE}
 	pdflatex  -shell-escape ${FILE}

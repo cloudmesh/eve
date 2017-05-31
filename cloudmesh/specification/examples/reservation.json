@@ -1,14 +1,8 @@
 {
   "reservation": {
-    "hosts": "string",
-    "description": "string",
-    "start_time": [
-      "date",
-      "time"
-    ],
-    "end_time": [
-      "date",
-      "time"
-    ]
+    "service": "name of the service",
+    "description": "what is this reservation for",
+    "start_time": ["date", "time"],
+    "end_time": ["date", "time"]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "node": {
+  "LibCLoudNode": {
     "id": "instance_id",
     "name": "name",
     "state": "state",

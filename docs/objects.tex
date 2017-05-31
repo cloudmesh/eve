@@ -871,7 +871,7 @@ and protocol used (e.g., SQL, mongo, etc.).
 
 \subsubsection{Stream} 
 
-A stream proveds a stream of data while providing information about
+A stream is describing stream of data while providing information about
 rate and number of items exchanged while issuing requests to the
 stream. A stream my return data items in a specific format that is
 defined by the stream. 
@@ -899,8 +899,24 @@ information based on a search criterion.
 
 In this subsection we are defining resources related to Infrastructure as
 a Service frameworks. This includes specific objects useful for
-OpenStack, Azure, and AWS, as well as others.
+OpenStack, Azure, and AWS, as well as others. The definition of the
+objects between the clouds to manage them are different and not
+standardized. In this case the objects support functions such as
 
+starting, stoping, suspending resuming, migration, network
+configuration, assigning of resources, assigning of operating systems
+for and others for the virtual machines. 
+
+Learning from others such as {\it LibCloud} shows the definition of
+generalized objects, that however are augmented with extra fields t
+specifically integrate with the various frameworks. When working with
+Cloudmesh we found that it is sufficient to  be able to specify a
+cloud based on a cloud specific action. Actions include boot,
+terminate, suspend, resume, assign network ips, add users.
+
+To support such actions we can use objects that are used based on the
+type of the IaaS when invoked. We list such objects as used in
+LibCloud, OpenStack, and Azure. 
 
 % ----------------------------------------------------------------------
 \subsubsection{LibCloud}
@@ -908,35 +924,61 @@ OpenStack, Azure, and AWS, as well as others.
 
 \paragraph{LibCloud Flavor}
 
+The object referring to flavors is liste in Object \ref{o:libcloud-flavor}.
+
 \codeFromJson{json}{libcloud_flavor.json}{Libcloud flavor}{o:libcloud-flavor}
 
 \paragraph{LibCloud Image}
 
+The object referring to images is liste in Object
+\ref{o:libcloud-images}.
+
 \codeFromJson{json}{libcloud_image.json}{Libcloud image}{o:libcloud-image}
 
-\paragraph{LibCloud Node}
-
-\codeFromJson{json}{libcloudNode.json}{LibCloud Node}{o:libcloud-node}
 
 \paragraph{LibCloud VM}
 
-\codeFromJson{json}{libcloud_vm.json}{LibCloud VM}{o:libcloud-node}
+
+The object referring to virtual machines is liste in 
+
+
+\codeFromJson{json}{libcloud_vm.json}{LibCloud VM}{o:libcloud-vm}
+
+\paragraph{LibCloud Node}
+
+Virtual machines for the various clouds have additional attributes
+that we summarize in Object \ref{o:libcloud-vm}.  These attributes are
+going to be integrated into the VM object.
+
+\codeFromJson{json}{libcloudNode.json}{LibCloud Node}{o:libcloud-node}
 
 
 % ----------------------------------------------------------------------
 \subsubsection{Openstack}
 % ----------------------------------------------------------------------
 
+Objects related to OpenStack virtual machines are summarized in this
+section.
+
 \paragraph{Openstack Flavor}
+
+The object referring to flavors is liste in Object
+\ref{o:libcloud-flavor}.
 
 \codeFromJson{json}{openstack_flavor.json}{Openstack flavor}{o:openstack-flavor}
 
 \paragraph{Openstack Image}
 
+The object referring to images is liste in Object
+\ref{o:openstack-image}.
+
 \codeFromJson{json}{openstack_image.json}{Openstack
   image}{o:openstack-image}
 
 \paragraph{Openstack Vm}
+
+The object referring to virtual machines is liste in Object \ref{o:openstack-vm}.
+
 
 \codeFromJson{json}{openstack_vm.json}{Openstack
   vm}{o:openstack-vm}
@@ -945,31 +987,63 @@ OpenStack, Azure, and AWS, as well as others.
 \subsubsection{Azure}
 % ----------------------------------------------------------------------
 
+Objects related to OpenStack virtual machines are summarized in this
+section.
+
 \paragraph{Azure Size}
 
-The size description of an azure vm
+The object referring to the image size machines is liste in Object \ref{o:azure-size}.
 
 \codeFromJson{json}{azure-size.json}{Azure-size}{o:azure-size}
 
 
 \paragraph{Azure Image}
 
+The object referring to the images machines is liste in Object
+\ref{o:azure-image}.
+
 \codeFromJson{json}{azure-image.json}{Azure-image}{o:azure-image}
 
 \paragraph{Azure Vm}
 
-An Azure virtual machine
+The object referring to the virtual machines is liste in Object
+\ref{o:azure-vm}.
+ 
 \codeFromJson{json}{azure-vm.json}{Azure-vm}{o:azure-vm}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{HPC}
+\subsection{Compute}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Batch Job}
+\subsubsection{Batch Queue}
+
+Computing jobs that can run without end user interaction, or are
+scheduled based on resource permission are called batch jobs. It is
+used to minimize human interaction and allows the submission and
+scheduling of many jobs in parallel while attempting to utilize the
+resources through a resource scheduler more efficiently or simply in
+sequential order. Batch processing is not to be underestimated even in
+todays shifting IoT environment towards clouds and containers. This is
+based on the fact that for some application resources managed by batch
+queues are highly optimized and in many cases provide significant
+performance advantages. Disadvantages are the limited and preinstalled
+software stacks that in some cases do not allow to run the latests
+applications.
 
 \codeFromJson{json}{batchjob.json}{Batchjob}{o:batchjob}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Reservation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Some services may consume a considerable amount of resources. In order
+to allow utilization we need to reserve their use. For this porrpose
+we have introduced a reservation object (see Object \ref
+{o:reservation}).
+
+\codeFromJson{json}{reservation.json}{Reservation}{o:reservation}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Virtual Cluster}
@@ -977,10 +1051,22 @@ An Azure virtual machine
 
 \subsubsection{Cluster}
 
+One of the elementary important features for Bid Data is the creation
+of a Big Data Analysis Cluster. Instead of focussing only on the
+deployment of a physical cluster the creation of a virtual cluster is
+of advantage. A virtual cluster combines resources that generally ar
+used to serve the Big Data Application and can constitute a variety of
+data analysis nodes that together build the virtual cluster. 
+
+Such a cluster can be hosted on clouds, containers, physical hardware
+or a mix thereof. 
+
+
 The cluster object has name, label, endpoint and provider. The
-\textit{endpoint} defines....  The \textit{provider} defines the
-nature of the cluster, e.g., its a virtual cluster on an OpenStack
-cloud, or from AWS, or a bare-metal cluster.
+\textit{endpoint} defines a mechanism to connect to it. The
+\textit{provider} defines the nature of the cluster, e.g., its a
+virtual cluster on an OpenStack cloud, or from AWS, or a bare-metal
+cluster.
 
 Figure~\ref{F:uml-virtualcluster} illustrates the process for
 allocating and provisioning a virtual cluster.  The user defines the
@@ -996,7 +1082,6 @@ to provision the cluster.
 \includegraphics[width=0.5\columnwidth]{images/uml/virtualcluster.pdf}
 \caption{Allocating and provisioning a virtual cluster}\label{F:uml-virtualcluster}
 \end{figure}
-
 
 
 \codeFromJson{json}{cluster.json}{Cluster}{o:cluster}
@@ -1095,11 +1180,13 @@ detailed information can be retrieved.
 
 \codeFromJson{json}{virtual_machine.json}{Virtual machine}{o:virtual-machine}
 
+\begin{comment}
 \subsubsection{Mesos}
 
 \TODO{Refine}
 
 \codeFromJson{json}{mesos.json}{Mesos}{o:mesos}
+\end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Containers}
@@ -1111,11 +1198,13 @@ This defines {\em container} object.
 
 \codeFromJson{json}{container.json}{Container}{o:container}
 
+\begin{comment}
 \subsubsection{Kubernetes}
 
 \TODO{REFINE}
 
 \codeFromJson{json}{kubernetes.json}{Kubernetes}{o:kubernetes}
+\end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Deployment}
@@ -1184,7 +1273,7 @@ this is the empty mapping while for lists this is the empty list.
 A \textit{hadoop} definition defines which \textit{deployer} to be used,
 the \textit{parameters} of the deployment, and the system packages as
 \textit{requires}. For each requirement, it could have attributes such
-as the library origin, version, etc.
+as the library origin, version, and others (see Object \ref{o:hadoop})
 
 \codeFromJson{json}{hadoop.json}{Hadoop}{o:hadoop}
 
@@ -1194,6 +1283,10 @@ as the library origin, version, etc.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Key}
+
+Many services and Frameworks use ssh keys to authenticate. To allow
+the convenient storage of the public ket the sshkey object can be
+used (see Object \ref{o:key}).
 
 \codeFromJson{json}{sshkey.json}{Key}{o:key}
 
@@ -1228,12 +1321,6 @@ each of them.
 
 \codeFromJson{json}{microservice.json}{Microservice}{o:microservice}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Reservation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\codeFromJson{json}{reservation.json}{Reservation}{o:reservation}
 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1283,7 +1370,7 @@ than consume the resource and are charged accordingly.
 \subsection{Network}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We are looking for volunteers to contribute here.
+\TODO{We are looking for volunteers to contribute to the network section.}
 
 
 %\bibliography{references}

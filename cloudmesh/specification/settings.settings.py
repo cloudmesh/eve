@@ -1,28 +1,19 @@
 
-profile = {
+container = {
     'schema': {
-        'username': {
+        'ip': {
             'type': 'string'
         },
-        'context:': {
+        'endpoint': {
             'type': 'string'
         },
-        'description': {
+        'name': {
             'type': 'string'
         },
-        'firstname': {
-            'type': 'string'
+        'memoryGB': {
+            'type': 'integer'
         },
-        'lastname': {
-            'type': 'string'
-        },
-        'publickey': {
-            'type': 'string'
-        },
-        'email': {
-            'type': 'string'
-        },
-        'uuid': {
+        'label': {
             'type': 'string'
         }
     }
@@ -347,10 +338,10 @@ reservation = {
                 'type': 'string'
             }
         },
-        'hosts': {
+        'description': {
             'type': 'string'
         },
-        'description': {
+        'service': {
             'type': 'string'
         },
         'end_time': {
@@ -516,23 +507,37 @@ libcloud_flavor = {
     }
 }
 
-group = {
+LibCLoudNode = {
     'schema': {
-        'users': {
+        'private_ips': {
             'type': 'list',
             'schema': {
-                'type': 'objectid',
-                'data_relation': {
-                    'resource': 'user',
-                    'field': '_id',
-                    'embeddable': True
-                }
+                'type': 'string'
             }
         },
-        'name': {
+        'extra': {
+            'type': 'dict',
+            'schema': {}
+        },
+        'created_at': {
             'type': 'string'
         },
-        'description': {
+        'driver': {
+            'type': 'string'
+        },
+        'state': {
+            'type': 'string'
+        },
+        'public_ips': {
+            'type': 'list',
+            'schema': {
+                'type': 'string'
+            }
+        },
+        'id': {
+            'type': 'string'
+        },
+        'name': {
             'type': 'string'
         }
     }
@@ -642,37 +647,30 @@ var = {
     }
 }
 
-node = {
+profile = {
     'schema': {
-        'private_ips': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
-            }
-        },
-        'extra': {
-            'type': 'dict',
-            'schema': {}
-        },
-        'created_at': {
+        'username': {
             'type': 'string'
         },
-        'driver': {
+        'context:': {
             'type': 'string'
         },
-        'state': {
+        'description': {
             'type': 'string'
         },
-        'public_ips': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
-            }
-        },
-        'id': {
+        'firstname': {
             'type': 'string'
         },
-        'name': {
+        'lastname': {
+            'type': 'string'
+        },
+        'publickey': {
+            'type': 'string'
+        },
+        'email': {
+            'type': 'string'
+        },
+        'uuid': {
             'type': 'string'
         }
     }
@@ -1107,21 +1105,23 @@ GCENodeExtra = {
     }
 }
 
-container = {
+group = {
     'schema': {
-        'ip': {
-            'type': 'string'
-        },
-        'endpoint': {
-            'type': 'string'
+        'users': {
+            'type': 'list',
+            'schema': {
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'user',
+                    'field': '_id',
+                    'embeddable': True
+                }
+            }
         },
         'name': {
             'type': 'string'
         },
-        'memoryGB': {
-            'type': 'integer'
-        },
-        'label': {
+        'description': {
             'type': 'string'
         }
     }
@@ -1899,7 +1899,7 @@ eve_settings = {
     'RESOURCE_METHODS': ['GET', 'POST', 'DELETE'],
     'BANDWIDTH_SAVER': False,
     'DOMAIN': {
-        'profile': profile,
+        'container': container,
         'stream': stream,
         'azure_image': azure_image,
         'virtual_compute_node': virtual_compute_node,
@@ -1915,14 +1915,14 @@ eve_settings = {
         'mapreduce_function': mapreduce_function,
         'virtual_cluster': virtual_cluster,
         'libcloud_flavor': libcloud_flavor,
-        'group': group,
+        'LibCLoudNode': LibCLoudNode,
         'sshkey': sshkey,
         'timestamp': timestamp,
         'mapreduce_noop': mapreduce_noop,
         'role': role,
         'AzureNodeExtra': AzureNodeExtra,
         'var': var,
-        'node': node,
+        'profile': profile,
         'virtual_machine': virtual_machine,
         'kubernetes': kubernetes,
         'nic': nic,
@@ -1932,7 +1932,7 @@ eve_settings = {
         'libcloud_image': libcloud_image,
         'user': user,
         'GCENodeExtra': GCENodeExtra,
-        'container': container,
+        'group': group,
         'node_new': node_new,
         'batchjob': batchjob,
         'account': account,

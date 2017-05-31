@@ -1,13 +1,10 @@
 {
-    "profile": {
-        "username": "gregor",
-        "context:": "resource",
-        "description": "The Profile of a user",
-        "firstname": "Gregor",
-        "lastname": "von Laszewski",
-        "publickey": "ssh ....",
-        "email": "laszewski@gmail.com",
-        "uuid": "jshdjkdh..."
+    "container": {
+        "ip": "127.0.0.1",
+        "endpoint": "http://.../container/",
+        "name": "container1",
+        "memoryGB": 16,
+        "label": "server-001"
     },
     "stream": {
         "attributes": {
@@ -144,8 +141,8 @@
             "date",
             "time"
         ],
-        "hosts": "string",
-        "description": "string",
+        "description": "what is this reservation for",
+        "service": "name of the service",
         "end_time": [
             "date",
             "time"
@@ -208,12 +205,19 @@
         "disk": "string",
         "cpu": "string"
     },
-    "group": {
-        "users": [
-            "objectid:user"
+    "LibCLoudNode": {
+        "private_ips": [
+            "192.168.1.101"
         ],
-        "name": "users",
-        "description": "This group contains all users"
+        "extra": {},
+        "created_at": "created_timestamp",
+        "driver": "connection.driver",
+        "state": "state",
+        "public_ips": [
+            "111.222.111.1"
+        ],
+        "id": "instance_id",
+        "name": "name"
     },
     "sshkey": {
         "comment": "string",
@@ -251,19 +255,15 @@
         "name": "name of the variable",
         "value": "the value of the variable as string"
     },
-    "node": {
-        "private_ips": [
-            "192.168.1.101"
-        ],
-        "extra": {},
-        "created_at": "created_timestamp",
-        "driver": "connection.driver",
-        "state": "state",
-        "public_ips": [
-            "111.222.111.1"
-        ],
-        "id": "instance_id",
-        "name": "name"
+    "profile": {
+        "username": "gregor",
+        "context:": "resource",
+        "description": "The Profile of a user",
+        "firstname": "Gregor",
+        "lastname": "von Laszewski",
+        "publickey": "ssh ....",
+        "email": "laszewski@gmail.com",
+        "uuid": "jshdjkdh..."
     },
     "virtual_machine": {
         "status": "active",
@@ -445,12 +445,12 @@
         "statusMessage": "statusMessage",
         "networkInterfaces": "networkInterfaces"
     },
-    "container": {
-        "ip": "127.0.0.1",
-        "endpoint": "http://.../container/",
-        "name": "container1",
-        "memoryGB": 16,
-        "label": "server-001"
+    "group": {
+        "users": [
+            "objectid:user"
+        ],
+        "name": "users",
+        "description": "This group contains all users"
     },
     "node_new": {
         "authorized_keys": [
