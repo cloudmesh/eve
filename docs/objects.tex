@@ -892,6 +892,148 @@ information based on a search criterion.
 \codeFromJson{json}{filter.json}{Filter}{o:filter}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Virtual Cluster}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+One of the essential features for Bid Data is the creation of a Big
+Data Analysis Cluster.  A virtual cluster combines resources that
+generally ar used to serve the Big Data Application and can constitute
+a variety of data analysis nodes that together build the virtual
+cluster. Instead of focussing only on the deployment of a physical
+cluster the creation of a virtual cluster can be instantiated on a
+number of different platforms. Such a platforms can include clouds,
+containers, physical hardware or a mix thereof to support different
+aspects of the big data application. 
+
+Figure~\ref{F:uml-virtualcluster} illustrates the process for
+allocating and provisioning a virtual cluster.  The user defines the
+desired physical properties of the cluster such CPU, memory, disk and
+the intended configuration (such as software, users, etc).  After
+requesting the stack to be deployed, cloudmesh allocates the machines
+as desired by matching the desired properties with the available
+images and booting. The stack definition is then parsed then evaluated
+to provision the cluster.
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\columnwidth]{images/uml/virtualcluster.pdf}
+\caption{Allocating and provisioning a virtual cluster}\label{F:uml-virtualcluster}
+\end{figure}
+
+
+
+
+\subsubsection{Virtual Cluster}
+
+A virtual cluster is an agglomeration of virtual compute nodes that
+constitute the cluster. Nodes can be assembled to be baremetal,
+virtual machines, and containers. A virtual cluster contains a number
+of virtual compute nodes.  
+
+The virtual cluster object has name, label, endpoint and provider. The
+\textit{endpoint} defines a mechanism to connect to it. The
+\textit{provider} defines the nature of the cluster, e.g., its a
+virtual cluster on an OpenStack cloud, or from AWS, or a bare-metal
+cluster and others.
+
+To manage the cluster it can have a frontend node that is used to
+manage other nodes.
+
+\codeFromJson{json}{virtual_cluster.json}{Virtual
+  cluster}{o:virtual-cluster}
+
+\codeFromJson{json}{virtual_cluster_provider.type}{Virtual
+  cluster provider}{o:virtual-cluster-provider}
+
+% \codeFromJson{json}{cluster.json}{Cluster}{o:cluster}
+
+\subsubsection{Virtual Compute node}
+
+\codeFromJson{json}{virtual_compute_node.json}{Virtual
+  compute node}{o:virtual-compute-node}
+
+\subsubsection{Virtual Machine}
+
+Virtual machines are an emulation of a computer system. We are
+maintaining a very basic set of information. It is expected that
+through the endpoint the virtual machine can be introspected and more
+detailed information can be retrieved.
+
+\codeFromJson{json}{virtual_machine.json}{Virtual machine}{o:virtual-machine}
+
+
+
+
+
+\subsubsection{New Cluster}
+
+\codeFromJson{json}{cluster_new.json}{Cluster}{o:cluster-new}
+\
+\subsubsection{Compute Resource}
+
+An important concept for big data analysis it the representation of a
+compute resource on which we execute the analysis. We define a compute
+resource by name and by endpoint. A compute resource is an abstract
+concept and can be instantiated through virtual machines, containers,
+or bare metal resources. This is defined by the {\it kind} of the compute
+resource 
+
+\textit{compute\_resource} object has attribute \textit{endpoint} which
+specifies ... The \textit{kind} could be \textit{baremetal} or \textit{VC}.
+
+\codeFromJson{json}{compute_resource.json}{Compute resource}{o:compute-resource}
+
+\subsubsection{Computer}
+
+This defines a \textit{computer} object. A computer has name, label,
+IP address. It also listed the relevant specs such as memory, disk
+size, etc.
+
+\codeFromJson{json}{computer.json}{Computer}{o:computer}
+
+
+\subsubsection{Compute Node}
+
+A node is composed of multiple components:
+
+\begin{enumerate}
+\item Metadata such as the \verb|name| or \verb|owner|.
+\item Physical properties such as \verb|cores| or \verb|memory|.
+\item Configuration guidance such as \verb|create_external_ip|,
+  \verb|security_groups|, or \verb|users|.
+\end{enumerate}
+
+The metadata is associated with the node on the provider end (if
+supported) as well as in the database. Certain parts of the metadata
+(such as \verb|owner|) can be used to implement access
+control. Physical properties are relevant for the initial allocation
+of the node. Other configuration parameters control and further
+provisioning.
+
+In the above, after allocation, the node is configured with a user
+called \verb|hello| who is part of the \verb|wheel| group whose
+account can be accessed with several SSH identities whose public keys
+are provided (in \verb|authorized_keys|).
+
+Additionally, three ssh keys are generated on the node for the
+\verb|hello| user. The first uses the \verb|ed25519| cryptographic
+method with a password read in from a GPG-encrypted file on the
+Command and Control node. The second is a 4098-bit RSA key also
+password-protected from the GPG-encrypted file. The third key is
+copied to the remote node from an encrypted file on the Command and
+Control node.
+
+This definition also provides a security group to control access to
+the node from the wide-area-network. In this case all ingress and
+egress TCP and UDP traffic is allowed provided they are to ports 22
+(SSH), 443 (SSL), and 80 and 8080 (web).
+
+
+\codeFromJson{json}{node.json}{Node}{o:node}
+
+\codeFromJson{json}{node-new.json}{Node}{o:node}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{IaaS}
@@ -1044,141 +1186,6 @@ we have introduced a reservation object (see Object \ref
 
 \codeFromJson{json}{reservation.json}{Reservation}{o:reservation}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Virtual Cluster}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Cluster}
-
-One of the elementary important features for Bid Data is the creation
-of a Big Data Analysis Cluster. Instead of focussing only on the
-deployment of a physical cluster the creation of a virtual cluster is
-of advantage. A virtual cluster combines resources that generally ar
-used to serve the Big Data Application and can constitute a variety of
-data analysis nodes that together build the virtual cluster. 
-
-Such a cluster can be hosted on clouds, containers, physical hardware
-or a mix thereof. 
-
-
-The cluster object has name, label, endpoint and provider. The
-\textit{endpoint} defines a mechanism to connect to it. The
-\textit{provider} defines the nature of the cluster, e.g., its a
-virtual cluster on an OpenStack cloud, or from AWS, or a bare-metal
-cluster.
-
-Figure~\ref{F:uml-virtualcluster} illustrates the process for
-allocating and provisioning a virtual cluster.  The user defines the
-desired physical properties of the cluster such CPU, memory, disk and
-the intended configuration (such as software, users, etc).  After
-requesting the stack to be deployed, cloudmesh allocates the machines
-as desired by matching the desired properties with the available
-images and booting. The stack definition is then parsed then evaluated
-to provision the cluster.
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=0.5\columnwidth]{images/uml/virtualcluster.pdf}
-\caption{Allocating and provisioning a virtual cluster}\label{F:uml-virtualcluster}
-\end{figure}
-
-
-\codeFromJson{json}{cluster.json}{Cluster}{o:cluster}
-
-\subsubsection{New Cluster}
-
-\codeFromJson{json}{cluster_new.json}{Cluster}{o:cluster-new}
-\
-\subsubsection{Compute Resource}
-
-An important concept for big data analysis it the representation of a
-compute resource on which we execute the analysis. We define a compute
-resource by name and by endpoint. A compute resource is an abstract
-concept and can be instantiated through virtual machines, containers,
-or bare metal resources. This is defined by the {\it kind} of the compute
-resource 
-
-\textit{compute\_resource} object has attribute \textit{endpoint} which
-specifies ... The \textit{kind} could be \textit{baremetal} or \textit{VC}.
-
-\codeFromJson{json}{compute_resource.json}{Compute resource}{o:compute-resource}
-
-\subsubsection{Computer}
-
-This defines a \textit{computer} object. A computer has name, label,
-IP address. It also listed the relevant specs such as memory, disk
-size, etc.
-
-\codeFromJson{json}{computer.json}{Computer}{o:computer}
-
-
-\subsubsection{Compute Node}
-
-A node is composed of multiple components:
-
-\begin{enumerate}
-\item Metadata such as the \verb|name| or \verb|owner|.
-\item Physical properties such as \verb|cores| or \verb|memory|.
-\item Configuration guidance such as \verb|create_external_ip|,
-  \verb|security_groups|, or \verb|users|.
-\end{enumerate}
-
-The metadata is associated with the node on the provider end (if
-supported) as well as in the database. Certain parts of the metadata
-(such as \verb|owner|) can be used to implement access
-control. Physical properties are relevant for the initial allocation
-of the node. Other configuration parameters control and further
-provisioning.
-
-In the above, after allocation, the node is configured with a user
-called \verb|hello| who is part of the \verb|wheel| group whose
-account can be accessed with several SSH identities whose public keys
-are provided (in \verb|authorized_keys|).
-
-Additionally, three ssh keys are generated on the node for the
-\verb|hello| user. The first uses the \verb|ed25519| cryptographic
-method with a password read in from a GPG-encrypted file on the
-Command and Control node. The second is a 4098-bit RSA key also
-password-protected from the GPG-encrypted file. The third key is
-copied to the remote node from an encrypted file on the Command and
-Control node.
-
-This definition also provides a security group to control access to
-the node from the wide-area-network. In this case all ingress and
-egress TCP and UDP traffic is allowed provided they are to ports 22
-(SSH), 443 (SSL), and 80 and 8080 (web).
-
-
-\codeFromJson{json}{node.json}{Node}{o:node}
-
-\codeFromJson{json}{node-new.json}{Node}{o:node}
-
-
-
-\subsubsection{Virtual Cluster}
-
-A virtual cluster is an agglomeration of virtual compute nodes that
-constitute the cluster. Nodes can be assembled to be baremetal,
-virtual machines, and containers. A virtual cluster contains a number
-of virtual compute nodes.  
- 
-\codeFromJson{json}{virtual_cluster.json}{Virtual
-  cluster}{o:virtual-cluster}
-
-\subsubsection{Virtual Compute node}
-
-\codeFromJson{json}{virtual_compute_node.json}{Virtual
-  compute node}{o:virtual-compute-node}
-
-\subsubsection{Virtual Machine}
-
-Virtual machines are an emulation of a computer system. We are
-maintaining a very basic set of information. It is expected that
-through the endpoint the virtual machine can be introspected and more
-detailed information can be retrieved.
-
-\codeFromJson{json}{virtual_machine.json}{Virtual machine}{o:virtual-machine}
 
 \begin{comment}
 \subsubsection{Mesos}

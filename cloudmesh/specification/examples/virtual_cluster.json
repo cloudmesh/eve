@@ -1,9 +1,17 @@
 {
   "virtual_cluster": {
-    "name": "myvc",
-    "frontend": "objectid:virtual_machine",
-    "nodes": [
-      "objectid:virtual_machine"
-    ]
+      "name": "myvirtualcluster",
+      "label": "C0",
+      "uuid": "sgdlsjlaj....",
+      "endpoint": {
+          "passwd": "secret",
+          "url": "https:..."
+      },
+      "provider": "virtual_cluster_provider:openstack", 
+      "frontend": "objectid:virtual_machine",
+      "nodes": [
+          "objectid:virtual_machine"
+      ]
   }
 }
+

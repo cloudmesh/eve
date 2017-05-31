@@ -190,11 +190,18 @@
         "description": "These should be self-describing"
     },
     "virtual_cluster": {
+        "endpoint": {
+            "passwd": "secret",
+            "url": "https:..."
+        },
+        "frontend": "objectid:virtual_machine",
+        "uuid": "sgdlsjlaj....",
+        "label": "C0",
+        "provider": "virtual_cluster_provider:openstack",
         "nodes": [
             "objectid:virtual_machine"
         ],
-        "frontend": "objectid:virtual_machine",
-        "name": "myvc"
+        "name": "myvirtualcluster"
     },
     "libcloud_flavor": {
         "uuid": "string",

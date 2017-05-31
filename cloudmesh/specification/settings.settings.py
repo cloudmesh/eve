@@ -456,14 +456,14 @@ mapreduce_function = {
 
 virtual_cluster = {
     'schema': {
-        'nodes': {
-            'type': 'list',
+        'endpoint': {
+            'type': 'dict',
             'schema': {
-                'type': 'objectid',
-                'data_relation': {
-                    'resource': 'virtual_machine',
-                    'field': '_id',
-                    'embeddable': True
+                'passwd': {
+                    'type': 'string'
+                },
+                'url': {
+                    'type': 'string'
                 }
             }
         },
@@ -473,6 +473,26 @@ virtual_cluster = {
                 'resource': 'virtual_machine',
                 'field': '_id',
                 'embeddable': True
+            }
+        },
+        'uuid': {
+            'type': 'string'
+        },
+        'label': {
+            'type': 'string'
+        },
+        'provider': {
+            'type': 'string'
+        },
+        'nodes': {
+            'type': 'list',
+            'schema': {
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'virtual_machine',
+                    'field': '_id',
+                    'embeddable': True
+                }
             }
         },
         'name': {
