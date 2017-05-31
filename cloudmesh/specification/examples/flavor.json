@@ -1,0 +1,11 @@
+{
+    "flavor": {
+      "name": "flavor1",
+      "label": "2-4G-40G",
+      "uuid": "sgklfgslakj....",
+      "ncpu": 2,
+      "ram": "4G",
+      "disk": "40G"
+    }
+}
+    

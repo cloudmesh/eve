@@ -29,19 +29,6 @@
             "media_link": ""
         }
     },
-    "virtual_compute_node": {
-        "status": "TBD",
-        "endpoint": "http://.../cluster/",
-        "name": "data",
-        "ip": [
-            "TBD"
-        ],
-        "image": "Ubuntu-16.04",
-        "flavor": "TBD",
-        "metadata": {
-            "experiment": "exp-001"
-        }
-    },
     "deployment": {
         "cluster": [
             {
@@ -153,6 +140,14 @@
         "endpoint": "http://.../ms/",
         "name": "ms1"
     },
+    "flavor": {
+        "uuid": "sgklfgslakj....",
+        "ram": "4G",
+        "label": "2-4G-40G",
+        "ncpu": 2,
+        "disk": "40G",
+        "name": "flavor1"
+    },
     "virtual_directory": {
         "endpoint": "http://.../data/",
         "protocol": "http",
@@ -190,6 +185,9 @@
         "description": "These should be self-describing"
     },
     "virtual_cluster": {
+        "authorized_keys": [
+            "objectid:sshkey"
+        ],
         "endpoint": {
             "passwd": "secret",
             "url": "https:..."
@@ -459,6 +457,12 @@
         "name": "users",
         "description": "This group contains all users"
     },
+    "secgroup": {
+        "ingress": "0.0.0.0/32",
+        "egress": "0.0.0.0/32",
+        "ports": 22,
+        "protocols": "tcp"
+    },
     "node_new": {
         "authorized_keys": [
             "ssh-rsa AAAA..."
@@ -574,6 +578,31 @@
         "availability": "string",
         "uuid": "string"
     },
+    "compute_node": {
+        "status": "active",
+        "authorized_keys": [
+            "objectid:sshkey"
+        ],
+        "kind": "vm",
+        "uuid": "sgklfgslakj....",
+        "secgroups": [
+            "objectid:secgroup"
+        ],
+        "nics": [
+            "objectid:nic"
+        ],
+        "image": "Ubuntu-16.04",
+        "label": "gregor-vm001",
+        "loginuser": "ubuntu",
+        "flavor": [
+            "objectid:flavor"
+        ],
+        "metadata": {
+            "owner": "gregor",
+            "experiment": "exp-001"
+        },
+        "name": "vm1"
+    },
     "database": {
         "endpoint": "http://.../data/",
         "protocol": "mongo",
@@ -660,11 +689,6 @@
         "backend": {
             "type": "hadoop"
         }
-    },
-    "compute_resource": {
-        "kind": "baremetal",
-        "endpoint": "http://.../cluster/",
-        "name": "Compute1"
     },
     "filter": {
         "function": "the function  of the data exchanged in the stream",

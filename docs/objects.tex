@@ -893,7 +893,7 @@ information based on a search criterion.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Virtual Cluster}
+\subsection{Virtual Cluster}\label{S:vc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 One of the essential features for Bid Data is the creation of a Big
@@ -923,8 +923,6 @@ to provision the cluster.
 \end{figure}
 
 
-
-
 \subsubsection{Virtual Cluster}
 
 A virtual cluster is an agglomeration of virtual compute nodes that
@@ -936,10 +934,12 @@ The virtual cluster object has name, label, endpoint and provider. The
 \textit{endpoint} defines a mechanism to connect to it. The
 \textit{provider} defines the nature of the cluster, e.g., its a
 virtual cluster on an OpenStack cloud, or from AWS, or a bare-metal
-cluster and others.
+cluster and others
 
 To manage the cluster it can have a frontend node that is used to
-manage other nodes.
+manage other nodes. authorized keys within the definition of the
+cluster allow administrative functions, while authorized keys on a
+compute node allow login and use functionality of the virtual nodes.
 
 \codeFromJson{json}{virtual_cluster.json}{Virtual
   cluster}{o:virtual-cluster}
@@ -949,105 +949,141 @@ manage other nodes.
 
 % \codeFromJson{json}{cluster.json}{Cluster}{o:cluster}
 
-\subsubsection{Virtual Compute node}
-
-\codeFromJson{json}{virtual_compute_node.json}{Virtual
-  compute node}{o:virtual-compute-node}
-
-\subsubsection{Virtual Machine}
-
-Virtual machines are an emulation of a computer system. We are
-maintaining a very basic set of information. It is expected that
-through the endpoint the virtual machine can be introspected and more
-detailed information can be retrieved.
-
-\codeFromJson{json}{virtual_machine.json}{Virtual machine}{o:virtual-machine}
-
-
-
-
-
-\subsubsection{New Cluster}
-
-\codeFromJson{json}{cluster_new.json}{Cluster}{o:cluster-new}
-\
-\subsubsection{Compute Resource}
-
-An important concept for big data analysis it the representation of a
-compute resource on which we execute the analysis. We define a compute
-resource by name and by endpoint. A compute resource is an abstract
-concept and can be instantiated through virtual machines, containers,
-or bare metal resources. This is defined by the {\it kind} of the compute
-resource 
-
-\textit{compute\_resource} object has attribute \textit{endpoint} which
-specifies ... The \textit{kind} could be \textit{baremetal} or \textit{VC}.
-
-\codeFromJson{json}{compute_resource.json}{Compute resource}{o:compute-resource}
-
-\subsubsection{Computer}
-
-This defines a \textit{computer} object. A computer has name, label,
-IP address. It also listed the relevant specs such as memory, disk
-size, etc.
-
-\codeFromJson{json}{computer.json}{Computer}{o:computer}
-
-
 \subsubsection{Compute Node}
 
-A node is composed of multiple components:
+Compute nodes are used to conduct compute and data functions. They are
+of a specific {\it kind}. This could for example be a virtual machine
+(vm), bare metal (bm) or part of a predefined virtual cluster
+framework. 
 
-\begin{enumerate}
-\item Metadata such as the \verb|name| or \verb|owner|.
-\item Physical properties such as \verb|cores| or \verb|memory|.
-\item Configuration guidance such as \verb|create_external_ip|,
-  \verb|security_groups|, or \verb|users|.
-\end{enumerate}
-
-The metadata is associated with the node on the provider end (if
-supported) as well as in the database. Certain parts of the metadata
-(such as \verb|owner|) can be used to implement access
-control. Physical properties are relevant for the initial allocation
-of the node. Other configuration parameters control and further
-provisioning.
-
-In the above, after allocation, the node is configured with a user
-called \verb|hello| who is part of the \verb|wheel| group whose
-account can be accessed with several SSH identities whose public keys
-are provided (in \verb|authorized_keys|).
-
-Additionally, three ssh keys are generated on the node for the
-\verb|hello| user. The first uses the \verb|ed25519| cryptographic
-method with a password read in from a GPG-encrypted file on the
-Command and Control node. The second is a 4098-bit RSA key also
-password-protected from the GPG-encrypted file. The third key is
-copied to the remote node from an encrypted file on the Command and
-Control node.
-
-This definition also provides a security group to control access to
-the node from the wide-area-network. In this case all ingress and
-egress TCP and UDP traffic is allowed provided they are to ports 22
-(SSH), 443 (SSL), and 80 and 8080 (web).
+Compute nodes are a representation of a computer system (physical or
+virtual). We are maintaining a very basic set of information. It is
+expected that through the endpoint the virtual machine can be
+introspected and more detailed information can be retrieved. A compute
+node has name, label, a flavor, NICs and other relevant information.
 
 
-\codeFromJson{json}{node.json}{Node}{o:node}
+\codeFromJson{json}{virtual_machine.json}{Compute node of a virtual cluster}{o:virtual-machine}
 
-\codeFromJson{json}{node-new.json}{Node}{o:node}
+\subsubsection{Flavor}
+
+The flavor specifies elementary information about the compute node
+such as memory, number of cores as well as other attributes that can
+be added. Flavors are essential to size a virtual cluster appropriately.
+
+\codeFromJson{json}{flavor.json}{Flavor}{o:flavor}
+
+
+%
+% BEGIN OLD
+%
+% \codeFromJson{json}{virtual_compute_node.json}{Compute node}{o:virtual-compute-node}
+% \codeFromJson{json}{compute_resource.json}{Compute resource}{o:compute-resource}
+% \codeFromJson{json}{computer.json}{Computer}{o:computer}
+%
+% END OLD
+%
+
+\subsubsection{Nic}
+
+To interact between the node a network is needed. We specify such a
+network interface on a virtual machine with a Nic (network interface
+card) object as showcased in Object~\ref{o:nic}. 
+
+\codeFromJson{json}{nic.json}{Network interface card}{o:nic}
+
+\subsubsection{Key}
+
+Many services and Frameworks use ssh keys to authenticate. To allow
+the convenient storage of the public ket the sshkey object can be
+used (see Object \ref{o:key}).
+
+\codeFromJson{json}{sshkey.json}{Key}{o:key}
+
+\subsubsection{Security Groups}
+
+To allow secure communication between the nodes, security groups are
+introduced. They define the typical security groups that will be
+deployed once a compute node is specified. The security group object
+is depicted in Object \ref{o:secgroup}.
+
+\codeFromJson{json}{security_group.json}{Security Groups}{o:secgroup}
+
+
+
+% BEGIN OLD
+%
+% THIS IS ACTUALLY NOT A NEW OBJEC BUT AN OLD OBJECT
+%
+%\subsubsection{New Cluster}
+%\codeFromJson{json}{cluster_new.json}{Cluster}{o:cluster-new}
+%
+
+
+
+
+
+% \subsubsection{Compute Node}
+
+% A node is composed of multiple components:
+
+% \begin{enumerate}
+% \item Metadata such as the \verb|name| or \verb|owner|.
+% \item Physical properties such as \verb|cores| or \verb|memory|.
+% \item Configuration guidance such as \verb|create_external_ip|,
+%   \verb|security_groups|, or \verb|users|.
+% \end{enumerate}
+
+% The metadata is associated with the node on the provider end (if
+% supported) as well as in the database. Certain parts of the metadata
+% (such as \verb|owner|) can be used to implement access
+% control. Physical properties are relevant for the initial allocation
+% of the node. Other configuration parameters control and further
+% provisioning.
+
+% In the above, after allocation, the node is configured with a user
+% called \verb|hello| who is part of the \verb|wheel| group whose
+% account can be accessed with several SSH identities whose public keys
+% are provided (in \verb|authorized_keys|).
+
+% Additionally, three ssh keys are generated on the node for the
+% \verb|hello| user. The first uses the \verb|ed25519| cryptographic
+% method with a password read in from a GPG-encrypted file on the
+% Command and Control node. The second is a 4098-bit RSA key also
+% password-protected from the GPG-encrypted file. The third key is
+% copied to the remote node from an encrypted file on the Command and
+% Control node.
+
+% This definition also provides a security group to control access to
+% the node from the wide-area-network. In this case all ingress and
+% egress TCP and UDP traffic is allowed provided they are to ports 22
+% (SSH), 443 (SSL), and 80 and 8080 (web).
+
+
+% \codeFromJson{json}{node.json}{Node}{o:node}
+
+% \codeFromJson{json}{node-new.json}{Node}{o:node}
+
+% END OLD
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{IaaS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this subsection we are defining resources related to Infrastructure as
-a Service frameworks. This includes specific objects useful for
+Although we have defined in Section \ref{S:vc} a general virtual
+cluster useful for Big Data, we are sometimes in the need to
+specifically utilize Infrastructure as a Service Frameworks such as
+Openstack, AWS, Azure, Google and others. To do so it is beneficial to
+be able to define virtual clusters using these frameworks. Hence, we
+define in this subsection interfaces related to Infrastructure as a
+Service frameworks. This includes specific objects useful for
 OpenStack, Azure, and AWS, as well as others. The definition of the
 objects between the clouds to manage them are different and not
 standardized. In this case the objects support functions such as
-
 starting, stoping, suspending resuming, migration, network
 configuration, assigning of resources, assigning of operating systems
-for and others for the virtual machines. 
+for and others for the virtual machines.
 
 Learning from others such as {\it LibCloud} shows the definition of
 generalized objects, that however are augmented with extra fields t
@@ -1063,6 +1099,27 @@ LibCloud, OpenStack, and Azure.
 % ----------------------------------------------------------------------
 \subsubsection{LibCloud}
 % ----------------------------------------------------------------------
+
+Libcloud is a Python library for interacting with different cloud
+service providers. It uses a unified API that exposes similar access
+to a variety of clouds. Internally is uses objects that we can use
+interface with different IaaS frameworks. However, as these frameworks
+are till different form each other, specific adaptations are done for
+each IaaS, mostly reflected in the LibCloud Node (see Section
+\ref{S:libcloudnode})
+
+\paragraph{Disadvantages}
+
+We have used LibCloud for some time practically in various versions of
+Cloudmesh. However we found that at times the representation and
+functionality provided by LibCloud for reference implementations did
+not support some advanced aspects provided by the native cloud
+objects. Thus for advanced applications we not only support the use of
+LibCloud, but also support the direct utilization of the native
+objects and interfaces provided by a particular IaaS framework. For
+this reason we have introduced additional interfaces as showcased in
+Sections \ref{S:openstack} and \ref{S:azure}.  We intend to integrate
+additional sections addressing other IaaS frameworks in future.
 
 \paragraph{LibCloud Flavor}
 
@@ -1086,7 +1143,7 @@ The object referring to virtual machines is liste in
 
 \codeFromJson{json}{libcloud_vm.json}{LibCloud VM}{o:libcloud-vm}
 
-\paragraph{LibCloud Node}
+\paragraph{LibCloud Node}\label{S:libcloudnode}
 
 Virtual machines for the various clouds have additional attributes
 that we summarize in Object \ref{o:libcloud-vm}.  These attributes are
@@ -1096,7 +1153,7 @@ going to be integrated into the VM object.
 
 
 % ----------------------------------------------------------------------
-\subsubsection{Openstack}
+\subsubsection{Openstack}\label{S:openstack}
 % ----------------------------------------------------------------------
 
 Objects related to OpenStack virtual machines are summarized in this
@@ -1126,7 +1183,7 @@ The object referring to virtual machines is liste in Object \ref{o:openstack-vm}
   vm}{o:openstack-vm}
 
 % ----------------------------------------------------------------------
-\subsubsection{Azure}
+\subsubsection{Azure}\label{S:azure}
 % ----------------------------------------------------------------------
 
 Objects related to OpenStack virtual machines are summarized in this
@@ -1155,7 +1212,7 @@ The object referring to the virtual machines is liste in Object
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Compute}
+\subsection{Compute Services}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Batch Queue}
@@ -1199,8 +1256,6 @@ we have introduced a reservation object (see Object \ref
 \subsection{Containers}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Container}
-
 This defines {\em container} object. 
 
 \codeFromJson{json}{container.json}{Container}{o:container}
@@ -1217,8 +1272,6 @@ This defines {\em container} object.
 \subsection{Deployment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Deployment}
-
 A \textit{deployment} consists of the resource \- \textit{cluster},
 the location \- \textit{provider}, e.g., AWS, OpenStack, etc., and
 software \textit{stack} to be deployed (e.g., hadoop, spark).
@@ -1228,8 +1281,6 @@ software \textit{stack} to be deployed (e.g., hadoop, spark).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Mapreduce}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Mapreduce}
 
 The \textit{mapreduce} deployment has as inputs parameters defining
 the applied function and the input data.  Both function and data
@@ -1286,47 +1337,17 @@ as the library origin, version, and others (see Object \ref{o:hadoop})
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Security}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Key}
-
-Many services and Frameworks use ssh keys to authenticate. To allow
-the convenient storage of the public ket the sshkey object can be
-used (see Object \ref{o:key}).
-
-\codeFromJson{json}{sshkey.json}{Key}{o:key}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Microservice}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Microservice}
-
+As part of microservices, we are defining a function with parameters
+that can be invoked. To describe such services we have defined the
+Object \ref {o:microservice}.  As we can define multiple such services
+we can easily find them and use them as part of a microservice based
+implementation.
  
-introduce registry we can register many things to it latency provide
-example on how to use each of them, not just the object definition
-example
- 
-necessity of local direct attached storage. 
-Mimd model to storage  
-Kubernetis, mesos can not spin up ?  
-
-Takes time to spin them up and coordinate them. While setting up
-environment takes more than using the microservice, so we must make
-sure that the micorservices are used sufficiently to offset spinup
-cost.
- 
-limitation of resource capacity such as networking. 
- 
-Benchmarking to find out thing about service level agreement to access
-the
-
-
-A system could be composed of from various microservices, and this defines
-each of them.
-
 \codeFromJson{json}{microservice.json}{Microservice}{o:microservice}
+
 
 
  
@@ -1373,19 +1394,24 @@ than consume the resource and are charged accordingly.
 
 
 
+\begin{comment}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Network}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \TODO{We are looking for volunteers to contribute to the network section.}
 
+\end{comment}
 
 %\bibliography{references}
 
 \section{Status Codes and Error Responses}
 
 In case of an error or a successful response, the response header
-contains a HTTP code. The response body usually contains
+contains a HTTP code (see
+\url{https://tools.ietf.org/html/rfc7231}). The response body usually
+contains
 
 \begin{itemize}
 \item the HTTP response code
@@ -1416,11 +1442,11 @@ HTTP & response Description code \\
 \end{tabular}
 \end{table}
 
-\url{http://www.restapitutorial.com/httpstatuscodes.html}
+% \url{http://www.restapitutorial.com/httpstatuscodes.html}
+% \url{https://en.wikipedia.org/wiki/List_of_HTTP_status_codes}
+% \url{http://www.ietf.org/assignments/http-status-codes/http-status-codes.xml}
 
-\url{https://en.wikipedia.org/wiki/List_of_HTTP_status_codes}
-\url{http://www.ietf.org/assignments/http-status-codes/http-status-codes.xml}
-\url{https://tools.ietf.org/html/rfc7231}
+
 
 
 
@@ -1523,7 +1549,7 @@ The following acronyms and terms are used in the paper
 Listing \ref{l:schema} showcases the schema generated from the objects
 defined in this document.
 
-\codeFromJson{python}{../settings.settings.py}{schema}{l:schema}
+\codeFromJson{python}{../settings.settings.py}{Schema}{l:schema}
 
 \section{Cloudmesh Rest}\label{s:cloudmesh-rest}
 
@@ -1611,17 +1637,20 @@ you.
 
 \subsection{Document Creation}
 
-It is assumed that you have installed all the tools. TO create the
+It is assumed that you have installed all the tools. To create the
 document you can simply do
 
 \begin{Verbatim}
 git clone https://github.com/cloudmesh/cloudmesh.rest
-cd cloudmesh.rest/docs
+python setup.py install; pip install .
+cd cloudmesh.rest
+cd docs
+make schema
 make
 \end{Verbatim}
 
 This will produce in that directory a file called object.pdf
-containing this document.
+containing this document. 
 
 \subsection{Conversion to Word}
 

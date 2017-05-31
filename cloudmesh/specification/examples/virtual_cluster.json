@@ -9,6 +9,7 @@
       },
       "provider": "virtual_cluster_provider:openstack", 
       "frontend": "objectid:virtual_machine",
+      "authorized_keys": ["objectid:sshkey"],
       "nodes": [
           "objectid:virtual_machine"
       ]

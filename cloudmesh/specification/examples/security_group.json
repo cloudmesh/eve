@@ -1,0 +1,9 @@
+{
+  "secgroup": 
+      {
+        "ingress": "0.0.0.0/32",
+        "egress": "0.0.0.0/32",
+        "ports": 22,
+        "protocols": "tcp"
+      }
+}   

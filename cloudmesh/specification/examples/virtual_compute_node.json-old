@@ -1,15 +1,14 @@
 {
-  "virtual_compute_node": {
+  "compute_node": {
     "name": "data",
     "endpoint": "http://.../cluster/",
+    "kind": "baremetal",
     "metadata": {
       "experiment": "exp-001"
     },
     "image": "Ubuntu-16.04",
-    "ip": [
-      "TBD"
-    ],
+    "ip": [ "TBD" ],
     "flavor": "TBD",
-    "status": "TBD"
+    "status": "TBD",
   }
 }

@@ -1,18 +1,20 @@
 {
-  "virtual_machine" :{
+  "compute_node": {
     "name": "vm1",
-    "ncpu": 2,
-    "RAM": "4G",
-    "disk": "40G",
-    "nics": ["objectid:nic"
-    ],
-    "OS": "Ubuntu-16.04",
+    "label": "gregor-vm001",
+    "uuid": "sgklfgslakj....",
+    "kind": "vm",
+    "flavor": ["objectid:flavor"],
+    "image": "Ubuntu-16.04",
+    "secgroups": ["objectid:secgroup"],
+    "nics": ["objectid:nic"],      
+    "status": "",
     "loginuser": "ubuntu",
     "status": "active",
-    "metadata":{
-    },
-    "authorized_keys": [
-      "objectid:sshkey"
-    ]
+    "authorized_keys": ["objectid:sshkey"],
+    "metadata": {
+       "owner":"gregor",
+       "experiment": "exp-001"
+    }
   }
 }

@@ -84,40 +84,6 @@ azure_image = {
     }
 }
 
-virtual_compute_node = {
-    'schema': {
-        'status': {
-            'type': 'string'
-        },
-        'endpoint': {
-            'type': 'string'
-        },
-        'name': {
-            'type': 'string'
-        },
-        'ip': {
-            'type': 'list',
-            'schema': {
-                'type': 'string'
-            }
-        },
-        'image': {
-            'type': 'string'
-        },
-        'flavor': {
-            'type': 'string'
-        },
-        'metadata': {
-            'type': 'dict',
-            'schema': {
-                'experiment': {
-                    'type': 'string'
-                }
-            }
-        }
-    }
-}
-
 deployment = {
     'schema': {
         'cluster': {
@@ -367,6 +333,29 @@ microservice = {
     }
 }
 
+flavor = {
+    'schema': {
+        'uuid': {
+            'type': 'string'
+        },
+        'ram': {
+            'type': 'string'
+        },
+        'label': {
+            'type': 'string'
+        },
+        'ncpu': {
+            'type': 'integer'
+        },
+        'disk': {
+            'type': 'string'
+        },
+        'name': {
+            'type': 'string'
+        }
+    }
+}
+
 virtual_directory = {
     'schema': {
         'endpoint': {
@@ -456,6 +445,17 @@ mapreduce_function = {
 
 virtual_cluster = {
     'schema': {
+        'authorized_keys': {
+            'type': 'list',
+            'schema': {
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'sshkey',
+                    'field': '_id',
+                    'embeddable': True
+                }
+            }
+        },
         'endpoint': {
             'type': 'dict',
             'schema': {
@@ -1147,6 +1147,23 @@ group = {
     }
 }
 
+secgroup = {
+    'schema': {
+        'ingress': {
+            'type': 'string'
+        },
+        'egress': {
+            'type': 'string'
+        },
+        'ports': {
+            'type': 'integer'
+        },
+        'protocols': {
+            'type': 'string'
+        }
+    }
+}
+
 node_new = {
     'schema': {
         'authorized_keys': {
@@ -1375,6 +1392,87 @@ libcloud_vm = {
             'type': 'string'
         },
         'uuid': {
+            'type': 'string'
+        }
+    }
+}
+
+compute_node = {
+    'schema': {
+        'status': {
+            'type': 'string'
+        },
+        'authorized_keys': {
+            'type': 'list',
+            'schema': {
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'sshkey',
+                    'field': '_id',
+                    'embeddable': True
+                }
+            }
+        },
+        'kind': {
+            'type': 'string'
+        },
+        'uuid': {
+            'type': 'string'
+        },
+        'secgroups': {
+            'type': 'list',
+            'schema': {
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'secgroup',
+                    'field': '_id',
+                    'embeddable': True
+                }
+            }
+        },
+        'nics': {
+            'type': 'list',
+            'schema': {
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'nic',
+                    'field': '_id',
+                    'embeddable': True
+                }
+            }
+        },
+        'image': {
+            'type': 'string'
+        },
+        'label': {
+            'type': 'string'
+        },
+        'loginuser': {
+            'type': 'string'
+        },
+        'flavor': {
+            'type': 'list',
+            'schema': {
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'flavor',
+                    'field': '_id',
+                    'embeddable': True
+                }
+            }
+        },
+        'metadata': {
+            'type': 'dict',
+            'schema': {
+                'owner': {
+                    'type': 'string'
+                },
+                'experiment': {
+                    'type': 'string'
+                }
+            }
+        },
+        'name': {
             'type': 'string'
         }
     }
@@ -1623,20 +1721,6 @@ mapreduce = {
                     'type': 'string'
                 }
             }
-        }
-    }
-}
-
-compute_resource = {
-    'schema': {
-        'kind': {
-            'type': 'string'
-        },
-        'endpoint': {
-            'type': 'string'
-        },
-        'name': {
-            'type': 'string'
         }
     }
 }
@@ -1922,7 +2006,6 @@ eve_settings = {
         'container': container,
         'stream': stream,
         'azure_image': azure_image,
-        'virtual_compute_node': virtual_compute_node,
         'deployment': deployment,
         'azure-size': azure_size,
         'cluster': cluster,
@@ -1931,6 +2014,7 @@ eve_settings = {
         'file': file,
         'reservation': reservation,
         'microservice': microservice,
+        'flavor': flavor,
         'virtual_directory': virtual_directory,
         'mapreduce_function': mapreduce_function,
         'virtual_cluster': virtual_cluster,
@@ -1953,16 +2037,17 @@ eve_settings = {
         'user': user,
         'GCENodeExtra': GCENodeExtra,
         'group': group,
+        'secgroup': secgroup,
         'node_new': node_new,
         'batchjob': batchjob,
         'account': account,
         'libcloud_vm': libcloud_vm,
+        'compute_node': compute_node,
         'database': database,
         'default': default,
         'openstack_image': openstack_image,
         'OpenStackNodeExtra': OpenStackNodeExtra,
         'mapreduce': mapreduce,
-        'compute_resource': compute_resource,
         'filter': filter,
         'alias': alias,
         'replica': replica,
