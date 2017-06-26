@@ -26,7 +26,7 @@ def readfile(filename):
 #requiers = readfile ('requirements.txt')
 requiers = """
 cloudmesh.evegenie
-ruamel.yaml
+ruamel.yaml<0.15
 psutil
 pygments
 tox
