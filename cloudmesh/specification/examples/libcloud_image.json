@@ -1,23 +1,23 @@
 {
-  "libcloud_image": {
-    "username": "string",
-    "status": "string",
-    "updated": "string",
-    "description": "string",
-    "owner_alias": "string",
-    "kernel_id": "string",
-    "ramdisk_id": "string",
-    "image_id": "string",
-    "is_public": "string",
-    "image_location": "string",
-    "uuid": "string",
-    "created": "string",
-    "image_type": "string",
-    "hypervisor": "string",
-    "platform": "string",
-    "state": "string",
-    "architecture": "string",
-    "virtualization_type": "string",
-    "owner_id": "string"
-  }
+    "libcloud_image": {
+        "username": "string",
+        "status": "string",
+        "updated": "string",
+        "description": "string",
+        "owner_alias": "string",
+        "kernel_id": "string",
+        "ramdisk_id": "string",
+        "image_id": "string",
+        "is_public": "string",
+        "image_location": "string",
+        "uuid": "string",
+        "created": "string",
+        "image_type": "string",
+        "hypervisor": "string",
+        "platform": "string",
+        "state": "string",
+        "architecture": "string",
+        "virtualization_type": "string",
+        "owner_id": "string"
+    }
 }

@@ -21,6 +21,10 @@
 \usepackage{multicol}
 \usepackage{enumitem}
 \usepackage{makecell}
+%\usepackage{cmap}
+ \usepackage{microtype}
+    \DisableLigatures[f]{encoding=T1}
+\usepackage[T1]{fontenc}
 
 \titleformat{\section}
   {\large\sffamily\bfseries}
@@ -70,8 +74,8 @@
 
 \tcbuselibrary{minted}
 
-\definecolor{codebggray}{rgb}{0.95,0.95,0.95}
-
+% \definecolor{codebggray}{rgb}{0.95,0.95,0.95}
+\definecolor{codebggray}{rgb}{1.0,1.0,1.0}
 
 
 \newcounter{filePrg}
@@ -112,14 +116,15 @@
   minted options={autogobble,linenos,breaklines},
   listing only,
   size=title,
-    drop fuzzy shadow,
+  %  drop fuzzy shadow,
   breakable,
   enhanced jigsaw,
     %arc=1.5mm,
   colframe=black!10,
   coltitle=black,
   %boxrule=0.5mm,
-  colback=black!5,
+  % colback=black!5,
+  colback=white,
   coltext=black,
   title={Object \thetcbcounter : #3 \hfill%
     \href{https://github.com/cloudmesh/cloudmesh.rest/blob/master/cloudmesh/specification/examples/#2}{\smash{\raisebox{-6pt}{\includegraphics[width=.5cm,height=.5cm]{images/code2.png}}}}},

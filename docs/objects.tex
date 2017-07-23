@@ -1,5 +1,4 @@
 \documentclass[10pt]{article} 
-
 \input{styles/simple-format}
 
 \title{NIST Big Data Interoperability Framework: Volume 8, Interfaces}
@@ -87,6 +86,7 @@ usable for the implementation of Big Data Architectures.
 \caption{NIST Big Data Reference Architecture (NBDRA)}
 \label{F:architecture}
 \end{figure*}
+
 
 
 \section{NBDRA Interface Requirements}
@@ -536,6 +536,14 @@ automatically create a schema as well as a reference implementation.
 It is obvious that we must be able to deal with hybrid and multiple
 frameworks to avoid vendor lock in. This is not only true for Clouds,
 containers, DevOps, but also other components of the NBDRA. 
+
+\subsection{Design be Research Oriented Architecture}
+
+A resource-oriented architecture (ROA) is represents a software
+architecture and programming paradigm for designing and developing
+software in the form of resources. It is often associated with
+"RESTful" interfaces. The resources are software components which can
+be reused in concrete reference implementations. 
 
 \subsection{Design by Example}
 
@@ -1635,22 +1643,6 @@ contributed we will appropriately acknowledge you either as
 contributor or author. Please discuss with us how we best acknowledge
 you.
 
-\subsection{Document Creation}
-
-It is assumed that you have installed all the tools. To create the
-document you can simply do
-
-\begin{Verbatim}
-git clone https://github.com/cloudmesh/cloudmesh.rest
-python setup.py install; pip install .
-cd cloudmesh.rest
-cd docs
-make schema
-make
-\end{Verbatim}
-
-This will produce in that directory a file called object.pdf
-containing this document. 
 
 \subsection{Conversion to Word}
 
@@ -1686,14 +1678,80 @@ Contributions can be mades as follows:
 \end{description}
 
 
+\subsection{Object Specification}
 
+All objects are located in 
+
+\begin{verbatim}
+cloudmesh.rest/cloudmesh/specification/examples
+\end{verbatim}
+
+And can be modified there
+
+\subsection{Creation of the PDF document}
+
+We assume that you have LaTeX installed. Latex can be trivially
+installed on Windows, OSX, and Linux. Please refer to the instalation
+instructions for your OS. If you have Windows and have not make installed, you can
+obtain it from \url{http://gnuwin32.sourceforge.net/packages/make.htm}
+Please google for it and find the version most suitable for you.
+
+Firts you have to obtain the document from github.com. Currently, you
+can do this with 
+
+\begin{verbatim}
+   git clone https://github.com/cloudmesh/cloudmesh.rest
+\end{verbatim}
+
+To compile the document please use 
+
+\begin{verbatim}
+   cd docs
+   make
+\end{verbatim}
+
+This will generate the PDF file 
+
+\begin{verbatim}
+   NIST.SP.1500-8-draft.pdf
+\end{verbatim}
+
+On OSX we have also integrated a quick view whit 
+
+\begin{verbatim}
+   make view
+\end{verbatim}
+
+The PDF document can be transfered to doc and docx, with the following
+online tool:
+
+* \url{http://pdf2docx.com/}{http://pdf2docx.com/}
+
+We noticed that some tabs in the object definitions may get lost, but
+they can be integrated easily. If yo notice any other formatting
+issues, please file an issue.
+
+We assume that those writeing the document in word use a simple style
+theme using regular styles. Once the NIST editors have provided a
+suitable style them we will upload it to the repository so it can be
+applied easily.
+
+\subsection{Code Generation}
+
+This section is intended for experts and guidance on using it can be
+obtained by contacting Gregor von Laszewski. It is assumed that you
+have installed all the tools. To create the document you can simply do
+
+\begin{Verbatim}
+git clone https://github.com/cloudmesh/cloudmesh.rest
+python setup.py install; pip install .
+cd cloudmesh.rest
+cd docs
+make schema
+make
+\end{Verbatim}
+
+This will produce in that directory a file called object.pdf
+containing this document. 
 
 \end{document}
-
-
-
-
-
-
-
-
