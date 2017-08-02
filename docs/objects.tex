@@ -1,5 +1,8 @@
 \documentclass[10pt]{article} 
 
+\parskip 6pt
+\parindent 0pt
+
 \input{styles/simple-format}
 
 \title{NIST Big Data Interoperability Framework: Volume 8, Interfaces}
@@ -27,20 +30,21 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{series}
 \input{contribution}
-\input{acknowledgement}
 \newpage
+
+\input{series}
 \input{abstract}
 \input{keywords}
+
 \newpage
-\input{exec}
-\newpage
-\input{refernces}
+\input{acknowledgement}
+
 \newpage
 \input{lists}
+\newpage
+\input{exec}
 
-\input{section-1-1}
 
 % make pages all the same length
 \flushbottom % Makes all text pages the same height
@@ -49,8 +53,10 @@
 % switsch on line numbers
 \linenumbers
 
+\input{introduction}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
+\section{Introduction - Gregor}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -89,16 +95,79 @@ usable for the implementation of Big Data Architectures.
 \label{F:architecture}
 \end{figure*}
 
-\subsection{Background}
 
 \subsection{Scope and Objectives of the Reference Architecture
   Subgroup}
 
+The NBD-PWG Standards Roadmap Subgroup focused on forming a community
+of interest from industry, academia, and government, with the goal of
+developing a standards roadmap. The Subgroup's approach included the
+following: (Ross, 2013)
+
+\begin{itemize}
+\item Collaborate with the other four NBD-PWG subgroups;
+\item Review products of the other four subgroups including
+  taxonomies, use cases, general requirements, and reference
+  architecture;
+\item Gain an understanding of what standards are available or under
+  development that may apply Big Data; Perform a standards, gap
+  analysis and document the findings;
+\item Document vision and recommendations for future standards
+  activities;
+\item Identify possible barriers that may delay or prevent adoption of
+  Big Data; and
+\item Identify a few areas where new standards could have a
+  significant impact.
+\end{itemize}
+
+The goals of the Subgroup will be realized throughout the three
+planned phases of the NBD-PWG work, as outlined in Section 1.1
+\ref{??}.
+
+Within the multitude of standards applicable to data and information
+technology, the Subgroup focused on standards that: 1) apply to
+situations encountered in Big Data; 2) facilitate interfaces between
+NBDRA components (difference between Implementer [encoder] or User
+[decoder] may be nonexistent), 3) facilitate handling Big Data
+characteristics, and 4) represent a fundamental function
+
 \subsection{Report Production}
+
+NBDIF: Volume 8, Interfaces is one of nine volumes, whose overall aims
+are to define and specify interfaces to implement the Big Data
+Reference Architecture.
+
+173 The NBDIF: Volume 8, interafces from discussions during the weekly
+NBD-PWG 174 conference calls. Topics included in this volume began to
+take form in Phase 2 of the NBD-PWG work and this 175 volume
+represents the groundwork for additional content planned for Phase 3.
+
+176 During the discussions, the NBD-PWG identified the need to specify
+a variety of interfaces including:
+
+TBD 
+
+
+include the list here. The Standards Roadmap Subgroup will continue to
+develop these and possibly other topics during Phase 3. The current
+version reflects the breadth of knowledge of the Subgroup members. The
+public’s participation in Phase 3 of the NBD-PWG work is encouraged.
+To achieve technical and high quality document content, this document
+will go through public comments period along with NIST internal
+review.
+
 
 \subsection{Report Structure}
 
+TBD
+
 \subsection{Future Work on this Volume}
+
+A number of topics have not been discussed and clarified sufficiently
+to be included in Version 2. Topics that remain to be addressed in
+Version 3 of this document include the following:
+
+TBD
 
 
 \section{NBDRA Interface Requirements}
@@ -1468,9 +1537,10 @@ HTTP & response Description code \\
 
 
 
+\clearpage
+\newpage
 
-
-\subsection{Acronyms and Terms}
+\section{Acronyms and Terms}
 
 The following acronyms and terms are used in the paper
 
@@ -1554,8 +1624,11 @@ The following acronyms and terms are used in the paper
 \item[WWW] World Wide Web
 
 \end{description}
+ 
 
+\newpage
 
+\input{refernces}
 \newpage
 
 \appendix
