@@ -1,4 +1,5 @@
 \documentclass[10pt]{article} 
+
 \input{styles/simple-format}
 
 \title{NIST Big Data Interoperability Framework: Volume 8, Interfaces}
@@ -9,45 +10,44 @@
 \date{Draft v0.0.1, \today} 
 
 
-\newcommand{\ABSTRACT}{
-This document summarizes interfaces that are instrumental for
-the interaction with Clouds, Containers, and HPC systems to manage
-virtual clusters to support the NIST Big Data Reference Architecture (NBDRA). The
-Representational State Transfer (REST) paradigm is used to define these interfaces allowing easy
-integration and adoption by a wide variety of frameworks.
-
-Big Data is a term used to describe extensive datasets, primarily in the 
-characteristics of volume, variety, velocity, and/or variability. While
-opportunities exist with Big Data, the data characteristics can overwhelm traditional
-technical approaches, and the growth of data is outpacing scientific
-and technological advances in data analytics. To advance progress in
-Big Data, the NIST Big Data Public Working Group (NBD-PWG) is working
-to develop consensus on important fundamental concepts related to Big
-Data. The results are reported in the {\it NIST Big Data Interoperability
-Framework (NBDIF)} series of volumes. This volume, Volume 8, uses the
-work performed by the NBD-PWG to identify objects instrumental for the
-NIST Big Data Reference Architecture (NBDRA) which is introduced in the {\it NBDIF: Volume
-6, Reference Architecture}.}
-
-\newcommand{\KEYWORDS}{NIST Big Data Reference Architecture;
-  Interfaces, REST}
-
 \begin{document}
 
-\input{includes/nist}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FRONTPAGES 
+%
+%\newpage
+%\listoftodos[Notes]
+%\newpage
 
+\include{frontpage1}
+\include{frontpage2}
+\include{frontpage3}
 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{series}
+\input{acknowledgement}
+\newpage
+\input{abstract}
+\input{keywords}
+\newpage
+\input{exec}
+\newpage
+\input{refernces}
+\newpage
+\input{lists}
+
+\input{section-1-1}
+
+% make pages all the same length
 \flushbottom % Makes all text pages the same height
-
-% \maketitle % Print the title and abstract box
-
-%\tableofcontents % Print the contents section
-% \maketitle
-
-
 \newpage
 
+% switsch on line numbers
 \linenumbers
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1454,9 +1454,9 @@ HTTP & response Description code \\
 401 & The session ID or OAuth token used has expired or is invalid. \\
 403 & The request has been refused. \\
 404 & The requested resource could not be found. \\
-405 & The method specified in the Request-Line isn’t allowed for the
+405 & The method specified in the Request-Line is not allowed for the
       resource specified in the URI. \\
-415 & The entity in the request is in a format that’s not supported by
+415 & The entity in the request is in a format that is not supported by
       the specified method. \\
 \end{tabular}
 \end{table}
