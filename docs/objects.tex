@@ -59,91 +59,56 @@
 \section{Introduction - Gregor}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Background}\label{S:r-background}
 
-The Volume 6 Reference Architecture document \cite{nist-vol-6}
-provides a list of high-level reference architecture requirements and
-introduces the NIST Big Data Reference Architecture (NBDRA).
-Figure~\ref{F:architecture} depicts the high-level overview of the
-NBDRA.
-
-To enable interoperability between the NBDRA components, a list of
-well-defined NBDRA interface is needed. These interfaces are
-documented in this Volume 8 \cite{nist-vol-8}. To introduce them, we
-will follow the NBDRA and focus on interfaces that allow us to
-bootstrap the NBDRA. We will start the document with a summary of
-requirements that we will integrate into our specifications.
-Subsequently, each section will introduce a number of objects that
-build the core of the interface addressing a specific aspect of the
-NBDRA. We will showcase a selected number of {\it interface use cases}
-to outline how the specific interface can be used in a reference
-implementation of the NBDRA. Validation of this approach can be
-achieved while applying it to the application use cases that have been
-gathered in Volume 3 \cite{nist-vol-3}. These application use cases
-have considerably contributed towards the design of the NBDRA. Hence
-our expectation is that (a) the interfaces can be used to help
-implementing a big data architecture for a specific use case, and (b)
-the proper implementation. Through this approach, we can facilitate
-subsequent analysis and comparison of the use cases. We expect that
-this document will grow with the help of contributions from the
-community to achieve a comprehensive set of interfaces that will be
-usable for the implementation of Big Data Architectures.
-
-
-\begin{figure*}[h]\centering
-\includegraphics[width=1.1\textwidth]{images/vol8-nbdra}
-\caption{NIST Big Data Reference Architecture (NBDRA)}
-\label{F:architecture}
-\end{figure*}
-
+\input{section-1-1}
 
 \subsection{Scope and Objectives of the Reference Architecture
   Subgroup}
 
-The NBD-PWG Standards Roadmap Subgroup focused on forming a community
-of interest from industry, academia, and government, with the goal of
-developing a standards roadmap. The Subgroup's approach included the
-following: (Ross, 2013)
+Reference architectures provide “an authoritative source of information about a specific subject area that guides and
+constrains the instantiations of multiple architectures and solutions.”   Reference architectures generally serve as a
+foundation for solution architectures and may also be used for comparison and alignment of instantiations of architectures and
+solutions. 
 
+The goal of the NBD-PWG Reference Architecture Subgroup is to develop an open reference architecture for Big Data that achieves the following objectives:
 \begin{itemize}
-\item Collaborate with the other four NBD-PWG subgroups;
-\item Review products of the other four subgroups including
-  taxonomies, use cases, general requirements, and reference
-  architecture;
-\item Gain an understanding of what standards are available or under
-  development that may apply Big Data; Perform a standards, gap
-  analysis and document the findings;
-\item Document vision and recommendations for future standards
-  activities;
-\item Identify possible barriers that may delay or prevent adoption of
-  Big Data; and
-\item Identify a few areas where new standards could have a
-  significant impact.
+\item Provides a common language for the various stakeholders
+\item Encourages adherence to common standards, specifications, and patterns
+\item Provides consistent methods for implementation of technology to solve similar problem sets
+\item Illustrates and improves understanding of the various Big Data components, processes, and systems, in the context of a vendor- and technology-agnostic Big Data conceptual model
+\item Provides a technical reference for U.S. government departments, agencies, and other consumers to understand, discuss, categorize, and compare Big Data solutions
+\item Facilitates analysis of candidate standards for interoperability, portability, reusability, and extendibility
 \end{itemize}
+
+The NBDRA is a high-level conceptual model crafted to serve as a tool to facilitate open discussion of the requirements, design
+structures, and operations inherent in Big Data. The NBDRA is intended to facilitate the understanding of the operational
+intricacies in Big Data. It does not represent the system architecture of a specific Big Data system, but rather is a tool for
+describing, discussing, and developing system-specific architectures using a common framework of reference. The model is not
+tied to any specific vendor products, services, or reference implementation, nor does it define prescriptive solutions that
+inhibit innovation. 
+
+The NBDRA does not address the following:
+\begin{itemize}
+\item Detailed specifications for any organization’s operational systems
+\item Detailed specifications of information exchanges or services
+\item Recommendations or standards for integration of infrastructure products
+\end {itemize}
 
 The goals of the Subgroup will be realized throughout the three
 planned phases of the NBD-PWG work, as outlined in Section 1.1
-\ref{??}.
+\ref{S:r-background}.
 
-Within the multitude of standards applicable to data and information
-technology, the Subgroup focused on standards that: 1) apply to
-situations encountered in Big Data; 2) facilitate interfaces between
-NBDRA components (difference between Implementer [encoder] or User
-[decoder] may be nonexistent), 3) facilitate handling Big Data
-characteristics, and 4) represent a fundamental function
 
 \subsection{Report Production}
 
-NBDIF: Volume 8, Interfaces is one of nine volumes, whose overall aims
-are to define and specify interfaces to implement the Big Data
-Reference Architecture.
-
-173 The NBDIF: Volume 8, interafces from discussions during the weekly
-NBD-PWG 174 conference calls. Topics included in this volume began to
-take form in Phase 2 of the NBD-PWG work and this 175 volume
-represents the groundwork for additional content planned for Phase 3.
-
-176 During the discussions, the NBD-PWG identified the need to specify
-a variety of interfaces including:
+The NBDIF: Volume 8, References Architecture Implementation is one of nine volumes, whose overall aims are to define and
+prioritize Big Data requirements, including interoperability, portability, reusability, extensibility, data usage, analytic
+techniques, and technology infrastructure in order to support secure and effective adoption of Big Data. The overall goals of
+this volume are to define and specify interfaces to implement the Big Data Reference Architecture. This volume arose from
+discussions during the weekly NBD-PWG conference calls. Topics included in this volume began to take form in Phase 2 of the
+NBD-PWG work. This volume represents the groundwork for additional content planned for Phase 3. During the discussions, the
+NBD-PWG identified the need to specify a variety of interfaces including:
 
 TBD 
 
@@ -169,12 +134,60 @@ Version 3 of this document include the following:
 
 TBD
 
-
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{NBDRA Interface Requirements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Before we start outlining the specific interfaces, we introduce
-general requirements and explain how we define the interfaces while
-encouraging discussions.
+The development of a Big Data reference architecture requires a thorough understanding of current techniques, issues, and
+concerns. To this end, the NBD-PWG collected use cases to gain an understanding of current applications of Big Data, conducted
+a survey of reference architectures to understand commonalities within Big Data architectures in use, developed a taxonomy to
+understand and organize the information collected, and reviewed existing technologies and trends relevant to Big Data. The
+results of these NBD-PWG activities were used in the development of the NBDRA Figure~\ref{F:architecture}
+and the interfaces presented herein. Detailed descriptions of these activities can be found in the other 
+volumes of the {\it NBDIF}. 
+
+\begin{figure*}[h]\centering
+\includegraphics[width=1.1\textwidth]{images/NBDRA_20170802}
+\caption{NIST Big Data Reference Architecture (NBDRA)}
+\label{F:architecture}
+\end{figure*}
+
+This vendor-neutral, technology- and infrastructure-agnostic conceptual model, the NBDRA, is shown in
+Figure~\ref{F:architecture} and represents a Big Data system comprised of five logical functional components
+connected by interoperability interfaces (i.e., services). Two fabrics envelop the components, representing
+the interwoven nature of management and security and privacy with all five of the components. These two fabrics
+provide services and functionality to the five main roles in the areas specific to Big Data and are 
+crucial to any Big Data solution.
+
+Note: None of the terminology or diagrams in these documents is intended to be normative or to imply any business
+or deployment model. The terms {it provider} and {it consumer} as used are descriptive of general roles and are meant to 
+be informative in nature.
+
+The NBDRA is organized around five major roles and multiple sub-roles aligned along two axes representing the two
+Big Data value chains: the Information Value (horizontal axis) and the Information Technology (IT; vertical axis).
+Along the Information Value axis, the value is created by data collection, integration, analysis, and applying 
+the results following the value chain. Along the IT axis, the value is created by providing networking, 
+infrastructure, platforms, application tools, and other IT services for hosting of and operating the Big Data
+in support of required data applications. At the intersection of both axes is the Big Data Application Provider role,
+indicating that data analytics and its implementation provide the value to Big Data stakeholders in both value chains.
+The term provider as part of the Big Data Application Provider and Bid Data Framework Provider is there to indicate
+that those roles provide or implement specific activities and functions within the system. It does not designate
+a service model or business entity.
+
+The DATA arrows in Figure 2 show the flow of data between the system’s main roles. Data flows between the roles
+either physically (i.e., by value) or by providing its location and the means to access it (i.e., by reference).
+The SW arrows show transfer of software tools for processing of Big Data {it in situ}. The Service Use arrows 
+represent software programmable interfaces. While the main focus of the NBDRA is to represent the run-time 
+environment, all three types of communications or transactions can happen in the configuration phase as well.
+Manual agreements (e.g., service-level agreements) and human interactions that may exist throughout the system
+are not shown in the NBDRA.
+
+Detailed information on the NBDRA conceptual model is presented in the {\it NBDIF: Volume 6, Reference Architecture} document.
+
+
+Prior to outlining the specific interfaces, 
+general requirements are introduced and the interfaces are defined.
 
 \subsection{High Level Requirements of the Interface Approach}
 
@@ -1715,129 +1728,6 @@ specifications provided in this document. However, it is expected that
 scalability, distribution of services, and other advanced options
 need to be addrassed based on application requirements.
 
-
-
-\section{Contributing}
-
-We invite you to contribute to this paper and its discussion to
-improve it. Improvements can be done with pull requests. We suggest
-you do {\em small} individual changes to a single subsection and
-object rather than large changes as this allows us to integrate the
-changes individually and comment on your contribution via github. Once
-contributed we will appropriately acknowledge you either as
-contributor or author. Please discuss with us how we best acknowledge
-you.
-
-
-\subsection{Conversion to Word}
-
-We found that it is most convenient to manage the draft document on
-github. Currently the document is located at:
-
-\begin{itemize}
-\item \url{https://github.com/cloudmesh/cloudmesh.rest/tree/master/docs}
-\end{itemize}
-
-Managing the document in github has provided us with the advantage that a
-reference implementation can be automatically derived from the
-specified objects. Also it is easy to contribute as all text is
-written in ASCII while using \LaTeX syntax to allow for formating in
-PDF. 
-
-Contributions can be mades as follows:
-
-\begin{description}
-\item[Contributions with git pull requests]: You can fork the
-  repository, make modifications and create a pull request that we
-  than review and integrate
-\item[Contribution with direct access]: Cloudmesh.rest developers have
-  direct access to the repository. If you are a frequent contributor
-  to the document and are familiar with github we can grant you
-  access. However, we do prefer pull requests as this minimizes our
-  administrative overhead to avoid issues with git
-\item[Contributing ASCII sections with git issues]: You can identify
-  the version of the document, specify the section and line numbers
-  you want to modify and include the new text. We will integrate and
-  address these issues ASAP. Issues can be submitted at 
-  \url{https://github.com/cloudmesh/cloudmesh.rest/issues}
-\end{description}
-
-
-\subsection{Object Specification}
-
-All objects are located in 
-
-\begin{verbatim}
-cloudmesh.rest/cloudmesh/specification/examples
-\end{verbatim}
-
-And can be modified there
-
-\subsection{Creation of the PDF document}
-
-We assume that you have LaTeX installed. Latex can be trivially
-installed on Windows, OSX, and Linux. Please refer to the instalation
-instructions for your OS. If you have Windows and have not make installed, you can
-obtain it from \url{http://gnuwin32.sourceforge.net/packages/make.htm}
-Please google for it and find the version most suitable for you.
-
-Firts you have to obtain the document from github.com. Currently, you
-can do this with 
-
-\begin{verbatim}
-   git clone https://github.com/cloudmesh/cloudmesh.rest
-\end{verbatim}
-
-To compile the document please use 
-
-\begin{verbatim}
-   cd docs
-   make
-\end{verbatim}
-
-This will generate the PDF file 
-
-\begin{verbatim}
-   NIST.SP.1500-8-draft.pdf
-\end{verbatim}
-
-On OSX we have also integrated a quick view whit 
-
-\begin{verbatim}
-   make view
-\end{verbatim}
-
-The PDF document can be transfered to doc and docx, with the following
-online tool:
-
-* \url{http://pdf2docx.com/}
-
-We noticed that some tabs in the object definitions may get lost, but
-they can be integrated easily. If yo notice any other formatting
-issues, please file an issue.
-
-We assume that those writeing the document in word use a simple style
-theme using regular styles. Once the NIST editors have provided a
-suitable style them we will upload it to the repository so it can be
-applied easily.
-
-\subsection{Code Generation}
-
-This section is intended for experts and guidance on using it can be
-obtained by contacting Gregor von Laszewski. It is assumed that you
-have installed all the tools. To create the document you can simply do
-
-\begin{Verbatim}
-git clone https://github.com/cloudmesh/cloudmesh.rest
-python setup.py install; pip install .
-cd cloudmesh.rest
-cd docs
-make schema
-make
-\end{Verbatim}
-
-This will produce in that directory a file called object.pdf
-containing this document. 
 
 \end{document}
 %
