@@ -196,7 +196,9 @@ TBD
 
 \newpage 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{NBDRA Interface Requirements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The development of a Big Data reference architecture requires a thorough understanding of current
 techniques, issues, and concerns. To this end, the NBD-PWG collected use cases to gain an 
@@ -248,8 +250,9 @@ Detailed information on the NBDRA conceptual model is presented in the
 {\it NBDIF: Volume 6, Reference Architecture} document.
 
 
-Prior to outlining the specific interfaces, 
-general requirements are introduced and the interfaces are defined.
+Before we start outlining the specific interfaces, we introduce
+general requirements and explain how we define the interfaces while
+encouraging discussions.
 
 \subsection{High Level Requirements of the Interface Approach}
 
@@ -260,9 +263,9 @@ in Figure~\ref{F:architecture}.
 \subsubsection{Technology and Vendor Agnostic}
 
 Due to the many different tools, services, and infrastructures
-available in the general area of Big Data, an interface ought to be as
+available in the general area of big data, an interface ought to be as
 vendor independent as possible, while at the same time be able to
-leverage best practices. Hence, a methodology is needed that
+leverage best practices. Hence, we need to provide a methodology that
 allows extension of interfaces to adapt and leverage existing
 approaches, but also allows the interfaces to provide merit in easy
 specifications that assist the formulation and definition of the
@@ -270,18 +273,23 @@ NBDRA.
 
 \subsubsection{Support of Plug-In Compute Infrastructure}
 
-As big data is not just about hosting data, but about analyzing data
-the interfaces we provide must encapsulate a rich infrastructure
+As Big Data is not just about hosting data, but about analyzing data,
+the interfaces provided herein must encapsulate a rich infrastructure
 environment that is used by data scientists. This includes the ability
 to integrate (or plug-in) various compute resources and services to
-provide the necessary compute power to analyze the data. This includes
-(a) access to hierarchy of compute resources, from the laptop/desktop,
-servers, data clusters, and clouds, (b) he ability to integrate
+provide the necessary compute power to analyze the data. These resources and services 
+include the following: 
+\begin{itemize}
+\item Access to hierarchy of compute resources, from the laptop/desktop,
+servers, data clusters, and clouds; 
+\item The ability to integrate
 special purpose hardware such as GPUs and FPGAs that are used in
-accelerated analysis of data, and (c) the integration of services
+accelerated analysis of data; and 
+\item The integration of services
 including micro services that allow the analysis of the data by
 delegating them to hosted or dynamically deployed services on the
 infrastructure of choice.
+\end{itemize}
 
 \subsubsection{Orchestration of Infrastructure and Services}
 
