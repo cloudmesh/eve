@@ -902,19 +902,20 @@ specifically read and write privileges to the data within the repository.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Data for Big Data applications are delivered through data
-providers. They can be either local providers contributed by a user or
-distributed data providers that refer to data on the internet. At this
-time we focus on an elementary set of abstractions related to data
-providers that offer us to utilize variables, files, virtual data
-directories, data streams, and data filters.
+providers. They can be either local data providers, data contributed by a user. or
+distributed data providers that refer to data on the Internet. 
+Currently, the focus is on an elementary set of abstractions related to data
+providers that offer the ability to utilize variables, files, virtual data
+directories, data streams, and data filters. The following definitions are 
+used to construct the abstractions.
 
 \begin{description}
-\item[Variables] are used to hold specific contents that is associated
-  in programming language as a variable. A variable has a name, value
+\item[Variables] are used to hold specific contents that are associated
+  in programming language as variables. A variable has a name, value,
   and type.
 
 \item[Defaults] are special type of variables that allow adding of a
-  context. Defaults can created for different contexts.
+  context. Defaults can be created for different contexts.
 
 \item[Files] are used to represent information collected within the
   context of classical files in an operating system.
@@ -922,35 +923,36 @@ directories, data streams, and data filters.
 \item[Directories] are locations for storing and organizing multiple
   files on a compute resource.
 
-\item[Virtual Directories] are collection
+\item[Virtual Directories] are collections
   of endpoints to files. Files in a virtual directory may be located
-  on different resources. For our initial purpose the distinction
-  between virtual and non-virtual directories is non-essential and we
-  will focus on abstracting all directories to be virtual. This could
-  mean that the files are physically hosted on different
+  on different resources. For this initial purpose, the distinction
+  between virtual and non-virtual directories is non-essential and the
+  focus will be on abstracting all directories to be virtual. 
+  Therefore, the files coudl be physically hosted on different
   disks. However, it is important to note that virtual data
   directories can hold more than files, they can also contain data
   streams and data filters. 
 
-\item[Streams] are services that offer the consumer a stream of
+\item[Streams] are services that offer the consumer a flow of
   data. Streams may allow the initiation of filters to reduce the
-  amount of data requested by the consumer.  Stream Filters operate in
+  amount of data requested by the consumer. Stream filters operate in
   streams or on files converting them to streams.
 
-\item[Batch Filters] operate on streams and on files while working in
-  the background and delivering as output Files. In contrast to
-  Streams Batch filters process on the data set and return after all
+\item[Batch Filters] operate on streams and on files, working in
+  the background and delivering files as output. In contrast to
+  streams, batch filters process the data set and return an output after all
   operations have been applied.
 
-\item[Indexed Stores] are storage systems that store objects and can be
-  accessed by an index for each objects. Search and Filter functions
-  are integrated to allow identifying objects from it.
+\item[Indexed Stores] are storage systems for objects that can be
+  accessed by an index for each object. Search and filter functions
+  are integrated into indexed stores to allow identification of objects.
 
-\item[Databases] are traditional but also NoSQL databases.
+\item[Databases] refer to traditional relational databases 
+  but also to NoSQL databases.
 
-\item[Collections] are agglomeration of any type of data.
+\item[Collections] are an agglomeration of any type of data.
 
-\item[Replicas] are duplication of data objects in order to avoid
+\item[Replicas] are duplication of data objects created to avoid
   overhead due to network or other physical restrictions on a remote
   resource.
 
