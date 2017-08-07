@@ -1529,19 +1529,19 @@ implementation.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-As in big data applications and systems considerable amount of
-resources are used an accounting system must be present either on the
-server side or on the application and user side to allow checking of
-balances. Due to the potential heterogeneous nature of the services
-used existing accounting frameworks may not be present to dela with
-this issue. E.g. we see potentially the use of multiple accounting
-systems with different scales of accuracy information feedback
-rates. For example, if the existing accounting system informs the user
-only hours after she has started a job this could pose a significant
-risk because charging is started immediately. While making access to
-big data infrastructure and services more simple, the user or
+Big Data applications and systems use a considerable amount of
+resources, which requires an accounting system, either on the
+server side or on the application and user side, to allow checking of
+balances. Due to the potential heterogeneous nature of the services,
+existing accounting frameworks may not be present to deal with
+this issue. For example, potential use of multiple accounting
+systems with different scales of accuracy for information feedback
+rates could occur. If the existing accounting system informs the user
+of limited resources only hours after she has started a job, a significant
+risk could arise because charging is started immediately. While making access to
+Big Data infrastructure and services simpler, the user or
 application may underestimate the overall cost projected by the
-implementation of the big data reference architecture.
+implementation of the Big Data reference architecture.
 
 \codeFromJson{json}{accounting.json}{Accounting}{o:accounting}
 
@@ -1551,8 +1551,8 @@ implementation of the big data reference architecture.
 
 Figure \ref{F:create resource} depicts a possible accounting service
 that allows an administrator to register a variety of resources to an
-account for a user. The services that are than invoked by the user can
-than consume the resource and are charged accordingly.
+account for a user. The services that are then invoked by the user can
+consume the resource and are charged accordingly.
 
 \begin{figure}[!h]
 \includegraphics[width=0.8\columnwidth]{images/dot/account.pdf}
