@@ -1099,18 +1099,17 @@ to provision the cluster.
 \subsubsection{Virtual Cluster}
 
 A virtual cluster is an agglomeration of virtual compute nodes that
-constitute the cluster. Nodes can be assembled to be baremetal,
-virtual machines, and containers. A virtual cluster contains a number
-of virtual compute nodes.  
+constitute the cluster. Nodes can be assembled to be bare metal,
+virtual machines, and containers.  
 
-The virtual cluster object has name, label, endpoint and provider. The
+The virtual cluster object has name, label, endpoint, and provider. The
 \textit{endpoint} defines a mechanism to connect to it. The
-\textit{provider} defines the nature of the cluster, e.g., its a
+\textit{provider} defines the nature of the cluster (e.g., it is a
 virtual cluster on an OpenStack cloud, or from AWS, or a bare-metal
-cluster and others
+cluster).
 
 To manage the cluster it can have a frontend node that is used to
-manage other nodes. authorized keys within the definition of the
+manage other nodes. Authorized keys within the definition of the
 cluster allow administrative functions, while authorized keys on a
 compute node allow login and use functionality of the virtual nodes.
 
