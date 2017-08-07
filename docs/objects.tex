@@ -1452,49 +1452,49 @@ software \textit{stack} to be deployed (e.g., hadoop, spark).
 \codeFromJson{json}{deployment.json}{Deployment}{o:deployment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Mapreduce}
+\subsection{Map/Reduce}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The \textit{mapreduce} deployment has as inputs parameters defining
-the applied function and the input data.  Both function and data
-objects define a ``source'' parameter, which specify the location it
-is retrieved from. For instance, the ``file://'' URI indicates sending
-a directory structure from the local file system where the ``ftp://''
-indicates that the data should be fetched from a FTP resource. It is
-the framework's responsibility to materialize and instantiation of the
+The \textit{Map/Reduce} deployment has as inputs parameters defining
+the applied function and the input data. Both function and data
+objects define a {\it source} parameter, which specfies the location it
+is retrieved from. For instance, the ``file://'' Uniform Resource Identifier (URI)
+indicates sending a directory structure from the local file system and the ``ftp://''
+indicates that the data should be fetched from a File Transfer Protocol (FTP) resource. It is
+the framework's responsibility to materialize an instantiation of the
 desired environment along with the function and data.
 
 \codeFromJson{json}{mapreduce.json}{Mapreduce}{o:mapreduce}
 
-Additional parameters include the ``fault\_tolerant'' and ``backend''
-parameters.  The former flag indicates if the \textit{mapreduce}
+Additional parameters include the {\it fault\_tolerant} and {\it backend}
+parameters. The former flag indicates if the \textit{Map/Reduce}
 deployment should operate in a fault tolerant mode. For instance, in
 the case of Hadoop, this may mean configuring automatic failover of
-name nodes using Zookeeper.  The ``backend'' parameter accepts an
-object describing the system providing the \textit{mapreduce}
-workflow.  This may be a native deployment of Hadoop, or a special
+name nodes using Zookeeper. The {\it backend} parameter accepts an
+object describing the system providing the \textit{Map/Reduce}
+workflow. This may be a native deployment of Hadoop, or a special
 instantiation using other frameworks such as Mesos.
 
 A function prototype is defined in Listing~\ref{o:mr.f.prototype}.
 Key properties are that functions describe their input parameters and
-generated results. For the former, the ``buildInputs'' and
-``systemBuildInputs'' respectively describe the objects which should
-be evaluated and system packages which should be present before this
-function can be installed. The ``eval'' attribute describes how to
+generated results. For input parameters, the {\it buildInputs} and
+{\it systemBuildInputs}, respectively, describe the objects that should
+be evaluated and system packages that should be present before this
+function can be installed. The {\it eval} attribute describes how to
 apply this function to its input data. Parameters affecting the
-evaluation of the function may be passed in as the ``args'' attribute.
+evaluation of the function may be passed in as the {\it args} attribute.
 The results of the function application can be accessed via the
-``outputs'' object, which is a mapping from arbitrary keys
-(e.g. ``data'', ``processed'', ``model'') to an object representing
+{\it outputs} object, which is a mapping from arbitrary keys
+(e.g. data, processed, model) to an object representing
 the result.
 
 \codeFromJson{json}{mapreduce_function_prototype.json}{Mapreduce function}{o:mr.f.prototype}
 
 
-Some example functions include the ``NoOp'' function shown in
-Listing~\ref{o:mr.f.noop}.  In the case of undefined arguments,
+One example function is the {\it NoOp} function shown in
+Listing~\ref{o:mr.f.noop}. In the case of undefined arguments,
 the parameters default to an identity element. In the case of mappings
-this is the empty mapping while for lists this is the empty list.
+the identity element is the empty mapping while for lists the identity element is the empty list.
 
 \codeFromJson{json}{mapreduce_function_noop.json}{Mapreduce noop}{o:mr.f.noop}
 
