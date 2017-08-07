@@ -978,7 +978,7 @@ probability.
 
 A default is a special variable that has a context associated with
 it. This allows one to define values that can be easily retrieved
-based on the associated context. For example, for a default could be the image
+based on its context. A good example for a default would be the image
 name for a cloud where the context is defined by the cloud name.
 
 \codeFromJson{json}{default.json}{Default}{o:default}
@@ -1019,7 +1019,7 @@ application.
 
 In many distributed systems, it is of importance that a file can be
 replicated among different systems in order to provide faster access.
-It is important to provide a mechanism to trace the
+It is important to provide a mechanism that allows to trace the
 pedigree of the file while pointing to its original source. A replica
 can be applied to all data types introduced in this document.
 
@@ -1028,7 +1028,7 @@ can be applied to all data types introduced in this document.
 
 \subsubsection{Virtual Directory}
 
-A virtual directory is a collection of files or replicas of the files. A virtual directory can contain a
+A collection of files or replicas. A virtual directory can contain an
 number of entities including files, streams, and other virtual
 directories as part of a collection. The element in the collection can
 either be defined by uuid or by name. 
@@ -1392,17 +1392,17 @@ The object referring to the virtual machines is liste in Object
 \subsubsection{Batch Queue}
 
 Computing jobs that can run without end user interaction, or are
-scheduled based on resource permission, are called batch jobs. Batch jobs are
-used to minimize human interaction and allow the submission and
+scheduled based on resource permission are called batch jobs. It is
+used to minimize human interaction and allows the submission and
 scheduling of many jobs in parallel while attempting to utilize the
 resources through a resource scheduler more efficiently or simply in
 sequential order. Batch processing is not to be underestimated even in
-today's shifting Internet of things environment towards clouds and containers. This is
+todays shifting IoT environment towards clouds and containers. This is
 based on the fact that for some application resources managed by batch
 queues are highly optimized and in many cases provide significant
-performance advantages. Disadvantages include the limited and preinstalled
-software stacks that, in some cases, do not allow the latest
-applications to run.
+performance advantages. Disadvantages are the limited and preinstalled
+software stacks that in some cases do not allow to run the latests
+applications.
 
 \codeFromJson{json}{batchjob.json}{Batchjob}{o:batchjob}
 
@@ -1453,59 +1453,59 @@ software \textit{stack} to be deployed (e.g., hadoop, spark).
 \codeFromJson{json}{deployment.json}{Deployment}{o:deployment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Map/Reduce}
+\subsection{Mapreduce}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The \textit{Map/Reduce} deployment has as inputs parameters defining
-the applied function and the input data. Both function and data
-objects define a {\it source} parameter, which specfies the location it
-is retrieved from. For instance, the ``file://'' Uniform Resource Identifier (URI)
-indicates sending a directory structure from the local file system and the ``ftp://''
-indicates that the data should be fetched from a File Transfer Protocol (FTP) resource. It is
-the framework's responsibility to materialize an instantiation of the
+The \textit{mapreduce} deployment has as inputs parameters defining
+the applied function and the input data.  Both function and data
+objects define a ``source'' parameter, which specify the location it
+is retrieved from. For instance, the ``file://'' URI indicates sending
+a directory structure from the local file system where the ``ftp://''
+indicates that the data should be fetched from a FTP resource. It is
+the framework's responsibility to materialize and instantiation of the
 desired environment along with the function and data.
 
 \codeFromJson{json}{mapreduce.json}{Mapreduce}{o:mapreduce}
 
-Additional parameters include the {\it fault\_tolerant} and {\it backend}
-parameters. The former flag indicates if the \textit{Map/Reduce}
+Additional parameters include the ``fault\_tolerant'' and ``backend''
+parameters.  The former flag indicates if the \textit{mapreduce}
 deployment should operate in a fault tolerant mode. For instance, in
 the case of Hadoop, this may mean configuring automatic failover of
-name nodes using Zookeeper. The {\it backend} parameter accepts an
-object describing the system providing the \textit{Map/Reduce}
-workflow. This may be a native deployment of Hadoop, or a special
+name nodes using Zookeeper.  The ``backend'' parameter accepts an
+object describing the system providing the \textit{mapreduce}
+workflow.  This may be a native deployment of Hadoop, or a special
 instantiation using other frameworks such as Mesos.
 
 A function prototype is defined in Listing~\ref{o:mr.f.prototype}.
 Key properties are that functions describe their input parameters and
-generated results. For input parameters, the {\it buildInputs} and
-{\it systemBuildInputs}, respectively, describe the objects that should
-be evaluated and system packages that should be present before this
-function can be installed. The {\it eval} attribute describes how to
+generated results. For the former, the ``buildInputs'' and
+``systemBuildInputs'' respectively describe the objects which should
+be evaluated and system packages which should be present before this
+function can be installed. The ``eval'' attribute describes how to
 apply this function to its input data. Parameters affecting the
-evaluation of the function may be passed in as the {\it args} attribute.
+evaluation of the function may be passed in as the ``args'' attribute.
 The results of the function application can be accessed via the
-{\it outputs} object, which is a mapping from arbitrary keys
-(e.g. data, processed, model) to an object representing
+``outputs'' object, which is a mapping from arbitrary keys
+(e.g. ``data'', ``processed'', ``model'') to an object representing
 the result.
 
 \codeFromJson{json}{mapreduce_function_prototype.json}{Mapreduce function}{o:mr.f.prototype}
 
 
-One example function is the {\it NoOp} function shown in
-Listing~\ref{o:mr.f.noop}. In the case of undefined arguments,
+Some example functions include the ``NoOp'' function shown in
+Listing~\ref{o:mr.f.noop}.  In the case of undefined arguments,
 the parameters default to an identity element. In the case of mappings
-the identity element is the empty mapping while for lists the identity element is the empty list.
+this is the empty mapping while for lists this is the empty list.
 
 \codeFromJson{json}{mapreduce_function_noop.json}{Mapreduce noop}{o:mr.f.noop}
 
 
 \subsubsection{Hadoop}
 
-A \textit{Hadoop} definition defines which \textit{deployer} to use,
-the \textit{parameters} of the deployment, and the system packages
-\textit{required}. For each requirement, it could have attributes such
-as the library origin, version, and other attributes (see Object \ref{o:hadoop})
+A \textit{hadoop} definition defines which \textit{deployer} to be used,
+the \textit{parameters} of the deployment, and the system packages as
+\textit{requires}. For each requirement, it could have attributes such
+as the library origin, version, and others (see Object \ref{o:hadoop})
 
 \codeFromJson{json}{hadoop.json}{Hadoop}{o:hadoop}
 
@@ -1530,19 +1530,19 @@ implementation.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-Big Data applications and systems use a considerable amount of
-resources, which requires an accounting system, either on the
-server side or on the application and user side, to allow checking of
-balances. Due to the potential heterogeneous nature of the services,
-existing accounting frameworks may not be present to deal with
-this issue. For example, potential use of multiple accounting
-systems with different scales of accuracy for information feedback
-rates could occur. If the existing accounting system informs the user
-of limited resources only hours after she has started a job, a significant
-risk could arise because charging is started immediately. While making access to
-Big Data infrastructure and services simpler, the user or
+As in big data applications and systems considerable amount of
+resources are used an accounting system must be present either on the
+server side or on the application and user side to allow checking of
+balances. Due to the potential heterogeneous nature of the services
+used existing accounting frameworks may not be present to dela with
+this issue. E.g. we see potentially the use of multiple accounting
+systems with different scales of accuracy information feedback
+rates. For example, if the existing accounting system informs the user
+only hours after she has started a job this could pose a significant
+risk because charging is started immediately. While making access to
+big data infrastructure and services more simple, the user or
 application may underestimate the overall cost projected by the
-implementation of the Big Data reference architecture.
+implementation of the big data reference architecture.
 
 \codeFromJson{json}{accounting.json}{Accounting}{o:accounting}
 
@@ -1552,8 +1552,8 @@ implementation of the Big Data reference architecture.
 
 Figure \ref{F:create resource} depicts a possible accounting service
 that allows an administrator to register a variety of resources to an
-account for a user. The services that are then invoked by the user can
-consume the resource and are charged accordingly.
+account for a user. The services that are than invoked by the user can
+than consume the resource and are charged accordingly.
 
 \begin{figure}[!h]
 \includegraphics[width=0.8\columnwidth]{images/dot/account.pdf}
@@ -1585,12 +1585,12 @@ consume the resource and are charged accordingly.
 In case of an error or a successful response, the response header
 contains a HTTP code (see
 \url{https://tools.ietf.org/html/rfc7231}). The response body usually
-contains the following:
+contains
 
 \begin{itemize}
-\item The HTTP response code,
-\item An accompanying message for the HTTP response code, and
-\item a field or object where the error occurred .
+\item the HTTP response code
+\item an accompanying message for the HTTP response code
+\item a field or object where the error occurred 
 \end{itemize}
 
 \begin{table}[!h]
@@ -1755,12 +1755,12 @@ developing python) as simple as
 
 \subsection{REST Service}\label{cm-rest}
 
-With the cloudmesh REST framework it is easy to create REST services
-while defining the resources via example json objects. This is achieved
-while leveraging the python eve \cite{www-eve} and a modified version of python
+With the cloudmesh REST framework, it is easy to create REST services
+while defining the resources via example JSON objects. This is achieved
+while leveraging the Python eve \cite{www-eve} and a modified version of Python
 evengine \cite{www-cloudmesh-eveengine}. 
 
-A valid json resource specification looks like this:
+A valid JSON resource specification looks like this:
 
 \begin{verbatim}
 {
@@ -1774,23 +1774,23 @@ A valid json resource specification looks like this:
 }
 \end{verbatim}
 
-here we define an object called profile, that contains a number of
-attributes and values. The type of the values are automatically
-determined. All json specifications are contained in a directory and
-can easily be converted into a valid schema for the eve rest service
-by executing the commands
+In this example, an object called profile is defined, which contains a number of
+attributes and values. The type of the values is automatically
+determined. All JSON specifications are contained in a directory and
+can easily be converted into a valid schema for the eve REST service
+by executing the following commands:
 
 \begin{verbatim}
 cms schema cat . all.json
 cms schema convert all.json
 \end{verbatim}
 
-This will create a the configuration \verb|all.settings.py| that can
-be used to start an eve service
+This will create the configuration \verb|all.settings.py| that can
+be used to start an eve service.
 
-Once the schema has defined, cloudmesh specifies defaults for managing
-a sample data base that is coupled with the REST service. We use
-mongodb which could be placed on a sharded mongo service. 
+Once the schema has been defined, cloudmesh specifies defaults for managing
+a sample database that is coupled with the REST service. 
+MongoDB was used which could be placed on a sharded mongo service. 
 
 \subsection{Limitations}
 
