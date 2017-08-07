@@ -1145,8 +1145,8 @@ node has name, label, a flavor, NICs and other relevant information.
 
 \subsubsection{Flavor}
 
-The flavor specifies elementary information about the compute node
-such as memory, number of cores as well as other attributes that can
+The flavor specifies elementary information about the compute node,
+such as memory and number of cores, as well as other attributes that can
 be added. Flavors are essential to size a virtual cluster appropriately.
 
 \codeFromJson{json}{flavor.json}{Flavor}{o:flavor}
@@ -1162,18 +1162,18 @@ be added. Flavors are essential to size a virtual cluster appropriately.
 % END OLD
 %
 
-\subsubsection{Nic}
+\subsubsection{Network Interface Card}
 
-To interact between the node a network is needed. We specify such a
-network interface on a virtual machine with a Nic (network interface
-card) object as showcased in Object~\ref{o:nic}. 
+To interact between the nodes, a network interface is needed. Such a
+network interface, specified on a virtual machine with a NIC
+object, is showcased in Object~\ref{o:nic}. 
 
 \codeFromJson{json}{nic.json}{Network interface card}{o:nic}
 
 \subsubsection{Key}
 
-Many services and Frameworks use ssh keys to authenticate. To allow
-the convenient storage of the public ket the sshkey object can be
+Many services and frameworks use Secure Shell (SSH) keys to authenticate. To allow
+the convenient storage of the public key, the sshkey object can be
 used (see Object \ref{o:key}).
 
 \codeFromJson{json}{sshkey.json}{Key}{o:key}
