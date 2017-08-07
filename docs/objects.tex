@@ -1246,32 +1246,32 @@ is depicted in Object \ref{o:secgroup}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{IaaS}
+\subsection{Infrastructure as a Service}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Although we have defined in Section \ref{S:vc} a general virtual
-cluster useful for Big Data, we are sometimes in the need to
-specifically utilize Infrastructure as a Service Frameworks such as
-Openstack, AWS, Azure, Google and others. To do so it is beneficial to
-be able to define virtual clusters using these frameworks. Hence, we
-define in this subsection interfaces related to Infrastructure as a
-Service frameworks. This includes specific objects useful for
+Although Section \ref{S:vc} defines a general virtual
+cluster useful for Big Data, sometimes the need exists to
+specifically utilize Infrastructure as a Service (IaaS) frameworks, such as
+Openstack, Azure, and others. To do so, it is beneficial to
+be able to define virtual clusters using these frameworks. Hence, 
+this subsection defines interfaces related to 
+IaaS frameworks. This includes specific objects useful for
 OpenStack, Azure, and AWS, as well as others. The definition of the
-objects between the clouds to manage them are different and not
+objects used between the clouds to manage them, are different and not
 standardized. In this case the objects support functions such as
-starting, stoping, suspending resuming, migration, network
-configuration, assigning of resources, assigning of operating systems
-for and others for the virtual machines.
+starting, stopping, suspending, resuming, migration, network
+configuration, assigning of resources, and assigning of operating systems
+and other functions for the virtual machines.
 
-Learning from others such as {\it LibCloud} shows the definition of
-generalized objects, that however are augmented with extra fields t
+Inspecting other examples, such as {\it LibCloud}, shows the definition of
+generalized objects are discovered, which are augmented with extra fields to
 specifically integrate with the various frameworks. When working with
-Cloudmesh we found that it is sufficient to  be able to specify a
+cloudmesh, it is sufficient to be able to specify a
 cloud based on a cloud specific action. Actions include boot,
-terminate, suspend, resume, assign network ips, add users.
+terminate, suspend, resume, assign network intrusion prevention system, and add users.
 
-To support such actions we can use objects that are used based on the
-type of the IaaS when invoked. We list such objects as used in
+To support such actions, objects can be selected based on the
+IaaS type in use when invoked. The following subsections list these objects as used in
 LibCloud, OpenStack, and Azure. 
 
 % ----------------------------------------------------------------------
