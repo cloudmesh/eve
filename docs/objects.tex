@@ -725,20 +725,20 @@ automatically create a implementation of the objects that can be
 integrated into a reference architecture as provided by for example
 the cloudmesh client and rest project \cite{www-cloudmesh-client}\cite{cloudmesh-nist}.
 
-An example object will demonstrate our approach. The following object
+An example object will demonstrate this approach. The following object
 defines a JSON object representing a user (see Object \ref{sample:profile}). 
 
 \codeFromJson{json}{profile.json}{Example object specification}{sample:profile}
 
-Such an object can be translated to a schema specification 
+Such an object can be translated to a schema specification
 while introspecting the types of the original example. 
 
 All examples are managed in Github and links to them are automatically
 generated to be included into this document. A hyperlink is introduced
 in the Object specification and when clicking on the \verb|</>| icon
-you will be redirected to the specification in github. The resulting
+you will be redirected to the specification in Github. The resulting
 schema object follows the Cerberus \cite{www-cerberus} specification
-and looks for our specific object we introduced earlier as follows:
+and looks for the specific object, introduced earlier, as follows:
 
 \begin{quote}
 \begin{Verbatim}
@@ -757,16 +757,11 @@ profile = {
 \end{Verbatim}
 \end{quote}
 
-Defined objects can alse be embedded into other objects by using the
+Defined objects can also be embedded into other objects by using the
 {\it objectid} tag. This is later demonstrated between the profile
 and the user objects (see Objects \ref{o:profile} and \ref{o:user}).
 
-
-As mentioned before, the Appendix~\ref{s:schema} lists the schema
-that is automatically created from the definitions. More information
-about the creation can be found in Appendix~\ref{s:cloudmesh-rest}.
-
-When using the objets we assume one can implement the typical CRUD
+When using the objects, it is assumed one can implement the typical CRUD
 actions using HTTP methods mapped as follows: \\ ~\\
 
 \begin{tabular}{lll}
@@ -778,7 +773,7 @@ PATCH & \/profile\/12 &  Partially updates profile \#12 \\
 DELETE & \/profile\/12 &  Deletes profile \#12 \\
 \end{tabular}
 
-In our reference implementation these methods are provided
+In the reference implementation in this document these methods are provided
 automatically.
 
 \subsection{Interface Compliancy}
