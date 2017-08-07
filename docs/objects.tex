@@ -986,7 +986,7 @@ name for a cloud where the context is defined by the cloud name.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.5\columnwidth]{images/uml/boot.pdf}
-\caption{Booting a virtual machine from defaults}\label{F:uml-boot}
+\caption{Booting a VM from defaults}\label{F:uml-boot}
 \end{figure}
 
 
@@ -1100,7 +1100,7 @@ to provision the cluster.
 
 A virtual cluster is an agglomeration of virtual compute nodes that
 constitute the cluster. Nodes can be assembled to be baremetal,
-virtual machines, and containers. A virtual cluster contains a number
+VMs, and containers. A virtual cluster contains a number
 of virtual compute nodes.  
 
 The virtual cluster object has name, label, endpoint and provider. The
@@ -1125,15 +1125,15 @@ compute node allow login and use functionality of the virtual nodes.
 \subsubsection{Compute Node}
 
 Compute nodes are used to conduct compute and data functions. They are
-of a specific {\it kind}. This could for example be a virtual machine
-(vm), bare metal (bm) or part of a predefined virtual cluster
+of a specific {\it kind}. For example,compute nodes could be a virtual machine
+(VM), bare metal, or part of a predefined virtual cluster
 framework. 
 
 Compute nodes are a representation of a computer system (physical or
-virtual). We are maintaining a very basic set of information. It is
-expected that through the endpoint the virtual machine can be
+virtual). A very basic set of information about the compute node is maintained in this document. 
+It is expected that, through the endpoint, the VM can be
 introspected and more detailed information can be retrieved. A compute
-node has name, label, a flavor, NICs and other relevant information.
+node has name, label, a flavor, network interface cards (NICs) and other relevant information.
 
 
 \codeFromJson{json}{virtual_machine.json}{Compute node of a virtual cluster}{o:virtual-machine}
@@ -1256,7 +1256,7 @@ objects between the clouds to manage them are different and not
 standardized. In this case the objects support functions such as
 starting, stoping, suspending resuming, migration, network
 configuration, assigning of resources, assigning of operating systems
-for and others for the virtual machines.
+for and others for the VMs.
 
 Learning from others such as {\it LibCloud} shows the definition of
 generalized objects, that however are augmented with extra fields t
@@ -1311,14 +1311,14 @@ The object referring to images is liste in Object
 \paragraph{LibCloud VM}
 
 
-The object referring to virtual machines is liste in 
+The object referring to VMs is liste in 
 
 
 \codeFromJson{json}{libcloud_vm.json}{LibCloud VM}{o:libcloud-vm}
 
 \paragraph{LibCloud Node}\label{S:libcloudnode}
 
-Virtual machines for the various clouds have additional attributes
+VMs for the various clouds have additional attributes
 that we summarize in Object \ref{o:libcloud-vm}.  These attributes are
 going to be integrated into the VM object.
 
@@ -1329,7 +1329,7 @@ going to be integrated into the VM object.
 \subsubsection{Openstack}\label{S:openstack}
 % ----------------------------------------------------------------------
 
-Objects related to OpenStack virtual machines are summarized in this
+Objects related to OpenStack VMs are summarized in this
 section.
 
 \paragraph{Openstack Flavor}
@@ -1349,7 +1349,7 @@ The object referring to images is liste in Object
 
 \paragraph{Openstack Vm}
 
-The object referring to virtual machines is liste in Object \ref{o:openstack-vm}.
+The object referring to VMs is liste in Object \ref{o:openstack-vm}.
 
 
 \codeFromJson{json}{openstack_vm.json}{Openstack
@@ -1359,7 +1359,7 @@ The object referring to virtual machines is liste in Object \ref{o:openstack-vm}
 \subsubsection{Azure}\label{S:azure}
 % ----------------------------------------------------------------------
 
-Objects related to OpenStack virtual machines are summarized in this
+Objects related to OpenStack VMs are summarized in this
 section.
 
 \paragraph{Azure Size}
@@ -1378,7 +1378,7 @@ The object referring to the images machines is liste in Object
 
 \paragraph{Azure Vm}
 
-The object referring to the virtual machines is liste in Object
+The object referring to the VMs is liste in Object
 \ref{o:azure-vm}.
  
 \codeFromJson{json}{azure-vm.json}{Azure-vm}{o:azure-vm}
@@ -1679,7 +1679,7 @@ The following acronyms and terms are used in the paper
   code execution model in which a cloud provider manages the function
   deployment and utilization while clients can utilize them. The
   charge model is based on execution of the function rather than the
-  cost to manage and host the virtual machine or container.
+  cost to manage and host the VM or container.
 
 \item[Software Stack] A set of programs and services that are
   installed on a resource in order to support applications.
@@ -1688,14 +1688,14 @@ The following acronyms and terms are used in the paper
   a distributed physical file system to allow easy access to the files
   by the user or application.
 
-\item[Virtual Machine] A virtual machine is a software computer that,
+\item[Virtual Machine] A VM is a software computer that,
   like a physical computer, runs an operating system and applications.
-  The virtual machine is comprised of a set of specification and
+  The VM is comprised of a set of specification and
   configuration files and is backed by the physical resources of a
   host.
 
 \item[Virtual Cluster] A virtual cluster is a software cluster that
-  integrate either virtual machines, containers or physical resources into an
+  integrate either VMs, containers or physical resources into an
   agglomeration of compute resources. A virtual cluster allows user
   sto authenticate and authorize to the virtual compute nodes tu
   utilize them for calculations. Optional high level services that can
