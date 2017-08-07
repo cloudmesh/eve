@@ -1281,18 +1281,18 @@ are till different form each other, specific adaptations are done for
 each IaaS, mostly reflected in the LibCloud Node (see Section
 \ref{S:libcloudnode})
 
-\paragraph{Disadvantages}
+\paragraph{Challenges}
 
-We have used LibCloud for some time practically in various versions of
-Cloudmesh. However we found that at times the representation and
-functionality provided by LibCloud for reference implementations did
+For time considerations, LibCloud was used for some time practically in various versions of
+cloudmesh. However, it became apparent that at times the representation and
+functionality provided by LibCloud, for reference implementations, did
 not support some advanced aspects provided by the native cloud
-objects. Thus for advanced applications we not only support the use of
-LibCloud, but also support the direct utilization of the native
-objects and interfaces provided by a particular IaaS framework. For
-this reason we have introduced additional interfaces as showcased in
-Sections \ref{S:openstack} and \ref{S:azure}.  We intend to integrate
-additional sections addressing other IaaS frameworks in future.
+objects. Depending on the application, libraries for interfacing with different frameworks, 
+direct utilization of the native
+objects, and interfaces provided by a particular IaaS framework could all be viable options. 
+Additional interfaces have been introduced in
+Sections \ref{S:openstack} and \ref{S:azure}. 
+Additional sections addressing other IaaS frameworks may be integrated in the future.
 
 \paragraph{LibCloud Flavor}
 
