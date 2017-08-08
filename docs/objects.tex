@@ -196,9 +196,7 @@ TBD
 
 \newpage 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{NBDRA Interface Requirements}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The development of a Big Data reference architecture requires a thorough understanding of current
 techniques, issues, and concerns. To this end, the NBD-PWG collected use cases to gain an 
@@ -250,9 +248,8 @@ Detailed information on the NBDRA conceptual model is presented in the
 {\it NBDIF: Volume 6, Reference Architecture} document.
 
 
-Before we start outlining the specific interfaces, we introduce
-general requirements and explain how we define the interfaces while
-encouraging discussions.
+Prior to outlining the specific interfaces, 
+general requirements are introduced and the interfaces are defined.
 
 \subsection{High Level Requirements of the Interface Approach}
 
@@ -263,9 +260,9 @@ in Figure~\ref{F:architecture}.
 \subsubsection{Technology and Vendor Agnostic}
 
 Due to the many different tools, services, and infrastructures
-available in the general area of big data, an interface ought to be as
+available in the general area of Big Data, an interface ought to be as
 vendor independent as possible, while at the same time be able to
-leverage best practices. Hence, we need to provide a methodology that
+leverage best practices. Hence, a methodology is needed that
 allows extension of interfaces to adapt and leverage existing
 approaches, but also allows the interfaces to provide merit in easy
 specifications that assist the formulation and definition of the
@@ -273,64 +270,58 @@ NBDRA.
 
 \subsubsection{Support of Plug-In Compute Infrastructure}
 
-As Big Data is not just about hosting data, but about analyzing data,
-the interfaces provided herein must encapsulate a rich infrastructure
+As big data is not just about hosting data, but about analyzing data
+the interfaces we provide must encapsulate a rich infrastructure
 environment that is used by data scientists. This includes the ability
 to integrate (or plug-in) various compute resources and services to
-provide the necessary compute power to analyze the data. These resources and services 
-include the following: 
-\begin{itemize}
-\item Access to hierarchy of compute resources, from the laptop/desktop,
-servers, data clusters, and clouds; 
-\item The ability to integrate
+provide the necessary compute power to analyze the data. This includes
+(a) access to hierarchy of compute resources, from the laptop/desktop,
+servers, data clusters, and clouds, (b) he ability to integrate
 special purpose hardware such as GPUs and FPGAs that are used in
-accelerated analysis of data; and 
-\item The integration of services
+accelerated analysis of data, and (c) the integration of services
 including micro services that allow the analysis of the data by
 delegating them to hosted or dynamically deployed services on the
 infrastructure of choice.
-\end{itemize}
 
 \subsubsection{Orchestration of Infrastructure and Services}
 
-From review of the use case collection, presented in 
-the {\it NBDIF: Volume 3, Use Cases and Requirements document}
-\cite{nist-vol-3}, the need arose to address the mechanism
+As part of the use case collection we present in Volume 3
+\cite{nist-vol-3}, it is obvious that we need to address the mechanism
 of preparing a suitable infrastructures for various use cases. As not
-every infrastructure is suited for every use case, a custom
-infrastructure may be needed. As such this document is not attempting to deliver
-a single deployed NBDRA, but allow the setup of an infrastructure that
-satisfies the particular use case. To achieve this task, it is necessary to
-provision software stacks and services while orchestrating their
-deployment and leveraging infrastructures. It is not the focus of this
+every infrastructure is suited for every use case a custom
+infrastructure may be needed. As such we are not attempting to deliver
+a single deployed BDRA, but allow the setup of an infrastructure that
+satisfies the particular uses case. To achieve this task, we need to
+provision software stacks and services while orchestrate their
+deployment and leveraging infrastructures. It is not focus of this
 document to replace existing orchestration software and services, but
 provide an interface to them to leverage them as part of defining and
 creating the infrastructure. Various orchestration frameworks and
-services could therefore be leveraged, even as part of the same
-framework, and work in orchestrated fashion to achieve the goal of
+services could therefore be leveraged even as part of the same
+framework and work in orchestrated fashion to achieve the goal of
 preparing an infrastructure suitable for one or more applications.
 
 \subsubsection{Orchestration of Big Data Applications and Experiments}
 
-The creation of the infrastructure suitable for big data applications
-provides the basic infrastructure. However big data applications may
+The creation of the infrastructure suitable for Big Data applications
+provides the basic computing environment. However Big Data applications may
 require the creation of sophisticated applications as part of
 interactive experiments to analyze and probe the data. For this
-purpose, we need to be able to orchestrate and interact with
+purpose, the applications must be able to orchestrate and interact with
 experiments conducted on the data while assuring reproducibility and
 correctness of the data. For this purpose, a {\it System Orchestrator}
-(either the Data Scientists or a service acting in behalf of the
-scientist) is used as the command center to interact in behalf of the
-BD Application Provider to orchestrate dataflow from Data Provider,
-carryout the BD application lifecycle with the help of the BD
-Framework Provider, and enable Data Consumer to consume Big Data
-processing results. An interface is needed to describe the
+(either the data scientists or a service acting on behalf of the
+data scientist) is used as the command center to interact on behalf of the
+Big Data Application Provider to orchestrate dataflow from Data Provider,
+carryout the Big Data application lifecycle with the help of the Big Data
+Framework Provider, and enable the Data Consumer to consume Big Data
+processing results. An interface is needed to describe these
 interactions and to allow leveraging of experiment management
-frameworks in scripted fashion. We require a customization of
-parameters on several levels. On the highest level, we require high
-level- application motivated parameters to drive the orchestration of
-the experiment. On lower levels these high-level parameters may drive
-and create service level agreement augmented specifications and
+frameworks in scripted fashion. A customization of
+parameters is needed on several levels. On the highest level, high-
+level, application-motivated parameters are needed to drive the orchestration of
+the experiment. On lower levels, these high-level parameters may drive
+and create service level agreements, augmented specifications, and
 parameters that could even lead to the orchestration of infrastructure
 and services to satisfy experiment needs.
 
