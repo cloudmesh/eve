@@ -868,20 +868,21 @@ have gradations of responsibility and privilege.
 \subsubsection{Organization}
 
 An important concept in many applications is the management of a group
-of users in an organization that manages a big data application or
-infrastructure. This can be achieved through two concepts. First, it
-can be achieved while using the profile and user resources itself as
+of users in an organization that manages a Big Data application or
+infrastructure. User group management can be achieved through three concepts. First, it
+can be achieved by using the profile and user resources itself as
 they contain the ability to manage multiple users as part of the REST
 interface. The second concept is to create a (virtual) organization that
-lists all users of this virtual organization. The third concept is to
+lists all users within the virtual organization. The third concept is to
 introduce groups and roles either as part of the user definition or as
-part of a simple list similar to the organization
+part of a simple list similar to the organization.
 
 \codeFromJson{json}{organization.json}{User}{o:organization}
 
-Thes concepts allow now the clear definition of various roles such as 
-data provider, data consumer, data curator, and others. It also would
-allow the creation of services that restrict data access by role, or
+The  profile, user, and organization concepts allow for the clear definition of 
+various roles such as
+data provider, data consumer, data curator, and others. These concepts also
+allow for the creation of services that restrict data access by role, or
 organizational affiliation.
 
 
