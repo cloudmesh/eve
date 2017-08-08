@@ -1414,10 +1414,8 @@ applications.
 \subsubsection{Reservation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Some services may consume a considerable amount of resources. In order
-to allow utilization we need to reserve their use. For this porrpose
-we have introduced a reservation object (see Object \ref
-{o:reservation}).
+Some services may consume a considerable amount of resources, necessitating
+the reservation of resources. For this purpose, a reservation object (Object \ref{o:reservation}) has been introduced.
 
 \codeFromJson{json}{reservation.json}{Reservation}{o:reservation}
 
@@ -1434,7 +1432,7 @@ we have introduced a reservation object (see Object \ref
 \subsection{Containers}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-This defines {\em container} object. 
+The following defines the {\em container} object. 
 
 \codeFromJson{json}{container.json}{Container}{o:container}
 
@@ -1451,8 +1449,8 @@ This defines {\em container} object.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A \textit{deployment} consists of the resource \- \textit{cluster},
-the location \- \textit{provider}, e.g., AWS, OpenStack, etc., and
-software \textit{stack} to be deployed (e.g., hadoop, spark).
+the location \- \textit{provider} (e.g., OpenStack), and
+software \textit{stack} to be deployed (e.g., Hadoop, Spark).
 
 \codeFromJson{json}{deployment.json}{Deployment}{o:deployment}
 
