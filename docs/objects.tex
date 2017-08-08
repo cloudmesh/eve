@@ -1043,23 +1043,23 @@ either be defined by uuid or by name.
 
 \subsubsection{Database}
 
-A \textit{database} could have a name, an \textit{endpoint} (e.g., host:port),
-and protocol used (e.g., SQL, mongo, etc.).
+A \textit{database} could have a name, an \textit{endpoint} (e.g., host, port),
+and a protocol used (e.g., SQL, mongo).
 
 \codeFromJson{json}{database.json}{Database}{o:database}
 
 \subsubsection{Stream} 
 
-A stream is describing stream of data while providing information about
-rate and number of items exchanged while issuing requests to the
-stream. A stream my return data items in a specific format that is
+The stream object describes a data flow, providing information about
+the rate and number of items exchanged while issuing requests to the
+stream. A stream may return data items in a specific format that is
 defined by the stream. 
 
 \codeFromJson{json}{stream.json}{Stream}{o:stream}
 
 Examples for streams could be a stream of random numbers but could
 also include more complex formats such as the retrieval of data
-records. Services can subscribe, unsubscribe from a stream, while also
+records. Services can subscribe and unsubscribe from a stream, while also
 applying filters to the subscribed stream.
 
 
