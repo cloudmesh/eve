@@ -681,8 +681,8 @@ Application Provider.
 \section{Specification Paradigm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this document we summarize elementary objects that are important to
-for the NBDRA.
+This section summarizes the elementary objects that are important to
+the NBDRA.
 
 \subsection{Lessons Learned}
 
@@ -783,9 +783,10 @@ automatically.
 
 \subsection{Interface Compliancy}
 
-Due to the easy extensibility of our objects and their implicit
-interfaces it is important to introduce a terminology that allows us
-to define interface compliancy. We define it as follows
+Due to the easy extensibility of the objects in this document and their implicit
+interfaces, it is important to introduce a terminology that allows 
+definition of interface compliancy. The Subgroup defines three levels of interface compliance 
+as follows:
 
 \begin{description}
 
@@ -795,24 +796,27 @@ to define interface compliancy. We define it as follows
   objects is associated with the version. This reference
   implementation will implement all objects.
 
-\item[Partially Compliance:] These are reference implementations that
+\item[Partial Compliance:] These are reference implementations that
   provide partial compliance to the objects defined in this
   document. A version number will be added to assure the snapshot in
   time of the objects is associated with the version. This reference
   implementation will implement a partial list of the objects. A
-  document is accompanied that lists all objects defined, but also
+  document will be generated during the reference implementation 
+  that lists all objects defined, but also
   lists the objects that are not defined by the reference
-  architecture. A document will outline which objects and interfaces
+  architecture. The document will outline which objects and interfaces
   have been implemented.
 
-\item[Full and extended Compliance:] These are interfaces that in
+\item[Full and Extended Compliance:] These are interfaces that in
   addition to the full compliance also introduce additional interfaces
-  and extend them. A document will be provided that lists the
+  and extend them. A document will be generated during the reference implementation 
+  that lists the
   differences to the document defined here.
 
 \end{description}
 
-Such documents can than be forwarded to the subgroup for further
+The  documents  generated during the reference implementation 
+can then be forwarded to the Reference Architecture Subgroup for further
 discussion and for possible future modifications based on additional
 practical user feedback.
 
@@ -822,10 +826,10 @@ practical user feedback.
 \section{Specification}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Several objects defined in this document are used across the NBDRA. 
-Therefore, the objects have not been organized by NBDRA components, 
-as shown in Figure~\ref{F:architecture}, but rather grouped by functional
-use as summarized in Figure \ref{F:interfaces}.
+As several objects are used across the NBDRA we have not organized
+them by component as introduced in
+Figure~\ref{F:architecture}. Instead we have grouped the objects by
+functional use as depicted summarized in Figure \ref{F:interfaces}.
 
 \begin{figure*}[h]\centering
 \includegraphics[width=1.1\textwidth]{images/interfaces}
@@ -834,31 +838,29 @@ use as summarized in Figure \ref{F:interfaces}.
 \end{figure*}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Identity}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In a multiuser environment we need a simple mechanism of associating
-objects and data to a particular person or group. While we do not want
-to replace with our efforts more elaborate solutions such as proposed
-by eduPerson \cite{www-eduperson} or others, we need a very simple way
-of distinguishing users. Therefore we have introduced a number of
+In a multiuser environment, a simple mechanism is used in this document for
+associating objects and data to a particular person or group. While 
+these efforts do not intend to replace more elaborate solutions such as proposed
+by eduPerson \cite{www-eduperson} or others, a very simple way
+was chosen to distinguish users. Therefore, the following sections introduce a number of
 simple objects including a profile and a user.
 
 \subsubsection{Profile}
 
 A profile defines the identity of an individual. It contains name and
-e-mail information. It may have an optional uuid and/or use a unique
-e-mail to distinguish a user. Profiles are used to identify diffrent
+e-mail information. It may have an optional unique user ID (uuid) and/or use a unique
+e-mail to distinguish a user. Profiles are used to identify different
 users.
 
 \codeFromJson{json}{profile.json}{Profile}{o:profile}
 
 \subsubsection{User}
 
-In contrast to the profile a user contains additional attributs that
-define the role of the user within the multi-user system.  This
-associates different roles to individuals, these roles potentially
+In contrast to the profile, a user contains additional attributes that
+define the role of the user within the multiuser system. The user
+associates different roles to individuals. These roles potentially
 have gradations of responsibility and privilege.
 
 \codeFromJson{json}{user.json}{Organization}{o:user}
@@ -866,20 +868,21 @@ have gradations of responsibility and privilege.
 \subsubsection{Organization}
 
 An important concept in many applications is the management of a group
-of users in an organization that manages a big data application or
-infrastructure. This can be achieved through two concepts. First, it
-can be achieved while using the profile and user resources itself as
+of users in an organization that manages a Big Data application or
+infrastructure. User group management can be achieved through three concepts. First, it
+can be achieved by using the profile and user resources itself as
 they contain the ability to manage multiple users as part of the REST
 interface. The second concept is to create a (virtual) organization that
-lists all users of this virtual organization. The third concept is to
+lists all users within the virtual organization. The third concept is to
 introduce groups and roles either as part of the user definition or as
-part of a simple list similar to the organization
+part of a simple list similar to the organization.
 
 \codeFromJson{json}{organization.json}{User}{o:organization}
 
-Thes concepts allow now the clear definition of various roles such as 
-data provider, data consumer, data curator, and others. It also would
-allow the creation of services that restrict data access by role, or
+The  profile, user, and organization concepts allow for the clear definition of 
+various roles such as
+data provider, data consumer, data curator, and others. These concepts also
+allow for the creation of services that restrict data access by role, or
 organizational affiliation.
 
 
@@ -960,16 +963,17 @@ directories, data streams, and data filters.
 \subsubsection{TimeStamp}
 
 Often data needs to be time stamped to indicate when it has been
-accessed, created or modified. All objects defined in this document
-will have in its final version a time stamp.
+accessed, created, or modified. All objects defined in this document
+will have, in their final version, a time stamp.
 
 \codeFromJson{json}{timestamp.json}{Timestamp}{o:timestamp}
 
-\subsubsection{Var}
+\subsubsection{Variables}
 
-Variables are used to store a simple values. Each variable can have a
-type. The variable value format is defined as string to allow maximal
-probability. The type of the value is also provided.
+Variables are used to store simple values. Each variable can have a
+type, which is also provided as demonstrated in the object below. The
+variable value format is defined as string to allow maximal
+probability. 
 
 \codeFromJson{json}{var.json}{Var}{o:var}
 
@@ -992,12 +996,12 @@ name for a cloud where the context is defined by the cloud name.
 
 \subsubsection{File}
 
-A file is a computer resource allowing to store data that is being
+A file is a computer resource allowing storage of data that is being
 processed. The interface to a file provides the mechanism to
-appropriately locate a file in a distributed system. Identification
-include the name, and endpoint, the checksum and the size. Additional
-parameters such as the lasst access time could be stored also. As such
-the Interface only describes the location of the file.
+appropriately locate a file in a distributed system. File identification
+includes the name, endpoint, checksum, and size. Additional
+parameters, such as the last access time, could also be stored. 
+The interface only describes the location of the file.
 
 The \textit{file} object has \textit{name}, \textit{endpoint}
 (location), \textit{size} in GB, MB, Byte, \textit{checksum} for
@@ -1009,7 +1013,7 @@ integrity check, and last \textit{accessed} timestamp.
 
 A data object could have one alias or even multiple ones. The reason for an
 alias is that a file may have a complex name but a user may want to
-refer to that file in a name space that is suitable for the users
+refer to that file in a name space that is suitable for the user's
 application.
 
 \codeFromJson{json}{file_alias.json}{File alias}{o:file-alias}
@@ -1059,8 +1063,8 @@ applying filters to the subscribed stream.
 
 \subsubsection{Filter} 
 
-Filters can operate on a variety of objects and reduce and filter
-information based on a search criterion.
+Filters can operate on a variety of objects and reduce the
+information received based on a search criterion.
 
 \codeFromJson{json}{filter.json}{Filter}{o:filter}
 
@@ -1069,22 +1073,22 @@ information based on a search criterion.
 \subsection{Virtual Cluster}\label{S:vc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-One of the essential features for Bid Data is the creation of a Big
-Data Analysis Cluster.  A virtual cluster combines resources that
-generally ar used to serve the Big Data Application and can constitute
+One of the essential features for Big Data is the creation of a Big
+Data analysis cluster. A virtual cluster combines resources that
+generally are used to serve the Big Data application and can constitute
 a variety of data analysis nodes that together build the virtual
-cluster. Instead of focussing only on the deployment of a physical
-cluster the creation of a virtual cluster can be instantiated on a
-number of different platforms. Such a platforms can include clouds,
-containers, physical hardware or a mix thereof to support different
-aspects of the big data application. 
+cluster. Instead of focusing only on the deployment of a physical
+cluster, the creation of a virtual cluster can be instantiated on a
+number of different platforms. Such platforms include clouds,
+containers, physical hardware, or a mix thereof to support different
+aspects of the Big Data application. 
 
 Figure~\ref{F:uml-virtualcluster} illustrates the process for
-allocating and provisioning a virtual cluster.  The user defines the
-desired physical properties of the cluster such CPU, memory, disk and
-the intended configuration (such as software, users, etc).  After
+allocating and provisioning a virtual cluster. The user defines the
+desired physical properties of the cluster (e.g., CPU, memory, disk) and
+the intended configuration (e.g., software, users). After
 requesting the stack to be deployed, cloudmesh allocates the machines
-as desired by matching the desired properties with the available
+by matching the desired properties with the available
 images and booting. The stack definition is then parsed then evaluated
 to provision the cluster.
 
@@ -1099,18 +1103,19 @@ to provision the cluster.
 \subsubsection{Virtual Cluster}
 
 A virtual cluster is an agglomeration of virtual compute nodes that
+
 constitute the cluster. Nodes can be assembled to be baremetal,
 VMs, and containers. A virtual cluster contains a number
 of virtual compute nodes.  
 
-The virtual cluster object has name, label, endpoint and provider. The
+The virtual cluster object has name, label, endpoint, and provider. The
 \textit{endpoint} defines a mechanism to connect to it. The
-\textit{provider} defines the nature of the cluster, e.g., its a
+\textit{provider} defines the nature of the cluster (e.g., it is a
 virtual cluster on an OpenStack cloud, or from AWS, or a bare-metal
-cluster and others
+cluster).
 
 To manage the cluster it can have a frontend node that is used to
-manage other nodes. authorized keys within the definition of the
+manage other nodes. Authorized keys within the definition of the
 cluster allow administrative functions, while authorized keys on a
 compute node allow login and use functionality of the virtual nodes.
 
@@ -1140,8 +1145,8 @@ node has name, label, a flavor, network interface cards (NICs) and other relevan
 
 \subsubsection{Flavor}
 
-The flavor specifies elementary information about the compute node
-such as memory, number of cores as well as other attributes that can
+The flavor specifies elementary information about the compute node,
+such as memory and number of cores, as well as other attributes that can
 be added. Flavors are essential to size a virtual cluster appropriately.
 
 \codeFromJson{json}{flavor.json}{Flavor}{o:flavor}
@@ -1157,18 +1162,18 @@ be added. Flavors are essential to size a virtual cluster appropriately.
 % END OLD
 %
 
-\subsubsection{Nic}
+\subsubsection{Network Interface Card}
 
-To interact between the node a network is needed. We specify such a
-network interface on a virtual machine with a Nic (network interface
-card) object as showcased in Object~\ref{o:nic}. 
+To interact between the nodes, a network interface is needed. Such a
+network interface, specified on a virtual machine with a NIC
+object, is showcased in Object~\ref{o:nic}. 
 
 \codeFromJson{json}{nic.json}{Network interface card}{o:nic}
 
 \subsubsection{Key}
 
-Many services and Frameworks use ssh keys to authenticate. To allow
-the convenient storage of the public ket the sshkey object can be
+Many services and frameworks use Secure Shell (SSH) keys to authenticate. To allow
+the convenient storage of the public key, the sshkey object can be
 used (see Object \ref{o:key}).
 
 \codeFromJson{json}{sshkey.json}{Key}{o:key}
@@ -1241,32 +1246,33 @@ is depicted in Object \ref{o:secgroup}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{IaaS}
+\subsection{Infrastructure as a Service}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Although we have defined in Section \ref{S:vc} a general virtual
-cluster useful for Big Data, we are sometimes in the need to
-specifically utilize Infrastructure as a Service Frameworks such as
-Openstack, AWS, Azure, Google and others. To do so it is beneficial to
-be able to define virtual clusters using these frameworks. Hence, we
-define in this subsection interfaces related to Infrastructure as a
-Service frameworks. This includes specific objects useful for
+Although Section \ref{S:vc} defines a general virtual
+cluster useful for Big Data, sometimes the need exists to
+specifically utilize Infrastructure as a Service (IaaS) frameworks, such as
+Openstack, Azure, and others. To do so, it is beneficial to
+be able to define virtual clusters using these frameworks. Hence, 
+this subsection defines interfaces related to 
+IaaS frameworks. This includes specific objects useful for
 OpenStack, Azure, and AWS, as well as others. The definition of the
-objects between the clouds to manage them are different and not
+objects used between the clouds to manage them, are different and not
 standardized. In this case the objects support functions such as
+
 starting, stoping, suspending resuming, migration, network
 configuration, assigning of resources, assigning of operating systems
 for and others for the VMs.
 
-Learning from others such as {\it LibCloud} shows the definition of
-generalized objects, that however are augmented with extra fields t
+Inspecting other examples, such as {\it LibCloud}, shows the definition of
+generalized objects are discovered, which are augmented with extra fields to
 specifically integrate with the various frameworks. When working with
-Cloudmesh we found that it is sufficient to  be able to specify a
+cloudmesh, it is sufficient to be able to specify a
 cloud based on a cloud specific action. Actions include boot,
-terminate, suspend, resume, assign network ips, add users.
+terminate, suspend, resume, assign network intrusion prevention system, and add users.
 
-To support such actions we can use objects that are used based on the
-type of the IaaS when invoked. We list such objects as used in
+To support such actions, objects can be selected based on the
+IaaS type in use when invoked. The following subsections list these objects as used in
 LibCloud, OpenStack, and Azure. 
 
 % ----------------------------------------------------------------------
@@ -1275,34 +1281,34 @@ LibCloud, OpenStack, and Azure.
 
 Libcloud is a Python library for interacting with different cloud
 service providers. It uses a unified API that exposes similar access
-to a variety of clouds. Internally is uses objects that we can use
+to a variety of clouds. Internally, it uses objects that can
 interface with different IaaS frameworks. However, as these frameworks
-are till different form each other, specific adaptations are done for
+are different from each other, specific adaptations are done for
 each IaaS, mostly reflected in the LibCloud Node (see Section
 \ref{S:libcloudnode})
 
-\paragraph{Disadvantages}
+\paragraph{Challenges}
 
-We have used LibCloud for some time practically in various versions of
-Cloudmesh. However we found that at times the representation and
-functionality provided by LibCloud for reference implementations did
+For time considerations, LibCloud was used for some time practically in various versions of
+cloudmesh. However, it became apparent that at times the representation and
+functionality provided by LibCloud, for reference implementations, did
 not support some advanced aspects provided by the native cloud
-objects. Thus for advanced applications we not only support the use of
-LibCloud, but also support the direct utilization of the native
-objects and interfaces provided by a particular IaaS framework. For
-this reason we have introduced additional interfaces as showcased in
-Sections \ref{S:openstack} and \ref{S:azure}.  We intend to integrate
-additional sections addressing other IaaS frameworks in future.
+objects. Depending on the application, libraries for interfacing with different frameworks, 
+direct utilization of the native
+objects, and interfaces provided by a particular IaaS framework could all be viable options. 
+Additional interfaces have been introduced in
+Sections \ref{S:openstack} and \ref{S:azure}. 
+Additional sections addressing other IaaS frameworks may be integrated in the future.
 
 \paragraph{LibCloud Flavor}
 
-The object referring to flavors is liste in Object \ref{o:libcloud-flavor}.
+The object referring to flavors is listed in Object \ref{o:libcloud-flavor}.
 
 \codeFromJson{json}{libcloud_flavor.json}{Libcloud flavor}{o:libcloud-flavor}
 
 \paragraph{LibCloud Image}
 
-The object referring to images is liste in Object
+The object referring to images is listed in Object
 \ref{o:libcloud-images}.
 
 \codeFromJson{json}{libcloud_image.json}{Libcloud image}{o:libcloud-image}
@@ -1311,16 +1317,17 @@ The object referring to images is liste in Object
 \paragraph{LibCloud VM}
 
 
-The object referring to VMs is liste in 
+The object referring to virtual machines is listed in 
 
 
 \codeFromJson{json}{libcloud_vm.json}{LibCloud VM}{o:libcloud-vm}
 
 \paragraph{LibCloud Node}\label{S:libcloudnode}
 
-VMs for the various clouds have additional attributes
-that we summarize in Object \ref{o:libcloud-vm}.  These attributes are
-going to be integrated into the VM object.
+
+Virtual machines for the various clouds have additional attributes
+that are summarized in Object \ref{o:libcloud-vm}. These attributes 
+will be integrated into the VM object in the future.
 
 \codeFromJson{json}{libcloudNode.json}{LibCloud Node}{o:libcloud-node}
 
@@ -1513,11 +1520,10 @@ as the library origin, version, and others (see Object \ref{o:hadoop})
 \subsection{Microservice}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-As part of microservices, we are defining a function with parameters
-that can be invoked. To describe such services we have defined the
-Object \ref {o:microservice}.  As we can define multiple such services
-we can easily find them and use them as part of a microservice based
-implementation.
+As part of microservices, a function with parameters that can be invoked
+has been defined. To describe such services, the Object \ref {o:microservice}
+was created. Defining multiple services facilitates the finding of the
+microservices and the use as part of a microservice based implementation.
  
 \codeFromJson{json}{microservice.json}{Microservice}{o:microservice}
 
@@ -1754,12 +1760,12 @@ developing python) as simple as
 
 \subsection{REST Service}\label{cm-rest}
 
-With the cloudmesh REST framework it is easy to create REST services
-while defining the resources via example json objects. This is achieved
-while leveraging the python eve \cite{www-eve} and a modified version of python
+With the cloudmesh REST framework, it is easy to create REST services
+while defining the resources via example JSON objects. This is achieved
+while leveraging the Python eve \cite{www-eve} and a modified version of Python
 evengine \cite{www-cloudmesh-eveengine}. 
 
-A valid json resource specification looks like this:
+A valid JSON resource specification looks like this:
 
 \begin{verbatim}
 {
@@ -1773,23 +1779,23 @@ A valid json resource specification looks like this:
 }
 \end{verbatim}
 
-here we define an object called profile, that contains a number of
-attributes and values. The type of the values are automatically
-determined. All json specifications are contained in a directory and
-can easily be converted into a valid schema for the eve rest service
-by executing the commands
+In this example, an object called profile is defined, which contains a number of
+attributes and values. The type of the values is automatically
+determined. All JSON specifications are contained in a directory and
+can easily be converted into a valid schema for the eve REST service
+by executing the following commands:
 
 \begin{verbatim}
 cms schema cat . all.json
 cms schema convert all.json
 \end{verbatim}
 
-This will create a the configuration \verb|all.settings.py| that can
-be used to start an eve service
+This will create the configuration \verb|all.settings.py| that can
+be used to start an eve service.
 
-Once the schema has defined, cloudmesh specifies defaults for managing
-a sample data base that is coupled with the REST service. We use
-mongodb which could be placed on a sharded mongo service. 
+Once the schema has been defined, cloudmesh specifies defaults for managing
+a sample database that is coupled with the REST service. 
+MongoDB was used which could be placed on a sharded mongo service. 
 
 \subsection{Limitations}
 
