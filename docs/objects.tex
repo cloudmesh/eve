@@ -533,7 +533,7 @@ the encoding of the low-level business logic of the Big Data system
 Orchestrator). The activity implements the techniques to extract
 knowledge from the data based on the requirements of the vertical
 application. The requirements specify the data processing algorithms
-to produce new insights that will address the
+for processing the data to produce new insights that will address the
 technical goal. The analytics activity will leverage the processing
 frameworks to implement the associated logic. This typically involves
 the activity providing software that implements the analytic logic to
@@ -587,11 +587,16 @@ paradigm for data transfer.
 \subsubsection{Big Data Provider Framework Interface Requirements}\label{S:r-provider-interface}
 
 Data for Big Data applications are delivered through data providers.
-They can be either local providers contributed by a user or
-distributed data providers that refer to data on the internet. We must
-be able to provide the following functionality (1) interfaces to files
-(2) interfaces to virtual data directories (3) interfaces to data
-streams (4) and interfaces to data filters.
+They can be either local providers, contributed by a user, or
+distributed data providers that refer to data on the Internet. This interface must
+be able to provide the following functionality:
+\begin{itemize}
+\item Interfaces to files,
+\item Interfaces to virtual data directories, 
+\item Interfaces to data streams, and 
+\item Interfaces to data filters.
+\end{itemize}
+
 
 \paragraph{Infrastructures Interface Requirements}
 
