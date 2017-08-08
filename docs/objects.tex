@@ -337,24 +337,24 @@ and services to satisfy experiment needs.
 \subsubsection{Reusability}
 
 The interfaces provided must encourage reusability of the
-infrastructure, services, and experiments described by them. This
-includes, (a) reusability of available analytics packages and services
-for adoption, (b) deployment of customizable analytics tools and
+infrastructure, services and experiments described by them. This
+includes (a) reusability of available analytics packages and services
+for adoption (b) deployment of customizable analytics tools and
 services, and (c) operational adjustments that allow the services and
 infrastructure to be adapted while at the same time allowing for
-reproducible experiment execution.
+reproducible experiment execution
 
 \subsubsection{Execution Workloads}
 
-One of the important aspects of distributed big data services can be
-that the data served is simply to big to be moved to a different
-location. Instead we are in the need of an interface allowing us to
-describe and package analytics algorithms and potentially also tools
-as a payload to a data service. This can be best achieved not by
-sending the detailed execution, but sending an interface description
+One of the important aspects of distributed Big Data services can be
+that the data served is simply too big to be moved to a different
+location. Instead, an interface could allow the description and 
+packaging of analytics algorithms, and potentially also tools,
+as a payload to a data service. This can be best achieved, not by
+sending the detailed execution, but by sending an interface description
 that describes how such an algorithm or tool can be created on the
-server and be executed under security considerations integrated
-with authentication and authorization in mind.
+server and be executed under security considerations (integrated
+with authentication and authorization in mind).
 
 \subsubsection{Security and Privacy Fabric Requirements}
 
@@ -712,10 +712,12 @@ be reused in concrete reference implementations.
 
 \subsection{Design by Example}
 
-To accelerate discussion among the team we use an approach to define
-objects and its interfaces by example. These examples can than be taken
-and a schema can generated from them automatically. The schema is added to the
-Appendix~\ref{s:schema} of the document. 
+To accelerate discussion among the NBD-PWG members, an approach by example is
+used to define objects and their interfaces. These examples can then be used 
+to automatically generate a schema. The schema is added to the 
+Appendix~\ref{s:schema} of the document. Appendix~\ref{s:schema} lists 
+the schema that is automatically created from the definitions. More information 
+about the creation can be found in Appendix~\ref{s:cloudmesh-rest}.
 
 While focusing first on examples it allows us to speed up our design
 process and simplify discussions about the objects and interfaces
@@ -893,10 +895,10 @@ services.
 
 \codeFromJson{json}{group.json}{Group}{o:group}
 
-A role is a further refinement of a group. Group members can have
-specific roles. A good example is that ability to formulate a group of
-users that have access to a repository. However the role defines more
-specifically read and write privileges to the data within the repository.
+A role is a further refinement of a group. Group members can have specific 
+roles. For example, a group of users can be assigned a role that allows 
+access to a repository. More specifically, the role would define a user’s 
+read and write privileges to the data within the repository.
 
 \codeFromJson{json}{role.json}{Role}{o:role}
 
@@ -1041,23 +1043,23 @@ either be defined by uuid or by name.
 
 \subsubsection{Database}
 
-A \textit{database} could have a name, an \textit{endpoint} (e.g., host:port),
-and protocol used (e.g., SQL, mongo, etc.).
+A \textit{database} could have a name, an \textit{endpoint} (e.g., host, port),
+and a protocol used (e.g., SQL, mongo).
 
 \codeFromJson{json}{database.json}{Database}{o:database}
 
 \subsubsection{Stream} 
 
-A stream is describing stream of data while providing information about
-rate and number of items exchanged while issuing requests to the
-stream. A stream my return data items in a specific format that is
+The stream object describes a data flow, providing information about
+the rate and number of items exchanged while issuing requests to the
+stream. A stream may return data items in a specific format that is
 defined by the stream. 
 
 \codeFromJson{json}{stream.json}{Stream}{o:stream}
 
 Examples for streams could be a stream of random numbers but could
 also include more complex formats such as the retrieval of data
-records. Services can subscribe, unsubscribe from a stream, while also
+records. Services can subscribe and unsubscribe from a stream, while also
 applying filters to the subscribed stream.
 
 
@@ -1333,30 +1335,30 @@ will be integrated into the VM object in the future.
 
 
 % ----------------------------------------------------------------------
-\subsubsection{Openstack}\label{S:openstack}
+\subsubsection{OpenStack}\label{S:openstack}
 % ----------------------------------------------------------------------
 
 Objects related to OpenStack VMs are summarized in this
 section.
 
-\paragraph{Openstack Flavor}
+\paragraph{OpenStack Flavor}
 
-The object referring to flavors is liste in Object
+The object referring to flavors is listed in Object
 \ref{o:libcloud-flavor}.
 
 \codeFromJson{json}{openstack_flavor.json}{Openstack flavor}{o:openstack-flavor}
 
-\paragraph{Openstack Image}
+\paragraph{OpenStack Image}
 
-The object referring to images is liste in Object
+The object referring to images is listed in Object
 \ref{o:openstack-image}.
 
 \codeFromJson{json}{openstack_image.json}{Openstack
   image}{o:openstack-image}
 
-\paragraph{Openstack Vm}
+\paragraph{OpenStack VM}
 
-The object referring to VMs is liste in Object \ref{o:openstack-vm}.
+The object referring to VMs is listed in Object \ref{o:openstack-vm}.
 
 
 \codeFromJson{json}{openstack_vm.json}{Openstack
@@ -1366,26 +1368,26 @@ The object referring to VMs is liste in Object \ref{o:openstack-vm}.
 \subsubsection{Azure}\label{S:azure}
 % ----------------------------------------------------------------------
 
-Objects related to OpenStack VMs are summarized in this
+Objects related to Azure virtual machines are summarized in this
 section.
 
 \paragraph{Azure Size}
 
-The object referring to the image size machines is liste in Object \ref{o:azure-size}.
+The object referring to the image size machines is listed in Object \ref{o:azure-size}.
 
 \codeFromJson{json}{azure-size.json}{Azure-size}{o:azure-size}
 
 
 \paragraph{Azure Image}
 
-The object referring to the images machines is liste in Object
+The object referring to the images machines is listed in Object
 \ref{o:azure-image}.
 
 \codeFromJson{json}{azure-image.json}{Azure-image}{o:azure-image}
 
-\paragraph{Azure Vm}
+\paragraph{Azure VM}
 
-The object referring to the VMs is liste in Object
+The object referring to the virtual machines is listed in Object
 \ref{o:azure-vm}.
  
 \codeFromJson{json}{azure-vm.json}{Azure-vm}{o:azure-vm}
@@ -1416,10 +1418,8 @@ applications.
 \subsubsection{Reservation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Some services may consume a considerable amount of resources. In order
-to allow utilization we need to reserve their use. For this porrpose
-we have introduced a reservation object (see Object \ref
-{o:reservation}).
+Some services may consume a considerable amount of resources, necessitating
+the reservation of resources. For this purpose, a reservation object (Object \ref{o:reservation}) has been introduced.
 
 \codeFromJson{json}{reservation.json}{Reservation}{o:reservation}
 
@@ -1436,7 +1436,7 @@ we have introduced a reservation object (see Object \ref
 \subsection{Containers}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-This defines {\em container} object. 
+The following defines the {\em container} object. 
 
 \codeFromJson{json}{container.json}{Container}{o:container}
 
@@ -1453,8 +1453,8 @@ This defines {\em container} object.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A \textit{deployment} consists of the resource \- \textit{cluster},
-the location \- \textit{provider}, e.g., AWS, OpenStack, etc., and
-software \textit{stack} to be deployed (e.g., hadoop, spark).
+the location \- \textit{provider} (e.g., OpenStack), and
+software \textit{stack} to be deployed (e.g., Hadoop, Spark).
 
 \codeFromJson{json}{deployment.json}{Deployment}{o:deployment}
 
@@ -1736,22 +1736,22 @@ defined in this document.
 
 \section{Cloudmesh Rest}\label{s:cloudmesh-rest}
 
-Cloudmesh Rest is a refernce implementattion for the NBDRA. It
-allows to define automatically a REST service based on the objects
-specified by the NBDRA document. In collaboration with other cloudmesh
+Cloudmesh Rest is a reference implementation for the NBDRA. It
+allows for automatic definition of a REST service based on the objects
+specified by the NBDRA. In collaboration with other cloudmesh
 components it allows easy interaction with hybrid clouds and the
-creation of user managed big data services. 
+creation of user managed Big Data services. 
 
-\subsection{Prerequistis}\label{prerequistis}
+\subsection{Prerequisites}\label{prerequistis}
 
-The preriquisits for Cloudmesh REST are Python 2.7.13 or 3.6.1
-it can easily be installed on a variety of systems (at this time we
-have only tried ubuntu greater 16.04 and OSX Sierra. However, it would
-naturally be possible to also port it to Windows. The instalation
-instruction in this document are not complete and we recommend to
-refer to the cloudmesh manuals which are under development. The goal
-will be to make the instalation (after your system is set up for
-developing python) as simple as 
+The prerequisiits for cloudmesh Rest are Python 2.7.13 or 3.6.1.
+It can easily be installed on a variety of systems (at this time
+only ubuntu greater 16.04 and OSX Sierra have been tested). However, it would
+naturally be possible to also port it to Windows. At the time of publication, the installation
+instructions in this document are not complete. The reader is
+referred to the cloudmesh manuals, which are under development. The goal
+will be to make the installation (after the system is set up for
+developing Python) as simple as the following:
 
 \begin{verbatim}
     pip install cloudmesh.rest
