@@ -99,39 +99,74 @@ usable for the implementation of Big Data Architectures.
 \subsection{Scope and Objectives of the Reference Architecture
   Subgroup}
 
-The NBD-PWG Standards Roadmap Subgroup focused on forming a community
-of interest from industry, academia, and government, with the goal of
-developing a standards roadmap. The Subgroup's approach included the
-following: (Ross, 2013)
+Reference architectures provide “an authoritative source of information about a specific subject area that guides and constrains the instantiations of multiple architectures and solutions.”   Reference architectures generally serve as a foundation for solution architectures and may also be used for comparison and alignment of instantiations of architectures and solutions. 
+ 
+The goal of the NBD-PWG Reference Architecture Subgroup is to develop an open reference architecture for Big Data that achieves the following objectives:
 
+ \begin{itemize}
+\item Provides a common language for the various stakeholders
+\item Encourages adherence to common standards, specifications, and patterns
+\item Provides consistent methods for implementation of technology to solve similar problem sets
+\item Illustrates and improves understanding of the various Big Data components, processes, and systems, in the context of a vendor- and technology-agnostic Big Data conceptual model
+\item Provides a technical reference for U.S. government departments, agencies, and other consumers to understand, discuss, categorize, and compare Big Data solutions
+\item Facilitates analysis of candidate standards for interoperability, portability, reusability, and extendibility
+ \end{itemize}
+
+The NBDRA is a high-level conceptual model crafted to serve as a tool to facilitate open discussion of the requirements, design structures, and operations inherent in Big Data. The NBDRA is intended to facilitate the understanding of the operational intricacies in Big Data. It does not represent the system architecture of a specific Big Data system, but rather is a tool for describing, discussing, and developing system-specific architectures using a common framework of reference. The model is not tied to any specific vendor products, services, or reference implementation, nor does it define prescriptive solutions that inhibit innovation. 
+
+The NBDRA does not address the following:
 \begin{itemize}
-\item Collaborate with the other four NBD-PWG subgroups;
-\item Review products of the other four subgroups including
-  taxonomies, use cases, general requirements, and reference
-  architecture;
-\item Gain an understanding of what standards are available or under
-  development that may apply Big Data; Perform a standards, gap
-  analysis and document the findings;
-\item Document vision and recommendations for future standards
-  activities;
-\item Identify possible barriers that may delay or prevent adoption of
-  Big Data; and
-\item Identify a few areas where new standards could have a
-  significant impact.
-\end{itemize}
+\item Detailed specifications for any organization’s operational systems
+\item Detailed specifications of information exchanges or services
+\item Recommendations or standards for integration of infrastructure products
+\end {itemize}
 
-The goals of the Subgroup will be realized throughout the three
-planned phases of the NBD-PWG work, as outlined in Section 1.1
-\ref{??}.
+The goals of the Subgroup will be realized throughout the three planned phases of the NBD-PWG work, as outlined in Section 1.1 \ref{S:r-background}.
 
-Within the multitude of standards applicable to data and information
-technology, the Subgroup focused on standards that: 1) apply to
-situations encountered in Big Data; 2) facilitate interfaces between
-NBDRA components (difference between Implementer [encoder] or User
-[decoder] may be nonexistent), 3) facilitate handling Big Data
-characteristics, and 4) represent a fundamental function
 
 \subsection{Report Production}
+
+The NBDIF: Volume 8, References Architecture Implementation is one of nine volumes, whose overall
+aims are to define and prioritize Big Data requirements, including interoperability, portability,
+reusability, extensibility, data usage, analytic techniques, and technology infrastructure in order
+to support secure and effective adoption of Big Data. The overall goals of this volume are to
+define and specify interfaces to implement the Big Data Reference Architecture. This volume arose
+from discussions during the weekly NBD-PWG conference calls. Topics included in this volume began
+to take form in Phase 2 of the NBD-PWG work. This volume represents the groundwork for additional
+content planned for Phase 3. During the discussions, the NBD-PWG identified the need to specify
+a variety of interfaces including:
+
+TBD
+
+To enable interoperability between the NBDRA components, a list of well-defined NBDRA interfaces
+is needed. These interfaces are documented in this volume \cite{nist-vol-8}. To introduce them,
+the NBDRA structure will be followed, focusing on interfaces that allow bootstrapping of the NBDRA.
+
+The document begins with a summary of requirements that will be integrated into our specifications.
+Subsequently, each section will introduce a number of objects that build the core of the interface
+addressing a specific aspect of the NBDRA. 
+
+
+A selected number of {\it interface use cases} will be
+showcased to outline how the specific interface can be used in a reference implementation of the 
+NBDRA. Validation of this approach can be achieved while applying it to the application use cases
+that have been gathered in the {\it NBDIF: Volume 3, USe Cases and Requirements} \cite{nist-vol-3} document.
+These application use cases have considerably
+contributed towards the design of the NBDRA. Hence the expectation is that: (a) the interfaces can
+be used to help implement a Big Data architecture for a specific use case; and (b) the proper
+implementation . This approach can facilitate subsequent analysis and comparison of the use cases. 
+
+
+
+This document is expected to grow with the help of contributions from the community to achieve a
+comprehensive set of interfaces that will be usable for the implementation of Big Data Architectures.
+To achieve technical and high quality document content, this document will go through public comments
+period along with NIST internal review.
+
+
+NBDIF: Volume 8, Interfaces is one of nine volumes, whose overall aims
+are to define and specify interfaces to implement the Big Data
+Reference Architecture.
 
 
 
@@ -153,12 +188,62 @@ Version 3 of this document include the following:
 
 TBD
 
+\newpage 
 
 \section{NBDRA Interface Requirements}
 
-Before we start outlining the specific interfaces, we introduce
-general requirements and explain how we define the interfaces while
-encouraging discussions.
+The development of a Big Data reference architecture requires a thorough understanding of current
+techniques, issues, and concerns. To this end, the NBD-PWG collected use cases to gain an 
+understanding of current applications of Big Data, conducted a survey of reference architectures 
+to understand commonalities within Big Data architectures in use, developed a taxonomy to understand
+and organize the information collected, and reviewed existing technologies and trends relevant 
+to Big Data. The results of these NBD-PWG activities were used in the development of the NBDRA 
+(Figure~\ref{F:architecture}) and the interfaces presented herein. Detailed descriptions of these activities can 
+be found in the other volumes of the {\it NBDIF}. 
+
+\begin{figure*}[h]\centering
+\includegraphics[width=1.1\textwidth]{images/vol8-nbdra}
+\caption{NIST Big Data Reference Architecture (NBDRA)}
+\label{F:architecture}
+\end{figure*}
+
+
+This vendor-neutral, technology- and infrastructure-agnostic conceptual model, the NBDRA, is shown 
+in Figure~\ref{F:architecture} and represents a Big Data system comprised of five logical functional components 
+connected by interoperability interfaces (i.e., services). Two fabrics envelop the components, 
+representing the interwoven nature of management and security and privacy with all five of the 
+components. These two fabrics provide services and functionality to the five main roles in the areas
+specific to Big Data and are crucial to any Big Data solution.
+Note: None of the terminology or diagrams in these documents is intended to be normative or to imply
+any business or deployment model. The terms {\it provider} and {\it consumer} as used are descriptive 
+of general roles and are meant to be informative in nature.
+
+The NBDRA is organized around five major roles and multiple sub-roles aligned along two axes 
+representing the two Big Data value chains: the Information Value (horizontal axis) and the Information
+Technology (IT; vertical axis). Along the Information Value axis, the value is created by data collection,
+integration, analysis, and applying the results following the value chain. Along the IT axis, the value
+is created by providing networking, infrastructure, platforms, application tools, and other IT services
+for hosting of and operating the Big Data in support of required data applications. At the intersection
+of both axes is the Big Data Application Provider role, indicating that data analytics and its 
+implementation provide the value to Big Data stakeholders in both value chains. The term provider 
+as part of the Big Data Application Provider and Bid Data Framework Provider is there to indicate 
+that those roles provide or implement specific activities and functions within the system. It does 
+not designate a service model or business entity.
+
+The DATA arrows in Figure 2 show the flow of data between the system’s main roles. Data flows 
+between the roles either physically (i.e., by value) or by providing its location and the means
+to access it (i.e., by reference). The SW arrows show transfer of software tools for processing of
+Big Data {\it in situ}. The Service Use arrows represent software programmable interfaces. While the
+main focus of the NBDRA is to represent the run-time environment, all three types of communications 
+or transactions can happen in the configuration phase as well. Manual agreements (e.g., service-level
+agreements) and human interactions that may exist throughout the system are not shown in the NBDRA.
+
+Detailed information on the NBDRA conceptual model is presented in the 
+{\it NBDIF: Volume 6, Reference Architecture} document.
+
+
+Prior to outlining the specific interfaces, 
+general requirements are introduced and the interfaces are defined.
 
 \subsection{High Level Requirements of the Interface Approach}
 
@@ -169,9 +254,9 @@ in Figure~\ref{F:architecture}.
 \subsubsection{Technology and Vendor Agnostic}
 
 Due to the many different tools, services, and infrastructures
-available in the general area of big data, an interface ought to be as
+available in the general area of Big Data, an interface ought to be as
 vendor independent as possible, while at the same time be able to
-leverage best practices. Hence, we need to provide a methodology that
+leverage best practices. Hence, a methodology is needed that
 allows extension of interfaces to adapt and leverage existing
 approaches, but also allows the interfaces to provide merit in easy
 specifications that assist the formulation and definition of the
@@ -212,25 +297,25 @@ preparing an infrastructure suitable for one or more applications.
 
 \subsubsection{Orchestration of Big Data Applications and Experiments}
 
-The creation of the infrastructure suitable for big data applications
-provides the basic infrastructure. However big data applications may
+The creation of the infrastructure suitable for Big Data applications
+provides the basic computing environment. However Big Data applications may
 require the creation of sophisticated applications as part of
 interactive experiments to analyze and probe the data. For this
-purpose, we need to be able to orchestrate and interact with
+purpose, the applications must be able to orchestrate and interact with
 experiments conducted on the data while assuring reproducibility and
 correctness of the data. For this purpose, a {\it System Orchestrator}
-(either the Data Scientists or a service acting in behalf of the
-scientist) is used as the command center to interact in behalf of the
-BD Application Provider to orchestrate dataflow from Data Provider,
-carryout the BD application lifecycle with the help of the BD
-Framework Provider, and enable Data Consumer to consume Big Data
-processing results. An interface is needed to describe the
+(either the data scientists or a service acting on behalf of the
+data scientist) is used as the command center to interact on behalf of the
+Big Data Application Provider to orchestrate dataflow from Data Provider,
+carryout the Big Data application lifecycle with the help of the Big Data
+Framework Provider, and enable the Data Consumer to consume Big Data
+processing results. An interface is needed to describe these
 interactions and to allow leveraging of experiment management
-frameworks in scripted fashion. We require a customization of
-parameters on several levels. On the highest level, we require high
-level- application motivated parameters to drive the orchestration of
-the experiment. On lower levels these high-level parameters may drive
-and create service level agreement augmented specifications and
+frameworks in scripted fashion. A customization of
+parameters is needed on several levels. On the highest level, high-
+level, application-motivated parameters are needed to drive the orchestration of
+the experiment. On lower levels, these high-level parameters may drive
+and create service level agreements, augmented specifications, and
 parameters that could even lead to the orchestration of infrastructure
 and services to satisfy experiment needs.
 
@@ -246,39 +331,40 @@ reproducible experiment execution
 
 \subsubsection{Execution Workloads}
 
-One of the important aspects of distributed big data services can be
-that the data served is simply to big to be moved to a different
-location. Instead we are in the need of an interface allowing us to
-describe and package analytics algorithms and potentially also tools
-as a payload to a data service. This can be best achieved not by
-sending the detailed execution, but sending an interface description
+One of the important aspects of distributed Big Data services can be
+that the data served is simply too big to be moved to a different
+location. Instead, an interface could allow the description and 
+packaging of analytics algorithms, and potentially also tools,
+as a payload to a data service. This can be best achieved, not by
+sending the detailed execution, but by sending an interface description
 that describes how such an algorithm or tool can be created on the
-server and be executed under security considerations integrated
-with authentication and authorization in mind.
+server and be executed under security considerations (integrated
+with authentication and authorization in mind).
 
 \subsubsection{Security and Privacy Fabric Requirements}
 
 Although the focus of this document is not security and privacy, which
-are documented in Volume 4 \cite{nist-vol-4} of the NBDRA, we must
-make sure that the interfaces we define can be integrated into a
+are documented in the {\it NBDIF: Volume 4, Security and Privacy}
+\cite{nist-vol-4}, 
+the interfaces defined herein must be capable of integration into a
 secure reference architecture that supports secure execution, secure
-data transfer and privacy. Consequently, the interfaces that we define
-here can be augmented with frameworks and solutions that provide such
-mechanisms. Thus, we need to distinguish diverse requirement needs
-stemming from different use cases addressing security. To contrast
-that the security requirements between applications can drastically
-vary we use the following example. Although many of the interfaces and
-its objects to support physics big data application are similar to
-those in health care, they distinguish themselves from the integration
+data transfer, and privacy. Consequently, the interfaces defined
+herein can be augmented with frameworks and solutions that provide such
+mechanisms. Thus, diverse requirement needs
+stemming from different use cases addressing security need to be distinguished. To contrast
+that the security requirements between applications can 
+vary drastically, the following example is provided. Although many of the interfaces and
+their objects to support Big Data applications in physics are similar to
+those in healthcare, they differ in the integration
 of security interfaces and policies. While in physics the protection
-of the data is less of an issue, it is s stringent requirement in
-healthcare. Thus deriving architectural frameworks for both may use
-largely similar components, but while addressing security they are
-expected to be very different. In future versions of this document we
-intend to specifically address interfaces and their security. In the
-meanwhile we consider them as an advanced use case showcasing that the
-validity of the specifications introduced here is preserved even if
-security and privacy requirements vastly differ among application use
+of data is less of an issue, it is a stringent requirement in
+healthcare. Thus, deriving architectural frameworks for both may use
+largely similar components, but addressing security issues will
+be very different. In future versions of this document,
+the security of interfaces may be addressed. In the
+meanwhile, they are considered an advanced use case showcasing that the
+validity of the specifications introduced here is preserved, even if
+security and privacy requirements differ vastly among application use
 cases.
 
 \subsection{Component Specific Interface Requirements}
@@ -324,7 +410,7 @@ components are listed below and discussed in subsequent subsections.
 \end{quote}
 
 
-\subsubsection{System Orchestrator Interface Requirement}\label{S:r-orchestrator}
+\subsubsection{System Orchestrator Interface Requirements}\label{S:r-orchestrator}
 
 The System Orchestrator role includes defining and integrating the
 required data application activities into an operational vertical
@@ -345,15 +431,15 @@ confirm that specific quality of service requirements are met for each
 workload, and may actually elastically assign and provision additional
 physical or virtual resources to meet workload requirements resulting
 from changes/surges in the data or number of users/transactions. The
-interface to the system orchestrator must be capable of specifying the
+interface to the System Orchestrator must be capable of specifying the
 task of orchestration the deployment, configuration, and the execution
 of applications within the NBDRA. A simple vendor neutral
 specification to coordinate the various parts either as simple
 parallel language tasks or as a workflow specification is needed to
 facilitate the overall coordination. Integration of existing tools and
-services into the orchestrator as extensible interface is desirable.
+services into the System Orchestrator as extensible interfaces is desirable.
 
-\subsubsection{Data Provider Interface Requirement}\label{S:r-provider}
+\subsubsection{Data Provider Interface Requirements}\label{S:r-provider}
 
 The Data Provider role introduces new data or information feeds into
 the Big Data system for discovery, access, and transformation by the
@@ -368,15 +454,23 @@ details to identify the services offered so they can be pragmatically
 reused by consumers. Interfaces to describe pipes and filters must be
 addressed.
 
-\subsubsection{Data Consumer Interface Requirement}\label{S:r-consumer}
+\subsubsection{Data Consumer Interface Requirements}\label{S:r-consumer}
 
 Similar to the Data Provider, the role of Data Consumer within the
 NBDRA can be an actual end user or another system. In many ways, this
 role is the mirror image of the Data Provider, with the entire Big
 Data framework appearing like a Data Provider to the Data Consumer.
-The activities associated with the Data Consumer role include (a)
-Search and Retrieve (b) Download (c) Analyze Locally (d) Reporting (d)
-Visualization (e) Data to Use for Their Own Processes. The interface
+The activities associated with the Data Consumer role include the following:
+\begin{itemize}
+\item Search and Retrieve, 
+\item Download, 
+\item Analyze Locally, 
+\item Reporting, 
+\item Visualization, and 
+\item Data to Use for Their Own Processes. 
+\end{itemize}
+
+The interface
 for the data consumer must be able to describe the consuming services
 and how they retrieve information or leverage data consumers.
 
@@ -388,14 +482,14 @@ established by the System Orchestrator, as well as meeting security
 and privacy requirements. The Big Data Application Provider is the
 architecture component that encapsulates the business logic and
 functionality to be executed by the architecture. The interfaces to
-describe big data applications include interfaces for the various
+describe Big Data applications include interfaces for the various
 subcomponents including collections, preparation/curation, analytics,
-visualization, and access. Some if the interfaces used in these
-components can be reused from other interfaces introduced in other
-sections of this document. Where appropriate we will identify
-application specific interfaces and provide examples of them while
-focusing on a use case as identified in Volume 3 \cite{nist-vol-3} of
-this series.
+visualization, and access. Some of the interfaces used in these
+subcomponents can be reused from other interfaces, which are introduced in other
+sections of this document. Where appropriate, 
+application specific interfaces will be identified and examples provided with a
+focus on use cases as identified in the {it NBDIF: Volume 3 Use Cases and Requirements}
+\cite{nist-vol-3}.
 
 \paragraph{Collection}
 
@@ -496,11 +590,16 @@ paradigm for data transfer.
 \subsubsection{Big Data Provider Framework Interface Requirements}\label{S:r-provider-interface}
 
 Data for Big Data applications are delivered through data providers.
-They can be either local providers contributed by a user or
-distributed data providers that refer to data on the internet. We must
-be able to provide the following functionality (1) interfaces to files
-(2) interfaces to virtual data directories (3) interfaces to data
-streams (4) and interfaces to data filters.
+They can be either local providers, contributed by a user, or
+distributed data providers that refer to data on the Internet. This interface must
+be able to provide the following functionality:
+\begin{itemize}
+\item Interfaces to files,
+\item Interfaces to virtual data directories, 
+\item Interfaces to data streams, and 
+\item Interfaces to data filters.
+\end{itemize}
+
 
 \paragraph{Infrastructures Interface Requirements}
 
@@ -508,13 +607,13 @@ This Big Data Framework Provider element provides all of the resources
 necessary to host/run the activities of the other components of the
 Big Data system. Typically, these resources consist of some
 combination of physical resources, which may host/support similar
-virtual resources. As part of the NBDRA we need interfaces that can be
+virtual resources. The NBDRA needs interfaces that can be
 used to deal with the underlying infrastructure to address networking,
 computing, and storage.
 
 \paragraph{Platforms Interface Requirements}
 
-As part of the NBDRA platforms we need interfaces that can address
+As part of the NBDRA platforms, interfaces are needed that can address
 platform needs and services for data organization, data distribution,
 indexed storage, and file systems.
 
@@ -526,28 +625,28 @@ can deal with the volume, velocity, variety, and variability of data.
 Processing frameworks define how the computation and processing of the
 data is organized. Big Data applications rely on various platforms and
 technologies to meet the challenges of scalable data analytics and
-operation. We need to be able to interface easily with computing
+operation. A requirement is the ability to interface easily with computing
 services that offer specific analytics services, batch processing
 capabilities, interactive analysis, and data streaming.
 
 \paragraph{Crosscutting Interface Requirements}
 
-A number of crosscutting interface requirements within the NBDRA
-provider frameworks include messaging, communication, and resource
+Several crosscutting interface requirements within the Big Data Framework Provider
+include messaging, communication, and resource
 management. Often these services may actually be hidden from explicit
-interface use as they are part of larger systems that expose higher
-level functionality through their interfaces. However, it may be
-needed to expose such interfaces also on a lower level in case finer
-grained control is needed. We will identify the need for such
-crosscutting interface requirements form Volume 3 \cite{nist-vol-3} of
-this series.
+interface use as they are part of larger systems that expose higher-level 
+functionality through their interfaces. However, 
+such interfaces may also be exposed on a lower level in case finer
+grained control is needed. The need for such
+crosscutting interface requirements will be extracted from 
+the {it NBDIF: Volume 3, Use Cases and Requirements} \cite{nist-vol-3} document.
 
 \paragraph{Messaging/Communications Frameworks}
 
 Messaging and communications frameworks have their roots in the High
 Performance Computing (HPC) environments long popular in the
 scientific and research communities. Messaging/Communications
-Frameworks were developed to provide APIs for the reliable queuing,
+Frameworks were developed to provide application programming interfaces (APIs) for the reliable queuing,
 transmission, and receipt of data
 
 \paragraph{Resource Management Framework}
@@ -563,8 +662,8 @@ requirements for these tools. However, Big Data frameworks tend to
 fall more into a distributed computing paradigm, which presents
 additional challenges.
 
-\subsubsection{BD Application Provider to Framework Provider
-  Interface}\label{S:r-app-provider}
+\subsubsection{Big Data Application Provider to Big Data Framework Provider 
+Interface}\label{S:r-app-provider}
 
 The Big Data Framework Provider typically consists of one or more
 hierarchically organized instances of the components in the NBDRA IT
@@ -581,41 +680,44 @@ Application Provider.
 \section{Specification Paradigm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this document we summarize elementary objects that are important to
-for the NBDRA.
+This section summarizes the elementary objects that are important to
+the NBDRA.
 
 \subsection{Lessons Learned}
 
-Originally we used a full REST specification for defining the objets
-related to the NBDRA \cite{cloudmesh-nist}. However, we found quickly
-that at this stage of the document it would introduce too complex of a
-notation framework.  This would result in (a) a considerable increase
-in length of this document (b) a more complex framework reducing
-participation and (c) a more complex framework for developing a
-reference implementation. Thus we have decided in this version of the
-document to introduce a design concept by example that is used to
+Originally, a full REpresentational State Transfer (REST) specification was used 
+for defining the objects
+related to the NBDRA \cite{cloudmesh-nist}. However, 
+at this stage of the document, it would introduce too complex of a
+notation framework. This would result in (1) a considerable increase
+in length of this document, (2) a more complex framework reducing
+participation in the project, and (3) a more complex framework for developing a
+reference implementation. Thus, in this version of the
+document, a design concept by example  will be introduced, which is used to
 automatically create a schema as well as a reference implementation.
 
 \subsection{Hybrid and Multiple Frameworks}
 
-It is obvious that we must be able to deal with hybrid and multiple
-frameworks to avoid vendor lock in. This is not only true for Clouds,
-containers, DevOps, but also other components of the NBDRA. 
+To avoid vendor lock in, Big Data systems must be able to deal with hybrid and multiple
+frameworks. This is not only true for Clouds,
+containers, DevOps, but also components of the NBDRA. 
 
-\subsection{Design be Research Oriented Architecture}
+\subsection{Design by Research Oriented Architecture}
 
-A resource-oriented architecture (ROA) is represents a software
+A resource-oriented architecture represents a software
 architecture and programming paradigm for designing and developing
 software in the form of resources. It is often associated with
-"RESTful" interfaces. The resources are software components which can
+{\it RESTful} interfaces. The resources are software components which can
 be reused in concrete reference implementations. 
 
 \subsection{Design by Example}
 
-To accelerate discussion among the team we use an approach to define
-objects and its interfaces by example. These examples can than be taken
-and a schema can generated from them automatically. The schema is added to the
-Appendix~\ref{s:schema} of the document. 
+To accelerate discussion among the NBD-PWG members, an approach by example is
+used to define objects and their interfaces. These examples can then be used 
+to automatically generate a schema. The schema is added to the 
+Appendix~\ref{s:schema} of the document. Appendix~\ref{s:schema} lists 
+the schema that is automatically created from the definitions. More information 
+about the creation can be found in Appendix~\ref{s:cloudmesh-rest}.
 
 While focusing first on examples it allows us to speed up our design
 process and simplify discussions about the objects and interfaces
@@ -683,9 +785,10 @@ automatically.
 
 \subsection{Interface Compliancy}
 
-Due to the easy extensibility of our objects and their implicit
-interfaces it is important to introduce a terminology that allows us
-to define interface compliancy. We define it as follows
+Due to the easy extensibility of the objects in this document and their implicit
+interfaces, it is important to introduce a terminology that allows 
+definition of interface compliancy. The Subgroup defines three levels of interface compliance 
+as follows:
 
 \begin{description}
 
@@ -695,24 +798,27 @@ to define interface compliancy. We define it as follows
   objects is associated with the version. This reference
   implementation will implement all objects.
 
-\item[Partially Compliance:] These are reference implementations that
+\item[Partial Compliance:] These are reference implementations that
   provide partial compliance to the objects defined in this
   document. A version number will be added to assure the snapshot in
   time of the objects is associated with the version. This reference
   implementation will implement a partial list of the objects. A
-  document is accompanied that lists all objects defined, but also
+  document will be generated during the reference implementation 
+  that lists all objects defined, but also
   lists the objects that are not defined by the reference
-  architecture. A document will outline which objects and interfaces
+  architecture. The document will outline which objects and interfaces
   have been implemented.
 
-\item[Full and extended Compliance:] These are interfaces that in
+\item[Full and Extended Compliance:] These are interfaces that in
   addition to the full compliance also introduce additional interfaces
-  and extend them. A document will be provided that lists the
+  and extend them. A document will be generated during the reference implementation 
+  that lists the
   differences to the document defined here.
 
 \end{description}
 
-Such documents can than be forwarded to the subgroup for further
+The  documents  generated during the reference implementation 
+can then be forwarded to the Reference Architecture Subgroup for further
 discussion and for possible future modifications based on additional
 practical user feedback.
 
@@ -734,31 +840,29 @@ functional use as depicted summarized in Figure \ref{F:interfaces}.
 \end{figure*}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Identity}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In a multiuser environment we need a simple mechanism of associating
-objects and data to a particular person or group. While we do not want
-to replace with our efforts more elaborate solutions such as proposed
-by eduPerson \cite{www-eduperson} or others, we need a very simple way
-of distinguishing users. Therefore we have introduced a number of
+In a multiuser environment, a simple mechanism is used in this document for
+associating objects and data to a particular person or group. While 
+these efforts do not intend to replace more elaborate solutions such as proposed
+by eduPerson \cite{www-eduperson} or others, a very simple way
+was chosen to distinguish users. Therefore, the following sections introduce a number of
 simple objects including a profile and a user.
 
 \subsubsection{Profile}
 
 A profile defines the identity of an individual. It contains name and
-e-mail information. It may have an optional uuid and/or use a unique
-e-mail to distinguish a user. Profiles are used to identify diffrent
+e-mail information. It may have an optional unique user ID (uuid) and/or use a unique
+e-mail to distinguish a user. Profiles are used to identify different
 users.
 
 \codeFromJson{json}{profile.json}{Profile}{o:profile}
 
 \subsubsection{User}
 
-In contrast to the profile a user contains additional attributs that
-define the role of the user within the multi-user system.  This
-associates different roles to individuals, these roles potentially
+In contrast to the profile, a user contains additional attributes that
+define the role of the user within the multiuser system. The user
+associates different roles to individuals. These roles potentially
 have gradations of responsibility and privilege.
 
 \codeFromJson{json}{user.json}{Organization}{o:user}
@@ -766,20 +870,21 @@ have gradations of responsibility and privilege.
 \subsubsection{Organization}
 
 An important concept in many applications is the management of a group
-of users in an organization that manages a big data application or
-infrastructure. This can be achieved through two concepts. First, it
-can be achieved while using the profile and user resources itself as
+of users in an organization that manages a Big Data application or
+infrastructure. User group management can be achieved through three concepts. First, it
+can be achieved by using the profile and user resources itself as
 they contain the ability to manage multiple users as part of the REST
 interface. The second concept is to create a (virtual) organization that
-lists all users of this virtual organization. The third concept is to
+lists all users within the virtual organization. The third concept is to
 introduce groups and roles either as part of the user definition or as
-part of a simple list similar to the organization
+part of a simple list similar to the organization.
 
 \codeFromJson{json}{organization.json}{User}{o:organization}
 
-Thes concepts allow now the clear definition of various roles such as 
-data provider, data consumer, data curator, and others. It also would
-allow the creation of services that restrict data access by role, or
+The  profile, user, and organization concepts allow for the clear definition of 
+various roles such as
+data provider, data consumer, data curator, and others. These concepts also
+allow for the creation of services that restrict data access by role, or
 organizational affiliation.
 
 
@@ -790,10 +895,10 @@ services.
 
 \codeFromJson{json}{group.json}{Group}{o:group}
 
-A role is a further refinement of a group. Group members can have
-specific roles. A good example is that ability to formulate a group of
-users that have access to a repository. However the role defines more
-specifically read and write privileges to the data within the repository.
+A role is a further refinement of a group. Group members can have specific 
+roles. For example, a group of users can be assigned a role that allows 
+access to a repository. More specifically, the role would define a user’s 
+read and write privileges to the data within the repository.
 
 \codeFromJson{json}{role.json}{Role}{o:role}
 
@@ -860,16 +965,17 @@ directories, data streams, and data filters.
 \subsubsection{TimeStamp}
 
 Often data needs to be time stamped to indicate when it has been
-accessed, created or modified. All objects defined in this document
-will have in its final version a time stamp.
+accessed, created, or modified. All objects defined in this document
+will have, in their final version, a time stamp.
 
 \codeFromJson{json}{timestamp.json}{Timestamp}{o:timestamp}
 
-\subsubsection{Var}
+\subsubsection{Variables}
 
-Variables are used to store a simple values. Each variable can have a
-type. The variable value format is defined as string to allow maximal
-probability. The type of the value is also provided.
+Variables are used to store simple values. Each variable can have a
+type, which is also provided as demonstrated in the object below. The
+variable value format is defined as string to allow maximal
+probability. 
 
 \codeFromJson{json}{var.json}{Var}{o:var}
 
@@ -886,18 +992,18 @@ name for a cloud where the context is defined by the cloud name.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.5\columnwidth]{images/uml/boot.pdf}
-\caption{Booting a virtual machine from defaults}\label{F:uml-boot}
+\caption{Booting a VM from defaults}\label{F:uml-boot}
 \end{figure}
 
 
 \subsubsection{File}
 
-A file is a computer resource allowing to store data that is being
+A file is a computer resource allowing storage of data that is being
 processed. The interface to a file provides the mechanism to
-appropriately locate a file in a distributed system. Identification
-include the name, and endpoint, the checksum and the size. Additional
-parameters such as the lasst access time could be stored also. As such
-the Interface only describes the location of the file.
+appropriately locate a file in a distributed system. File identification
+includes the name, endpoint, checksum, and size. Additional
+parameters, such as the last access time, could also be stored. 
+The interface only describes the location of the file.
 
 The \textit{file} object has \textit{name}, \textit{endpoint}
 (location), \textit{size} in GB, MB, Byte, \textit{checksum} for
@@ -909,7 +1015,7 @@ integrity check, and last \textit{accessed} timestamp.
 
 A data object could have one alias or even multiple ones. The reason for an
 alias is that a file may have a complex name but a user may want to
-refer to that file in a name space that is suitable for the users
+refer to that file in a name space that is suitable for the user's
 application.
 
 \codeFromJson{json}{file_alias.json}{File alias}{o:file-alias}
@@ -937,30 +1043,30 @@ either be defined by uuid or by name.
 
 \subsubsection{Database}
 
-A \textit{database} could have a name, an \textit{endpoint} (e.g., host:port),
-and protocol used (e.g., SQL, mongo, etc.).
+A \textit{database} could have a name, an \textit{endpoint} (e.g., host, port),
+and a protocol used (e.g., SQL, mongo).
 
 \codeFromJson{json}{database.json}{Database}{o:database}
 
 \subsubsection{Stream} 
 
-A stream is describing stream of data while providing information about
-rate and number of items exchanged while issuing requests to the
-stream. A stream my return data items in a specific format that is
+The stream object describes a data flow, providing information about
+the rate and number of items exchanged while issuing requests to the
+stream. A stream may return data items in a specific format that is
 defined by the stream. 
 
 \codeFromJson{json}{stream.json}{Stream}{o:stream}
 
 Examples for streams could be a stream of random numbers but could
 also include more complex formats such as the retrieval of data
-records. Services can subscribe, unsubscribe from a stream, while also
+records. Services can subscribe and unsubscribe from a stream, while also
 applying filters to the subscribed stream.
 
 
 \subsubsection{Filter} 
 
-Filters can operate on a variety of objects and reduce and filter
-information based on a search criterion.
+Filters can operate on a variety of objects and reduce the
+information received based on a search criterion.
 
 \codeFromJson{json}{filter.json}{Filter}{o:filter}
 
@@ -969,22 +1075,22 @@ information based on a search criterion.
 \subsection{Virtual Cluster}\label{S:vc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-One of the essential features for Bid Data is the creation of a Big
-Data Analysis Cluster.  A virtual cluster combines resources that
-generally ar used to serve the Big Data Application and can constitute
+One of the essential features for Big Data is the creation of a Big
+Data analysis cluster. A virtual cluster combines resources that
+generally are used to serve the Big Data application and can constitute
 a variety of data analysis nodes that together build the virtual
-cluster. Instead of focussing only on the deployment of a physical
-cluster the creation of a virtual cluster can be instantiated on a
-number of different platforms. Such a platforms can include clouds,
-containers, physical hardware or a mix thereof to support different
-aspects of the big data application. 
+cluster. Instead of focusing only on the deployment of a physical
+cluster, the creation of a virtual cluster can be instantiated on a
+number of different platforms. Such platforms include clouds,
+containers, physical hardware, or a mix thereof to support different
+aspects of the Big Data application. 
 
 Figure~\ref{F:uml-virtualcluster} illustrates the process for
-allocating and provisioning a virtual cluster.  The user defines the
-desired physical properties of the cluster such CPU, memory, disk and
-the intended configuration (such as software, users, etc).  After
+allocating and provisioning a virtual cluster. The user defines the
+desired physical properties of the cluster (e.g., CPU, memory, disk) and
+the intended configuration (e.g., software, users). After
 requesting the stack to be deployed, cloudmesh allocates the machines
-as desired by matching the desired properties with the available
+by matching the desired properties with the available
 images and booting. The stack definition is then parsed then evaluated
 to provision the cluster.
 
@@ -999,18 +1105,19 @@ to provision the cluster.
 \subsubsection{Virtual Cluster}
 
 A virtual cluster is an agglomeration of virtual compute nodes that
+
 constitute the cluster. Nodes can be assembled to be baremetal,
-virtual machines, and containers. A virtual cluster contains a number
+VMs, and containers. A virtual cluster contains a number
 of virtual compute nodes.  
 
-The virtual cluster object has name, label, endpoint and provider. The
+The virtual cluster object has name, label, endpoint, and provider. The
 \textit{endpoint} defines a mechanism to connect to it. The
-\textit{provider} defines the nature of the cluster, e.g., its a
+\textit{provider} defines the nature of the cluster (e.g., it is a
 virtual cluster on an OpenStack cloud, or from AWS, or a bare-metal
-cluster and others
+cluster).
 
 To manage the cluster it can have a frontend node that is used to
-manage other nodes. authorized keys within the definition of the
+manage other nodes. Authorized keys within the definition of the
 cluster allow administrative functions, while authorized keys on a
 compute node allow login and use functionality of the virtual nodes.
 
@@ -1025,23 +1132,23 @@ compute node allow login and use functionality of the virtual nodes.
 \subsubsection{Compute Node}
 
 Compute nodes are used to conduct compute and data functions. They are
-of a specific {\it kind}. This could for example be a virtual machine
-(vm), bare metal (bm) or part of a predefined virtual cluster
+of a specific {\it kind}. For example,compute nodes could be a virtual machine
+(VM), bare metal, or part of a predefined virtual cluster
 framework. 
 
 Compute nodes are a representation of a computer system (physical or
-virtual). We are maintaining a very basic set of information. It is
-expected that through the endpoint the virtual machine can be
+virtual). A very basic set of information about the compute node is maintained in this document. 
+It is expected that, through the endpoint, the VM can be
 introspected and more detailed information can be retrieved. A compute
-node has name, label, a flavor, NICs and other relevant information.
+node has name, label, a flavor, network interface cards (NICs) and other relevant information.
 
 
 \codeFromJson{json}{virtual_machine.json}{Compute node of a virtual cluster}{o:virtual-machine}
 
 \subsubsection{Flavor}
 
-The flavor specifies elementary information about the compute node
-such as memory, number of cores as well as other attributes that can
+The flavor specifies elementary information about the compute node,
+such as memory and number of cores, as well as other attributes that can
 be added. Flavors are essential to size a virtual cluster appropriately.
 
 \codeFromJson{json}{flavor.json}{Flavor}{o:flavor}
@@ -1057,18 +1164,18 @@ be added. Flavors are essential to size a virtual cluster appropriately.
 % END OLD
 %
 
-\subsubsection{Nic}
+\subsubsection{Network Interface Card}
 
-To interact between the node a network is needed. We specify such a
-network interface on a virtual machine with a Nic (network interface
-card) object as showcased in Object~\ref{o:nic}. 
+To interact between the nodes, a network interface is needed. Such a
+network interface, specified on a virtual machine with a NIC
+object, is showcased in Object~\ref{o:nic}. 
 
 \codeFromJson{json}{nic.json}{Network interface card}{o:nic}
 
 \subsubsection{Key}
 
-Many services and Frameworks use ssh keys to authenticate. To allow
-the convenient storage of the public ket the sshkey object can be
+Many services and frameworks use Secure Shell (SSH) keys to authenticate. To allow
+the convenient storage of the public key, the sshkey object can be
 used (see Object \ref{o:key}).
 
 \codeFromJson{json}{sshkey.json}{Key}{o:key}
@@ -1141,32 +1248,33 @@ is depicted in Object \ref{o:secgroup}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{IaaS}
+\subsection{Infrastructure as a Service}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Although we have defined in Section \ref{S:vc} a general virtual
-cluster useful for Big Data, we are sometimes in the need to
-specifically utilize Infrastructure as a Service Frameworks such as
-Openstack, AWS, Azure, Google and others. To do so it is beneficial to
-be able to define virtual clusters using these frameworks. Hence, we
-define in this subsection interfaces related to Infrastructure as a
-Service frameworks. This includes specific objects useful for
+Although Section \ref{S:vc} defines a general virtual
+cluster useful for Big Data, sometimes the need exists to
+specifically utilize Infrastructure as a Service (IaaS) frameworks, such as
+Openstack, Azure, and others. To do so, it is beneficial to
+be able to define virtual clusters using these frameworks. Hence, 
+this subsection defines interfaces related to 
+IaaS frameworks. This includes specific objects useful for
 OpenStack, Azure, and AWS, as well as others. The definition of the
-objects between the clouds to manage them are different and not
+objects used between the clouds to manage them, are different and not
 standardized. In this case the objects support functions such as
+
 starting, stoping, suspending resuming, migration, network
 configuration, assigning of resources, assigning of operating systems
-for and others for the virtual machines.
+for and others for the VMs.
 
-Learning from others such as {\it LibCloud} shows the definition of
-generalized objects, that however are augmented with extra fields t
+Inspecting other examples, such as {\it LibCloud}, shows the definition of
+generalized objects are discovered, which are augmented with extra fields to
 specifically integrate with the various frameworks. When working with
-Cloudmesh we found that it is sufficient to  be able to specify a
+cloudmesh, it is sufficient to be able to specify a
 cloud based on a cloud specific action. Actions include boot,
-terminate, suspend, resume, assign network ips, add users.
+terminate, suspend, resume, assign network intrusion prevention system, and add users.
 
-To support such actions we can use objects that are used based on the
-type of the IaaS when invoked. We list such objects as used in
+To support such actions, objects can be selected based on the
+IaaS type in use when invoked. The following subsections list these objects as used in
 LibCloud, OpenStack, and Azure. 
 
 % ----------------------------------------------------------------------
@@ -1175,34 +1283,34 @@ LibCloud, OpenStack, and Azure.
 
 Libcloud is a Python library for interacting with different cloud
 service providers. It uses a unified API that exposes similar access
-to a variety of clouds. Internally is uses objects that we can use
+to a variety of clouds. Internally, it uses objects that can
 interface with different IaaS frameworks. However, as these frameworks
-are till different form each other, specific adaptations are done for
+are different from each other, specific adaptations are done for
 each IaaS, mostly reflected in the LibCloud Node (see Section
 \ref{S:libcloudnode})
 
-\paragraph{Disadvantages}
+\paragraph{Challenges}
 
-We have used LibCloud for some time practically in various versions of
-Cloudmesh. However we found that at times the representation and
-functionality provided by LibCloud for reference implementations did
+For time considerations, LibCloud was used for some time practically in various versions of
+cloudmesh. However, it became apparent that at times the representation and
+functionality provided by LibCloud, for reference implementations, did
 not support some advanced aspects provided by the native cloud
-objects. Thus for advanced applications we not only support the use of
-LibCloud, but also support the direct utilization of the native
-objects and interfaces provided by a particular IaaS framework. For
-this reason we have introduced additional interfaces as showcased in
-Sections \ref{S:openstack} and \ref{S:azure}.  We intend to integrate
-additional sections addressing other IaaS frameworks in future.
+objects. Depending on the application, libraries for interfacing with different frameworks, 
+direct utilization of the native
+objects, and interfaces provided by a particular IaaS framework could all be viable options. 
+Additional interfaces have been introduced in
+Sections \ref{S:openstack} and \ref{S:azure}. 
+Additional sections addressing other IaaS frameworks may be integrated in the future.
 
 \paragraph{LibCloud Flavor}
 
-The object referring to flavors is liste in Object \ref{o:libcloud-flavor}.
+The object referring to flavors is listed in Object \ref{o:libcloud-flavor}.
 
 \codeFromJson{json}{libcloud_flavor.json}{Libcloud flavor}{o:libcloud-flavor}
 
 \paragraph{LibCloud Image}
 
-The object referring to images is liste in Object
+The object referring to images is listed in Object
 \ref{o:libcloud-images}.
 
 \codeFromJson{json}{libcloud_image.json}{Libcloud image}{o:libcloud-image}
@@ -1211,45 +1319,46 @@ The object referring to images is liste in Object
 \paragraph{LibCloud VM}
 
 
-The object referring to virtual machines is liste in 
+The object referring to virtual machines is listed in 
 
 
 \codeFromJson{json}{libcloud_vm.json}{LibCloud VM}{o:libcloud-vm}
 
 \paragraph{LibCloud Node}\label{S:libcloudnode}
 
+
 Virtual machines for the various clouds have additional attributes
-that we summarize in Object \ref{o:libcloud-vm}.  These attributes are
-going to be integrated into the VM object.
+that are summarized in Object \ref{o:libcloud-vm}. These attributes 
+will be integrated into the VM object in the future.
 
 \codeFromJson{json}{libcloudNode.json}{LibCloud Node}{o:libcloud-node}
 
 
 % ----------------------------------------------------------------------
-\subsubsection{Openstack}\label{S:openstack}
+\subsubsection{OpenStack}\label{S:openstack}
 % ----------------------------------------------------------------------
 
-Objects related to OpenStack virtual machines are summarized in this
+Objects related to OpenStack VMs are summarized in this
 section.
 
-\paragraph{Openstack Flavor}
+\paragraph{OpenStack Flavor}
 
-The object referring to flavors is liste in Object
+The object referring to flavors is listed in Object
 \ref{o:libcloud-flavor}.
 
 \codeFromJson{json}{openstack_flavor.json}{Openstack flavor}{o:openstack-flavor}
 
-\paragraph{Openstack Image}
+\paragraph{OpenStack Image}
 
-The object referring to images is liste in Object
+The object referring to images is listed in Object
 \ref{o:openstack-image}.
 
 \codeFromJson{json}{openstack_image.json}{Openstack
   image}{o:openstack-image}
 
-\paragraph{Openstack Vm}
+\paragraph{OpenStack VM}
 
-The object referring to virtual machines is liste in Object \ref{o:openstack-vm}.
+The object referring to VMs is listed in Object \ref{o:openstack-vm}.
 
 
 \codeFromJson{json}{openstack_vm.json}{Openstack
@@ -1259,26 +1368,26 @@ The object referring to virtual machines is liste in Object \ref{o:openstack-vm}
 \subsubsection{Azure}\label{S:azure}
 % ----------------------------------------------------------------------
 
-Objects related to OpenStack virtual machines are summarized in this
+Objects related to Azure virtual machines are summarized in this
 section.
 
 \paragraph{Azure Size}
 
-The object referring to the image size machines is liste in Object \ref{o:azure-size}.
+The object referring to the image size machines is listed in Object \ref{o:azure-size}.
 
 \codeFromJson{json}{azure-size.json}{Azure-size}{o:azure-size}
 
 
 \paragraph{Azure Image}
 
-The object referring to the images machines is liste in Object
+The object referring to the images machines is listed in Object
 \ref{o:azure-image}.
 
 \codeFromJson{json}{azure-image.json}{Azure-image}{o:azure-image}
 
-\paragraph{Azure Vm}
+\paragraph{Azure VM}
 
-The object referring to the virtual machines is liste in Object
+The object referring to the virtual machines is listed in Object
 \ref{o:azure-vm}.
  
 \codeFromJson{json}{azure-vm.json}{Azure-vm}{o:azure-vm}
@@ -1309,10 +1418,8 @@ applications.
 \subsubsection{Reservation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Some services may consume a considerable amount of resources. In order
-to allow utilization we need to reserve their use. For this porrpose
-we have introduced a reservation object (see Object \ref
-{o:reservation}).
+Some services may consume a considerable amount of resources, necessitating
+the reservation of resources. For this purpose, a reservation object (Object \ref{o:reservation}) has been introduced.
 
 \codeFromJson{json}{reservation.json}{Reservation}{o:reservation}
 
@@ -1329,7 +1436,7 @@ we have introduced a reservation object (see Object \ref
 \subsection{Containers}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-This defines {\em container} object. 
+The following defines the {\em container} object. 
 
 \codeFromJson{json}{container.json}{Container}{o:container}
 
@@ -1346,8 +1453,8 @@ This defines {\em container} object.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A \textit{deployment} consists of the resource \- \textit{cluster},
-the location \- \textit{provider}, e.g., AWS, OpenStack, etc., and
-software \textit{stack} to be deployed (e.g., hadoop, spark).
+the location \- \textit{provider} (e.g., OpenStack), and
+software \textit{stack} to be deployed (e.g., Hadoop, Spark).
 
 \codeFromJson{json}{deployment.json}{Deployment}{o:deployment}
 
@@ -1413,11 +1520,10 @@ as the library origin, version, and others (see Object \ref{o:hadoop})
 \subsection{Microservice}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-As part of microservices, we are defining a function with parameters
-that can be invoked. To describe such services we have defined the
-Object \ref {o:microservice}.  As we can define multiple such services
-we can easily find them and use them as part of a microservice based
-implementation.
+As part of microservices, a function with parameters that can be invoked
+has been defined. To describe such services, the Object \ref {o:microservice}
+was created. Defining multiple services facilitates the finding of the
+microservices and the use as part of a microservice based implementation.
  
 \codeFromJson{json}{microservice.json}{Microservice}{o:microservice}
 
@@ -1579,7 +1685,7 @@ The following acronyms and terms are used in the paper
   code execution model in which a cloud provider manages the function
   deployment and utilization while clients can utilize them. The
   charge model is based on execution of the function rather than the
-  cost to manage and host the virtual machine or container.
+  cost to manage and host the VM or container.
 
 \item[Software Stack] A set of programs and services that are
   installed on a resource in order to support applications.
@@ -1588,14 +1694,14 @@ The following acronyms and terms are used in the paper
   a distributed physical file system to allow easy access to the files
   by the user or application.
 
-\item[Virtual Machine] A virtual machine is a software computer that,
+\item[Virtual Machine] A VM is a software computer that,
   like a physical computer, runs an operating system and applications.
-  The virtual machine is comprised of a set of specification and
+  The VM is comprised of a set of specification and
   configuration files and is backed by the physical resources of a
   host.
 
 \item[Virtual Cluster] A virtual cluster is a software cluster that
-  integrate either virtual machines, containers or physical resources into an
+  integrate either VMs, containers or physical resources into an
   agglomeration of compute resources. A virtual cluster allows user
   sto authenticate and authorize to the virtual compute nodes tu
   utilize them for calculations. Optional high level services that can
@@ -1630,22 +1736,22 @@ defined in this document.
 
 \section{Cloudmesh Rest}\label{s:cloudmesh-rest}
 
-Cloudmesh Rest is a refernce implementattion for the NBDRA. It
-allows to define automatically a REST service based on the objects
-specified by the NBDRA document. In collaboration with other cloudmesh
+Cloudmesh Rest is a reference implementation for the NBDRA. It
+allows for automatic definition of a REST service based on the objects
+specified by the NBDRA. In collaboration with other cloudmesh
 components it allows easy interaction with hybrid clouds and the
-creation of user managed big data services. 
+creation of user managed Big Data services. 
 
-\subsection{Prerequistis}\label{prerequistis}
+\subsection{Prerequisites}\label{prerequistis}
 
-The preriquisits for Cloudmesh REST are Python 2.7.13 or 3.6.1
-it can easily be installed on a variety of systems (at this time we
-have only tried ubuntu greater 16.04 and OSX Sierra. However, it would
-naturally be possible to also port it to Windows. The instalation
-instruction in this document are not complete and we recommend to
-refer to the cloudmesh manuals which are under development. The goal
-will be to make the instalation (after your system is set up for
-developing python) as simple as 
+The prerequisiits for cloudmesh Rest are Python 2.7.13 or 3.6.1.
+It can easily be installed on a variety of systems (at this time
+only ubuntu greater 16.04 and OSX Sierra have been tested). However, it would
+naturally be possible to also port it to Windows. At the time of publication, the installation
+instructions in this document are not complete. The reader is
+referred to the cloudmesh manuals, which are under development. The goal
+will be to make the installation (after the system is set up for
+developing Python) as simple as the following:
 
 \begin{verbatim}
     pip install cloudmesh.rest
@@ -1654,12 +1760,12 @@ developing python) as simple as
 
 \subsection{REST Service}\label{cm-rest}
 
-With the cloudmesh REST framework it is easy to create REST services
-while defining the resources via example json objects. This is achieved
-while leveraging the python eve \cite{www-eve} and a modified version of python
+With the cloudmesh REST framework, it is easy to create REST services
+while defining the resources via example JSON objects. This is achieved
+while leveraging the Python eve \cite{www-eve} and a modified version of Python
 evengine \cite{www-cloudmesh-eveengine}. 
 
-A valid json resource specification looks like this:
+A valid JSON resource specification looks like this:
 
 \begin{verbatim}
 {
@@ -1673,23 +1779,23 @@ A valid json resource specification looks like this:
 }
 \end{verbatim}
 
-here we define an object called profile, that contains a number of
-attributes and values. The type of the values are automatically
-determined. All json specifications are contained in a directory and
-can easily be converted into a valid schema for the eve rest service
-by executing the commands
+In this example, an object called profile is defined, which contains a number of
+attributes and values. The type of the values is automatically
+determined. All JSON specifications are contained in a directory and
+can easily be converted into a valid schema for the eve REST service
+by executing the following commands:
 
 \begin{verbatim}
 cms schema cat . all.json
 cms schema convert all.json
 \end{verbatim}
 
-This will create a the configuration \verb|all.settings.py| that can
-be used to start an eve service
+This will create the configuration \verb|all.settings.py| that can
+be used to start an eve service.
 
-Once the schema has defined, cloudmesh specifies defaults for managing
-a sample data base that is coupled with the REST service. We use
-mongodb which could be placed on a sharded mongo service. 
+Once the schema has been defined, cloudmesh specifies defaults for managing
+a sample database that is coupled with the REST service. 
+MongoDB was used which could be placed on a sharded mongo service. 
 
 \subsection{Limitations}
 
