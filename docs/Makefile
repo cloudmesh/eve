@@ -72,4 +72,14 @@ fast:
 # watch:
 #	latexmk -shell-escape -pvc -view=pdf ${FILE} 
 
+flatten:
+	pip install flap
+	flap objects.tex flat
+	ls -1 flat
+	python ./imagefix.py
+
+doc: flatten
+	cd flat; pandoc objects.tex -o ../NIST.SP.1500-8-draft.docx
+
+
 .PHONY: all clean view fast watch

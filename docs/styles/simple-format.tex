@@ -2,7 +2,7 @@
 \usepackage{fullpage}
 \usepackage{mdframed}
 \usepackage{enumitem}
-\usepackage{lineno}
+%\usepackage{lineno}
 \usepackage[explicit]{titlesec}
 %\usepackage{url}
 \usepackage{hyperref}
@@ -25,6 +25,9 @@
  \usepackage{microtype}
     \DisableLigatures[f]{encoding=T1}
 \usepackage[T1]{fontenc}
+\usepackage{verbatim}
+\usepackage{etoolbox}
+
 
 \titleformat{\section}
   {\large\sffamily\bfseries}
@@ -133,6 +136,23 @@
     %title={Listing \thetcbcounter : #3},
     %overlay={\node[anchor=north east,outer sep=-9pt] at ([xshift=-25pt]frame.north east) {\includegraphics[width=1cm,height=1cm]{images/code2.png}}; },
   label=#4
+}
+
+\newcommand{\JSONINPUT}[4]{
+  \iftoggle{fancyjson}{%
+
+    \codeFromJson{#1}{#2}{#3}{#4}
+
+  }{
+
+      \verbatiminput{../cloudmesh/specification/examples/#2}
+      \vspace{-24pt}
+    \begin{figure}[!h]
+      \caption{Object #3}
+      \label{#3}
+    \end{figure}
+  }
+ 
 }
 
 \renewcommand{\contentsname}{Table of Contents}

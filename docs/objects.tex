@@ -11,7 +11,9 @@
         Wo L. Chang}
 
 \date{Draft v0.0.1, \today} 
-
+\newtoggle{fancyjson}
+%\toggletrue{fancyjson}
+\togglefalse{fancyjson}
 
 \begin{document}
 
@@ -51,7 +53,9 @@
 \newpage
 
 % switsch on line numbers
-\linenumbers
+\iftoggle{fancyjson}{%
+    \linenumbers
+}
 
 \input{introduction}
 
@@ -90,7 +94,7 @@ usable for the implementation of Big Data Architectures.
 
 
 \begin{figure*}[h]\centering
-\includegraphics[width=1.1\textwidth]{images/vol8-nbdra}
+\includegraphics[width=1.1\textwidth]{images/vol8-nbdra.pdf}
 \caption{NIST Big Data Reference Architecture (NBDRA)}
 \label{F:architecture}
 \end{figure*}
@@ -99,7 +103,7 @@ usable for the implementation of Big Data Architectures.
 \subsection{Scope and Objectives of the Reference Architecture
   Subgroup}
 
-Reference architectures provide “an authoritative source of information about a specific subject area that guides and constrains the instantiations of multiple architectures and solutions.”   Reference architectures generally serve as a foundation for solution architectures and may also be used for comparison and alignment of instantiations of architectures and solutions. 
+Reference architectures provide ``an authoritative source of information about a specific subject area that guides and constrains the instantiations of multiple architectures and solutions.''   Reference architectures generally serve as a foundation for solution architectures and may also be used for comparison and alignment of instantiations of architectures and solutions. 
  
 The goal of the NBD-PWG Reference Architecture Subgroup is to develop an open reference architecture for Big Data that achieves the following objectives:
 
@@ -208,7 +212,7 @@ to Big Data. The results of these NBD-PWG activities were used in the developmen
 be found in the other volumes of the {\it NBDIF}. 
 
 \begin{figure*}[h]\centering
-\includegraphics[width=1.1\textwidth]{images/vol8-nbdra}
+\includegraphics[width=1.1\textwidth]{images/vol8-nbdra.pdf}
 \caption{NIST Big Data Reference Architecture (NBDRA)}
 \label{F:architecture}
 \end{figure*}
@@ -736,7 +740,9 @@ the cloudmesh client and rest project \cite{www-cloudmesh-client}\cite{cloudmesh
 An example object will demonstrate our approach. The following object
 defines a JSON object representing a user (see Object \ref{sample:profile}). 
 
-\codeFromJson{json}{profile.json}{Example object specification}{sample:profile}
+%\codeFromJson{json}{profile.json}{Example object specification}{sample:profile}
+\JSONINPUT{json}{profile.json}{Example object specification}{sample:profile}
+
 
 Such an object can be translated to a schema specification 
 while introspecting the types of the original example. 
@@ -840,7 +846,7 @@ Figure~\ref{F:architecture}. Instead we have grouped the objects by
 functional use as depicted summarized in Figure \ref{F:interfaces}.
 
 \begin{figure*}[h]\centering
-\includegraphics[width=1.1\textwidth]{images/interfaces}
+\includegraphics[width=1.1\textwidth]{images/interfaces.pdf}
 \caption{NIST Big Data Reference Architecture Interfaces}
 \label{F:interfaces}
 \end{figure*}
@@ -862,7 +868,7 @@ e-mail information. It may have an optional unique user ID (uuid) and/or use a u
 e-mail to distinguish a user. Profiles are used to identify different
 users.
 
-\codeFromJson{json}{profile.json}{Profile}{o:profile}
+\JSONINPUT{json}{profile.json}{Profile}{o:profile}
 
 \subsubsection{User}
 
@@ -871,7 +877,7 @@ define the role of the user within the multiuser system. The user
 associates different roles to individuals. These roles potentially
 have gradations of responsibility and privilege.
 
-\codeFromJson{json}{user.json}{Organization}{o:user}
+\JSONINPUT{json}{user.json}{Organization}{o:user}
 
 \subsubsection{Organization}
 
@@ -885,7 +891,7 @@ lists all users within the virtual organization. The third concept is to
 introduce groups and roles either as part of the user definition or as
 part of a simple list similar to the organization.
 
-\codeFromJson{json}{organization.json}{User}{o:organization}
+\JSONINPUT{json}{organization.json}{User}{o:organization}
 
 The  profile, user, and organization concepts allow for the clear definition of 
 various roles such as
@@ -899,14 +905,14 @@ organizational affiliation.
 A group contains a number of users. It is used to manage authorized
 services.
 
-\codeFromJson{json}{group.json}{Group}{o:group}
+\JSONINPUT{json}{group.json}{Group}{o:group}
 
 A role is a further refinement of a group. Group members can have specific 
 roles. For example, a group of users can be assigned a role that allows 
 access to a repository. More specifically, the role would define a user’s 
 read and write privileges to the data within the repository.
 
-\codeFromJson{json}{role.json}{Role}{o:role}
+\JSONINPUT{json}{role.json}{Role}{o:role}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Data}
@@ -974,7 +980,7 @@ Often data needs to be time stamped to indicate when it has been
 accessed, created, or modified. All objects defined in this document
 will have, in their final version, a time stamp.
 
-\codeFromJson{json}{timestamp.json}{Timestamp}{o:timestamp}
+\JSONINPUT{json}{timestamp.json}{Timestamp}{o:timestamp}
 
 \subsubsection{Variables}
 
@@ -983,7 +989,7 @@ type, which is also provided as demonstrated in the object below. The
 variable value format is defined as string to allow maximal
 probability. 
 
-\codeFromJson{json}{var.json}{Var}{o:var}
+\JSONINPUT{json}{var.json}{Var}{o:var}
 
 \subsubsection{Default}
 
@@ -992,7 +998,7 @@ it. This allows one to define values that can be easily retrieved
 based on its context. A good example for a default would be the image
 name for a cloud where the context is defined by the cloud name.
 
-\codeFromJson{json}{default.json}{Default}{o:default}
+\JSONINPUT{json}{default.json}{Default}{o:default}
 
 
 \begin{figure}[!h]
@@ -1015,7 +1021,7 @@ The \textit{file} object has \textit{name}, \textit{endpoint}
 (location), \textit{size} in GB, MB, Byte, \textit{checksum} for
 integrity check, and last \textit{accessed} timestamp.
 
-\codeFromJson{json}{file.json}{File}{o:file}
+\JSONINPUT{json}{file.json}{File}{o:file}
 
 \subsubsection{Alias}
 
@@ -1024,7 +1030,7 @@ alias is that a file may have a complex name but a user may want to
 refer to that file in a name space that is suitable for the user's
 application.
 
-\codeFromJson{json}{file_alias.json}{File alias}{o:file-alias}
+\JSONINPUT{json}{file_alias.json}{File alias}{o:file-alias}
 
 \subsubsection{Replica}
 
@@ -1034,7 +1040,7 @@ It is important to provide a mechanism that allows to trace the
 pedigree of the file while pointing to its original source. A replica
 can be applied to all data types introduced in this document.
 
-\codeFromJson{json}{replica.json}{Replica}{o:replica}
+\JSONINPUT{json}{replica.json}{Replica}{o:replica}
 
 
 \subsubsection{Virtual Directory}
@@ -1044,7 +1050,7 @@ number of entities including files, streams, and other virtual
 directories as part of a collection. The element in the collection can
 either be defined by uuid or by name. 
 
-\codeFromJson{json}{virtual_directory.json}{Virtual
+\JSONINPUT{json}{virtual_directory.json}{Virtual
   directory}{o:virtual-directory}
 
 \subsubsection{Database}
@@ -1052,7 +1058,7 @@ either be defined by uuid or by name.
 A \textit{database} could have a name, an \textit{endpoint} (e.g., host, port),
 and a protocol used (e.g., SQL, mongo).
 
-\codeFromJson{json}{database.json}{Database}{o:database}
+\JSONINPUT{json}{database.json}{Database}{o:database}
 
 \subsubsection{Stream} 
 
@@ -1061,7 +1067,7 @@ the rate and number of items exchanged while issuing requests to the
 stream. A stream may return data items in a specific format that is
 defined by the stream. 
 
-\codeFromJson{json}{stream.json}{Stream}{o:stream}
+\JSONINPUT{json}{stream.json}{Stream}{o:stream}
 
 Examples for streams could be a stream of random numbers but could
 also include more complex formats such as the retrieval of data
@@ -1074,7 +1080,7 @@ applying filters to the subscribed stream.
 Filters can operate on a variety of objects and reduce the
 information received based on a search criterion.
 
-\codeFromJson{json}{filter.json}{Filter}{o:filter}
+\JSONINPUT{json}{filter.json}{Filter}{o:filter}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1127,13 +1133,13 @@ manage other nodes. Authorized keys within the definition of the
 cluster allow administrative functions, while authorized keys on a
 compute node allow login and use functionality of the virtual nodes.
 
-\codeFromJson{json}{virtual_cluster.json}{Virtual
+\JSONINPUT{json}{virtual_cluster.json}{Virtual
   cluster}{o:virtual-cluster}
 
-\codeFromJson{json}{virtual_cluster_provider.type}{Virtual
+\JSONINPUT{json}{virtual_cluster_provider.type}{Virtual
   cluster provider}{o:virtual-cluster-provider}
 
-% \codeFromJson{json}{cluster.json}{Cluster}{o:cluster}
+% \JSONINPUT{json}{cluster.json}{Cluster}{o:cluster}
 
 \subsubsection{Compute Node}
 
@@ -1149,7 +1155,7 @@ introspected and more detailed information can be retrieved. A compute
 node has name, label, a flavor, network interface cards (NICs) and other relevant information.
 
 
-\codeFromJson{json}{virtual_machine.json}{Compute node of a virtual cluster}{o:virtual-machine}
+\JSONINPUT{json}{virtual_machine.json}{Compute node of a virtual cluster}{o:virtual-machine}
 
 \subsubsection{Flavor}
 
@@ -1157,15 +1163,15 @@ The flavor specifies elementary information about the compute node,
 such as memory and number of cores, as well as other attributes that can
 be added. Flavors are essential to size a virtual cluster appropriately.
 
-\codeFromJson{json}{flavor.json}{Flavor}{o:flavor}
+\JSONINPUT{json}{flavor.json}{Flavor}{o:flavor}
 
 
 %
 % BEGIN OLD
 %
-% \codeFromJson{json}{virtual_compute_node.json}{Compute node}{o:virtual-compute-node}
-% \codeFromJson{json}{compute_resource.json}{Compute resource}{o:compute-resource}
-% \codeFromJson{json}{computer.json}{Computer}{o:computer}
+% \JSONINPUT{json}{virtual_compute_node.json}{Compute node}{o:virtual-compute-node}
+% \JSONINPUT{json}{compute_resource.json}{Compute resource}{o:compute-resource}
+% \JSONINPUT{json}{computer.json}{Computer}{o:computer}
 %
 % END OLD
 %
@@ -1176,7 +1182,7 @@ To interact between the nodes, a network interface is needed. Such a
 network interface, specified on a virtual machine with a NIC
 object, is showcased in Object~\ref{o:nic}. 
 
-\codeFromJson{json}{nic.json}{Network interface card}{o:nic}
+\JSONINPUT{json}{nic.json}{Network interface card}{o:nic}
 
 \subsubsection{Key}
 
@@ -1184,7 +1190,7 @@ Many services and frameworks use Secure Shell (SSH) keys to authenticate. To all
 the convenient storage of the public key, the sshkey object can be
 used (see Object \ref{o:key}).
 
-\codeFromJson{json}{sshkey.json}{Key}{o:key}
+\JSONINPUT{json}{sshkey.json}{Key}{o:key}
 
 \subsubsection{Security Groups}
 
@@ -1193,7 +1199,7 @@ introduced. They define the typical security groups that will be
 deployed once a compute node is specified. The security group object
 is depicted in Object \ref{o:secgroup}.
 
-\codeFromJson{json}{security_group.json}{Security Groups}{o:secgroup}
+\JSONINPUT{json}{security_group.json}{Security Groups}{o:secgroup}
 
 
 
@@ -1202,7 +1208,7 @@ is depicted in Object \ref{o:secgroup}.
 % THIS IS ACTUALLY NOT A NEW OBJEC BUT AN OLD OBJECT
 %
 %\subsubsection{New Cluster}
-%\codeFromJson{json}{cluster_new.json}{Cluster}{o:cluster-new}
+%\JSONINPUT{json}{cluster_new.json}{Cluster}{o:cluster-new}
 %
 
 
@@ -1246,9 +1252,9 @@ is depicted in Object \ref{o:secgroup}.
 % (SSH), 443 (SSL), and 80 and 8080 (web).
 
 
-% \codeFromJson{json}{node.json}{Node}{o:node}
+% \JSONINPUT{json}{node.json}{Node}{o:node}
 
-% \codeFromJson{json}{node-new.json}{Node}{o:node}
+% \JSONINPUT{json}{node-new.json}{Node}{o:node}
 
 % END OLD
 
@@ -1312,14 +1318,14 @@ Additional sections addressing other IaaS frameworks may be integrated in the fu
 
 The object referring to flavors is listed in Object \ref{o:libcloud-flavor}.
 
-\codeFromJson{json}{libcloud_flavor.json}{Libcloud flavor}{o:libcloud-flavor}
+\JSONINPUT{json}{libcloud_flavor.json}{Libcloud flavor}{o:libcloud-flavor}
 
 \paragraph{LibCloud Image}
 
 The object referring to images is listed in Object
 \ref{o:libcloud-images}.
 
-\codeFromJson{json}{libcloud_image.json}{Libcloud image}{o:libcloud-image}
+\JSONINPUT{json}{libcloud_image.json}{Libcloud image}{o:libcloud-image}
 
 
 \paragraph{LibCloud VM}
@@ -1328,7 +1334,7 @@ The object referring to images is listed in Object
 The object referring to virtual machines is listed in 
 
 
-\codeFromJson{json}{libcloud_vm.json}{LibCloud VM}{o:libcloud-vm}
+\JSONINPUT{json}{libcloud_vm.json}{LibCloud VM}{o:libcloud-vm}
 
 \paragraph{LibCloud Node}\label{S:libcloudnode}
 
@@ -1337,7 +1343,7 @@ Virtual machines for the various clouds have additional attributes
 that are summarized in Object \ref{o:libcloud-vm}. These attributes 
 will be integrated into the VM object in the future.
 
-\codeFromJson{json}{libcloudNode.json}{LibCloud Node}{o:libcloud-node}
+\JSONINPUT{json}{libcloudNode.json}{LibCloud Node}{o:libcloud-node}
 
 
 % ----------------------------------------------------------------------
@@ -1352,14 +1358,14 @@ section.
 The object referring to flavors is listed in Object
 \ref{o:libcloud-flavor}.
 
-\codeFromJson{json}{openstack_flavor.json}{Openstack flavor}{o:openstack-flavor}
+\JSONINPUT{json}{openstack_flavor.json}{Openstack flavor}{o:openstack-flavor}
 
 \paragraph{OpenStack Image}
 
 The object referring to images is listed in Object
 \ref{o:openstack-image}.
 
-\codeFromJson{json}{openstack_image.json}{Openstack
+\JSONINPUT{json}{openstack_image.json}{Openstack
   image}{o:openstack-image}
 
 \paragraph{OpenStack VM}
@@ -1367,7 +1373,7 @@ The object referring to images is listed in Object
 The object referring to VMs is listed in Object \ref{o:openstack-vm}.
 
 
-\codeFromJson{json}{openstack_vm.json}{Openstack
+\JSONINPUT{json}{openstack_vm.json}{Openstack
   vm}{o:openstack-vm}
 
 % ----------------------------------------------------------------------
@@ -1381,7 +1387,7 @@ section.
 
 The object referring to the image size machines is listed in Object \ref{o:azure-size}.
 
-\codeFromJson{json}{azure-size.json}{Azure-size}{o:azure-size}
+\JSONINPUT{json}{azure-size.json}{Azure-size}{o:azure-size}
 
 
 \paragraph{Azure Image}
@@ -1389,14 +1395,14 @@ The object referring to the image size machines is listed in Object \ref{o:azure
 The object referring to the images machines is listed in Object
 \ref{o:azure-image}.
 
-\codeFromJson{json}{azure-image.json}{Azure-image}{o:azure-image}
+\JSONINPUT{json}{azure-image.json}{Azure-image}{o:azure-image}
 
 \paragraph{Azure VM}
 
 The object referring to the virtual machines is listed in Object
 \ref{o:azure-vm}.
  
-\codeFromJson{json}{azure-vm.json}{Azure-vm}{o:azure-vm}
+\JSONINPUT{json}{azure-vm.json}{Azure-vm}{o:azure-vm}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1418,7 +1424,7 @@ performance advantages. Disadvantages are the limited and preinstalled
 software stacks that in some cases do not allow to run the latests
 applications.
 
-\codeFromJson{json}{batchjob.json}{Batchjob}{o:batchjob}
+\JSONINPUT{json}{batchjob.json}{Batchjob}{o:batchjob}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Reservation}
@@ -1427,7 +1433,7 @@ applications.
 Some services may consume a considerable amount of resources, necessitating
 the reservation of resources. For this purpose, a reservation object (Object \ref{o:reservation}) has been introduced.
 
-\codeFromJson{json}{reservation.json}{Reservation}{o:reservation}
+\JSONINPUT{json}{reservation.json}{Reservation}{o:reservation}
 
 
 \begin{comment}
@@ -1435,7 +1441,7 @@ the reservation of resources. For this purpose, a reservation object (Object \re
 
 \TODO{Refine}
 
-\codeFromJson{json}{mesos.json}{Mesos}{o:mesos}
+\JSONINPUT{json}{mesos.json}{Mesos}{o:mesos}
 \end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1444,14 +1450,14 @@ the reservation of resources. For this purpose, a reservation object (Object \re
 
 The following defines the {\em container} object. 
 
-\codeFromJson{json}{container.json}{Container}{o:container}
+\JSONINPUT{json}{container.json}{Container}{o:container}
 
 \begin{comment}
 \subsubsection{Kubernetes}
 
 \TODO{REFINE}
 
-\codeFromJson{json}{kubernetes.json}{Kubernetes}{o:kubernetes}
+\JSONINPUT{json}{kubernetes.json}{Kubernetes}{o:kubernetes}
 \end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1462,7 +1468,7 @@ A \textit{deployment} consists of the resource \- \textit{cluster},
 the location \- \textit{provider} (e.g., OpenStack), and
 software \textit{stack} to be deployed (e.g., Hadoop, Spark).
 
-\codeFromJson{json}{deployment.json}{Deployment}{o:deployment}
+\JSONINPUT{json}{deployment.json}{Deployment}{o:deployment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Mapreduce}
@@ -1477,7 +1483,7 @@ indicates that the data should be fetched from a FTP resource. It is
 the framework's responsibility to materialize and instantiation of the
 desired environment along with the function and data.
 
-\codeFromJson{json}{mapreduce.json}{Mapreduce}{o:mapreduce}
+\JSONINPUT{json}{mapreduce.json}{Mapreduce}{o:mapreduce}
 
 Additional parameters include the ``fault\_tolerant'' and ``backend''
 parameters.  The former flag indicates if the \textit{mapreduce}
@@ -1501,7 +1507,7 @@ The results of the function application can be accessed via the
 (e.g. ``data'', ``processed'', ``model'') to an object representing
 the result.
 
-\codeFromJson{json}{mapreduce_function_prototype.json}{Mapreduce function}{o:mr.f.prototype}
+\JSONINPUT{json}{mapreduce_function_prototype.json}{Mapreduce function}{o:mr.f.prototype}
 
 
 Some example functions include the ``NoOp'' function shown in
@@ -1509,7 +1515,7 @@ Listing~\ref{o:mr.f.noop}.  In the case of undefined arguments,
 the parameters default to an identity element. In the case of mappings
 this is the empty mapping while for lists this is the empty list.
 
-\codeFromJson{json}{mapreduce_function_noop.json}{Mapreduce noop}{o:mr.f.noop}
+\JSONINPUT{json}{mapreduce_function_noop.json}{Mapreduce noop}{o:mr.f.noop}
 
 
 \subsubsection{Hadoop}
@@ -1519,7 +1525,7 @@ the \textit{parameters} of the deployment, and the system packages as
 \textit{requires}. For each requirement, it could have attributes such
 as the library origin, version, and others (see Object \ref{o:hadoop})
 
-\codeFromJson{json}{hadoop.json}{Hadoop}{o:hadoop}
+\JSONINPUT{json}{hadoop.json}{Hadoop}{o:hadoop}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1531,7 +1537,7 @@ has been defined. To describe such services, the Object \ref {o:microservice}
 was created. Defining multiple services facilitates the finding of the
 microservices and the use as part of a microservice based implementation.
  
-\codeFromJson{json}{microservice.json}{Microservice}{o:microservice}
+\JSONINPUT{json}{microservice.json}{Microservice}{o:microservice}
 
 
 
@@ -1555,9 +1561,9 @@ big data infrastructure and services more simple, the user or
 application may underestimate the overall cost projected by the
 implementation of the big data reference architecture.
 
-\codeFromJson{json}{accounting.json}{Accounting}{o:accounting}
+\JSONINPUT{json}{accounting.json}{Accounting}{o:accounting}
 
-\codeFromJson{json}{account.json}{Account}{o:account}
+\JSONINPUT{json}{account.json}{Account}{o:account}
 
 \paragraph{Usecase: Accounting Service}
 
@@ -1738,7 +1744,7 @@ The following acronyms and terms are used in the paper
 Listing \ref{l:schema} showcases the schema generated from the objects
 defined in this document.
 
-\codeFromJson{python}{../settings.settings.py}{Schema}{l:schema}
+\JSONINPUT{python}{../settings.settings.py}{Schema}{l:schema}
 
 \section{Cloudmesh Rest}\label{s:cloudmesh-rest}
 
