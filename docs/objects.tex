@@ -5,10 +5,9 @@
 
 \input{styles/simple-format}
 
-\title{NIST Big Data Interoperability Framework: Volume 8, Interfaces}
+%\title{NIST Big Data Interoperability Framework: Volume 8, Interfaces}
 
-\author{Gregor von Laszewski,Fugang Wang, Badi Abdhul-Wahid, 
-        Wo L. Chang}
+%\author{Gregor von Laszewski,Fugang Wang, Wo L. Chang}
 
 \date{Draft v0.0.1, \today} 
 \newtoggle{fancyjson}
@@ -120,7 +119,7 @@ The NBDRA is a high-level conceptual model crafted to serve as a tool to facilit
 
 The NBDRA does not address the following:
 \begin{itemize}
-\item Detailed specifications for any organization’s operational systems
+\item Detailed specifications for any organization's operational systems
 \item Detailed specifications of information exchanges or services
 \item Recommendations or standards for integration of infrastructure products
 \end {itemize}
@@ -180,7 +179,7 @@ TBD
 include the list here. The Standards Roadmap Subgroup will continue to
 develop these and possibly other topics during Phase 3. The current
 version reflects the breadth of knowledge of the Subgroup members. The
-public’s participation in Phase 3 of the NBD-PWG work is encouraged.
+public's participation in Phase 3 of the NBD-PWG work is encouraged.
 To achieve technical and high quality document content, this document
 will go through public comments period along with NIST internal
 review.
@@ -240,7 +239,7 @@ as part of the Big Data Application Provider and Bid Data Framework Provider is 
 that those roles provide or implement specific activities and functions within the system. It does 
 not designate a service model or business entity.
 
-The DATA arrows in Figure 2 show the flow of data between the system’s main roles. Data flows 
+The DATA arrows in Figure 2 show the flow of data between the system's main roles. Data flows 
 between the roles either physically (i.e., by value) or by providing its location and the means
 to access it (i.e., by reference). The SW arrows show transfer of software tools for processing of
 Big Data {\it in situ}. The Service Use arrows represent software programmable interfaces. While the
@@ -909,7 +908,7 @@ services.
 
 A role is a further refinement of a group. Group members can have specific 
 roles. For example, a group of users can be assigned a role that allows 
-access to a repository. More specifically, the role would define a user’s 
+access to a repository. More specifically, the role would define a user's 
 read and write privileges to the data within the repository.
 
 \JSONINPUT{json}{role.json}{Role}{o:role}
@@ -1050,8 +1049,7 @@ number of entities including files, streams, and other virtual
 directories as part of a collection. The element in the collection can
 either be defined by uuid or by name. 
 
-\JSONINPUT{json}{virtual_directory.json}{Virtual
-  directory}{o:virtual-directory}
+\JSONINPUT{json}{virtual_directory.json}{Virtual directory}{o:virtual-directory}
 
 \subsubsection{Database}
 
@@ -1133,11 +1131,9 @@ manage other nodes. Authorized keys within the definition of the
 cluster allow administrative functions, while authorized keys on a
 compute node allow login and use functionality of the virtual nodes.
 
-\JSONINPUT{json}{virtual_cluster.json}{Virtual
-  cluster}{o:virtual-cluster}
+\JSONINPUT{json}{virtual_cluster.json}{Virtual cluster}{o:virtual-cluster}
 
-\JSONINPUT{json}{virtual_cluster_provider.type}{Virtual
-  cluster provider}{o:virtual-cluster-provider}
+\JSONINPUT{json}{virtual_cluster_provider.type}{Virtual cluster provider}{o:virtual-cluster-provider}
 
 % \JSONINPUT{json}{cluster.json}{Cluster}{o:cluster}
 
@@ -1365,16 +1361,14 @@ The object referring to flavors is listed in Object
 The object referring to images is listed in Object
 \ref{o:openstack-image}.
 
-\JSONINPUT{json}{openstack_image.json}{Openstack
-  image}{o:openstack-image}
+\JSONINPUT{json}{openstack_image.json}{Openstack image}{o:openstack-image}
 
 \paragraph{OpenStack VM}
 
 The object referring to VMs is listed in Object \ref{o:openstack-vm}.
 
 
-\JSONINPUT{json}{openstack_vm.json}{Openstack
-  vm}{o:openstack-vm}
+\JSONINPUT{json}{openstack_vm.json}{Openstack vm}{o:openstack-vm}
 
 % ----------------------------------------------------------------------
 \subsubsection{Azure}\label{S:azure}
