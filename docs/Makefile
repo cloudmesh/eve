@@ -73,14 +73,14 @@ fast:
 #	latexmk -shell-escape -pvc -view=pdf ${FILE} 
 
 word:
-	python fixjsoninclude.py > word.tex
+	python bin/fixjsoninclude.py > word.tex
 	pandoc word.tex -o NIST.SP.1500-8-draft.docx
 
 flatten:
 	# pip install flap
 	flap objects.tex flat
 	ls -1 flat
-	python ./imagefix.py
+	python ./bin/imagefix.py
 
 doc: flatten
 	rm -f NIST.SP.1500-8-draft.docx
